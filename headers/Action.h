@@ -34,3 +34,5 @@ class Action {
 		int sa; 			//stochasticity absorption factor		
 		
 };
+
+// test Marlène utilisation de git

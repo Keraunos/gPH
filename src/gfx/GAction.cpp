@@ -6,6 +6,12 @@
 #include <Qt>
 #include "GAction.h"
 
+/*!
+ * \file GAction.cpp
+ * \author Jean-Michel
+ * \brief Determines how to draw the action
+ */
+
 GAction::GAction(ActionPtr a, GVEdge e, GVEdge f, PHScene* sc) : scene(sc), action(a) {
 	
 	edges = std::make_pair (e, f);

@@ -2,6 +2,13 @@
 #include <QtGui>
 #include "MainWindow.h"
 
+/*!
+ * \file Main.cpp
+ * \author Jean-Michel
+ * \brief Principal Program
+ * \details Defines the call
+ */
+
 #include <iostream>
 #include "IO.h"
 #include "GVGraph.h"

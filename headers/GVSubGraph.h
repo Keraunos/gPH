@@ -9,6 +9,13 @@
 #include "GVNode.h"
 #include "GVEdge.h"
 
+/**
+  * \file GVSubGraph.h
+  * \brief header for the GVSubGraph class
+  * \author PAPPL 2012
+  *
+  */
+
 class GVSubGraph;
 typedef boost::shared_ptr<GVSubGraph> GVSubGraphPtr;
 

@@ -10,6 +10,13 @@
 #include "Process.h"
 #include "Sort.h"
 
+/**
+  * \file PH.h
+  * \brief header for the PH class
+  * \author PAPPL 2012
+  *
+  */
+
 using std::list;
 using std::map;
 using std::string;

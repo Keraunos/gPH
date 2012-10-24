@@ -2,6 +2,13 @@
 #include <QPoint>
 #include <QString>
 
+/**
+  * \file Action.h
+  * \brief header for the GVCluster class
+  * \author PAPPL 2012
+  *
+  */
+
 //A struct containing the information for a GVGraph's node
 struct GVCluster {
 	

@@ -1,6 +1,13 @@
 #pragma once
 #include <string>
 
+/**
+  * \file IO.h
+  * \brief header for the IO class
+  * \author PAPPL 2012
+  *
+  */
+
 using std::string;
 
 class IO {

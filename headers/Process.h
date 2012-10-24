@@ -4,6 +4,13 @@
 #include <list>
 #include "Sort.h"
 
+/**
+  * \file Process.h
+  * \brief header for the Process class
+  * \author PAPPL 2012
+  *
+  */
+
 using std::string;
 
 //Mutual inclusion

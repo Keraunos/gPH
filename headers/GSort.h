@@ -7,6 +7,13 @@
 #include "Sort.h"
 #include "GVCluster.h"
 
+/**
+  * \file Action.h
+  * \brief header for the GSort class
+  * \author PAPPL 2012
+  *
+  */
+
 class GSort;
 typedef boost::shared_ptr<GSort> GSortPtr;
 

@@ -8,6 +8,13 @@
 #include "GProcess.h"
 #include "GSort.h"
 
+/**
+  * \file PHScene.h
+  * \brief header for the PHScene class
+  * \author PAPPL 2012
+  *
+  */
+
 using std::map;
 using std::string;
 

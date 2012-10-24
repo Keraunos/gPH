@@ -5,6 +5,13 @@
 #include <boost/make_shared.hpp>
 #include "Process.h"
 
+/**
+  * \file Sort.h
+  * \brief header for the Sort class
+  * \author PAPPL 2012
+  *
+  */
+
 using std::string;
 using std::list;
 using std::vector;

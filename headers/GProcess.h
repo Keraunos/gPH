@@ -7,6 +7,13 @@
 #include "Process.h"
 #include "GVNode.h"
 
+/**
+  * \file GProcess.h
+  * \brief header for the GProcess class
+  * \author PAPPL 2012
+  *
+  */
+
 class GProcess;
 typedef boost::shared_ptr<GProcess> GProcessPtr;
 class Process;

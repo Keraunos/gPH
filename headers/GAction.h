@@ -8,6 +8,13 @@
 #include "PHScene.h"
 #include "Action.h"
 
+/**
+  * \file GAction.h
+  * \brief header for the GAction class
+  * \author PAPPL 2012
+  *
+  */
+
 class GAction;
 typedef boost::shared_ptr<GAction> GActionPtr;
 class Action;

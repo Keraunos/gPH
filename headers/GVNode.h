@@ -2,6 +2,13 @@
 #include <QPoint>
 #include <QString>
 
+/**
+  * \file GVNode.h
+  * \brief header for the GVNode class
+  * \author PAPPL 2012
+  *
+  */
+
 /// A struct containing the information for a GVGraph's node
 struct GVNode {
 	

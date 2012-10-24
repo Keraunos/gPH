@@ -3,6 +3,13 @@
 #include <QString>
 #include <QPainterPath>
 
+/**
+  * \file Action.h
+  * \brief header for the GVEdge class
+  * \author PAPPL 2012
+  *
+  */
+
 /// A struct containing the information for a GVGraph's edge
 struct GVEdge {
 	

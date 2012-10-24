@@ -2,6 +2,13 @@
 #include <string>
 #include <boost/exception/all.hpp>
 
+/**
+  * \file Exceptions.h
+  * \brief header for the Exceptions class
+  * \author PAPPL 2012
+  *
+  */
+
 using std::string;
 using boost::error_info;
 

@@ -2,6 +2,13 @@
 #include <string>
 #include "PH.h"
 
+/**
+  * \file PHIO.h
+  * \brief header for the PHIO class
+  * \author PAPPL 2012
+  *
+  */
+
 using std::string;
 
 class PHIO {

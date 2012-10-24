@@ -5,6 +5,13 @@
 #include <QtGui>
 #include "PH.h"
 
+/**
+  * \file MyArea.h
+  * \brief header for the MyArea class
+  * \author PAPPL 2012
+  *
+  */
+
 class MyArea : public QGraphicsView {
     Q_OBJECT
 

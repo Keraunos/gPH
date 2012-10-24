@@ -8,9 +8,9 @@
 #include "GVNode.h"
 
 /**
-  * \file GProcess.h
-  * \brief header for the GProcess class
-  * \author PAPPL 2012
+  * @file GProcess.h
+  * @brief header for the GProcess class
+  * @author PAPPL 2012
   *
   */
 
@@ -19,18 +19,58 @@ typedef boost::shared_ptr<GProcess> GProcessPtr;
 class Process;
 typedef boost::shared_ptr<Process> ProcessPtr;
 
+
+/**
+  * @class GProcess
+  * @brief determines the way to draw a process
+  *
+  */
 class GProcess {
 
 	public:
+
+        /**
+          * @brief constructor for GProcess
+          *
+          */
 		GProcess(ProcessPtr p, GVNode n);
 		~GProcess();
+        /**
+          * @brief contains the whole drawing of the process
+          *
+          */
 		QGraphicsItem* getDisplayItem (void);
 	
 	protected:
+
+        /**
+          * @brief contains the whole drawing of the process
+          *
+          */
 		QGraphicsItem* display;
+
+        /**
+          * @brief graphical element to draw the action: ellipse
+          *
+          */
 		QGraphicsEllipseItem* ellipse;
-		QGraphicsTextItem* text;
+
+        /**
+          * @brief graphical element to draw the action: text
+          *
+          */
+        QGraphicsTextItem* text;
+
+        /**
+          * @brief process related
+          *
+          */
 		ProcessPtr process;
+
+        /**
+          * @brief node related
+          *
+          */
 		GVNode node;
 	
 };

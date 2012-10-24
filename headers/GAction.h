@@ -9,9 +9,9 @@
 #include "Action.h"
 
 /**
-  * \file GAction.h
-  * \brief header for the GAction class
-  * \author PAPPL 2012
+  * @file GAction.h
+  * @brief header for the GAction class
+  * @author PAPPL 2012
   *
   */
 
@@ -23,16 +23,41 @@ class PHScene;
 
 using std::pair;
 
+
+/**
+  * @class Gaction
+  * @brief determines the way to draw an action
+  *
+  */
 class GAction {
 
 	public:
+
+    /**
+      * @brief constructor for Gaction
+      *
+      */
 		GAction(ActionPtr a, GVEdge e, GVEdge f, PHScene* sc);
-		~GAction();
+        ~GAction();
+
+     /**
+       * @brief contains the whole drawing of the process
+       *
+       */
 		QGraphicsItem* getDisplayItem (void);
 	
 	protected:
 	
+        /**
+          * @brief
+          *
+          */
 		PHScene* scene;
+
+        /**
+          * @brief
+          *
+          */
 		QGraphicsItem* display;
 		pair<QGraphicsPathItem*, QGraphicsPathItem*> 		arrowTails;
 		pair<QGraphicsPolygonItem* , QGraphicsPolygonItem*>	arrowHeads;		

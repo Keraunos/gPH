@@ -16,8 +16,8 @@
 struct GVEdge {
 
     /// The source and target nodes of the edge
-    Qstring source;
-    Qstring target;
+    QString source;
+    QString target;
 
     /// Path of the edge's line
     QPainterPath path;

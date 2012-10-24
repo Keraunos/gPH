@@ -41,7 +41,7 @@ class GAction {
         ~GAction();
 
      /**
-       * @brief contains the whole drawing of the process
+       * @brief contains the whole drawing of the action
        *
        */
 		QGraphicsItem* getDisplayItem (void);

@@ -2,9 +2,9 @@
 #include <string>
 
 /**
-  * \file IO.h
-  * \brief header for the IO class
-  * \author PAPPL 2012
+  * @file IO.h
+  * @brief header for the IO class
+  * @author PAPPL 2012
   *
   */
 

@@ -3,9 +3,9 @@
 #include <QString>
 
 /**
-  * \file Action.h
-  * \brief header for the GVCluster class
-  * \author PAPPL 2012
+  * @file GVCluster.h
+  * @brief header for the GVCluster class
+  * @author PAPPL 2012
   *
   */
 

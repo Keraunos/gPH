@@ -3,9 +3,9 @@
 #include "PH.h"
 
 /**
-  * \file PHIO.h
-  * \brief header for the PHIO class
-  * \author PAPPL 2012
+  * @file PHIO.h
+  * @brief header for the PHIO class
+  * @author PAPPL 2012
   *
   */
 

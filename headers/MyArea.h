@@ -6,9 +6,9 @@
 #include "PH.h"
 
 /**
-  * \file MyArea.h
-  * \brief header for the MyArea class
-  * \author PAPPL 2012
+  * @file MyArea.h
+  * @brief header for the MyArea class
+  * @author PAPPL 2012
   *
   */
 

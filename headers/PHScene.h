@@ -9,9 +9,9 @@
 #include "GSort.h"
 
 /**
-  * \file PHScene.h
-  * \brief header for the PHScene class
-  * \author PAPPL 2012
+  * @file PHScene.h
+  * @brief header for the PHScene class
+  * @author PAPPL 2012
   *
   */
 

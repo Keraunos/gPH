@@ -3,9 +3,9 @@
 #include <boost/exception/all.hpp>
 
 /**
-  * \file Exceptions.h
-  * \brief header for the Exceptions class
-  * \author PAPPL 2012
+  * @file Exceptions.h
+  * @brief header for the Exceptions class
+  * @author PAPPL 2012
   *
   */
 

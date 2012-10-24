@@ -3,9 +3,9 @@
 #include <QString>
 
 /**
-  * \file GVNode.h
-  * \brief header for the GVNode class
-  * \author PAPPL 2012
+  * @file GVNode.h
+  * @brief header for the GVNode class
+  * @author PAPPL 2012
   *
   */
 

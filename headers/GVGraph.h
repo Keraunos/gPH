@@ -9,6 +9,13 @@
 #include <QString>
 #include "GVSubGraph.h"
 
+/**
+  * \file GVGraph.h
+  * \brief header for the GVGraph class
+  * \author PAPPL 2012
+  *
+  */
+
 class GVGraph;
 typedef boost::shared_ptr<GVGraph> GVGraphPtr;
 

@@ -20,17 +20,60 @@ typedef boost::shared_ptr<Sort> SortPtr;
 class Process;
 typedef boost::shared_ptr<Process> ProcessPtr;
 
+/**
+  * @class Process
+  * @brief represents a process of the process hitting
+  *
+  */
 class Process {
 
 	public:
+
+        /**
+          * @brief constructor for Process
+          *
+          * @param s: sort the process is related to
+          * @param n: number of the process in the sort it is related to
+          *
+          */
 		Process (SortPtr s, const int& n);
+
+        /**
+          * @brief getter for the number
+          *
+          */
 		int getNumber(void);
+
+        /**
+          * @brief getter for the sort
+          *
+          */
 		SortPtr getSort(void);
+
+        /**
+          * @brief renames in DOT file
+          *
+          */
 		string getDotName (void);
+
+        /**
+          * @brief gives a text representation of the process hitting (in .dot format, used in Graphviz)
+          *
+          */
 		string toDotString (void);
 		
 	private:
+
+        /**
+          * @brief sort the process is related to
+          *
+          */
 		SortPtr sort;
+
+        /**
+          * @brief number of the process in the sort it is related to
+          *
+          */
 		int number;
 
 };

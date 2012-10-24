@@ -11,9 +11,9 @@
 #include "Sort.h"
 
 /**
-  * \file PH.h
-  * \brief header for the PH class
-  * \author PAPPL 2012
+  * @file PH.h
+  * @brief header for the PH class
+  * @author PAPPL 2012
   *
   */
 
@@ -30,10 +30,18 @@ class PH;
 typedef boost::shared_ptr<PH> PHPtr;
 typedef std::pair<string, SortPtr> SortEntry;
 
-//Build node and subgraph names for graphviz
+/**
+  * @brief builds node and subgraph names for graphviz
+  *
+  */
 static inline QString makeClusterName (string s) {
 	return QString::fromStdString("cluster_" + s);
 }
+
+/**
+  * @brief builds node and subgraph names for graphviz
+  *
+  */
 static inline QString makeProcessName (ProcessPtr p) {
 	return QString::fromStdString(p->getSort()->getName()) + QString("_%1").arg(p->getNumber());
 }
@@ -41,40 +49,160 @@ static inline QString makeProcessName (ProcessPtr p) {
 class PH {
 
 	public:
+
+        /**
+          * @brief constructor for PH
+          *
+          */
 		PH();
+
+        /**
+          * @brief add a sort to the PH
+          *
+          */
 		void addSort(SortPtr s);
+
+        /**
+          * @brief add an action to the PH
+          *
+          */
 		void addAction(ActionPtr a);
+
+        /**
+          * @brief getter for a sort
+          *
+          */
 		SortPtr getSort(string const&);
-		list<ActionPtr> getActions(void);		
-		list<SortPtr> getSorts(void);		
+
+        /**
+          * @brief getter for the actions of the PH
+          *
+          */
+        list<ActionPtr> getActions(void);
+
+        /**
+          * @brief getter for the sorts of the PH
+          *
+          */
+        list<SortPtr> getSorts(void);
+
+        /**
+          * @brief getter for the processes of the PH
+          *
+          */
 		list<ProcessPtr> getProcesses(void);		
-		
-		string toString (void);					//String output for .ph file
-		string toDotString (void);				//String output for dot file		
+
+        /**
+          * @brief gives a text representation of the process hitting (as it would be in a .ph file)
+          *
+          */
+        string toString (void);
+
+        /**
+          * @brief gives a text representation of the process hitting (in .dot format, used in Graphviz)
+          *
+          */
+        string toDotString (void);
+
+        /**
+          * @brief calls for the process hitting in its scene
+          * @details time-expensive method, calls the toGVGraph method
+          *
+          */
 		void render (void);
+
+        /**
+          * @brief makes a representation of the process hitting as a graph
+          * @details calls graphviz to calculate the optimized graph
+          *
+          */
 		GVGraphPtr toGVGraph(void);
-		PHScenePtr getGraphicsScene (void); 	//Output for display
-		
-		//Headers control
+
+        /**
+          * @brief outputs for display
+          *
+          */
+        PHScenePtr getGraphicsScene (void);
+
+        /**
+          * @brief getter for the stochasticity absorption
+          *
+          */
 		int 	getStochasticityAbsorption ();
+
+        /**
+          * @brief setter for the stochasticity absorption
+          *
+          */
 		void 	setStochasticityAbsorption (int sa);
+
+        /**
+          * @brief getter for the default rate;
+          *
+          */
 		double 	getDefaultRate ();
+
+        /**
+          * @brief setter for the default rate
+          *
+          */
 		void	setDefaultRate (double r);
+
+        /**
+          * @brief getter for the Infinite Default Rate
+          *
+          */
 		bool 	getInfiniteDefaultRate ();
+
+        /**
+          * @brief setter for the Infinitite Default Rate
+          *
+          */
 		void 	setInfiniteDefaultRate (bool b);
 
 	protected:
 
 		//Headers
+
+        /**
+          * @brief default value for stochasticity absorption
+          *
+          */
 		int stochasticity_absorption;
-		bool infinite_default_rate; //Has priority over default_rate
+
+        /**
+          * @brief boolean to know if the default rate is or is not infinite
+          * @details if it is, the default rate makes no sense
+          *
+          */
+        bool infinite_default_rate;
+
+        /**
+          * @brief default value for rate
+          *
+          */
 		double default_rate;
 
 		//Content
+
+        /**
+          * @brief map of the sorts, linked with their names
+          *
+          */
 		map<string, SortPtr> sorts;
+
+        /**
+          * @brief list of the actions
+          *
+          */
 		list<ActionPtr> actions;
 		
 		//Display
+
+        /**
+          * @brief graphical object representing the process hitting
+          *
+          */
 		PHScenePtr scene;		
 
 };

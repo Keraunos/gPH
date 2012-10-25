@@ -12,23 +12,64 @@
   *
   */
 
+
+/**
+  * @class MyArea
+  * @brief new tab
+    extends QGraphicsView
+  *
+  */
 class MyArea : public QGraphicsView {
     Q_OBJECT
 
 	public:
         //builder
+
+        /**
+          * @brief builder for MyArea
+          * param path of the area
+          *
+          */
         MyArea(QString path);
 
         // getter + setter for myPHPtr
+        /**
+          * @brief getter for myPHPtr
+          *
+          */
         PHPtr getPHPtr();
+
+        /**
+          * @brief setter for myPHPtr
+          *
+          */
 		void setPHPtr(PHPtr);
 
         // getter + setter for path
+
+        /**
+          * @brief getter for the path
+          *
+          */
         QString getPath();
+
+        /**
+          * @brief setter for the path
+          *
+          */
         void setPath(QString);
 
 	protected:
+        /**
+          * @brief pointer to a PH object
+          *
+          */
 		PHPtr myPHPtr;
+
+        /**
+          * @brief contains the path to the file
+          *
+          */
         QString path;
 		
 	signals:

@@ -9,16 +9,29 @@
   *
   */
 
-/// A struct containing the information for a GVGraph's node
+
+/**
+  * @brief struct containing the information for a GVGraph's node
+  *
+  */
 struct GVNode {
-	
-    /// The unique identifier of the node in the graph
+
+    /**
+      * @brief the unique identifier of the node in the graph
+      *
+      */
     QString name;
 
-    /// The position of the center point of the node from the top-left corner
+    /**
+      * @brief position of the center point of the node from the top-left corner
+      *
+      */
     QPoint centerPos;
 
-    /// The size of the node in pixels
+    /**
+      * @brief the size (height and width) of the node in pixels
+      *
+      */
     float height, width;
 	
 };

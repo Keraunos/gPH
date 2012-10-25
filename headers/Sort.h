@@ -93,7 +93,7 @@ public:
 	protected:
 
         /**
-          * @brief constructor for sort
+          * @brief builder for sort
           *
           */
         Sort (const string&);

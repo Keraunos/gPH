@@ -32,12 +32,15 @@ class GProcess {
         /**
           * @brief constructor for GProcess
           *
+          * @param ProcessPtr the Process object that will be agregated
+          * @param GVNode the GVNode object that will be agregated
           */
 		GProcess(ProcessPtr p, GVNode n);
 		~GProcess();
         /**
-          * @brief contains the whole drawing of the process
+          * @brief getter for the whole drawing of the process
           *
+          * @return QGraphicsItem* representing the whole drawing of the process
           */
 		QGraphicsItem* getDisplayItem (void);
 	

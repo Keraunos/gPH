@@ -43,26 +43,57 @@ class GAction {
      /**
        * @brief contains the whole drawing of the action
        *
+       * @return a QgraphicsItem containing the whole drawing
        */
 		QGraphicsItem* getDisplayItem (void);
 	
 	protected:
 	
         /**
-          * @brief
+          * @brief the PHScene related to the action
           *
           */
 		PHScene* scene;
 
         /**
-          * @brief
+          * @brief the QGraphicsItem* containing the whole drawing
           *
           */
 		QGraphicsItem* display;
+
+        /**
+          * @brief the QGraphicsItem* related to the tails of the arrows
+          *
+          */
 		pair<QGraphicsPathItem*, QGraphicsPathItem*> 		arrowTails;
-		pair<QGraphicsPolygonItem* , QGraphicsPolygonItem*>	arrowHeads;		
+
+        /**
+          * @brief the QGraphicsPolygonItem* related to the heads of the arrows
+          *
+          */
+        pair<QGraphicsPolygonItem* , QGraphicsPolygonItem*>	arrowHeads;
+
+        /**
+          * @brief the GVEdge related to the arrows
+          *
+          */
 		pair<GVEdge, GVEdge> edges;
+
+        /**
+          * @brief the action object
+          *
+          */
 		ActionPtr action;
+
+        /**
+          * @brief builds the head of the arrow as a QGraphicsPolygonItem*
+          *
+          * @param GVEdge e related to the arrows
+          * @param Qcolor color the color of the arrows
+          *
+          * @return QGraphicsPolygonItem* built from the GVEdge, with the color chosen
+          *
+          */
 		QGraphicsPolygonItem* makeArrowHead(const GVEdge& e, const QColor& color);		
 	
 };

@@ -28,7 +28,7 @@ class Action {
 
 	public:
     /**
-      * @brief constructor for action
+      * @brief builder for action
       *
       * @param source_: the source process
       * @param target_: the target process

@@ -22,7 +22,7 @@ class MainWindow : public QMainWindow {
 public:
 
     /**
-      * @brief constructor for MainWindow, creates the window, the menus and initializes the characteristics
+      * @brief builder for MainWindow, creates the window, the menus and initializes the characteristics
       *
       */
     MainWindow();

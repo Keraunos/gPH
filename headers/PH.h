@@ -51,7 +51,7 @@ class PH {
 	public:
 
         /**
-          * @brief constructor for PH
+          * @brief builder for PH
           *
           */
 		PH();

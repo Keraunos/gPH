@@ -30,7 +30,7 @@ class Process {
 	public:
 
         /**
-          * @brief constructor for Process
+          * @brief builder for Process
           *
           * @param s: sort the process is related to
           * @param n: number of the process in the sort it is related to

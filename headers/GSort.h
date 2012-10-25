@@ -28,7 +28,7 @@ class GSort {
 	public:
 
         /**
-          * @brief constructor for GSort
+          * @brief builder for GSort
           *
           * @param SortPtr the Sort object that will be agregated
           * @param GVCluster the GVCluster struct that will be agregated

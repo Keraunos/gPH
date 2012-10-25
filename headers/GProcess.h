@@ -30,7 +30,7 @@ class GProcess {
 	public:
 
         /**
-          * @brief constructor for GProcess
+          * @brief builder for GProcess
           *
           * @param ProcessPtr the Process object that will be agregated
           * @param GVNode the GVNode object that will be agregated

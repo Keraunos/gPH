@@ -34,7 +34,7 @@ class GAction {
 	public:
 
     /**
-      * @brief constructor for Gaction
+      * @brief builder for Gaction
       *
       */
 		GAction(ActionPtr a, GVEdge e, GVEdge f, PHScene* sc);

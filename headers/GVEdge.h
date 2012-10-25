@@ -11,15 +11,29 @@
   */
 
 
-
-/// A struct containing the information for a GVGraph's edge
+/**
+  * @brief struct containing the information for a GVGraph's edge
+  *
+  */
 struct GVEdge {
 
-    /// The source and target nodes of the edge
+    /**
+      * @brief the source node of the edge
+      *
+      */
     QString source;
+
+    /**
+      *  @brief the target node of the edge
+      *
+      */
     QString target;
 
-    /// Path of the edge's line
+
+    /**
+      * @brief the path of the edge's line
+      *
+      */
     QPainterPath path;
 
 };

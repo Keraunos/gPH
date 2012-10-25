@@ -7,7 +7,7 @@
 /**
   * \file Process.h
   * \brief header for the Process class
-  * \author PAPPL 2012
+  * \author PAPPL_2012
   *
   */
 

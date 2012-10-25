@@ -8,7 +8,7 @@
 /**
   * @file MyArea.h
   * @brief header for the MyArea class
-  * @author PAPPL 2012
+  * @author PAPPL_2012
   *
   */
 

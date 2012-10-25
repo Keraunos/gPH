@@ -13,7 +13,7 @@
 /**
   * @file PH.h
   * @brief header for the PH class
-  * @author PAPPL 2012
+  * @author PAPPL_2012
   *
   */
 

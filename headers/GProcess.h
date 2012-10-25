@@ -10,7 +10,7 @@
 /**
   * @file GProcess.h
   * @brief header for the GProcess class
-  * @author PAPPL 2012
+  * @author PAPPL_2012
   *
   */
 

@@ -11,7 +11,7 @@
 /**
   * @file GAction.h
   * @brief header for the GAction class
-  * @author PAPPL 2012
+  * @author PAPPL_2012
   *
   */
 

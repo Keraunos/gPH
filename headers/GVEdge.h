@@ -6,7 +6,7 @@
 /**
   * @file GVEdge.h
   * @brief header for the GVEdge class
-  * @author PAPPL 2012
+  * @author PAPPL_2012
   *
   */
 

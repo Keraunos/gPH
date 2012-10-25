@@ -8,7 +8,7 @@
 /**
   * @file Sort.h
   * @brief header for the Sort class
-  * @author PAPPL 2012
+  * @author PAPPL_2012
   *
   */
 

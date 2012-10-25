@@ -9,7 +9,7 @@
 /**
   * @file Action.h
   * @brief header for the Action class
-  * @author PAPPL 2012
+  * @author PAPPL_2012
   *
   */
 

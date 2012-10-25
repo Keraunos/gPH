@@ -5,7 +5,7 @@
 /**
   * @file GVCluster.h
   * @brief header for the GVCluster class
-  * @author PAPPL 2012
+  * @author PAPPL_2012
   *
   */
 

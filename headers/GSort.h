@@ -10,7 +10,7 @@
 /**
   * @file GSort.h
   * @brief header for the GSort class
-  * @author PAPPL 2012
+  * @author PAPPL_2012
   *
   */
 

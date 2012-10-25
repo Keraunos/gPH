@@ -37,6 +37,9 @@ public:
 	
         /**
           * @brief creates pointers to sorts
+          * @param string name of the sort you want to point at
+          * @param int number of processes in the sort
+          * @return SortPtr the SortPtr pointed at
           *
           */
 		static SortPtr make(const string&, const int&);
@@ -68,7 +71,7 @@ public:
 
         /**
           * @brief counts the number of processes
-          *
+          * @return int the number of processes
           */
 		int countProcesses (void);
 
@@ -80,13 +83,13 @@ public:
 
         /**
           * @brief gives a text representation of the process hitting (as it would be in a .ph file)
-          *
+          * @return string the text representation of the process hitting in PH format
           */
 		string toString(void);
 
         /**
           * @brief gives a text representation of the process hitting (in .dot format, used in Graphviz)
-          *
+          * @return string the text representation of the process hitting in DOT format
           */
 		string toDotString(void);
 
@@ -100,7 +103,7 @@ public:
 
         /**
           * @brief adds a process
-          *
+          * @param ProcessPtr p the process added
           */
 		void addProcess(ProcessPtr p);
 

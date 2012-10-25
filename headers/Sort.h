@@ -27,7 +27,7 @@ typedef boost::shared_ptr<Sort> SortPtr;
 class GSort;
 
 /**
-  * @class sort
+  * @class Sort
   * @brief represents a sort of the process hitting
   *
   */

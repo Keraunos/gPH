@@ -19,7 +19,7 @@ typedef boost::shared_ptr<GSort> GSortPtr;
 
 
 /**
-  * @class Gsort
+  * @class GSort
   * @brief determines the way to draw a sort
   *
   */

@@ -20,6 +20,12 @@ class GVGraph;
 typedef boost::shared_ptr<GVGraph> GVGraphPtr;
 
 // An object containing a libgraph graph and its associated nodes and edges
+
+/**
+  * @class GVGraph
+  * @brief object containing a libgraph graph and its associated nodes and edges
+  *
+  */
 class GVGraph: public GVSubGraph {
 
 	public:

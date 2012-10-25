@@ -25,7 +25,7 @@ using std::pair;
 
 
 /**
-  * @class Gaction
+  * @class GAction
   * @brief determines the way to draw an action
   *
   */

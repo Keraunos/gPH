@@ -63,13 +63,13 @@ class Action {
 
         /**
           * @brief gives a text representation of the process hitting (as it would be in a .ph file)
-          *
+          * @return string, the text representation of the process hitting
           */
 		string toString (void);
 
         /**
           * @brief gives a text representation of the process hitting (in .dot format, used in Graphviz)
-          *
+          * @return string, the text representation of the process hitting
           */
 		string toDotString (void);
 

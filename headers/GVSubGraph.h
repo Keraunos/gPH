@@ -20,47 +20,183 @@ class GVSubGraph;
 typedef boost::shared_ptr<GVSubGraph> GVSubGraphPtr;
 
 // An object containing a libgraph subgraph and its associated nodes and edges
+/**
+  * @class GVSubGraph
+  * @brief defines the object containing a libraph subgraph and its associated nodes and edges
+  *
+  */
 class GVSubGraph {
 
 	public:
 		
+        /**
+          * @brief the size in pixels of each node
+          *
+          */
 		static const qreal nodeSize;
 		
+
 		GVSubGraph(Agraph_t *_graph);
 		virtual ~GVSubGraph();
-		
-		// Add and remove subgraphs
+
+        // Add an remove SubGraph
+        /**
+          * @brief add a subgraph
+          *
+          * @param the name of the SubGraph you want to add
+          *
+          */
 		void addSubGraph (const QString& name);
+
+        /**
+          * @brief remove a subgraph
+          *
+          * @param the name of the SubGraph you want to remove
+          *
+          */
 		void removeSubGraph (const QString& name);
+
+        /**
+          * @brief Get the SubGraph
+          *
+          * @param the name of the SubGraph you want
+          * @return the GVSubGraphPtr related to the name
+          *
+          */
 		GVSubGraphPtr getSubGraph (const QString& name);
 
 		// Add and remove nodes
+
+        /**
+          * @brief counts the number of nodes
+          *
+          * @return int the number of nodes
+          *
+          */
 		int countNodes(void);
+
+        /**
+          * @brief add a node, entering its name
+          *
+          * @param Qstring the name of the node you want to add
+          *
+          */
 		void addNode(const QString& name);
+
+        /**
+          * @brief add a list of nodes, entering the name of the list
+          *
+          * @param QStringList of the names of the nodes you want to add
+          */
 		void addNodes(const QStringList& names);
+
+        /**
+          * @brief remove a node, entering its name
+          *
+          * @param the Qstring name of the node you want to remove
+          *
+          */
 		void removeNode(const QString& name);
+
+        /**
+          * @brief remove all the nodes present
+          *
+          */
 		void clearNodes();
 
 		// Add and remove edges
+
+        /**
+          * @brief add an edge ,entering the names of the source and the target
+          *
+          * @brief the name of the source
+          * @brief the name of the target
+          *
+          */
 		void addEdge(const QString& source, const QString& target);
+
+        /**
+          * @brief remove an edge ,entering the names of the source and the target
+          *
+          * @brief the name of the source
+          * @brief the name of the target
+          *
+          */
 		void removeEdge(const QString& source, const QString& target);
+
+        /**
+          * @brief remove an edge, entering the pair (source target)
+          *
+          * @brief the name of the pair
+          *
+          */
 		void removeEdge(const QPair<QString, QString>& key);
 		
 		//Setter
+
+        /**
+          * @brief setter for the label
+          *
+          * @param name of the label
+          *
+          */
 		void setLabel (const QString& name);
 		
 		//Layout results
+
+        /**
+          * @brief returns the list of the nodes
+          *
+          */
 		QList<GVNode> nodes();
+
+        /**
+          * @brief returns the list of the clusters
+          *
+          */
 		QList<GVCluster> clusters();
+
+        /**
+          * @brief returns the list of the edges
+          *
+          */
 		QList<GVEdge> edges();
 
 	protected:
 		GVSubGraph();
+
+        /**
+          * @brief getter for the DPI
+          *
+          * @return qreal DPI
+          *
+          */
 		qreal getDPI();
+
+        /**
+          * @brief sets the Graph Attributes
+          *
+          */
 		void setGraphAttributes(void);
 		Agraph_t* _graph;
+
+        /**
+          * @brief checks if the node exists
+          *
+          * @param name of the node you want to check the existence
+          *
+          */
 		bool hasNode (const QString& name);
+
+        /**
+          * getter returns the node
+          *
+          * @param QString name of the node
+          *
+          */
 		Agnode_t* getNode (const QString& name);
+
+
 		QMap<QString, Agnode_t*> _nodes;
 		QMap<QString, GVSubGraphPtr> _subgraphs;
 		QMap<QPair<QString, QString>, Agedge_t*> _edges;

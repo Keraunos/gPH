@@ -10,12 +10,38 @@
 
 using std::string;
 
+
+/**
+  * @class IO
+  * @brief manages the inputs and outputs at the lowest level
+  *
+  */
 class IO {
 
 	public:
 		IO(){}		
-		static string readFile (string const& path); 						//Read file content
-		static void fileLocationCheck (string const& path); 				//Check that file exists
+
+        /**
+          * @brief reads the file content
+          * @param string name of the file
+          * @return string file read
+          *
+          */
+        static string readFile (string const& path);
+
+        /**
+          * @brief checks that the file exists
+          *
+          * @param string name of the file
+          *
+          */
+        static void fileLocationCheck (string const& path);
+
+        /**
+          * @brief Writes the file
+          *
+          *
+          */
 		static void writeFile (string const& path, string const& content);	//Write file
 
 };

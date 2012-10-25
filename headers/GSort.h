@@ -30,13 +30,16 @@ class GSort {
         /**
           * @brief constructor for GSort
           *
+          * @param SortPtr the Sort object that will be agregated
+          * @param GVCluster the GVCluster struct that will be agregated
           */
 		GSort(SortPtr p, GVCluster c);
 		~GSort();
 
         /**
-          * @brief contains the whole drawing of the sort
+          * @brief getter for the whole drawing of the sort
           *
+          * @return the QGraphicsItem* object that contains the whole drawing of the sort
           */
         QGraphicsItem* getDisplayItem (void);
 
@@ -93,6 +96,7 @@ class GSort {
         /**
           * @brief returns the colour relative to the index
           *
+          * @return QColor* the color in the palette, at the index
           */
 		static QColor* makeColor(void);
 	

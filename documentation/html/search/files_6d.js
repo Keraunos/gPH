@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['main_2ecpp',['Main.cpp',['../_main_8cpp.html',1,'']]]
+  ['mainwindow_2eh',['MainWindow.h',['../_main_window_8h.html',1,'']]],
+  ['myarea_2eh',['MyArea.h',['../_my_area_8h.html',1,'']]]
 ];

@@ -32,8 +32,8 @@ class Process {
         /**
           * @brief builder for Process
           *
-          * @param s: sort the process is related to
-          * @param n: number of the process in the sort it is related to
+          * @param Sortptr s sort the process is related to
+          * @param int n number of the process in the sort it is related to
           *
           */
 		Process (SortPtr s, const int& n);
@@ -52,12 +52,13 @@ class Process {
 
         /**
           * @brief renames in DOT file
-          *
+          * @return string renamed
           */
 		string getDotName (void);
 
         /**
           * @brief gives a text representation of the process hitting (in .dot format, used in Graphviz)
+          * @return string the representation in DOT format
           *
           */
 		string toDotString (void);

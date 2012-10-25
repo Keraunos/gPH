@@ -46,29 +46,34 @@ class Action {
         /**
           * @brief getter of the source Process
           *
+          * @return the ProcessPtr source
           */
         ProcessPtr getSource();
 
         /**
           * @brief getter of the target Process
           *
+          * @return the ProcessPtr target
           */
 		ProcessPtr getTarget();
 
         /**
           * @brief getter of the result Process
           *
+          * @return the ProcessPtr result
           */
 		ProcessPtr getResult();
 
         /**
           * @brief gives a text representation of the process hitting (as it would be in a .ph file)
+          *
           * @return string, the text representation of the process hitting
           */
 		string toString (void);
 
         /**
           * @brief gives a text representation of the process hitting (in .dot format, used in Graphviz)
+          *
           * @return string, the text representation of the process hitting
           */
 		string toDotString (void);

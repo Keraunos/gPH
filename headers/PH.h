@@ -46,6 +46,12 @@ static inline QString makeProcessName (ProcessPtr p) {
 	return QString::fromStdString(p->getSort()->getName()) + QString("_%1").arg(p->getNumber());
 }
 
+
+/**
+  * @class PH
+  * @brief represents an entire process hitting as defined in a PH file
+  *
+  */
 class PH {
 
 	public:
@@ -58,13 +64,13 @@ class PH {
 
         /**
           * @brief add a sort to the PH
-          *
+          * @param SortPtr the sort added
           */
 		void addSort(SortPtr s);
 
         /**
           * @brief add an action to the PH
-          *
+          * @param ActionPtr the action added
           */
 		void addAction(ActionPtr a);
 
@@ -94,13 +100,13 @@ class PH {
 
         /**
           * @brief gives a text representation of the process hitting (as it would be in a .ph file)
-          *
+          * @return the text representation of the process hitting in PH format
           */
         string toString (void);
 
         /**
           * @brief gives a text representation of the process hitting (in .dot format, used in Graphviz)
-          *
+          * @return String the text representation of the process hitting in DOT format
           */
         string toDotString (void);
 
@@ -114,13 +120,14 @@ class PH {
         /**
           * @brief makes a representation of the process hitting as a graph
           * @details calls graphviz to calculate the optimized graph
+          * @return GVGraphPtr the graph built
           *
           */
 		GVGraphPtr toGVGraph(void);
 
         /**
           * @brief outputs for display
-          *
+          * @return PHScenePtr the Scene built
           */
         PHScenePtr getGraphicsScene (void);
 

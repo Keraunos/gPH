@@ -11,16 +11,20 @@
 #include "PHScene.h"
 #include "GVGraph.h"
 
+
 PHScene::PHScene(PH* _ph) : ph(_ph) {
+    // set background color
 	setBackgroundBrush(QBrush(QColor(0, 43, 54)));
 }
 
+
+// render the scene from the related PH graph
 void PHScene::doRender(void) {
 	
-	//Retrieve graph
+    // retrieve graph
 	GVGraphPtr graph = ph->toGVGraph();
 	
-	//Create GProcesses linking actual processes (PH info) with GVNodes (display info)
+    // create GProcesses linking actual processes (PH info) with GVNodes (display info)
 	QList<GVNode> gnodes = graph->nodes();	
 	for (GVNode &gn : gnodes) {
 		for (SortPtr &s : ph->getSorts())
@@ -30,28 +34,36 @@ void PHScene::doRender(void) {
 			}
 	}
 	
-	//Create GSorts linking actual sorts (PH info) with GVClusters (display info)
+    // create GSorts linking actual sorts (PH info) with GVClusters (display info)
 	QList<GVCluster> gclusters = graph->clusters();	
 	for (GVCluster &gc : gclusters)
 		for (SortPtr &s : ph->getSorts())
 			if (gc.name == makeClusterName(s->getName()))
 				sorts.insert(GSortEntry(s->getName(), make_shared<GSort>(s, gc)));
 				
-	//Create GActions linking actual actions to GVEdges (display info)
-	QList<GVEdge> gedges = graph->edges();
-	using std::pair;
-	pair<GVEdge*, GVEdge*> edges;
-	for (ActionPtr &a : ph->getActions()) {
-		edges.first = NULL;
-		edges.second = NULL;
-		for (GVEdge &ge : gedges) {
-			if 	(	makeProcessName(a->getSource()) == ge.source
-				&&	makeProcessName(a->getTarget()) == ge.target
-				) 	edges.first = &ge;
-			if 	(	makeProcessName(a->getTarget()) == ge.source
-				&&	makeProcessName(a->getResult()) == ge.target
-				) 	edges.second = &ge;
-			if (edges.first != NULL && edges.second != NULL) {
+    // create GActions linking actual actions to GVEdges (display info)
+    QList<GVEdge> gEdges = graph->edges();
+    using std::pair;
+    pair<GVEdge*, GVEdge*> edges;
+    for (ActionPtr &a : ph->getActions()) {
+        edges.first = NULL;
+        edges.second = NULL;
+
+        // find graph edges that match the Action
+        for (GVEdge &gEdge : gEdges) {
+
+            // check the hit of the Action
+            if 	(	makeProcessName(a->getSource()) == gEdge.source
+                &&	makeProcessName(a->getTarget()) == gEdge.target
+                ) 	edges.first = &gEdge;
+
+            // check the bounce (result) of the Action
+            if 	(	makeProcessName(a->getTarget()) == gEdge.source
+                &&	makeProcessName(a->getResult()) == gEdge.target
+                ) 	edges.second = &gEdge;
+
+            // if match, add Action to objects to be drawn
+            if (edges.first != NULL && edges.second != NULL) {
 				actions.push_back(make_shared<GAction>(a, *(edges.first), *(edges.second), this));
 				break;
 			}
@@ -61,9 +73,11 @@ void PHScene::doRender(void) {
 	draw();
 }
 
+
+// draw all the elements of the scene
 void PHScene::draw(void) {
-	clear();
-	for (auto &s : sorts)
+    clear();
+    for (auto &s : sorts)
 		addItem(s.second->getDisplayItem());
 	for (GProcessPtr &p : processes)
 		addItem(p->getDisplayItem());
@@ -71,7 +85,8 @@ void PHScene::draw(void) {
 		addItem(a->getDisplayItem());
 }
 
-//Retrieve GSort
+
+// retrieve GSort by its related Sort's name
 GSortPtr PHScene::getGSort (const string& s) {
 	map<string, GSortPtr>::iterator f = sorts.find(s);
 	if (f == sorts.end())

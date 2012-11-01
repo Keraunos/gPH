@@ -18,7 +18,7 @@
 using std::map;
 using std::string;
 
-//Mutual inclusion madness
+// mutual inclusions
 class PH;
 class GProcess;
 typedef boost::shared_ptr<GProcess> GProcessPtr;
@@ -32,6 +32,7 @@ typedef boost::shared_ptr<PHScene> PHScenePtr;
 
 typedef std::pair<string, GSortPtr> GSortEntry;
 
+
 /**
   * @class PHScene
   * @brief the graphic object representing the process hitting
@@ -42,21 +43,21 @@ class PHScene: public QGraphicsScene {
 	
 	public:
         /**
-          * @brief builder for PHScene
+          * @brief constructor
           *
           */
         PHScene(PH* _ph);
 
         /**
-          * @brief recalculates the position of the scene
+          * @brief forces the re-calculation of the layout of the scene
           *
           */
         void doRender(void);
 
         /**
-          * @brief getter for the GSort
-          * @param string: the name of the sort needed
-          * @return GSortPtr: the sort called
+          * @brief gets a GSort by its related Sort's name
+          * @param string the name of the (G)Sort to get
+          * @return GSortPtr pointer to the GSort to get
           *
           */
 		GSortPtr getGSort (const string& s);
@@ -64,31 +65,31 @@ class PHScene: public QGraphicsScene {
 	protected:
 
         /**
-          * @brief PH file contained
+          * @brief the related process hitting
           *
           */
 		PH* ph;
 
         /**
-          * @brief empties the scene and add the elements composing the representation of the process hitting
+          * @brief clears the scene and adds the elements composing the representation of the process hitting
           *
           */
 		void draw(void);
 
         /**
-          * @brief map of the sorts of the scene
+          * @brief map of the Sorts drawn in the scene
           *
           */
 		map<string, GSortPtr> sorts;
 
         /**
-          * @brief vector of the processes of the scene
+          * @brief vector of the Processes drawn in the scene
           *
           */
 		std::vector<GProcessPtr> processes;
 
         /**
-          * @brief vector of the actions of the scene
+          * @brief vector of the Actions drawn in the scene
           *
           */
 		std::vector<GActionPtr> actions;

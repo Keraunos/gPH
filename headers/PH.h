@@ -22,7 +22,7 @@ using std::map;
 using std::string;
 using boost::make_shared;
 
-//Mutual inclusion madness
+// mutual inclusion
 class Action;
 typedef boost::shared_ptr<Action> ActionPtr;
 
@@ -63,14 +63,14 @@ class PH {
 		PH();
 
         /**
-          * @brief add a sort to the PH
-          * @param SortPtr the sort added
+          * @brief adds a sort to the PH
+          * @param SortPtr the sort to add
           */
 		void addSort(SortPtr s);
 
         /**
-          * @brief add an action to the PH
-          * @param ActionPtr the action added
+          * @brief adds an action to the PH
+          * @param ActionPtr the action to add
           */
 		void addAction(ActionPtr a);
 
@@ -100,13 +100,13 @@ class PH {
 
         /**
           * @brief gives a text representation of the process hitting (as it would be in a .ph file)
-          * @return the text representation of the process hitting in PH format
+          * @return string the text representation of the process hitting in PH format
           */
         string toString (void);
 
         /**
           * @brief gives a text representation of the process hitting (in .dot format, used in Graphviz)
-          * @return String the text representation of the process hitting in DOT format
+          * @return string the text representation of the process hitting in DOT format
           */
         string toDotString (void);
 
@@ -120,14 +120,14 @@ class PH {
         /**
           * @brief makes a representation of the process hitting as a graph
           * @details calls graphviz to calculate the optimized graph
-          * @return GVGraphPtr the graph built
+          * @return GVGraphPtr pointer to the Graph built
           *
           */
 		GVGraphPtr toGVGraph(void);
 
         /**
           * @brief outputs for display
-          * @return PHScenePtr the Scene built
+          * @return PHScenePtr pointer to the Scene built
           */
         PHScenePtr getGraphicsScene (void);
 

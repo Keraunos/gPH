@@ -6,42 +6,50 @@
 #include "PHScene.h"
 #include "Sort.h"
 
+
 #define DEFAULT_INFINITE_DEFAULT_RATE true
 #define DEFAULT_RATE 0.
 #define DEFAULT_STOCHASTICITY_ABSORPTION 1
 
+
 PH::PH () {	
 	scene = boost::shared_ptr<PHScene>();
 	
-	//Defaults
+    // set defaults
 	infinite_default_rate 		= DEFAULT_INFINITE_DEFAULT_RATE;
 	default_rate 				= DEFAULT_RATE;
 	stochasticity_absorption 	= DEFAULT_STOCHASTICITY_ABSORPTION;
 }
 
-//Get graphics scene for display
+
+// trigger the rendering in the Scene
 void PH::render () {
 	if (scene.use_count() == 0) scene = make_shared<PHScene>(this);
 	scene->doRender();
 }
+
+// get graphics scene for display
 PHScenePtr PH::getGraphicsScene() { 
 	if (scene.use_count() == 0)	scene = make_shared<PHScene>(this);
 	return scene;
 }
 
-//Control headers
+
+// control headers
 int PH::getStochasticityAbsorption () 			{ return stochasticity_absorption; }
 void PH::setStochasticityAbsorption (int sa) 	{ stochasticity_absorption = sa; std::cerr << "set " << sa << std::endl; }
-bool PH::getInfiniteDefaultRate () 				{ return infinite_default_rate; };
-void PH::setInfiniteDefaultRate (bool b) 		{ infinite_default_rate = b; };
+bool PH::getInfiniteDefaultRate () 				{ return infinite_default_rate; }
+void PH::setInfiniteDefaultRate (bool b) 		{ infinite_default_rate = b; }
 double PH::getDefaultRate () 		{ return default_rate; }
 void PH::setDefaultRate (double r) 	{ default_rate = r; }
 
-//Add data
+
+// add data: Sorts and Actions
 void PH::addSort (SortPtr s) { sorts.insert(SortEntry(s->getName(), s)); }
 void PH::addAction (ActionPtr a) { actions.push_back(a); }
 
-//Retrieve data
+
+// retrieve a Sort by name
 SortPtr PH::getSort (const string& s) {
 	map<string, SortPtr>::iterator f = sorts.find(s);
 	if (f == sorts.end())
@@ -49,6 +57,8 @@ SortPtr PH::getSort (const string& s) {
 	return sorts[s];
 }
 
+
+// retrieve all Sorts in a std::list
 list<SortPtr> PH::getSorts(void) {
 	list<SortPtr> res;
 	for (auto &s : sorts)		
@@ -56,6 +66,8 @@ list<SortPtr> PH::getSorts(void) {
 	return res;
 }
 
+
+// retrieve all Processes in a std::list
 list<ProcessPtr> PH::getProcesses(void) {
 	list<ProcessPtr> res;
 	for (auto &s : sorts)
@@ -64,15 +76,18 @@ list<ProcessPtr> PH::getProcesses(void) {
 	return res;
 }
 
+
+// retrieve the list of Actions
 list<ActionPtr> PH::getActions(void) { return actions; }
 
-//Represent as mathematical graph
+
+// represent the PH as a mathematical graph and calculates a layout
 GVGraphPtr PH::toGVGraph(void) {
 	
 	GVGraphPtr res = make_shared<GVGraph>(QString("PH Graph"));
 	QString s;	
 	
-	//Add sorts and processes
+    // add Sorts and Processes (well named)
 	for (auto &e : sorts) {
 		s = makeClusterName(e.second->getName());
 		res->addSubGraph(s);
@@ -81,7 +96,7 @@ GVGraphPtr PH::toGVGraph(void) {
 			res->getSubGraph(s)->addNode(makeProcessName(e.second->getProcess(i)));
 	}
 	
-	//Add actions
+    // add Actions (well named)
 	for (ActionPtr &a : actions) {
 		res->addEdge(	makeProcessName(a->getSource())
 					, 	makeProcessName(a->getTarget()));
@@ -89,46 +104,58 @@ GVGraphPtr PH::toGVGraph(void) {
 					, 	makeProcessName(a->getResult()));
 	}
 	
-	//Ask graphviz to do his job
+    // make graphviz calculate an appropriate layout
 	res->applyLayout();
 	return res;
 }
 
+
+// build a text representation of the PH in DOT format
 string PH::toDotString (void) {
+
 	string res;
 	res += "digraph G {\n";
 	res += "node [style=filled,color=lightgrey]\n";
-	//Output sorts
+
+    // output Sorts
 	res += "\n\n";
 	for (auto &e : sorts)
 		res += e.second->toDotString() + "\n";
-	//Output actions
+
+    // output Actions
 	res += "\n\n";
 	for (ActionPtr &a : actions)
 		res += a->toDotString() + "\n";
 	res += "}\n";
-	return res;
 
+    return res;
 }
 
+
+// build a text representation of the PH in PH format (used in .ph files)
 string PH::toString (void) {
-	string res;
-	//Output headers
+
+    string res;
+
+    // output headers
 	res += "directive default_rate " + (infinite_default_rate ? "Inf" : 
 		(default_rate == (int) default_rate) ?
 			boost::lexical_cast<string>(default_rate) + "."
 		:	boost::lexical_cast<string>(default_rate)
 	) + "\n";
-	res += "directive stochasticity_absorption " + boost::lexical_cast<string>(stochasticity_absorption) + "\n";
-	//Output sorts
+    res += "directive stochasticity_absorption " + boost::lexical_cast<string>(stochasticity_absorption) + "\n";
+
+    // output Sorts
 	for (auto &e : sorts)
 		res += e.second->toString();
 	res += "\n";
-	//Output actions
+
+    // output actions
 	for (ActionPtr &a : actions)
 		res += a->toString();
 	res += "\n";
-	//Output initial state
+
+    // output initial state
 	if (!sorts.empty()) {
 		res += "initial_state ";
 		list<string> l;
@@ -137,5 +164,6 @@ string PH::toString (void) {
 		res += boost::algorithm::join(l, ", ");
 	}
 	res += "\n";
+
 	return res;
 }

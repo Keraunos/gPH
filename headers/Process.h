@@ -13,16 +13,18 @@
 
 using std::string;
 
-//Mutual inclusion
+
+// mutual inclusion
 class Sort;
 typedef boost::shared_ptr<Sort> SortPtr;
 
 class Process;
 typedef boost::shared_ptr<Process> ProcessPtr;
 
+
 /**
   * @class Process
-  * @brief represents a process of the process hitting
+  * @brief represents a Process of the process hitting
   *
   */
 class Process {
@@ -30,29 +32,29 @@ class Process {
 	public:
 
         /**
-          * @brief builder for Process
+          * @brief constructor
           *
-          * @param Sortptr s sort the process is related to
-          * @param int n number of the process in the sort it is related to
+          * @param Sortptr pointer to the Sort the Process is related to
+          * @param int number of the Process in the Sort it is related to
           *
           */
 		Process (SortPtr s, const int& n);
 
         /**
-          * @brief getter for the number
+          * @brief gets the number
           *
           */
 		int getNumber(void);
 
         /**
-          * @brief getter for the sort
+          * @brief gets the Sort
           *
           */
 		SortPtr getSort(void);
 
         /**
-          * @brief renames in DOT file
-          * @return string renamed
+          * @brief builds name for DOT files
+          * @return string adapted name
           */
 		string getDotName (void);
 
@@ -66,13 +68,13 @@ class Process {
 	private:
 
         /**
-          * @brief sort the process is related to
+          * @brief the Sort the Process is related to
           *
           */
 		SortPtr sort;
 
         /**
-          * @brief number of the process in the sort it is related to
+          * @brief the number of the Process in the Sort it is related to
           *
           */
 		int number;

@@ -22,7 +22,7 @@ typedef boost::shared_ptr<Process> ProcessPtr;
 
 /**
   * @class GProcess
-  * @brief determines the way to draw a process
+  * @brief contains style and layout info to draw a process
   *
   */
 class GProcess {
@@ -30,48 +30,50 @@ class GProcess {
 	public:
 
         /**
-          * @brief builder for GProcess
+          * @brief constructor
           *
-          * @param ProcessPtr the Process object that will be agregated
-          * @param GVNode the GVNode object that will be agregated
+          * @param ProcessPtr the related Process object
+          * @param GVNode the object that contains style and layout info
           */
 		GProcess(ProcessPtr p, GVNode n);
+
 		~GProcess();
+
         /**
-          * @brief getter for the whole drawing of the process
+          * @brief gets the display
           *
-          * @return QGraphicsItem* representing the whole drawing of the process
+          * @return QGraphicsItem the graphical item representing the Process
           */
 		QGraphicsItem* getDisplayItem (void);
 	
 	protected:
 
         /**
-          * @brief contains the whole drawing of the process
+          * @brief the graphical item representing the Process
           *
           */
 		QGraphicsItem* display;
 
         /**
-          * @brief graphical element to draw the action: ellipse
+          * @brief the graphical item representing the ellipse of the Process
           *
           */
 		QGraphicsEllipseItem* ellipse;
 
         /**
-          * @brief graphical element to draw the action: text
+          * @brief the graphical item representing the text of the Process
           *
           */
         QGraphicsTextItem* text;
 
         /**
-          * @brief process related
+          * @brief the related Process
           *
           */
 		ProcessPtr process;
 
         /**
-          * @brief node related
+          * @brief the related node
           *
           */
 		GVNode node;

@@ -20,7 +20,7 @@ typedef boost::shared_ptr<GSort> GSortPtr;
 
 /**
   * @class GSort
-  * @brief determines the way to draw a sort
+  * @brief contains style and layout info to draw a Sort
   *
   */
 class GSort {
@@ -28,23 +28,24 @@ class GSort {
 	public:
 
         /**
-          * @brief builder for GSort
+          * @brief constructor
           *
-          * @param SortPtr the Sort object that will be agregated
-          * @param GVCluster the GVCluster struct that will be agregated
+          * @param SortPtr the related Sort object
+          * @param GVCluster the object that contains style and layout info
           */
 		GSort(SortPtr p, GVCluster c);
+
 		~GSort();
 
         /**
-          * @brief getter for the whole drawing of the sort
+          * @brief gets the display
           *
-          * @return the QGraphicsItem* object that contains the whole drawing of the sort
+          * @return QGraphicsItem the graphical item representing the Sort
           */
         QGraphicsItem* getDisplayItem (void);
 
         /**
-          * @brief determines the palette of colours used by the action coming from this sort
+          * @brief the color used by the Actions that have this Sort as source
           *
           */
 		QColor* color;
@@ -52,37 +53,37 @@ class GSort {
 	protected:
 
         /**
-          * @brief contains the whole drawing of the sort
+          * @brief the graphical item representing the Sort
           *
           */
 		QGraphicsItem* display;
 
         /**
-          * @brief graphical element to draw the sort: rectangle
+          * @brief the graphical item representing the rectangle of the Sort
           *
           */
 		QGraphicsRectItem* rect;
 
         /**
-          * @brief graphical element to draw the sort: text
+          * @brief the graphical item representing the text of the Sort
           *
           */
 		QGraphicsTextItem* text;
 
         /**
-          * @brief sort related
+          * @brief the related Sort
           *
           */
 		SortPtr sort;
 
         /**
-          * @brief cluster related
+          * @brief the related cluster
           *
           */
 		GVCluster cluster;		
 		
         /**
-          * @brief determines the colours
+          * @brief the palette of colors that may be used as color member
           *
           */
         static std::vector<QColor> palette;
@@ -94,9 +95,9 @@ class GSort {
 		static int paletteIndex;
 
         /**
-          * @brief returns the colour relative to the index
+          * @brief gets a new color in the palette
           *
-          * @return QColor* the color in the palette, at the index
+          * @return QColor* the color retrieved in the palette
           */
 		static QColor* makeColor(void);
 	

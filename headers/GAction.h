@@ -26,7 +26,7 @@ using std::pair;
 
 /**
   * @class GAction
-  * @brief determines the way to draw an action
+  * @brief contains style and layout info to draw an action
   *
   */
 class GAction {
@@ -34,64 +34,69 @@ class GAction {
 	public:
 
     /**
-      * @brief builder for Gaction
+      * @brief constructor
       *
+      * @param ActionPtr the related Action object
+      * @param GVEdge the object that contains style and layout info for hit arrow
+      * @param GVEdge the object that contains style and layout info for bounce (result) arrow
+      * @param PHScene the related scene
       */
 		GAction(ActionPtr a, GVEdge e, GVEdge f, PHScene* sc);
+
         ~GAction();
 
      /**
-       * @brief contains the whole drawing of the action
+       * @brief gets the display
        *
-       * @return a QgraphicsItem containing the whole drawing
+       * @return QGraphicsItem the graphical item representing the Action
        */
 		QGraphicsItem* getDisplayItem (void);
 	
 	protected:
 	
         /**
-          * @brief the PHScene related to the action
+          * @brief the PHScene related to the Action
           *
           */
 		PHScene* scene;
 
         /**
-          * @brief the QGraphicsItem* containing the whole drawing
+          * @brief the graphical item representing the Action
           *
           */
 		QGraphicsItem* display;
 
         /**
-          * @brief the QGraphicsItem* related to the tails of the arrows
+          * @brief the pair of graphical items representing the tails of the arrows of the Action
           *
           */
 		pair<QGraphicsPathItem*, QGraphicsPathItem*> 		arrowTails;
 
         /**
-          * @brief the QGraphicsPolygonItem* related to the heads of the arrows
+          * @brief the pair of graphical items representing the heads of the arrows of the Action
           *
           */
         pair<QGraphicsPolygonItem* , QGraphicsPolygonItem*>	arrowHeads;
 
         /**
-          * @brief the GVEdge related to the arrows
+          * @brief the related Action
+          *
+          */
+        ActionPtr action;
+
+        /**
+          * @brief the edges related to the arrows
           *
           */
 		pair<GVEdge, GVEdge> edges;
 
         /**
-          * @brief the action object
+          * @brief draws the head of the arrow
           *
-          */
-		ActionPtr action;
-
-        /**
-          * @brief builds the head of the arrow as a QGraphicsPolygonItem*
+          * @param GVEdge the edge related to the arrow
+          * @param Qcolor the color of the arrow
           *
-          * @param GVEdge e related to the arrows
-          * @param Qcolor color the color of the arrows
-          *
-          * @return QGraphicsPolygonItem* built from the GVEdge, with the color chosen
+          * @return QGraphicsPolygonItem* the graphical item representing the head of the arrow
           *
           */
 		QGraphicsPolygonItem* makeArrowHead(const GVEdge& e, const QColor& color);		

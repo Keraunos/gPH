@@ -179,7 +179,7 @@ class PH {
 
         /**
           * @brief boolean to know if the default rate is or is not infinite
-          * @details if it is, the default rate makes no sense
+          * @details if true then the value of default rate makes no sense
           *
           */
         bool infinite_default_rate;

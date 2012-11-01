@@ -110,7 +110,7 @@ GVGraphPtr PH::toGVGraph(void) {
 }
 
 
-// build a text representation of the PH in DOT format
+// output for DOT file
 string PH::toDotString (void) {
 
 	string res;
@@ -132,7 +132,7 @@ string PH::toDotString (void) {
 }
 
 
-// build a text representation of the PH in PH format (used in .ph files)
+// output for PH file
 string PH::toString (void) {
 
     string res;

@@ -17,7 +17,8 @@ using std::list;
 using std::vector;
 using boost::make_shared;
 
-//Mutual inclusion
+
+// mutual inclusion
 class Process;
 typedef boost::shared_ptr<Process> ProcessPtr;
 
@@ -25,6 +26,7 @@ class Sort;
 typedef boost::shared_ptr<Sort> SortPtr;
 
 class GSort;
+
 
 /**
   * @class Sort
@@ -36,35 +38,36 @@ class Sort {
 public:
 	
         /**
-          * @brief creates pointers to sorts
-          * @param string name of the sort you want to point at
-          * @param int number of processes in the sort
-          * @return SortPtr the SortPtr pointed at
+          * @brief creates a pointer to the Sort which name is given as parameter
+          * @param string name of the Sort to created
+          * @param int number of processes in the Sort
+          * @return SortPtr the pointer to the created Sort
           *
           */
 		static SortPtr make(const string&, const int&);
 		
 
         /**
-          * @brief getter for the process
+          * @brief gets a Process by its index
+          * @param uint the index of the Process in processes vector
           *
           */
 		ProcessPtr getProcess (const uint&);
 
         /**
-          * @brief getter for the vector of processes
+          * @brief gets processes vector
           *
           */
-		vector<ProcessPtr> getProcesses (void);
+        vector<ProcessPtr> getProcesses (void);
 
         /**
-          * @brief getter for the active process
+          * @brief gets the active process
           *
           */
 		ProcessPtr getActiveProcess (void);
 
         /**
-          * @brief setter for the active process
+          * @brief sets the active process
           *
           */
 		void setActiveProcess (const int&);
@@ -76,7 +79,7 @@ public:
 		int countProcesses (void);
 
         /**
-          * @brief getter for the Name of the sort
+          * @brief gets the name of the Sort
           *
           */
 		string getName (void);
@@ -96,31 +99,31 @@ public:
 	protected:
 
         /**
-          * @brief builder for sort
+          * @brief constructor
           *
           */
         Sort (const string&);
 
         /**
-          * @brief adds a process
-          * @param ProcessPtr p the process added
+          * @brief adds a Process
+          * @param ProcessPtr pointer to the Process to add
           */
 		void addProcess(ProcessPtr p);
 
         /**
-          * @brief name of the sort
+          * @brief name of the Sort
           *
           */
 		string name;
 
         /**
-          * @brief processes related to the sort
+          * @brief Processes of the Sort
           *
           */
 		vector<ProcessPtr> processes;
 
         /**
-          * @brief active process in the sort
+          * @brief active Process in the Sort
           *
           */
 		ProcessPtr activeProcess;

@@ -6,48 +6,57 @@
 
 using boost::make_shared;
 
-//Factory
+
+// create a new Sort
 SortPtr Sort::make (const string& name, const int& processes) {
-	//Create Sort
+
+    // initialize Sort
 	SortPtr s (new Sort(name));
-	//Add processes
+
+    // add Processes
 	if (processes < 1) throw process_required();
 	for (int i = 0; i < processes + 1; i++)
 		s->addProcess(make_shared<Process>(s, i));
-	//Set first process as active
+
+    // set first Process as active Process
 	s->setActiveProcess(0);
-	return s;
+
+    return s;
 }
 
-//Private constructor
+
+// private constructor
 Sort::Sort (const string& n) : name(n) {}
 
-//Add a process
+
+// add a Process
 void Sort::addProcess (ProcessPtr p) {
 	processes.push_back(p);
 }
 
-//Output for dot file
+
+// output for DOT file
 string Sort::toDotString (void) {
 	string res;
 
-	//Processes
+    // output Processes
 	res += "subgraph cluster_" + name + " {\n";
 	res += "\tlabel = \"Sort " + name + "\";\n";
 	res += "\tcolor = lightgray;\n";
-	for (ProcessPtr &p : processes)
+    for (ProcessPtr &p : processes)
 		res += "\t" + p->toDotString();
 	res += "}\n";
 
 	return res;
 }
 
-//Output for PH file
+
+// output for PH file
 string Sort::toString (void) {
 	return "process " + getName() + " " +  boost::lexical_cast<string>(processes.size() - 1) + "\n";
 }
 
-//Getters & setters
+// getters & setters
 ProcessPtr Sort::getProcess (const uint& i) {
 	if (i >= processes.size())
 		throw process_not_found() << process_info(i);

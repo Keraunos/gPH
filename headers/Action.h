@@ -16,26 +16,28 @@
 
 class Action;
 typedef boost::shared_ptr<Action> ActionPtr;
+
 class GAction;
 typedef boost::shared_ptr<GAction> GActionPtr;
 
+
 /**
   * @class Action
-  * @brief Represents an action of the process hitting
+  * @brief Represents an Action of the process hitting
   *
   */
 class Action {
 
 	public:
     /**
-      * @brief builder for action
+      * @brief constructor
       *
-      * @param source_: the source process
-      * @param target_: the target process
-      * @param result_: the result of the hit
-      * @param infiniteRate_: boolean that determines if the rate of the hit is or is not infinite
-      * @param r: defines the rate of the hit
-      * @param sa: defines the stochasticity absorption of the hit
+      * @param ProcessPtr the source Process of the hit
+      * @param ProcessPtr the target Process of the hit
+      * @param ProcessPtr the result of the hit
+      * @param bool determines whether the rate of the hit is infinite or not
+      * @param double the rate of the hit
+      * @param int the stochasticity absorption of the hit
       */
 		Action 	(	ProcessPtr source_, ProcessPtr target_, ProcessPtr result_
 				, 	const bool& infiniteRate_
@@ -44,74 +46,74 @@ class Action {
 				);
 
         /**
-          * @brief getter of the source Process
+          * @brief gets the source Process
           *
-          * @return the ProcessPtr source
+          * @return ProcessPtr pointer to the source Process
           */
         ProcessPtr getSource();
 
         /**
-          * @brief getter of the target Process
+          * @brief gets the target Process
           *
-          * @return the ProcessPtr target
+          * @return ProcessPtr pointer to the target Process
           */
 		ProcessPtr getTarget();
 
         /**
-          * @brief getter of the result Process
+          * @brief gets the result Process
           *
-          * @return the ProcessPtr result
+          * @return ProcessPtr pointer to the result Process
           */
 		ProcessPtr getResult();
 
         /**
-          * @brief gives a text representation of the process hitting (as it would be in a .ph file)
+          * @brief gives a text representation of the Process (as it would be in a .ph file)
           *
-          * @return string, the text representation of the process hitting
+          * @return string the text representation of the Process
           */
 		string toString (void);
 
         /**
-          * @brief gives a text representation of the process hitting (in .dot format, used in Graphviz)
+          * @brief gives a text representation of the Process (in .dot format, used in Graphviz)
           *
-          * @return string, the text representation of the process hitting
+          * @return string the text representation of the Process
           */
 		string toDotString (void);
 
 	protected:
 
        /**
-         * @brief the source process
+         * @brief the source Pprocess
          *
          */
         ProcessPtr source;
 
         /**
-          * @brief the target process
+          * @brief the target Process
           *
           */
 		ProcessPtr target;
 
         /**
-          * @brief the result process
+          * @brief the result Process
           *
           */
         ProcessPtr result;
 
         /**
-          * @brief boolean that determines if if the rate of the hit is infinite or not
+          * @brief Boolean that determines whether the rate of the hit is infinite or not
           *
           */
         bool infiniteRate;
 
         /**
-          * @brief determines the rate of the hit
+          * @brief the rate of the hit
           *
           */
         float r;
 
         /**
-          * @brief determines the stochasticity absorption
+          * @brief the stochasticity absorption
           *
           */
         int sa;

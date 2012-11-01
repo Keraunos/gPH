@@ -2,27 +2,35 @@
 #include <boost/lexical_cast.hpp>
 #include "Action.h"
 
-Action::Action (ProcessPtr source_, ProcessPtr target_, ProcessPtr result_, const bool& infiniteRate_, const double& r_, const int& sa_)
-: source(source_), target(target_), result(result_), infiniteRate(infiniteRate_), r(r_), sa(sa_) {};
 
-//Getters
+Action::Action (ProcessPtr source_, ProcessPtr target_, ProcessPtr result_, const bool& infiniteRate_, const double& r_, const int& sa_)
+    : source(source_), target(target_), result(result_), infiniteRate(infiniteRate_), r(r_), sa(sa_) {}
+
+
+// getters
 ProcessPtr Action::getSource() { return source; }
 ProcessPtr Action::getTarget() { return target; }
 ProcessPtr Action::getResult() { return result; }
 
-//Export
+
+// output for DOT file
 string Action::toDotString (void) {
 	string res;
-	res += 				source->getDotName()
+
+    res += 				source->getDotName()
 			+ " -> " + 	target->getDotName()
 			+ ";\n";
-	res += 				target->getDotName()
+    res += 				target->getDotName()
 			+ " -> " + 	result->getDotName()
 			+ ";\n";
-	return res;
+
+    return res;
 }
 
-string Action::toString (void) {	
+
+// output for PH file
+string Action::toString (void) {
+
 	return 		source->getSort()->getName()
 			+	" "
 			+	boost::lexical_cast<string>(source->getNumber())

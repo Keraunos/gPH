@@ -29,8 +29,8 @@ class PHIO {
 
         /**
           * @brief parses the file if it is possible
-          * @param string the path of the file
-          * @return PHPtr the PH file parsed
+          * @param string the path of the file to parse
+          * @return PHPtr the parsed PH file
           *
           */
 		static PHPtr parseFile  (string const& path);

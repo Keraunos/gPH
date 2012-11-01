@@ -157,10 +157,13 @@ PHPtr PHIO::parseFile (string const& path) {
 	return parse(QString(stdout).toStdString());
 }
 
-//Can parse a ph file ?
+//Can parse a ph file?
 bool PHIO::canParseFile (string const& path) {
-	try { parseFile(path);
-	} catch (exception_base& x) { return false; }
+    try {
+        parseFile(path);
+    } catch (exception_base& x) {
+        return false;
+    }
 	return true;
 }
 

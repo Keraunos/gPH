@@ -5,13 +5,14 @@
 #include "Exceptions.h"
 #include "IO.h"
 
-//Read file content as string
+
+// read file content (path given as parameter) as string
 string IO::readFile (string const& path) {
 
 	using namespace boost::filesystem;
 	IO::fileLocationCheck(path);
 	
-	//Open file
+    // open text file in read only mode
 	QFile file(QString::fromUtf8(path.c_str()));
 	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
 		throw io_error() << file_info(path);
@@ -21,12 +22,13 @@ string IO::readFile (string const& path) {
 	
 }
 
-//Check that file exists
+
+// check that the file which path is given as parameter exists
 void IO::fileLocationCheck (string const& path) {
 
 	using namespace boost::filesystem;
 	
-	//Sanity checks
+    // sanity checks
 	if (!exists(path)) 		
 		throw file_not_exist() << file_info(path);	
 	if (!is_regular_file(path))
@@ -34,13 +36,18 @@ void IO::fileLocationCheck (string const& path) {
 		
 }
 
-//Write string as file
+
+// write string as file (which path is given as parameter)
 void IO::writeFile (string const& path, string const& content) {
 
+    // open text file in write only mode
 	QFile file(QString::fromUtf8(path.c_str()));
     file.open(QIODevice::WriteOnly | QIODevice::Text);
+
+    // write string
     QTextStream out(&file);
     out << QString::fromUtf8(content.c_str());
-    file.close(); 
+
+    file.close();
 	
 }

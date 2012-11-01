@@ -19,12 +19,12 @@ using std::string;
 class IO {
 
 	public:
-		IO(){}		
+        IO() {}
 
         /**
-          * @brief reads the file content
-          * @param string name of the file
-          * @return string file read
+          * @brief reads file content
+          * @param string the path of the file to read
+          * @return string file content
           *
           */
         static string readFile (string const& path);
@@ -32,16 +32,16 @@ class IO {
         /**
           * @brief checks that the file exists
           *
-          * @param string name of the file
+          * @param string the path of the file to check
           *
           */
         static void fileLocationCheck (string const& path);
 
         /**
-          * @brief Writes the file
-          *
-          *
+          * @brief Writes the content in the file
+          * @param string the path of the file to write in
+          * @param string the text content to write
           */
-		static void writeFile (string const& path, string const& content);	//Write file
+        static void writeFile (string const& path, string const& content);
 
 };

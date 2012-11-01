@@ -1,0 +1,118 @@
+\hypertarget{class_g_sort}{\section{\-G\-Sort \-Class \-Reference}
+\label{class_g_sort}\index{\-G\-Sort@{\-G\-Sort}}
+}
+
+
+determines the way to draw a sort  
+
+
+
+
+{\ttfamily \#include $<$\-G\-Sort.\-h$>$}
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_g_sort_a423709cc4cc15bc05219b08e1276f455}{\-G\-Sort} (\-Sort\-Ptr p, \hyperlink{struct_g_v_cluster}{\-G\-V\-Cluster} c)
+\begin{DoxyCompactList}\small\item\em builder for \hyperlink{class_g_sort}{\-G\-Sort} \end{DoxyCompactList}\item 
+\-Q\-Graphics\-Item $\ast$ \hyperlink{class_g_sort_aeff35f1b750ec1a81e6ea7034458c742}{get\-Display\-Item} (void)
+\begin{DoxyCompactList}\small\item\em getter for the whole drawing of the sort \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_g_sort_afdedfe6a6028c586a755315351eee309}{\-Q\-Color $\ast$ \hyperlink{class_g_sort_afdedfe6a6028c586a755315351eee309}{color}}\label{class_g_sort_afdedfe6a6028c586a755315351eee309}
+
+\begin{DoxyCompactList}\small\item\em determines the palette of colours used by the action coming from this sort \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Protected \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \-Q\-Color $\ast$ \hyperlink{class_g_sort_a03da0205abd58bad6c4a58419cb40568}{make\-Color} (void)
+\begin{DoxyCompactList}\small\item\em returns the colour relative to the index \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Protected \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_g_sort_a024df14a4e06466591e01c23a5b80b57}{\-Q\-Graphics\-Item $\ast$ \hyperlink{class_g_sort_a024df14a4e06466591e01c23a5b80b57}{display}}\label{class_g_sort_a024df14a4e06466591e01c23a5b80b57}
+
+\begin{DoxyCompactList}\small\item\em contains the whole drawing of the sort \end{DoxyCompactList}\item 
+\hypertarget{class_g_sort_ae9555111be5199a489eda07da4f9963f}{\-Q\-Graphics\-Rect\-Item $\ast$ \hyperlink{class_g_sort_ae9555111be5199a489eda07da4f9963f}{rect}}\label{class_g_sort_ae9555111be5199a489eda07da4f9963f}
+
+\begin{DoxyCompactList}\small\item\em graphical element to draw the sort\-: rectangle \end{DoxyCompactList}\item 
+\hypertarget{class_g_sort_a17c4f8eafc9402f5393e69e614f5429a}{\-Q\-Graphics\-Text\-Item $\ast$ \hyperlink{class_g_sort_a17c4f8eafc9402f5393e69e614f5429a}{text}}\label{class_g_sort_a17c4f8eafc9402f5393e69e614f5429a}
+
+\begin{DoxyCompactList}\small\item\em graphical element to draw the sort\-: text \end{DoxyCompactList}\item 
+\hypertarget{class_g_sort_a8dea499c0b3fa30f9e9558a165a52030}{\-Sort\-Ptr \hyperlink{class_g_sort_a8dea499c0b3fa30f9e9558a165a52030}{sort}}\label{class_g_sort_a8dea499c0b3fa30f9e9558a165a52030}
+
+\begin{DoxyCompactList}\small\item\em sort related \end{DoxyCompactList}\item 
+\hypertarget{class_g_sort_aed2a99e461d0af9b2b323e1a9fda92fa}{\hyperlink{struct_g_v_cluster}{\-G\-V\-Cluster} \hyperlink{class_g_sort_aed2a99e461d0af9b2b323e1a9fda92fa}{cluster}}\label{class_g_sort_aed2a99e461d0af9b2b323e1a9fda92fa}
+
+\begin{DoxyCompactList}\small\item\em cluster related \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Protected \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_g_sort_a575406f7f0f4ce8da65e3456b7fff818}{static std\-::vector$<$ \-Q\-Color $>$ \hyperlink{class_g_sort_a575406f7f0f4ce8da65e3456b7fff818}{palette}}\label{class_g_sort_a575406f7f0f4ce8da65e3456b7fff818}
+
+\begin{DoxyCompactList}\small\item\em determines the colours \end{DoxyCompactList}\item 
+\hypertarget{class_g_sort_a684c424c03a77a4f60b88f98021bb2eb}{static int \hyperlink{class_g_sort_a684c424c03a77a4f60b88f98021bb2eb}{palette\-Index}}\label{class_g_sort_a684c424c03a77a4f60b88f98021bb2eb}
+
+\begin{DoxyCompactList}\small\item\em palette management index \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+determines the way to draw a sort 
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{class_g_sort_a423709cc4cc15bc05219b08e1276f455}{\index{\-G\-Sort@{\-G\-Sort}!\-G\-Sort@{\-G\-Sort}}
+\index{\-G\-Sort@{\-G\-Sort}!GSort@{\-G\-Sort}}
+\subsubsection[{\-G\-Sort}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-G\-Sort\-::\-G\-Sort} (
+\begin{DoxyParamCaption}
+\item[{\-Sort\-Ptr}]{p, }
+\item[{{\bf \-G\-V\-Cluster}}]{c}
+\end{DoxyParamCaption}
+)}}\label{class_g_sort_a423709cc4cc15bc05219b08e1276f455}
+
+
+builder for \hyperlink{class_g_sort}{\-G\-Sort} 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-Sort\-Ptr} & the \hyperlink{class_sort}{\-Sort} object that will be agregated \\
+\hline
+{\em \hyperlink{struct_g_v_cluster}{\-G\-V\-Cluster}} & the \hyperlink{struct_g_v_cluster}{\-G\-V\-Cluster} struct that will be agregated \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{class_g_sort_aeff35f1b750ec1a81e6ea7034458c742}{\index{\-G\-Sort@{\-G\-Sort}!get\-Display\-Item@{get\-Display\-Item}}
+\index{get\-Display\-Item@{get\-Display\-Item}!GSort@{\-G\-Sort}}
+\subsubsection[{get\-Display\-Item}]{\setlength{\rightskip}{0pt plus 5cm}\-Q\-Graphics\-Item$\ast$ {\bf \-G\-Sort\-::get\-Display\-Item} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{class_g_sort_aeff35f1b750ec1a81e6ea7034458c742}
+
+
+getter for the whole drawing of the sort 
+
+\begin{DoxyReturn}{\-Returns}
+the \-Q\-Graphics\-Item$\ast$ object that contains the whole drawing of the sort 
+\end{DoxyReturn}
+\hypertarget{class_g_sort_a03da0205abd58bad6c4a58419cb40568}{\index{\-G\-Sort@{\-G\-Sort}!make\-Color@{make\-Color}}
+\index{make\-Color@{make\-Color}!GSort@{\-G\-Sort}}
+\subsubsection[{make\-Color}]{\setlength{\rightskip}{0pt plus 5cm}static \-Q\-Color$\ast$ {\bf \-G\-Sort\-::make\-Color} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static, protected\mbox{]}}}}\label{class_g_sort_a03da0205abd58bad6c4a58419cb40568}
+
+
+returns the colour relative to the index 
+
+\begin{DoxyReturn}{\-Returns}
+\-Q\-Color$\ast$ the color in the palette, at the index 
+\end{DoxyReturn}
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+headers/\hyperlink{_g_sort_8h}{\-G\-Sort.\-h}\end{DoxyCompactItemize}

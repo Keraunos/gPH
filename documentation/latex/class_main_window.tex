@@ -1,0 +1,214 @@
+\hypertarget{class_main_window}{\section{\-Main\-Window \-Class \-Reference}
+\label{class_main_window}\index{\-Main\-Window@{\-Main\-Window}}
+}
+
+
+\-Builds the main window of the program extends from \-Q\-Main\-Window.  
+
+
+
+
+{\ttfamily \#include $<$\-Main\-Window.\-h$>$}
+
+\subsection*{\-Public \-Slots}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_my_area}{\-My\-Area} $\ast$ \hyperlink{class_main_window_a3ecd23a0dc61406e34522af9aae150bb}{open\-Tab} ()
+\begin{DoxyCompactList}\small\item\em open a new tab \end{DoxyCompactList}\item 
+\hypertarget{class_main_window_a3ba1a371fb10e731ae0926ae85efeb4f}{void \hyperlink{class_main_window_a3ba1a371fb10e731ae0926ae85efeb4f}{save} ()}\label{class_main_window_a3ba1a371fb10e731ae0926ae85efeb4f}
+
+\begin{DoxyCompactList}\small\item\em save the file \end{DoxyCompactList}\item 
+\hypertarget{class_main_window_af622a541e4d87f86e9e83d29af60fe19}{void \hyperlink{class_main_window_af622a541e4d87f86e9e83d29af60fe19}{close\-Tab} ()}\label{class_main_window_af622a541e4d87f86e9e83d29af60fe19}
+
+\begin{DoxyCompactList}\small\item\em close the active tab \end{DoxyCompactList}\item 
+\hypertarget{class_main_window_a111875a1d82e77178636322ab485e4bb}{void \hyperlink{class_main_window_a111875a1d82e77178636322ab485e4bb}{export\-Png} ()}\label{class_main_window_a111875a1d82e77178636322ab485e4bb}
+
+\begin{DoxyCompactList}\small\item\em export the actual view to \-P\-N\-G file \end{DoxyCompactList}\item 
+\hypertarget{class_main_window_a879f655b0a921bc80bd316579e98c366}{void \hyperlink{class_main_window_a879f655b0a921bc80bd316579e98c366}{find\-Fixpoints} ()}\label{class_main_window_a879f655b0a921bc80bd316579e98c366}
+
+\begin{DoxyCompactList}\small\item\em calls ph-\/stable functionality of pint \end{DoxyCompactList}\item 
+\hypertarget{class_main_window_a0c7fe8e75bbc5113df5e514214908ab3}{void \hyperlink{class_main_window_a0c7fe8e75bbc5113df5e514214908ab3}{compute\-Reachability} ()}\label{class_main_window_a0c7fe8e75bbc5113df5e514214908ab3}
+
+\begin{DoxyCompactList}\small\item\em calls ph-\/reach functionality of pint \end{DoxyCompactList}\item 
+\hypertarget{class_main_window_ab8eeb1e902f4591fc2f35237a1faef01}{void \hyperlink{class_main_window_ab8eeb1e902f4591fc2f35237a1faef01}{run\-Stochastic\-Simulation} ()}\label{class_main_window_ab8eeb1e902f4591fc2f35237a1faef01}
+
+\begin{DoxyCompactList}\small\item\em calls ph-\/exec functionality of pint \end{DoxyCompactList}\item 
+\hypertarget{class_main_window_ace4bc6f63b25822514dd2250bbb4760f}{void \hyperlink{class_main_window_ace4bc6f63b25822514dd2250bbb4760f}{check\-Model\-Type} ()}\label{class_main_window_ace4bc6f63b25822514dd2250bbb4760f}
+
+\begin{DoxyCompactList}\small\item\em checks the type of the model \end{DoxyCompactList}\item 
+\hypertarget{class_main_window_a3eee76227ea883705553abe5e1f2a2be}{void \hyperlink{class_main_window_a3eee76227ea883705553abe5e1f2a2be}{statistics} ()}\label{class_main_window_a3eee76227ea883705553abe5e1f2a2be}
+
+\begin{DoxyCompactList}\small\item\em calls ph-\/stat functionality of pint \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_a5f56ea1ee38eb16074e654b8bd52d072}{disable\-Menu} (\-Q\-Mdi\-Sub\-Window $\ast$sub\-Window)
+\begin{DoxyCompactList}\small\item\em permits to disable a menu \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_main_window_a34c4b4207b46d11a4100c9b19f0e81bb}{\hyperlink{class_main_window_a34c4b4207b46d11a4100c9b19f0e81bb}{\-Main\-Window} ()}\label{class_main_window_a34c4b4207b46d11a4100c9b19f0e81bb}
+
+\begin{DoxyCompactList}\small\item\em builder for \hyperlink{class_main_window}{\-Main\-Window}, creates the window, the menus and initializes the characteristics \end{DoxyCompactList}\item 
+\-Q\-Mdi\-Area $\ast$ \hyperlink{class_main_window_a398296c146bb239d0b75a24b44132658}{get\-Centrale\-Area} ()
+\begin{DoxyCompactList}\small\item\em getter for \-Centrale\-Area \end{DoxyCompactList}\item 
+\hypertarget{class_main_window_a5cc52553f615cb3abeb1198ad8c018a3}{std\-::vector$<$ \-Q\-String $>$ \hyperlink{class_main_window_a5cc52553f615cb3abeb1198ad8c018a3}{get\-All\-Paths} ()}\label{class_main_window_a5cc52553f615cb3abeb1198ad8c018a3}
+
+\begin{DoxyCompactList}\small\item\em gets all the paths of the \hyperlink{class_p_h}{\-P\-H} files already opened \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_a8a30572d7170d0a51737cd4991f0a05f}{compute} (\-Q\-String program, \-Q\-String\-List arguments, \-Q\-String file\-Name=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em calls the pint function with the arguments chosen \end{DoxyCompactList}\item 
+\hypertarget{class_main_window_ac4c3ec77ba5666ff9ef670b4b02c6838}{void \hyperlink{class_main_window_ac4c3ec77ba5666ff9ef670b4b02c6838}{enable\-Menu} ()}\label{class_main_window_ac4c3ec77ba5666ff9ef670b4b02c6838}
+
+\begin{DoxyCompactList}\small\item\em activates the menus that need a open an active tab \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Protected \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_main_window_af5df9378db57a148236d639dd928d08f}{\-Q\-Mdi\-Area $\ast$ \hyperlink{class_main_window_af5df9378db57a148236d639dd928d08f}{centrale\-Area}}\label{class_main_window_af5df9378db57a148236d639dd928d08f}
+
+\begin{DoxyCompactList}\small\item\em pointer to the centrale area of the window \end{DoxyCompactList}\item 
+\hypertarget{class_main_window_a2ca04227e7d71b036ccd0ed4176a5561}{\-Q\-Menu $\ast$ {\bfseries menu\-File}}\label{class_main_window_a2ca04227e7d71b036ccd0ed4176a5561}
+
+\item 
+\hypertarget{class_main_window_a51ec7fcfcb60073b395dee46daacf1f9}{\-Q\-Menu $\ast$ {\bfseries menu\-Edit}}\label{class_main_window_a51ec7fcfcb60073b395dee46daacf1f9}
+
+\item 
+\hypertarget{class_main_window_a57793b17cc2b8de42b5b10e9458ae9cb}{\-Q\-Menu $\ast$ {\bfseries menu\-View}}\label{class_main_window_a57793b17cc2b8de42b5b10e9458ae9cb}
+
+\item 
+\hypertarget{class_main_window_a8142152915924723cee2f22e0868a852}{\-Q\-Menu $\ast$ {\bfseries menu\-Computation}}\label{class_main_window_a8142152915924723cee2f22e0868a852}
+
+\item 
+\hypertarget{class_main_window_a81d80bba8e8a31cea2bb218094890c81}{\-Q\-Menu $\ast$ {\bfseries menu\-Help}}\label{class_main_window_a81d80bba8e8a31cea2bb218094890c81}
+
+\item 
+\hypertarget{class_main_window_afcc4de380e40fe4aeb61b07402f00f58}{\-Q\-Action $\ast$ {\bfseries action\-New}}\label{class_main_window_afcc4de380e40fe4aeb61b07402f00f58}
+
+\item 
+\hypertarget{class_main_window_ab5342d85523e2dad5b6f69a6ad01ece3}{\-Q\-Action $\ast$ {\bfseries action\-Open}}\label{class_main_window_ab5342d85523e2dad5b6f69a6ad01ece3}
+
+\item 
+\hypertarget{class_main_window_ac785bdaae348156fc94fdfea23f67a90}{\-Q\-Action $\ast$ {\bfseries action\-Saveas}}\label{class_main_window_ac785bdaae348156fc94fdfea23f67a90}
+
+\item 
+\hypertarget{class_main_window_a509ebce4344493751dec180d55d3b107}{\-Q\-Menu $\ast$ {\bfseries menu\-Export}}\label{class_main_window_a509ebce4344493751dec180d55d3b107}
+
+\item 
+\hypertarget{class_main_window_a233dc8b191a12c682366d27a3d9e568f}{\-Q\-Action $\ast$ {\bfseries action\-Png}}\label{class_main_window_a233dc8b191a12c682366d27a3d9e568f}
+
+\item 
+\hypertarget{class_main_window_acf4206ba3c373585ad33ef09e0c8ccb3}{\-Q\-Action $\ast$ {\bfseries action\-Close}}\label{class_main_window_acf4206ba3c373585ad33ef09e0c8ccb3}
+
+\item 
+\hypertarget{class_main_window_a60f400ff0f2b281499611c5e0018d901}{\-Q\-Action $\ast$ {\bfseries action\-Quit}}\label{class_main_window_a60f400ff0f2b281499611c5e0018d901}
+
+\item 
+\hypertarget{class_main_window_aca6e412c6008053d39c5fbaf5133274b}{\-Q\-Action $\ast$ {\bfseries action\-Undo}}\label{class_main_window_aca6e412c6008053d39c5fbaf5133274b}
+
+\item 
+\hypertarget{class_main_window_aa1ea7fe519e373af34ba4f7669df14cd}{\-Q\-Action $\ast$ {\bfseries action\-Redo}}\label{class_main_window_aa1ea7fe519e373af34ba4f7669df14cd}
+
+\item 
+\hypertarget{class_main_window_a1149df8ffebf08ca08bafcef304a207a}{\-Q\-Action $\ast$ {\bfseries action\-Show\-Init}}\label{class_main_window_a1149df8ffebf08ca08bafcef304a207a}
+
+\item 
+\hypertarget{class_main_window_aab91a08cf5e63146ac25d266699344f7}{\-Q\-Action $\ast$ {\bfseries action\-Highlight}}\label{class_main_window_aab91a08cf5e63146ac25d266699344f7}
+
+\item 
+\hypertarget{class_main_window_a8d65feefc7d6d3d809b2466be1b6c176}{\-Q\-Action $\ast$ {\bfseries action\-Hide}}\label{class_main_window_a8d65feefc7d6d3d809b2466be1b6c176}
+
+\item 
+\hypertarget{class_main_window_afea5009cf5a1589c7921992310620c3f}{\-Q\-Action $\ast$ {\bfseries action\-Display\-Detailed}}\label{class_main_window_afea5009cf5a1589c7921992310620c3f}
+
+\item 
+\hypertarget{class_main_window_a04048deb025090490f7261002a4ea4ab}{\-Q\-Action $\ast$ {\bfseries action\-Find\-Fixpoints}}\label{class_main_window_a04048deb025090490f7261002a4ea4ab}
+
+\item 
+\hypertarget{class_main_window_a2d5f7f2433aab9c8005c197bc96cdbc9}{\-Q\-Action $\ast$ {\bfseries action\-Compute\-Reachability}}\label{class_main_window_a2d5f7f2433aab9c8005c197bc96cdbc9}
+
+\item 
+\hypertarget{class_main_window_ae1ed3e80e7e9dc6e0687729e68071c37}{\-Q\-Action $\ast$ {\bfseries action\-Run\-Stochastic\-Simulation}}\label{class_main_window_ae1ed3e80e7e9dc6e0687729e68071c37}
+
+\item 
+\hypertarget{class_main_window_ab44ca117cab372eb7baea30cf0a6c8b0}{\-Q\-Action $\ast$ {\bfseries action\-Check\-Model\-Type}}\label{class_main_window_ab44ca117cab372eb7baea30cf0a6c8b0}
+
+\item 
+\hypertarget{class_main_window_ab81ef1d7f2f2dfc26b8ca9b50391692d}{\-Q\-Action $\ast$ {\bfseries action\-Statistics}}\label{class_main_window_ab81ef1d7f2f2dfc26b8ca9b50391692d}
+
+\item 
+\hypertarget{class_main_window_aa533eee89cb4ec348b3df9c25f10f47f}{\-Q\-Action $\ast$ {\bfseries action\-Help}}\label{class_main_window_aa533eee89cb4ec348b3df9c25f10f47f}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Builds the main window of the program extends from \-Q\-Main\-Window. 
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{class_main_window_a8a30572d7170d0a51737cd4991f0a05f}{\index{\-Main\-Window@{\-Main\-Window}!compute@{compute}}
+\index{compute@{compute}!MainWindow@{\-Main\-Window}}
+\subsubsection[{compute}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Main\-Window\-::compute} (
+\begin{DoxyParamCaption}
+\item[{\-Q\-String}]{program, }
+\item[{\-Q\-String\-List}]{arguments, }
+\item[{\-Q\-String}]{file\-Name = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{class_main_window_a8a30572d7170d0a51737cd4991f0a05f}
+
+
+calls the pint function with the arguments chosen 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-Qstring} & the program chosen \\
+\hline
+{\em \-Q\-String\-List} & the arguments chosen \\
+\hline
+{\em \-Q\-String} & the name of the file (optionnal) \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_main_window_a5f56ea1ee38eb16074e654b8bd52d072}{\index{\-Main\-Window@{\-Main\-Window}!disable\-Menu@{disable\-Menu}}
+\index{disable\-Menu@{disable\-Menu}!MainWindow@{\-Main\-Window}}
+\subsubsection[{disable\-Menu}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Main\-Window\-::disable\-Menu} (
+\begin{DoxyParamCaption}
+\item[{\-Q\-Mdi\-Sub\-Window $\ast$}]{sub\-Window}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}\label{class_main_window_a5f56ea1ee38eb16074e654b8bd52d072}
+
+
+permits to disable a menu 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-Q\-Mdi\-Sub\-Window$\ast$} & menu you want to disable \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_main_window_a398296c146bb239d0b75a24b44132658}{\index{\-Main\-Window@{\-Main\-Window}!get\-Centrale\-Area@{get\-Centrale\-Area}}
+\index{get\-Centrale\-Area@{get\-Centrale\-Area}!MainWindow@{\-Main\-Window}}
+\subsubsection[{get\-Centrale\-Area}]{\setlength{\rightskip}{0pt plus 5cm}\-Q\-Mdi\-Area$\ast$ {\bf \-Main\-Window\-::get\-Centrale\-Area} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_main_window_a398296c146bb239d0b75a24b44132658}
+
+
+getter for \-Centrale\-Area 
+
+\begin{DoxyReturn}{\-Returns}
+a \-Q\-Mdi\-Area$\ast$ pointer to the centrale zone of the window 
+\end{DoxyReturn}
+\hypertarget{class_main_window_a3ecd23a0dc61406e34522af9aae150bb}{\index{\-Main\-Window@{\-Main\-Window}!open\-Tab@{open\-Tab}}
+\index{open\-Tab@{open\-Tab}!MainWindow@{\-Main\-Window}}
+\subsubsection[{open\-Tab}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-My\-Area}$\ast$ {\bf \-Main\-Window\-::open\-Tab} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}\label{class_main_window_a3ecd23a0dc61406e34522af9aae150bb}
+
+
+open a new tab 
+
+\begin{DoxyReturn}{\-Returns}
+a pointer to a \hyperlink{class_my_area}{\-My\-Area} newly created 
+\end{DoxyReturn}
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+headers/\hyperlink{_main_window_8h}{\-Main\-Window.\-h}\end{DoxyCompactItemize}

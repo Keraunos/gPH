@@ -23,34 +23,35 @@ using boost::make_shared;
 using std::string;
 using std::vector;
 
-//Actual parsing, finally
+// process actual parsing, finally
 typedef const char* CCHAR;
 PHPtr PHIO::parse (string const& input) {
 	
 	using namespace axe;	
 	PHPtr res = make_shared<PH>();
 	
-	//Debug tool
+    // debug tool
 	/*auto coutRule = [](CCHAR i1, CCHAR i2) {
 		std::cout << std::string(i1, i2) << std::endl;
 	};*/
 	
-	//Error
+    // error
 	auto error = r_fail([](CCHAR i1, CCHAR i2) {});
 	
-	//Comment
+    // comment
 	r_rule<const char*> comment;
-	comment = r_lit("(*") & *(r_any() - r_lit("*)") - r_lit("(*") | comment) & r_lit("*)"); // does not work with malformed comments like (*aaa(*bb*)
+    // does not work with malformed comments like (*aaa(*bb*):
+    comment = r_lit("(*") & *(r_any() - r_lit("*)") - r_lit("(*") | comment) & r_lit("*)");
 	
-	//White space
+    // white space
 	auto space = *(r_any(" \t") | comment);
 	auto endl = r_lit("\n");
 	auto trailing_spaces = space & endl;
 	
-	//Infinity
+    // infinity
 	auto infinity = r_lit("Inf");
 	
-	//Process declaration
+    // process declaration
 	string sortName;
 	int processes;
 	auto sort_name = (r_alpha() | r_char('_')) & *(r_any("_'") | r_alnum());
@@ -60,7 +61,7 @@ PHPtr PHIO::parse (string const& input) {
 	});
 	auto sort_declaration_line = sort_declaration & trailing_spaces;
 	
-	//Action declaration
+    // action declaration
 	string actSort1, actSort2;
 	uint actProc1, actProc2, actProc3;
 	double actRate;
@@ -97,10 +98,10 @@ PHPtr PHIO::parse (string const& input) {
 						});
 	auto action_line = action & trailing_spaces;						
 	
-	//Body
+    // body
 	auto body_line = sort_declaration_line | action_line | trailing_spaces ;
 	
-	//Footer
+    // footer
 	vector<string> initSorts;
 	vector<int> initProc;
 	auto initial_state = 	(
@@ -115,7 +116,7 @@ PHPtr PHIO::parse (string const& input) {
 						});
 	auto footer_line = initial_state | trailing_spaces;
 	
-	//Complete file	
+    // complete file
 	auto body = *body_line;
 	auto footer = *footer_line;
 	auto ph = (body & footer & r_end()) | error;
@@ -127,10 +128,12 @@ PHPtr PHIO::parse (string const& input) {
 	return res;
 }
 
-//Parse file
+
+// parse file
 PHPtr PHIO::parseFile (string const& path) {
 
-	//Dump content using phc -l dump
+    // dump content using phc -l dump
+    // (this command transforms complex PH instructions in basic ones)
 	QString phc = "phc";
 	QStringList args;
 	args << "-l" << "dump" << "-i" << QString::fromUtf8(path.c_str()) << "--no-debug";
@@ -139,7 +142,7 @@ PHPtr PHIO::parseFile (string const& path) {
 	if (!phcProcess->waitForStarted())
 		throw pint_program_not_found() << file_info("phc");	
 		
-	//Read result
+    // read result
 	QByteArray stderr;
 	QByteArray stdout;
 	while (!phcProcess->waitForFinished()) {
@@ -150,14 +153,15 @@ PHPtr PHIO::parseFile (string const& path) {
 	stdout += phcProcess->readAllStandardOutput();
 	delete phcProcess;
 	
-	//Parse dump
+    // parse dump
 	if (!stderr.isEmpty())
 		throw pint_phc_crash() << parse_info(QString(stderr).toStdString());
 		
 	return parse(QString(stdout).toStdString());
 }
 
-//Can parse a ph file?
+
+// can parse the PH file which path is given as parameter?
 bool PHIO::canParseFile (string const& path) {
     try {
         parseFile(path);
@@ -167,15 +171,18 @@ bool PHIO::canParseFile (string const& path) {
 	return true;
 }
 
-//Write PH file
+
+// write PH file
 void PHIO::writeToFile (string const& path, PHPtr ph) {
 	IO::writeFile(path, ph->toString());
 }
 
-//Save PH as PNG image
+
+// save PH as PNG image
 void PHIO::exportToPNG(PHPtr ph, QString name) {
 	
-	// Create the image and render it...
+    // create the image and render it
+    // TODO make margins (currently: 4 pixels) configuration variables
 	QImage* image = new QImage(ph->getGraphicsScene()->width()+4, ph->getGraphicsScene()->height()+4, QImage::Format_ARGB32_Premultiplied);
 	QPainter* p = new QPainter();
 	p->begin(image);
@@ -183,10 +190,10 @@ void PHIO::exportToPNG(PHPtr ph, QString name) {
 	ph->getGraphicsScene()->render(p);
 	p->end();
 	
-	// Add .png to the name if necessary
+    // add .png to the name if necessary
 	if (name.indexOf(QString(".png"), 0, Qt::CaseInsensitive) < 0)
 		name += ".png";
 		
-	//Save it
+    // save it
 	image->save(name, "PNG");
 }

@@ -13,58 +13,62 @@
 /**
   * @class MainWindow
   * @brief Builds the main window of the program
-    extends from QMainWindow
+  * extends QMainWindow
   *
   */
 class MainWindow : public QMainWindow {
+
     Q_OBJECT
+
 
 public:
 
     /**
-      * @brief builder for MainWindow, creates the window, the menus and initializes the characteristics
+      * @brief constructor: creates the window, the menus and initializes the characteristics
       *
       */
     MainWindow();
+
     ~MainWindow();
 
     /**
-      * @brief getter for CentraleArea
+      * @brief gets centraleArea
       *
-      * @return a QMdiArea* pointer to the centrale zone of the window
+      * @return QMdiArea* pointer to the central zone of the window
       *
       */
     QMdiArea* getCentraleArea();
 
     /**
-      * @brief gets all the paths of the PH files already opened
+      * @brief gets the paths of all the PH files that are currently opened
       *
       */
     std::vector<QString> getAllPaths();
 
     //method for the menu computation
-
     /**
-      * @brief calls the pint function with the arguments chosen
+      * @brief calls the pint program with the given arguments
       *
-      * @param Qstring the program chosen
-      * @param QStringList the arguments chosen
-      * @param QString the name of the file (optionnal)
+      * @param Qstring the program to execute
+      * @param QStringList the arguments to give to the program
+      * @param QString (optional) the name of the PH file to parse
       *
       */
     void compute(QString program, QStringList arguments, QString fileName="");
 
     //enableMenu (in relation with the slot disableMenu)
     /**
-      * @brief activates the menus that need a open an active tab
+      * @brief enables the menus that are related to any open, active tab
+      * @note to be updated for each new feature of the application
       *
       */
     void enableMenu();
 
+
 protected:
 
     /**
-      * @brief pointer to the centrale area of the window
+      * @brief pointer to the central area of the window
       *
       */
     QMdiArea* centraleArea;
@@ -80,22 +84,22 @@ protected:
     QAction *actionNew;
     QAction *actionOpen;
     QAction *actionSaveas;
-    QMenu *menuExport;
+    QMenu   *menuExport;
     QAction *actionPng;
     QAction *actionClose;
     QAction *actionQuit;
 
-    // action for the menu Edit
+    // actions for the menu Edit
     QAction *actionUndo;
     QAction *actionRedo;
 
-    // action for the menu View
+    // actions for the menu View
     QAction *actionShowInit;
     QAction *actionHighlight;
     QAction *actionHide;
     QAction *actionDisplayDetailed;
 
-    // action for the menu Computation
+    // actions for the menu Computation
     QAction *actionFindFixpoints;
     QAction *actionComputeReachability;
     QAction *actionRunStochasticSimulation;
@@ -105,33 +109,36 @@ protected:
     // action for the menu Help
     QAction *actionHelp;
 
+
 signals:
 
+
 public slots:
+
     //menu file
 
     /**
-      * @brief open a new tab
+      * @brief opens a new tab
       *
-      * @return a pointer to a MyArea newly created
+      * @return MyArea* pointer to newly created MyArea object
       *
       */
     MyArea* openTab();
 
     /**
-      * @brief save the file
+      * @brief saves the file
       *
       */
     void save();
 
     /**
-      * @brief close the active tab
+      * @brief closes the active tab
       *
       */
     void closeTab();
 
     /**
-      * @brief export the actual view to PNG file
+      * @brief exports the current view to PNG file
       *
       */
     void exportPng();
@@ -139,19 +146,19 @@ public slots:
     //menu computation
 
     /**
-      * @brief calls ph-stable functionality of pint
+      * @brief executes pint program: ph-stable
       *
       */
     void findFixpoints();
 
     /**
-      * @brief calls ph-reach functionality of pint
+      * @brief executes pint program: ph-reach
       *
       */
     void computeReachability();
 
     /**
-      * @brief calls ph-exec functionality of pint
+      * @brief executes pint program: ph-exec
       *
       */
     void runStochasticSimulation();
@@ -169,7 +176,7 @@ public slots:
     void statistics();
 
     /**
-      * @brief permits to disable a menu
+      * @brief disables the menus that are related to open, active tabs
       *
       * @param QMdiSubWindow* menu you want to disable
       *

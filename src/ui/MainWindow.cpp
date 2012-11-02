@@ -5,22 +5,23 @@
 #include "PHIO.h"
 #include "Exceptions.h"
 
+
 MainWindow::MainWindow() {
 
-    //title
+    // title
     setWindowTitle("gPH");
 
-    //icone
+    // icon
     setWindowIcon(QIcon("gph.png"));
 
     // menu
-    menuFile = menuBar()->addMenu("&File");
-    menuEdit = menuBar()->addMenu("&Edit");
-    menuView = menuBar()->addMenu("&View");
-    menuComputation = menuBar()->addMenu("&Computation");
-    menuHelp = menuBar()->addMenu("&Help");
+    menuFile =          menuBar()->addMenu("&File");
+    menuEdit =          menuBar()->addMenu("&Edit");
+    menuView =          menuBar()->addMenu("&View");
+    menuComputation =   menuBar()->addMenu("&Computation");
+    menuHelp =          menuBar()->addMenu("&Help");
 
-    // actions for the menu
+    // actions for the menus:
 
     // actions for the menu File
     actionNew = menuFile->addAction("New");
@@ -33,31 +34,31 @@ MainWindow::MainWindow() {
     actionClose = menuFile->addAction("Close");
     actionQuit = menuFile->addAction("Quit");
 
-    //enable what does not work well
+    // disable what does not work well
     actionNew->setEnabled(false);
 
-    //Shortcuts for the menu File
-    actionNew->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_N));
-    actionOpen->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_O));
-    actionSaveas->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
-    actionQuit->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
+    // shortcuts for the menu File
+    actionNew->setShortcut(     QKeySequence(Qt::CTRL + Qt::Key_N));
+    actionOpen->setShortcut(    QKeySequence(Qt::CTRL + Qt::Key_O));
+    actionSaveas->setShortcut(  QKeySequence(Qt::CTRL + Qt::Key_S));
+    actionQuit->setShortcut(    QKeySequence(Qt::CTRL + Qt::Key_Q));
 
     // connect the menu File
-    QObject::connect(actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
-    QObject::connect(actionOpen, SIGNAL(triggered()), this, SLOT(openTab()));
-    QObject::connect(actionSaveas, SIGNAL(triggered()), this, SLOT(save()));
-    QObject::connect(actionPng, SIGNAL(triggered()), this, SLOT(exportPng()));
-    QObject::connect(actionClose, SIGNAL(triggered()), this, SLOT(closeTab()));
+    QObject::connect(actionQuit,    SIGNAL(triggered()), qApp, SLOT(quit()));
+    QObject::connect(actionOpen,    SIGNAL(triggered()), this, SLOT(openTab()));
+    QObject::connect(actionSaveas,  SIGNAL(triggered()), this, SLOT(save()));
+    QObject::connect(actionPng,     SIGNAL(triggered()), this, SLOT(exportPng()));
+    QObject::connect(actionClose,   SIGNAL(triggered()), this, SLOT(closeTab()));
 
-    // action for the menu Edit
+    // actions for the menu Edit
     actionUndo = menuEdit->addAction("Undo");
     actionRedo = menuEdit->addAction("Redo");
 
-    //enable what does not work well
+    // disable what does not work well
     actionUndo->setEnabled(false);
     actionRedo->setEnabled(false);
 
-    // action for the menu View
+    // actions for the menu View
     actionShowInit = menuView->addAction("Show initial state");
     actionHighlight = menuView->addAction("Highlight possible actions");
     actionHide = menuView->addAction("Hide actions");
@@ -66,20 +67,20 @@ MainWindow::MainWindow() {
     actionShowInit->setCheckable(true);
     actionHighlight->setCheckable(true);
 
-    //enable what does not work
+    // disable what does not work
     actionShowInit->setEnabled(false);
     actionHighlight->setEnabled(false);
     actionHide->setEnabled(false);
     actionDisplayDetailed->setEnabled(false);
 
-    // action for the menu Computation
+    // actions for the menu Computation
     actionFindFixpoints = menuComputation->addAction("Find fixpoints...");
     actionComputeReachability = menuComputation->addAction("Compute reachability...");
     actionRunStochasticSimulation = menuComputation->addAction("Run stochastic simulation...");
     actionCheckModelType = menuComputation->addAction("Check model type (binary or multivalued)");
     actionStatistics = menuComputation->addAction("Statistics...");
 
-    //enable what does not work well
+    // disable what does not work well
     actionComputeReachability->setEnabled(false);
     actionCheckModelType->setEnabled(false);
 
@@ -93,7 +94,7 @@ MainWindow::MainWindow() {
     // action for the menu Help
     actionHelp = menuHelp->addAction("Helpz !");
 
-    //enable what does not work well
+    // disable what does not work well
     actionHelp->setEnabled(false);
 
     // main area
@@ -101,7 +102,7 @@ MainWindow::MainWindow() {
     setCentralWidget(centraleArea);
     centraleArea->setViewMode(QMdiArea::TabbedView);
 
-    // management of the menu (enabled/disenabled)
+    // management of the menus (enabled/disabled)
     QObject::connect(this->centraleArea, SIGNAL(subWindowActivated(QMdiSubWindow*)), this, SLOT(disableMenu(QMdiSubWindow*)));
 
     if(this->getCentraleArea()->subWindowList().isEmpty()){
@@ -114,61 +115,68 @@ MainWindow::MainWindow() {
     }
 }
 
-MainWindow::~MainWindow(){
+
+MainWindow::~MainWindow() {
     delete centraleArea;
 }
 
-QMdiArea* MainWindow::getCentraleArea(){
+
+QMdiArea* MainWindow::getCentraleArea() {
     return this->centraleArea;
 }
 
-//get all open files (with their path)
-std::vector<QString> MainWindow::getAllPaths(){
+
+// get all open files' paths
+std::vector<QString> MainWindow::getAllPaths() {
     int size = this->getCentraleArea()->subWindowList().size();
     std::vector<QString> allPaths;
     QString path;
-    for(int n=0;n<size;n++){
+    for(int n=0; n<size; n++) {
         path = ((MyArea*) this->getCentraleArea()->subWindowList()[n]->widget())->getPath();
         allPaths.push_back(path);
     }
     return allPaths;
 }
 
-//open a new tab
+
+// open a new tab
 MyArea* MainWindow::openTab() {
 
-        //OpenFile dialog
-        QString fichier = QFileDialog::getOpenFileName(this, "Open...");
+        // OpenFile dialog
+        QString file = QFileDialog::getOpenFileName(this, "Open...");
 
-        if(fichier!=NULL){
-            QFileInfo pathInfo(fichier);
-            std::vector<QString >allPath = this->getAllPaths();
+        // TODO refactor using early returns
+        if(file!=NULL) {
+            QFileInfo pathInfo(file);
+            std::vector<QString> allPath = this->getAllPaths();
             int size = allPath.size();
             bool alreadyOpen = false;
 
-            for(int i=0;i<size;i++){
-                if(allPath[i]==fichier){
+            // check if the file is already open
+            for(int i=0;i<size;i++) {
+                if(allPath[i]==file) {
                    alreadyOpen = true;
                     break;
                 }
             }
 
-            if(!alreadyOpen){
+            if(!alreadyOpen) {
                 //need a std::string instead of a QString
-                std::string path =	fichier.toStdString();
+                std::string path =	file.toStdString();
 
-                //parseFile
-                MyArea *area = new MyArea(fichier);
-                try{
-                    PHPtr myPHPtr=PHIO::parseFile(path);
+                // parse file
+                MyArea *area = new MyArea(file);
+                try {
+                    // render graph
+                    PHPtr myPHPtr = PHIO::parseFile(path);
                     area->setPHPtr(myPHPtr);
 					myPHPtr->render();
                     PHScenePtr scene = myPHPtr->getGraphicsScene();
                     area->setScene(&*scene);
 
-                    //make the subwindow for the new tab
+                    // make the subwindow for the new tab
                     QMdiSubWindow *theNewTab = this->getCentraleArea()->addSubWindow(area);
-                    QString fileName(pathInfo.fileName() );
+                    QString fileName(pathInfo.fileName());
                     theNewTab->setWindowTitle(fileName);
                     this->enableMenu();
 
@@ -179,76 +187,84 @@ MyArea* MainWindow::openTab() {
                 }
             } else {
                 QMessageBox::critical(this, "Error", "This file is already opened !");
-                return NULL;}
-
+                return NULL;
+            }
+        } else {
+            return NULL;
         }
-        else {return NULL;}
 }
 
-//close a tab
-void MainWindow::closeTab(){
-    if(!this->getCentraleArea()->subWindowList().isEmpty()){
-        // get the current subwindow
+
+// close a tab
+void MainWindow::closeTab() {
+
+    // if there is at least one subwindow, close the current one
+    if(!this->getCentraleArea()->subWindowList().isEmpty()) {
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
-
         subWindow->close();
-
     } else {
         QMessageBox::critical(this, "Error", "No file opened !");
     }
 }
 
-void MainWindow::save(){
+
+// save a graph
+void MainWindow::save() {
+
     if(!this->getCentraleArea()->subWindowList().isEmpty()){
         // get the current subwindow
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
 
-        //SaveFile dialog
+        // SaveFile dialog
         QString fichier = QFileDialog::getSaveFileName(this, "Save file");
 
-        //need a std::string instead of a QString
+        // need a std::string instead of a QString
         std::string path =	fichier.toStdString();
 
-        //need the PHPtr which is associated with the subwindow
+        // need the PHPtr which is associated with the subwindow
         PHPtr ph= ((MyArea*) subWindow->widget())->getPHPtr();
 
-        //writeToFile
+        // save file
         PHIO::writeToFile (path, ph);
     } else {
         QMessageBox::critical(this, "Error", "No file opened !");
     }
 }
 
+
 // export methods
 
-void MainWindow::exportPng(){
+void MainWindow::exportPng() {
 	
     if(!this->getCentraleArea()->subWindowList().isEmpty()){
         // get the current subwindow
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
 
-        //SaveFile dialog
+        // SaveFile dialog
         QString fichier = QFileDialog::getSaveFileName(this, "Export as .png file", QString(), "*.png");
 
-        //need the PHPtr which is associated with the subwindow
+        // need the PHPtr which is associated with the subwindow
         PHPtr ph= ((MyArea*) subWindow->widget())->getPHPtr();
 
-        //need my png file nao !!!
+        // save as PNG
 		PHIO::exportToPNG(ph, fichier);
 		
     } else QMessageBox::critical(this, "Error", "No file opened !");
 	
 }
 
+
 // main method for the computation menu
-void MainWindow::compute(QString program, QStringList arguments, QString fileName){
+void MainWindow::compute(QString program, QStringList arguments, QString fileName) {
+
+    // start process
     QProcess *myProcess = new QProcess();
     myProcess->start(program, arguments);
 
     if (!myProcess->waitForStarted())
         throw pint_program_not_found() << file_info("phc");
 
-    //Read result
+    // read result
     QByteArray err;
     QByteArray out;
     while (!myProcess->waitForFinished()) {
@@ -259,16 +275,17 @@ void MainWindow::compute(QString program, QStringList arguments, QString fileNam
     out += myProcess->readAllStandardOutput();
     delete myProcess;
 
-    //pop up for the errors
+    // pop up for the errors
     if(!err.isEmpty()){
+
         //correct a false error message for ph-stable
-        if(program==QString("ph-stable")){
-            if(!(QString(err).contains(fileName))||fileName.isEmpty()){
+        if(program==QString("ph-stable")) {
+            if( !(QString(err).contains(fileName)) || fileName.isEmpty() ) {
                 QMessageBox::critical(this, program+".error", err);
             }
         } else {
             //correct a false error message for ph-exec
-            if(program!=QString("ph-exec")){
+            if(program!=QString("ph-exec")) {
                 QMessageBox::critical(this, program+".error", err);
             }
         }
@@ -281,13 +298,15 @@ void MainWindow::compute(QString program, QStringList arguments, QString fileNam
 
 }
 
-void MainWindow::findFixpoints(){
+
+void MainWindow::findFixpoints() {
+
     QString program = "ph-stable";
     QStringList arguments;
 
-    // get the file name associated to the current subWindow
+    // get the filename associated with the current subWindow
     QString fileName;
-    if(this->getCentraleArea()->currentSubWindow() != 0){ // if a subWindow exists
+    if(this->getCentraleArea()->currentSubWindow() != 0) {
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
         fileName = ((MyArea*) subWindow->widget())->getPath();
     } else {
@@ -297,16 +316,19 @@ void MainWindow::findFixpoints(){
     // give the arguments
     arguments << "--no-debug" << "-i" << fileName;
 
-    //call MainWindow::compute
+    // call MainWindow::compute
     this->compute(program, arguments, fileName);
 }
 
-//DO NOT WORK - and I don't know why, whyyyyyyyyy ???
-void MainWindow::computeReachability(){
+
+// DOES NOT WORK for an unknown reason
+// TODO make it work
+void MainWindow::computeReachability() {
+
     QString program = "ph-reach";
     QStringList arguments;
 
-    // get the file name associated to the current subWindow
+    // get the filename associated with the current subWindow
     QString fileName;
     if(this->getCentraleArea()->currentSubWindow() != 0){ // if a subWindow exists
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
@@ -327,23 +349,26 @@ void MainWindow::computeReachability(){
     }
 }
 
-void MainWindow::runStochasticSimulation(){
+
+void MainWindow::runStochasticSimulation() {
+
     QString program = "ph-exec";
     QStringList arguments;
 
-    // get the file name associated to the current subWindow
+    // get the filename associated with the current subWindow
     QString fileName;
-    if(this->getCentraleArea()->currentSubWindow() != 0){ // if a subWindow exists
+    if(this->getCentraleArea()->currentSubWindow() != 0) { // if a subWindow exists
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
         fileName = ((MyArea*) subWindow->widget())->getPath();
     } else {
         fileName = "";
     }
-    //ask to the user duration and outputdirectory
+
+    //ask the user for duration and output directory
     bool ok1 = false;
     QString duration = QInputDialog::getText(this, "stochastic simulation", "Give a duration", QLineEdit::Normal, QString(), &ok1);
 
-    if(ok1 && !duration.isEmpty()){
+    if(ok1 && !duration.isEmpty()) {
         QString outputdirectory = QFileDialog::getExistingDirectory(this, "output directory");
 
         if (!outputdirectory.isEmpty()) {
@@ -356,6 +381,9 @@ void MainWindow::runStochasticSimulation(){
     }
 }
 
+
+// NOT IMPLEMENTED!
+// TODO implement it
 void MainWindow::checkModelType(){
     QString program = "";
     QStringList arguments;
@@ -363,13 +391,16 @@ void MainWindow::checkModelType(){
     this->compute(program, arguments);
 }
 
+
 void MainWindow::statistics(){
+
     QString program = "ph-stat";
     QStringList arguments;
 
-    // get the file name associated to the current subWindow
+    // get the filename associated with the current subWindow
+    // TODO factorize the following lines (present in every pint program execution method)
     QString fileName;
-    if(this->getCentraleArea()->currentSubWindow() != 0){ // if a subWindow exists
+    if(this->getCentraleArea()->currentSubWindow() != 0) { // if a subWindow exists
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
         fileName = ((MyArea*) subWindow->widget())->getPath();
     } else {
@@ -379,12 +410,14 @@ void MainWindow::statistics(){
     // give the arguments
     arguments << "--no-debug" << "-i" << fileName;
 
-    //call MainWindow::compute
+    // call MainWindow::compute
     this->compute(program, arguments);
 }
 
+
+// disable menus when no open, active tabs
 void MainWindow::disableMenu(QMdiSubWindow* subwindow){
-    if(subwindow==0&&this->getCentraleArea()->subWindowList().isEmpty()){
+    if(subwindow==0&&this->getCentraleArea()->subWindowList().isEmpty()) {
         this->actionClose->setEnabled(false);
         this->actionSaveas->setEnabled(false);
         this->actionPng->setEnabled(false);
@@ -395,12 +428,15 @@ void MainWindow::disableMenu(QMdiSubWindow* subwindow){
     }
 }
 
+
+// enable menus when at least one open, active tab
 void MainWindow::enableMenu(){
     if(!this->getCentraleArea()->subWindowList().isEmpty()){
         this->actionClose->setEnabled(true);
         this->actionSaveas->setEnabled(true);
         this->actionPng->setEnabled(true);
         this->actionFindFixpoints->setEnabled(true);
+        this->actionComputeReachability->setEnabled(true);
         this->actionRunStochasticSimulation->setEnabled(true);
         this->actionStatistics->setEnabled(true);
     }

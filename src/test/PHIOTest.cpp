@@ -4,6 +4,8 @@
 
 using std::string;
 
+
+// test parser on various operations
 void PHIOTest::parse_data()  {
 	QTest::addColumn<QString>("source");
 	QTest::newRow("declarations") 	<< "tests/1_declarations.ph";
@@ -19,6 +21,7 @@ void PHIOTest::parse_data()  {
 	QTest::newRow("ERBB_G1") 		<< "tests/ERBB_G1-S.ph";
 	QTest::newRow("tcrsig40") 		<< "tests/tcrsig40.ph";
  }
+
 
  void PHIOTest::parse()  {
 	QFETCH(QString, source);

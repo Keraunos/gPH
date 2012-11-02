@@ -36,14 +36,14 @@ class GVGraph: public GVSubGraph {
           */
 		static const qreal DotDefaultDPI;
 
-		/*!
-         * @brief Construct a Graphviz graph object
-         *
-         * @param name The name of the graph, must be unique in the application
-         * @param font The font to use for the graph
-         * @param node_size The size in pixels of each node
-         *
-		 */
+        /**
+          * @brief Construct a Graphviz graph object
+          *
+          * @param name The name of the graph, must be unique in the application
+          * @param font The font to use for the graph
+          * @param node_size The size in pixels of each node
+          *
+          */
 		GVGraph(QString name, QFont font=QFont());
 		~GVGraph();
 

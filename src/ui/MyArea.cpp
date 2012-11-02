@@ -2,12 +2,6 @@
 #include "MyArea.h"
 
 
-/**
-  * @class MyArea
-  * @brief class instantiated for each new tab
-  */
-
-
 // constructor
 MyArea::MyArea(QString path) : QGraphicsView() {
     this->path = path;

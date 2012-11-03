@@ -19,10 +19,10 @@
 class GVSubGraph;
 typedef boost::shared_ptr<GVSubGraph> GVSubGraphPtr;
 
-// An object containing a libgraph subgraph and its associated nodes and edges
+
 /**
   * @class GVSubGraph
-  * @brief defines the object containing a libraph subgraph and its associated nodes and edges
+  * @brief the object containing a libraph subgraph and its associated nodes and edges
   *
   */
 class GVSubGraph {
@@ -35,37 +35,42 @@ class GVSubGraph {
           */
 		static const qreal nodeSize;
 		
-
+        /**
+          * @brief GVSubGraph constructor
+          * @param Agraph_t _graph a Graphviz graph
+          */
 		GVSubGraph(Agraph_t *_graph);
+
 		virtual ~GVSubGraph();
 
-        // Add an remove SubGraph
+        // subgraphs
+
         /**
-          * @brief add a subgraph
+          * @brief adds a subgraph
           *
-          * @param the name of the SubGraph you want to add
+          * @param QString the name of the SubGraph to be added
           *
           */
 		void addSubGraph (const QString& name);
 
         /**
-          * @brief remove a subgraph
+          * @brief removes a subgraph
           *
-          * @param the name of the SubGraph you want to remove
+          * @param QString the name of the subgraph to be removed
           *
           */
 		void removeSubGraph (const QString& name);
 
         /**
-          * @brief Get the SubGraph
+          * @brief retrieves a GVSubGraph by its name
           *
-          * @param the name of the SubGraph you want
-          * @return the GVSubGraphPtr related to the name
+          * @param QString the name of the GVSubGraph to be retrieved
+          * @return GVSubGraphPtr the pointer to the retrieved GVSubGraph
           *
           */
 		GVSubGraphPtr getSubGraph (const QString& name);
 
-		// Add and remove nodes
+        // nodes
 
         /**
           * @brief counts the number of nodes
@@ -76,58 +81,58 @@ class GVSubGraph {
 		int countNodes(void);
 
         /**
-          * @brief add a node, entering its name
+          * @brief adds a node, entering its name
           *
-          * @param Qstring the name of the node you want to add
+          * @param QString the name of the node to be added
           *
           */
 		void addNode(const QString& name);
 
         /**
-          * @brief add a list of nodes, entering the name of the list
+          * @brief adds a list of nodes, entering their names
           *
-          * @param QStringList of the names of the nodes you want to add
+          * @param QStringList the list of the names of the nodes to be added
           */
 		void addNodes(const QStringList& names);
 
         /**
-          * @brief remove a node, entering its name
+          * @brief removes a node, entering its name
           *
-          * @param the Qstring name of the node you want to remove
+          * @param QString the name of the node to be removed
           *
           */
 		void removeNode(const QString& name);
 
         /**
-          * @brief remove all the nodes present
+          * @brief removes all the nodes
           *
           */
 		void clearNodes();
 
-		// Add and remove edges
+        // edges
 
         /**
-          * @brief add an edge ,entering the names of the source and the target
+          * @brief adds an edge
           *
-          * @brief the name of the source
-          * @brief the name of the target
+          * @brief QString the name of the edge's source
+          * @brief QString the name of the edge's target
           *
           */
 		void addEdge(const QString& source, const QString& target);
 
         /**
-          * @brief remove an edge ,entering the names of the source and the target
+          * @brief removes an edge
           *
-          * @brief the name of the source
-          * @brief the name of the target
+          * @brief QString the name of the egde's source
+          * @brief QString the name of the edge's target
           *
           */
 		void removeEdge(const QString& source, const QString& target);
 
         /**
-          * @brief remove an edge, entering the pair (source target)
+          * @brief removes an edge, entering the pair (source, target)
           *
-          * @brief the name of the pair
+          * @brief QPair<QString, QString> the pair to be removed
           *
           */
 		void removeEdge(const QPair<QString, QString>& key);
@@ -135,9 +140,9 @@ class GVSubGraph {
 		//Setter
 
         /**
-          * @brief setter for the label
+          * @brief sets the label
           *
-          * @param name of the label
+          * @param QString the label
           *
           */
 		void setLabel (const QString& name);
@@ -145,19 +150,22 @@ class GVSubGraph {
 		//Layout results
 
         /**
-          * @brief returns the list of the nodes
+          * @brief gets the list of nodes
+          * @return the list of nodes
           *
           */
 		QList<GVNode> nodes();
 
         /**
-          * @brief returns the list of the clusters
+          * @brief gets the list of clusters
+          * @return the list of clusters
           *
           */
 		QList<GVCluster> clusters();
 
         /**
-          * @brief returns the list of the edges
+          * @brief gets the list of edges
+          * @return the list of edges
           *
           */
 		QList<GVEdge> edges();
@@ -166,9 +174,9 @@ class GVSubGraph {
 		GVSubGraph();
 
         /**
-          * @brief getter for the DPI
+          * @brief gets the DPI value
           *
-          * @return qreal DPI
+          * @return qreal the DPI value
           *
           */
 		qreal getDPI();
@@ -178,20 +186,25 @@ class GVSubGraph {
           *
           */
 		void setGraphAttributes(void);
-		Agraph_t* _graph;
+
+        /**
+         * @brief Agraph_t the related Graphviz graph
+         */
+        Agraph_t* _graph;
 
         /**
           * @brief checks if the node exists
           *
-          * @param name of the node you want to check the existence
+          * @param QString the name of the node which existence is to be checked
+          * @return bool true if node exists, else fase
           *
           */
 		bool hasNode (const QString& name);
 
         /**
-          * getter returns the node
+          * @brief gets a node
           *
-          * @param QString name of the node
+          * @param QString the name of the node
           *
           */
 		Agnode_t* getNode (const QString& name);
@@ -203,39 +216,40 @@ class GVSubGraph {
 
 };
 
-//Utils
-/// The agopen method for opening a graph
+
+// utils
+/// opens a graph
 static inline Agraph_t* _agopen(QString name, int kind) {
 	return agopen(const_cast<char *>(qPrintable(name)), kind);
 }
 
-/// Add an alternative value parameter to the method for getting an object's attribute
+/// adds an alternative value parameter to the method for getting an object's attribute
 static inline QString _agget(void *object, QString attr, QString alt=QString()) {
 	QString str=agget(object, const_cast<char *>(qPrintable(attr)));
 	if(str==QString())	return alt;
 	else				return str;
 }
 
-/// Directly use agsafeset which always works, contrarily to agset
+/// directly uses agsafeset which always works, contrary to agset
 static inline int _agset(void *object, QString attr, QString value) {
 	return agsafeset(object, const_cast<char *>(qPrintable(attr)),
 					 const_cast<char *>(qPrintable(value)),
 					 const_cast<char *>(qPrintable(value)));
 }
 
-/// Set node attribute
+/// sets node attribute
 static inline Agsym_t* _agnodeattr(Agraph_t* object, QString attr, QString value) {
 	return agnodeattr(object, const_cast<char *>(qPrintable(attr)),
 					 const_cast<char *>(qPrintable(value)));
 }
 
-/// Set edge attribute
+/// sets edge attribute
 static inline Agsym_t* _agedgeattr(Agraph_t* object, QString attr, QString value) {
 	return agedgeattr(object, const_cast<char *>(qPrintable(attr)),
 					 const_cast<char *>(qPrintable(value)));
 }
 
-//Layout
+// layout
 static inline void _gvLayout(GVC_t* context, Agraph_t* graph, QString alg) {
 	gvLayout(context, graph, const_cast<char *>(qPrintable(alg)));
 }

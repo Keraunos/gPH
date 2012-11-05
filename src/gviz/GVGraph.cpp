@@ -6,38 +6,44 @@
 #include "Exceptions.h"
 #include "GVGraph.h"
 
+
 /*! Dot uses a 72 DPI value for converting it's position coordinates from points to pixels
     while we display at 96 DPI on most operating systems. */
 const qreal GVGraph::DotDefaultDPI=72.0;
 
+
 GVGraph::GVGraph(QString name, QFont font) : GVSubGraph() {	
 	_context = gvContext();
-	_graph = _agopen(name, AGDIGRAPHSTRICT); // Strict directed graph, see libgraph doc	
+    _graph = _agopen(name, AGDIGRAPHSTRICT); // strict directed graph, see libgraph doc
 	setGraphAttributes();
     setFont(font);
 }
 
-//Layout elements
+
+// layout elements
 void GVGraph::applyLayout() {	
     gvFreeLayout(_context, _graph);
     _gvLayout(_context, _graph, "dot");
 }
 
-//Get bounding rect (after layout has been done)
+
+// get bounding rect (after layout has been done)
 QRectF GVGraph::boundingRect() {
     qreal dpi = this->getDPI();
     return QRectF(_graph->u.bb.LL.x*(dpi/DotDefaultDPI), _graph->u.bb.LL.y*(dpi/DotDefaultDPI),
                   _graph->u.bb.UR.x*(dpi/DotDefaultDPI), _graph->u.bb.UR.y*(dpi/DotDefaultDPI));
 }
 
-//Destruct
+
+// destruct
 GVGraph::~GVGraph() {
     gvFreeLayout(_context, _graph);
     agclose(_graph);
     gvFreeContext(_context);
 }
 
-//Font management
+
+// font management
 void GVGraph::setFont(QFont font) {
     _font=font;
 

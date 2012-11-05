@@ -6,6 +6,7 @@
 #include <Qt>
 #include "GAction.h"
 
+
 GAction::GAction(ActionPtr a, GVEdge e, GVEdge f, PHScene* sc) : scene(sc), action(a) {
 
     edges = std::make_pair (e, f);
@@ -26,6 +27,7 @@ GAction::GAction(ActionPtr a, GVEdge e, GVEdge f, PHScene* sc) : scene(sc), acti
     arrowHeads.second 	= makeArrowHead(edges.second, color);
 }
 
+
 GAction::~GAction() {
     delete display;
     //delete scene; <-- do not delete this pointer, it's owned by a shared pointer in PH.h
@@ -36,6 +38,7 @@ GAction::~GAction() {
 QGraphicsItem* GAction::getDisplayItem (void) {
     return display;
 }
+
 
 // draw an arrowhead
 QGraphicsPolygonItem* GAction::makeArrowHead(const GVEdge& e, const QColor& color) {

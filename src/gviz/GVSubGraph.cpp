@@ -6,17 +6,22 @@
 #include "GVSubGraph.h"
 #include "GVGraph.h"
 
-//Utils
-//Add subgraph
+
+// UTILS
+
+// add subgraph
 static inline Agraph_t* _agsubg(Agraph_t* object, QString name) {
 	return agsubg(object, const_cast<char *>(qPrintable(name)));
 }
-//Add node
+
+// add node
 static inline Agnode_t* _agnode(Agraph_t* object, QString name) {
 	return agnode(object, const_cast<char *>(qPrintable(name)));
 }
 
-//Constructors
+
+// CONSTRUCTORS
+
 GVSubGraph::GVSubGraph() {} //This one is only called by GVGraph (protected)
 GVSubGraph::GVSubGraph(Agraph_t* graph) : _graph(graph) {	
 	setGraphAttributes();
@@ -24,6 +29,7 @@ GVSubGraph::GVSubGraph(Agraph_t* graph) : _graph(graph) {
 GVSubGraph::~GVSubGraph() {    
     agclose(_graph);
 }
+
 
 //Set basic graph attributes for graphviz
 const qreal GVSubGraph::nodeSize= 50;

@@ -21,7 +21,8 @@ HEADERS 	= 	headers/Action.h 		\
 				headers/PHScene.h		\
 				headers/PHIO.h 			\
 				headers/Process.h 		\
-				headers/Sort.h
+				headers/Sort.h \
+    headers/GSortItem.h
 				
 INCLUDEPATH = headers headers/axe headers/test
 
@@ -38,7 +39,8 @@ SOURCES			= 	src/gfx/GProcess.cpp	\
 					src/ph/Process.cpp		\
 					src/ph/Sort.cpp			\
 					src/ui/MainWindow.cpp 	\
-					src/ui/MyArea.cpp
+					src/ui/MyArea.cpp \
+    src/gfx/GSortItem.cpp
 
 #So 2013 (needed for Axe)
 QMAKE_CXXFLAGS += -std=c++0x

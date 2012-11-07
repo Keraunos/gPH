@@ -3,20 +3,27 @@
 #include <QColor>
 #include <QBrush>
 #include <QTextDocument>
+#include <QCursor>
 #include "GSort.h"
 
 
 GSort::GSort(SortPtr s, GVCluster c) : sort(s), cluster(c) {
 	
     // graphic items set and Actions color
-	display = new QGraphicsItemGroup();
+    //display = new QGraphicsItemGroup();
+    display = new GSortItem(this);
+    display->setFlag(display->ItemIsMovable, true);
+
+    QCursor *curs = new QCursor(Qt::OpenHandCursor);
+    //display->setCursor(*curs);
 	color = makeColor();
 	
     // rectangle
 	rect = new QGraphicsRectItem(cluster.topLeft.x(), cluster.topLeft.y(), cluster.width, cluster.height, display);
 	rect->setPen(QPen(QColor(7,54,66)));
 	rect->setBrush(QBrush(QColor(7,54,66)));
-	
+    rect->setCursor(*curs);
+
     // label
 	text = new QGraphicsTextItem (QString(), display);
 	text->setHtml(QString::fromStdString("<u>sort " + sort->getName() + "</u>"));
@@ -35,7 +42,8 @@ GSort::~GSort() {
 
 
 // getter
-QGraphicsItem* GSort::getDisplayItem (void) {
+//QGraphicsItem* GSort::getDisplayItem (void) {
+GSortItem* GSort::getDisplayItem (void) {
 	return display;
 }
 
@@ -57,4 +65,12 @@ std::vector<QColor> GSort::palette = 	{	QColor(181,137,0)
 QColor* GSort::makeColor () {
 	paletteIndex = (paletteIndex + 1) % palette.size();
 	return &(palette[paletteIndex]);
+}
+
+QGraphicsRectItem* GSort::getRect() {
+    return rect;
+}
+
+GVCluster GSort::getCluster() {
+    return cluster;
 }

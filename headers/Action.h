@@ -83,7 +83,7 @@ class Action {
 	protected:
 
        /**
-         * @brief the source Pprocess
+         * @brief the source Process
          *
          */
         ProcessPtr source;

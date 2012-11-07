@@ -9,8 +9,9 @@
 
 
 GProcess::GProcess(ProcessPtr p, GVNode n) : process(p), node(n) {
-	display = new QGraphicsItemGroup();
-	
+
+    display = new QGraphicsItemGroup();
+
     // ellipse
 	ellipse = new QGraphicsEllipseItem (node.centerPos.x() - node.width/2, node.centerPos.y() - node.height/2, node.width, node.height, display);
 	ellipse->setPen(QPen(QColor(238,232,213)));

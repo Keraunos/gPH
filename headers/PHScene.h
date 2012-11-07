@@ -77,7 +77,7 @@ class PHScene: public QGraphicsScene {
 		void draw(void);
 
         /**
-          * @brief map of the Sorts drawn in the scene
+          * @brief map of the Sorts drawn in the scene: the keys are the names of the Sorts
           *
           */
 		map<string, GSortPtr> sorts;

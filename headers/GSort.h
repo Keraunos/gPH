@@ -6,6 +6,7 @@
 #include "PH.h"
 #include "Sort.h"
 #include "GVCluster.h"
+#include "GSortItem.h"
 
 /**
   * @file GSort.h
@@ -42,7 +43,11 @@ class GSort {
           *
           * @return QGraphicsItem the graphical item representing the Sort
           */
-        QGraphicsItem* getDisplayItem (void);
+        //QGraphicsItem* getDisplayItem (void);
+        GSortItem* getDisplayItem (void);
+
+        QGraphicsRectItem* getRect();
+        GVCluster getCluster();
 
         /**
           * @brief the color used by the Actions that have this Sort as source
@@ -56,7 +61,8 @@ class GSort {
           * @brief the graphical item representing the Sort
           *
           */
-		QGraphicsItem* display;
+        //QGraphicsItem* display;
+        GSortItem* display;
 
         /**
           * @brief the graphical item representing the rectangle of the Sort

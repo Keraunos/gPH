@@ -100,9 +100,9 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_h.html#ae3ab2dd87b4bfadf04c1a14c6091aebc">PH</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">builder for <a class="el" href="class_p_h.html" title="represents an entire process hitting as defined in a PH file">PH</a> <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_h.html#ad4335e01899c57e6802021f1afb83e7f">addSort</a> (SortPtr s)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">add a sort to the <a class="el" href="class_p_h.html" title="represents an entire process hitting as defined in a PH file">PH</a>  <a href="#ad4335e01899c57e6802021f1afb83e7f"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">adds a sort to the <a class="el" href="class_p_h.html" title="represents an entire process hitting as defined in a PH file">PH</a>  <a href="#ad4335e01899c57e6802021f1afb83e7f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_h.html#ae9bed9356d272f3c43f2147d6d8e5906">addAction</a> (ActionPtr a)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">add an action to the <a class="el" href="class_p_h.html" title="represents an entire process hitting as defined in a PH file">PH</a>  <a href="#ae9bed9356d272f3c43f2147d6d8e5906"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">adds an action to the <a class="el" href="class_p_h.html" title="represents an entire process hitting as defined in a PH file">PH</a>  <a href="#ae9bed9356d272f3c43f2147d6d8e5906"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02f1cd90c270555a50c08caa0fb2d491"></a><!-- doxytag: member="PH::getSort" ref="a02f1cd90c270555a50c08caa0fb2d491" args="(string const &amp;)" -->
 SortPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_h.html#a02f1cd90c270555a50c08caa0fb2d491">getSort</a> (string const &amp;)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for a sort <br/></td></tr>
@@ -181,10 +181,10 @@ PHScenePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </div>
 <div class="memdoc">
 
-<p>add an action to the <a class="el" href="class_p_h.html" title="represents an entire process hitting as defined in a PH file">PH</a> </p>
+<p>adds an action to the <a class="el" href="class_p_h.html" title="represents an entire process hitting as defined in a PH file">PH</a> </p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">ActionPtr</td><td>the action added </td></tr>
+    <tr><td class="paramname">ActionPtr</td><td>the action to add </td></tr>
   </table>
   </dd>
 </dl>
@@ -206,10 +206,10 @@ PHScenePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </div>
 <div class="memdoc">
 
-<p>add a sort to the <a class="el" href="class_p_h.html" title="represents an entire process hitting as defined in a PH file">PH</a> </p>
+<p>adds a sort to the <a class="el" href="class_p_h.html" title="represents an entire process hitting as defined in a PH file">PH</a> </p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">SortPtr</td><td>the sort added </td></tr>
+    <tr><td class="paramname">SortPtr</td><td>the sort to add </td></tr>
   </table>
   </dd>
 </dl>
@@ -232,7 +232,7 @@ PHScenePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <div class="memdoc">
 
 <p>outputs for display </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>PHScenePtr the Scene built </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>PHScenePtr pointer to the Scene built </dd></dl>
 
 </div>
 </div>
@@ -272,7 +272,7 @@ PHScenePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <div class="memdoc">
 
 <p>gives a text representation of the process hitting (in .dot format, used in Graphviz) </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>String the text representation of the process hitting in DOT format </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>string the text representation of the process hitting in DOT format </dd></dl>
 
 </div>
 </div>
@@ -293,7 +293,7 @@ PHScenePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 <p>makes a representation of the process hitting as a graph </p>
 <p>calls graphviz to calculate the optimized graph </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>GVGraphPtr the graph built </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>GVGraphPtr pointer to the Graph built </dd></dl>
 
 </div>
 </div>
@@ -313,7 +313,7 @@ PHScenePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <div class="memdoc">
 
 <p>gives a text representation of the process hitting (as it would be in a .ph file) </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the text representation of the process hitting in <a class="el" href="class_p_h.html" title="represents an entire process hitting as defined in a PH file">PH</a> format </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>string the text representation of the process hitting in <a class="el" href="class_p_h.html" title="represents an entire process hitting as defined in a PH file">PH</a> format </dd></dl>
 
 </div>
 </div>
@@ -330,7 +330,7 @@ PHScenePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <div class="memdoc">
 
 <p>boolean to know if the default rate is or is not infinite </p>
-<p>if it is, the default rate makes no sense </p>
+<p>if true then the value of default rate makes no sense </p>
 
 </div>
 </div>
@@ -355,7 +355,7 @@ PHScenePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 25 2012 20:33:18 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 8 2012 10:07:53 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

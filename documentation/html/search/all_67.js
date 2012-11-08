@@ -7,7 +7,7 @@ var searchData=
   ['getallpaths',['getAllPaths',['../class_main_window.html#a5cc52553f615cb3abeb1198ad8c018a3',1,'MainWindow']]],
   ['getcentralearea',['getCentraleArea',['../class_main_window.html#a398296c146bb239d0b75a24b44132658',1,'MainWindow']]],
   ['getdefaultrate',['getDefaultRate',['../class_p_h.html#aa64e3d43f773122df2329491f6abdf6c',1,'PH']]],
-  ['getdisplayitem',['getDisplayItem',['../class_g_action.html#ad3086cca158b494f7c2fd31783fb9f77',1,'GAction::getDisplayItem()'],['../class_g_process.html#abc8cdf8bb0a8402a1b507005be3a97f9',1,'GProcess::getDisplayItem()'],['../class_g_sort.html#aeff35f1b750ec1a81e6ea7034458c742',1,'GSort::getDisplayItem()']]],
+  ['getdisplayitem',['getDisplayItem',['../class_g_action.html#ad3086cca158b494f7c2fd31783fb9f77',1,'GAction::getDisplayItem()'],['../class_g_process.html#abc8cdf8bb0a8402a1b507005be3a97f9',1,'GProcess::getDisplayItem()'],['../class_g_sort.html#a1b930cc66df1898109e8ca82788b93c0',1,'GSort::getDisplayItem()']]],
   ['getdotname',['getDotName',['../class_process.html#af9a89e83db6a14451104b49eac7dd313',1,'Process']]],
   ['getdpi',['getDPI',['../class_g_v_sub_graph.html#a0405ca939a02f54ccdf044a5a6f4ff6b',1,'GVSubGraph']]],
   ['getgraphicsscene',['getGraphicsScene',['../class_p_h.html#aaf75a785bb9bd06cec611f0fb69d05f6',1,'PH']]],
@@ -31,6 +31,8 @@ var searchData=
   ['gprocess_2eh',['GProcess.h',['../_g_process_8h.html',1,'']]],
   ['gsort',['GSort',['../class_g_sort.html',1,'GSort'],['../class_g_sort.html#a423709cc4cc15bc05219b08e1276f455',1,'GSort::GSort()']]],
   ['gsort_2eh',['GSort.h',['../_g_sort_8h.html',1,'']]],
+  ['gsortitem',['GSortItem',['../class_g_sort_item.html',1,'GSortItem'],['../class_g_sort_item.html#a73198723d0a4ed67978d468d0c19815a',1,'GSortItem::GSortItem()']]],
+  ['gsortitem_2eh',['GSortItem.h',['../_g_sort_item_8h.html',1,'']]],
   ['gv_5ferror',['gv_error',['../structgv__error.html',1,'']]],
   ['gvcluster',['GVCluster',['../struct_g_v_cluster.html',1,'']]],
   ['gvcluster_2eh',['GVCluster.h',['../_g_v_cluster_8h.html',1,'']]],
@@ -40,6 +42,6 @@ var searchData=
   ['gvgraph_2eh',['GVGraph.h',['../_g_v_graph_8h.html',1,'']]],
   ['gvnode',['GVNode',['../struct_g_v_node.html',1,'']]],
   ['gvnode_2eh',['GVNode.h',['../_g_v_node_8h.html',1,'']]],
-  ['gvsubgraph',['GVSubGraph',['../class_g_v_sub_graph.html',1,'']]],
+  ['gvsubgraph',['GVSubGraph',['../class_g_v_sub_graph.html',1,'GVSubGraph'],['../class_g_v_sub_graph.html#a2a830f5288096466cff627fb221003f3',1,'GVSubGraph::GVSubGraph()']]],
   ['gvsubgraph_2eh',['GVSubGraph.h',['../_g_v_sub_graph_8h.html',1,'']]]
 ];

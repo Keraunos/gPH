@@ -97,8 +97,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00022"></a>00022 <span class="keyword">using</span> std::string;
 <a name="l00023"></a>00023 <span class="keyword">using</span> boost::make_shared;
 <a name="l00024"></a>00024 
-<a name="l00025"></a>00025 <span class="comment">//Mutual inclusion madness</span>
-<a name="l00026"></a>00026 <span class="keyword">class </span><a class="code" href="class_action.html" title="Represents an action of the process hitting.">Action</a>;
+<a name="l00025"></a>00025 <span class="comment">// mutual inclusion</span>
+<a name="l00026"></a>00026 <span class="keyword">class </span><a class="code" href="class_action.html" title="Represents an Action of the process hitting.">Action</a>;
 <a name="l00027"></a>00027 <span class="keyword">typedef</span> boost::shared_ptr&lt;Action&gt; ActionPtr;
 <a name="l00028"></a>00028 
 <a name="l00029"></a>00029 <span class="keyword">class </span><a class="code" href="class_p_h.html" title="represents an entire process hitting as defined in a PH file">PH</a>;
@@ -120,9 +120,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00058"></a>00058 
 <a name="l00063"></a>00063                 <a class="code" href="class_p_h.html#ae3ab2dd87b4bfadf04c1a14c6091aebc" title="builder for PH">PH</a>();
 <a name="l00064"></a>00064 
-<a name="l00069"></a>00069                 <span class="keywordtype">void</span> <a class="code" href="class_p_h.html#ad4335e01899c57e6802021f1afb83e7f" title="add a sort to the PH">addSort</a>(SortPtr s);
+<a name="l00069"></a>00069                 <span class="keywordtype">void</span> <a class="code" href="class_p_h.html#ad4335e01899c57e6802021f1afb83e7f" title="adds a sort to the PH">addSort</a>(SortPtr s);
 <a name="l00070"></a>00070 
-<a name="l00075"></a>00075                 <span class="keywordtype">void</span> <a class="code" href="class_p_h.html#ae9bed9356d272f3c43f2147d6d8e5906" title="add an action to the PH">addAction</a>(ActionPtr a);
+<a name="l00075"></a>00075                 <span class="keywordtype">void</span> <a class="code" href="class_p_h.html#ae9bed9356d272f3c43f2147d6d8e5906" title="adds an action to the PH">addAction</a>(ActionPtr a);
 <a name="l00076"></a>00076 
 <a name="l00081"></a>00081                 SortPtr <a class="code" href="class_p_h.html#a02f1cd90c270555a50c08caa0fb2d491" title="getter for a sort">getSort</a>(<span class="keywordtype">string</span> <span class="keyword">const</span>&amp;);
 <a name="l00082"></a>00082 
@@ -193,7 +193,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 25 2012 20:33:10 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 8 2012 10:07:49 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

@@ -3,7 +3,7 @@
 }
 
 
-determines the way to draw a process  
+contains style and layout info to draw a process  
 
 
 
@@ -14,31 +14,31 @@ determines the way to draw a process
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{class_g_process_a16ff7286ec7b0081a6d2a25f9784460f}{\-G\-Process} (\-Process\-Ptr p, \hyperlink{struct_g_v_node}{\-G\-V\-Node} n)
-\begin{DoxyCompactList}\small\item\em builder for \hyperlink{class_g_process}{\-G\-Process} \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
 \-Q\-Graphics\-Item $\ast$ \hyperlink{class_g_process_abc8cdf8bb0a8402a1b507005be3a97f9}{get\-Display\-Item} (void)
-\begin{DoxyCompactList}\small\item\em getter for the whole drawing of the process \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em gets the display \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{\-Protected \-Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{class_g_process_afcb6a6765219d5ca69f23b89a147a7db}{\-Q\-Graphics\-Item $\ast$ \hyperlink{class_g_process_afcb6a6765219d5ca69f23b89a147a7db}{display}}\label{class_g_process_afcb6a6765219d5ca69f23b89a147a7db}
 
-\begin{DoxyCompactList}\small\item\em contains the whole drawing of the process \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em the graphical item representing the \hyperlink{class_process}{\-Process} \end{DoxyCompactList}\item 
 \hypertarget{class_g_process_ac0770d84d26f835cd409cb1bbd5a2408}{\-Q\-Graphics\-Ellipse\-Item $\ast$ \hyperlink{class_g_process_ac0770d84d26f835cd409cb1bbd5a2408}{ellipse}}\label{class_g_process_ac0770d84d26f835cd409cb1bbd5a2408}
 
-\begin{DoxyCompactList}\small\item\em graphical element to draw the action\-: ellipse \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em the graphical item representing the ellipse of the \hyperlink{class_process}{\-Process} \end{DoxyCompactList}\item 
 \hypertarget{class_g_process_a4ff36f4f6daae75d094c53d837ad4ecc}{\-Q\-Graphics\-Text\-Item $\ast$ \hyperlink{class_g_process_a4ff36f4f6daae75d094c53d837ad4ecc}{text}}\label{class_g_process_a4ff36f4f6daae75d094c53d837ad4ecc}
 
-\begin{DoxyCompactList}\small\item\em graphical element to draw the action\-: text \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em the graphical item representing the text of the \hyperlink{class_process}{\-Process} \end{DoxyCompactList}\item 
 \hypertarget{class_g_process_adb2d4b43a105c00b5be1f5bc405a3f43}{\-Process\-Ptr \hyperlink{class_g_process_adb2d4b43a105c00b5be1f5bc405a3f43}{process}}\label{class_g_process_adb2d4b43a105c00b5be1f5bc405a3f43}
 
-\begin{DoxyCompactList}\small\item\em process related \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em the related \hyperlink{class_process}{\-Process} \end{DoxyCompactList}\item 
 \hypertarget{class_g_process_a83a9972757f06e9eff7fe120ac9f2b5b}{\hyperlink{struct_g_v_node}{\-G\-V\-Node} \hyperlink{class_g_process_a83a9972757f06e9eff7fe120ac9f2b5b}{node}}\label{class_g_process_a83a9972757f06e9eff7fe120ac9f2b5b}
 
-\begin{DoxyCompactList}\small\item\em node related \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em the related node \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{\-Detailed \-Description}
-determines the way to draw a process 
+contains style and layout info to draw a process 
 
 \subsection{\-Constructor \& \-Destructor \-Documentation}
 \hypertarget{class_g_process_a16ff7286ec7b0081a6d2a25f9784460f}{\index{\-G\-Process@{\-G\-Process}!\-G\-Process@{\-G\-Process}}
@@ -51,13 +51,13 @@ determines the way to draw a process
 )}}\label{class_g_process_a16ff7286ec7b0081a6d2a25f9784460f}
 
 
-builder for \hyperlink{class_g_process}{\-G\-Process} 
+constructor 
 
 
 \begin{DoxyParams}{\-Parameters}
-{\em \-Process\-Ptr} & the \hyperlink{class_process}{\-Process} object that will be agregated \\
+{\em \-Process\-Ptr} & the related \hyperlink{class_process}{\-Process} object \\
 \hline
-{\em \hyperlink{struct_g_v_node}{\-G\-V\-Node}} & the \hyperlink{struct_g_v_node}{\-G\-V\-Node} object that will be agregated \\
+{\em \hyperlink{struct_g_v_node}{\-G\-V\-Node}} & the object that contains style and layout info \\
 \hline
 \end{DoxyParams}
 
@@ -72,10 +72,10 @@ builder for \hyperlink{class_g_process}{\-G\-Process}
 )}}\label{class_g_process_abc8cdf8bb0a8402a1b507005be3a97f9}
 
 
-getter for the whole drawing of the process 
+gets the display 
 
 \begin{DoxyReturn}{\-Returns}
-\-Q\-Graphics\-Item$\ast$ representing the whole drawing of the process 
+\-Q\-Graphics\-Item the graphical item representing the \hyperlink{class_process}{\-Process} 
 \end{DoxyReturn}
 
 

@@ -17,9 +17,9 @@ represents an entire process hitting as defined in a \hyperlink{class_p_h}{\-P\-
 
 \begin{DoxyCompactList}\small\item\em builder for \hyperlink{class_p_h}{\-P\-H} \end{DoxyCompactList}\item 
 void \hyperlink{class_p_h_ad4335e01899c57e6802021f1afb83e7f}{add\-Sort} (\-Sort\-Ptr s)
-\begin{DoxyCompactList}\small\item\em add a sort to the \hyperlink{class_p_h}{\-P\-H} \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em adds a sort to the \hyperlink{class_p_h}{\-P\-H} \end{DoxyCompactList}\item 
 void \hyperlink{class_p_h_ae9bed9356d272f3c43f2147d6d8e5906}{add\-Action} (\-Action\-Ptr a)
-\begin{DoxyCompactList}\small\item\em add an action to the \hyperlink{class_p_h}{\-P\-H} \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em adds an action to the \hyperlink{class_p_h}{\-P\-H} \end{DoxyCompactList}\item 
 \hypertarget{class_p_h_a02f1cd90c270555a50c08caa0fb2d491}{\-Sort\-Ptr \hyperlink{class_p_h_a02f1cd90c270555a50c08caa0fb2d491}{get\-Sort} (string const \&)}\label{class_p_h_a02f1cd90c270555a50c08caa0fb2d491}
 
 \begin{DoxyCompactList}\small\item\em getter for a sort \end{DoxyCompactList}\item 
@@ -95,11 +95,11 @@ represents an entire process hitting as defined in a \hyperlink{class_p_h}{\-P\-
 )}}\label{class_p_h_ae9bed9356d272f3c43f2147d6d8e5906}
 
 
-add an action to the \hyperlink{class_p_h}{\-P\-H} 
+adds an action to the \hyperlink{class_p_h}{\-P\-H} 
 
 
 \begin{DoxyParams}{\-Parameters}
-{\em \-Action\-Ptr} & the action added \\
+{\em \-Action\-Ptr} & the action to add \\
 \hline
 \end{DoxyParams}
 \hypertarget{class_p_h_ad4335e01899c57e6802021f1afb83e7f}{\index{\-P\-H@{\-P\-H}!add\-Sort@{add\-Sort}}
@@ -111,11 +111,11 @@ add an action to the \hyperlink{class_p_h}{\-P\-H}
 )}}\label{class_p_h_ad4335e01899c57e6802021f1afb83e7f}
 
 
-add a sort to the \hyperlink{class_p_h}{\-P\-H} 
+adds a sort to the \hyperlink{class_p_h}{\-P\-H} 
 
 
 \begin{DoxyParams}{\-Parameters}
-{\em \-Sort\-Ptr} & the sort added \\
+{\em \-Sort\-Ptr} & the sort to add \\
 \hline
 \end{DoxyParams}
 \hypertarget{class_p_h_aaf75a785bb9bd06cec611f0fb69d05f6}{\index{\-P\-H@{\-P\-H}!get\-Graphics\-Scene@{get\-Graphics\-Scene}}
@@ -130,7 +130,7 @@ add a sort to the \hyperlink{class_p_h}{\-P\-H}
 outputs for display 
 
 \begin{DoxyReturn}{\-Returns}
-\-P\-H\-Scene\-Ptr the \-Scene built 
+\-P\-H\-Scene\-Ptr pointer to the \-Scene built 
 \end{DoxyReturn}
 \hypertarget{class_p_h_af1f67304076aded44a15a30aed6dc652}{\index{\-P\-H@{\-P\-H}!render@{render}}
 \index{render@{render}!PH@{\-P\-H}}
@@ -155,7 +155,7 @@ time-\/expensive method, calls the to\-G\-V\-Graph method \hypertarget{class_p_h
 gives a text representation of the process hitting (in .dot format, used in \-Graphviz) 
 
 \begin{DoxyReturn}{\-Returns}
-\-String the text representation of the process hitting in \-D\-O\-T format 
+string the text representation of the process hitting in \-D\-O\-T format 
 \end{DoxyReturn}
 \hypertarget{class_p_h_a220fd9fdc673988edb461b02a90edb1b}{\index{\-P\-H@{\-P\-H}!to\-G\-V\-Graph@{to\-G\-V\-Graph}}
 \index{to\-G\-V\-Graph@{to\-G\-V\-Graph}!PH@{\-P\-H}}
@@ -169,7 +169,7 @@ gives a text representation of the process hitting (in .dot format, used in \-Gr
 makes a representation of the process hitting as a graph 
 
 calls graphviz to calculate the optimized graph \begin{DoxyReturn}{\-Returns}
-\-G\-V\-Graph\-Ptr the graph built 
+\-G\-V\-Graph\-Ptr pointer to the \-Graph built 
 \end{DoxyReturn}
 \hypertarget{class_p_h_ae870206aad796943dffaa6bab1f7f293}{\index{\-P\-H@{\-P\-H}!to\-String@{to\-String}}
 \index{to\-String@{to\-String}!PH@{\-P\-H}}
@@ -183,7 +183,7 @@ calls graphviz to calculate the optimized graph \begin{DoxyReturn}{\-Returns}
 gives a text representation of the process hitting (as it would be in a .ph file) 
 
 \begin{DoxyReturn}{\-Returns}
-the text representation of the process hitting in \hyperlink{class_p_h}{\-P\-H} format 
+string the text representation of the process hitting in \hyperlink{class_p_h}{\-P\-H} format 
 \end{DoxyReturn}
 
 
@@ -195,7 +195,7 @@ the text representation of the process hitting in \hyperlink{class_p_h}{\-P\-H} 
 
 boolean to know if the default rate is or is not infinite 
 
-if it is, the default rate makes no sense 
+if true then the value of default rate makes no sense 
 
 \-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 

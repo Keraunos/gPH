@@ -89,33 +89,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00007"></a>00007 <span class="preprocessor">#include &quot;<a class="code" href="_process_8h.html" title="header for the Process class">Process.h</a>&quot;</span>
 <a name="l00008"></a>00008 <span class="preprocessor">#include &quot;<a class="code" href="_g_v_node_8h.html" title="header for the GVNode class">GVNode.h</a>&quot;</span>
 <a name="l00009"></a>00009 
-<a name="l00017"></a>00017 <span class="keyword">class </span><a class="code" href="class_g_process.html" title="determines the way to draw a process">GProcess</a>;
+<a name="l00017"></a>00017 <span class="keyword">class </span><a class="code" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a>;
 <a name="l00018"></a>00018 <span class="keyword">typedef</span> boost::shared_ptr&lt;GProcess&gt; GProcessPtr;
-<a name="l00019"></a>00019 <span class="keyword">class </span><a class="code" href="class_process.html" title="represents a process of the process hitting">Process</a>;
+<a name="l00019"></a>00019 <span class="keyword">class </span><a class="code" href="class_process.html" title="represents a Process of the process hitting">Process</a>;
 <a name="l00020"></a>00020 <span class="keyword">typedef</span> boost::shared_ptr&lt;Process&gt; ProcessPtr;
 <a name="l00021"></a>00021 
 <a name="l00022"></a>00022 
-<a name="l00028"></a><a class="code" href="class_g_process.html">00028</a> <span class="keyword">class </span><a class="code" href="class_g_process.html" title="determines the way to draw a process">GProcess</a> {
+<a name="l00028"></a><a class="code" href="class_g_process.html">00028</a> <span class="keyword">class </span><a class="code" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a> {
 <a name="l00029"></a>00029 
 <a name="l00030"></a>00030         <span class="keyword">public</span>:
 <a name="l00031"></a>00031 
-<a name="l00038"></a>00038                 <a class="code" href="class_g_process.html#a16ff7286ec7b0081a6d2a25f9784460f" title="builder for GProcess">GProcess</a>(ProcessPtr p, <a class="code" href="struct_g_v_node.html" title="struct containing the information for a GVGraph&#39;s node">GVNode</a> n);
-<a name="l00039"></a>00039                 ~<a class="code" href="class_g_process.html" title="determines the way to draw a process">GProcess</a>();
-<a name="l00045"></a>00045                 QGraphicsItem* <a class="code" href="class_g_process.html#abc8cdf8bb0a8402a1b507005be3a97f9" title="getter for the whole drawing of the process">getDisplayItem</a> (<span class="keywordtype">void</span>);
-<a name="l00046"></a>00046         
-<a name="l00047"></a>00047         <span class="keyword">protected</span>:
-<a name="l00048"></a>00048 
-<a name="l00053"></a><a class="code" href="class_g_process.html#afcb6a6765219d5ca69f23b89a147a7db">00053</a>                 QGraphicsItem* <a class="code" href="class_g_process.html#afcb6a6765219d5ca69f23b89a147a7db" title="contains the whole drawing of the process">display</a>;
-<a name="l00054"></a>00054 
-<a name="l00059"></a><a class="code" href="class_g_process.html#ac0770d84d26f835cd409cb1bbd5a2408">00059</a>                 QGraphicsEllipseItem* <a class="code" href="class_g_process.html#ac0770d84d26f835cd409cb1bbd5a2408" title="graphical element to draw the action: ellipse">ellipse</a>;
-<a name="l00060"></a>00060 
-<a name="l00065"></a><a class="code" href="class_g_process.html#a4ff36f4f6daae75d094c53d837ad4ecc">00065</a>         QGraphicsTextItem* <a class="code" href="class_g_process.html#a4ff36f4f6daae75d094c53d837ad4ecc" title="graphical element to draw the action: text">text</a>;
-<a name="l00066"></a>00066 
-<a name="l00071"></a><a class="code" href="class_g_process.html#adb2d4b43a105c00b5be1f5bc405a3f43">00071</a>                 ProcessPtr <a class="code" href="class_g_process.html#adb2d4b43a105c00b5be1f5bc405a3f43" title="process related">process</a>;
-<a name="l00072"></a>00072 
-<a name="l00077"></a><a class="code" href="class_g_process.html#a83a9972757f06e9eff7fe120ac9f2b5b">00077</a>                 <a class="code" href="struct_g_v_node.html" title="struct containing the information for a GVGraph&#39;s node">GVNode</a> <a class="code" href="class_g_process.html#a83a9972757f06e9eff7fe120ac9f2b5b" title="node related">node</a>;
-<a name="l00078"></a>00078         
-<a name="l00079"></a>00079 };
+<a name="l00038"></a>00038                 <a class="code" href="class_g_process.html#a16ff7286ec7b0081a6d2a25f9784460f" title="constructor">GProcess</a>(ProcessPtr p, <a class="code" href="struct_g_v_node.html" title="struct containing the information for a GVGraph&#39;s node">GVNode</a> n);
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040                 ~<a class="code" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a>();
+<a name="l00041"></a>00041 
+<a name="l00047"></a>00047                 QGraphicsItem* <a class="code" href="class_g_process.html#abc8cdf8bb0a8402a1b507005be3a97f9" title="gets the display">getDisplayItem</a> (<span class="keywordtype">void</span>);
+<a name="l00048"></a>00048         
+<a name="l00049"></a>00049         <span class="keyword">protected</span>:
+<a name="l00050"></a>00050 
+<a name="l00055"></a><a class="code" href="class_g_process.html#afcb6a6765219d5ca69f23b89a147a7db">00055</a>                 QGraphicsItem* <a class="code" href="class_g_process.html#afcb6a6765219d5ca69f23b89a147a7db" title="the graphical item representing the Process">display</a>;
+<a name="l00056"></a>00056 
+<a name="l00061"></a><a class="code" href="class_g_process.html#ac0770d84d26f835cd409cb1bbd5a2408">00061</a>                 QGraphicsEllipseItem* <a class="code" href="class_g_process.html#ac0770d84d26f835cd409cb1bbd5a2408" title="the graphical item representing the ellipse of the Process">ellipse</a>;
+<a name="l00062"></a>00062 
+<a name="l00067"></a><a class="code" href="class_g_process.html#a4ff36f4f6daae75d094c53d837ad4ecc">00067</a>         QGraphicsTextItem* <a class="code" href="class_g_process.html#a4ff36f4f6daae75d094c53d837ad4ecc" title="the graphical item representing the text of the Process">text</a>;
+<a name="l00068"></a>00068 
+<a name="l00073"></a><a class="code" href="class_g_process.html#adb2d4b43a105c00b5be1f5bc405a3f43">00073</a>                 ProcessPtr <a class="code" href="class_g_process.html#adb2d4b43a105c00b5be1f5bc405a3f43" title="the related Process">process</a>;
+<a name="l00074"></a>00074 
+<a name="l00079"></a><a class="code" href="class_g_process.html#a83a9972757f06e9eff7fe120ac9f2b5b">00079</a>                 <a class="code" href="struct_g_v_node.html" title="struct containing the information for a GVGraph&#39;s node">GVNode</a> <a class="code" href="class_g_process.html#a83a9972757f06e9eff7fe120ac9f2b5b" title="the related node">node</a>;
+<a name="l00080"></a>00080         
+<a name="l00081"></a>00081 };
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -134,7 +136,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 25 2012 20:33:09 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 8 2012 10:07:49 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

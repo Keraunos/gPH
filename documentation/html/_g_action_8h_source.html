@@ -90,41 +90,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00008"></a>00008 <span class="preprocessor">#include &quot;<a class="code" href="_p_h_scene_8h.html" title="header for the PHScene class">PHScene.h</a>&quot;</span>
 <a name="l00009"></a>00009 <span class="preprocessor">#include &quot;<a class="code" href="_action_8h.html" title="header for the Action class">Action.h</a>&quot;</span>
 <a name="l00010"></a>00010 
-<a name="l00018"></a>00018 <span class="keyword">class </span><a class="code" href="class_g_action.html" title="determines the way to draw an action">GAction</a>;
+<a name="l00018"></a>00018 <span class="keyword">class </span><a class="code" href="class_g_action.html" title="contains style and layout info to draw an action">GAction</a>;
 <a name="l00019"></a>00019 <span class="keyword">typedef</span> boost::shared_ptr&lt;GAction&gt; GActionPtr;
-<a name="l00020"></a>00020 <span class="keyword">class </span><a class="code" href="class_action.html" title="Represents an action of the process hitting.">Action</a>;
+<a name="l00020"></a>00020 <span class="keyword">class </span><a class="code" href="class_action.html" title="Represents an Action of the process hitting.">Action</a>;
 <a name="l00021"></a>00021 <span class="keyword">typedef</span> boost::shared_ptr&lt;Action&gt; ActionPtr;
 <a name="l00022"></a>00022 <span class="keyword">class </span><a class="code" href="class_p_h_scene.html" title="the graphic object representing the process hitting extends QGraphicsScene">PHScene</a>;
 <a name="l00023"></a>00023 
 <a name="l00024"></a>00024 <span class="keyword">using</span> std::pair;
 <a name="l00025"></a>00025 
 <a name="l00026"></a>00026 
-<a name="l00032"></a><a class="code" href="class_g_action.html">00032</a> <span class="keyword">class </span><a class="code" href="class_g_action.html" title="determines the way to draw an action">GAction</a> {
+<a name="l00032"></a><a class="code" href="class_g_action.html">00032</a> <span class="keyword">class </span><a class="code" href="class_g_action.html" title="contains style and layout info to draw an action">GAction</a> {
 <a name="l00033"></a>00033 
 <a name="l00034"></a>00034         <span class="keyword">public</span>:
 <a name="l00035"></a>00035 
-<a name="l00040"></a>00040                 <a class="code" href="class_g_action.html#a697f4b533d191139a1eb401c486afff9" title="builder for Gaction">GAction</a>(ActionPtr a, <a class="code" href="struct_g_v_edge.html" title="struct containing the information for a GVGraph&#39;s edge">GVEdge</a> e, <a class="code" href="struct_g_v_edge.html" title="struct containing the information for a GVGraph&#39;s edge">GVEdge</a> f, <a class="code" href="class_p_h_scene.html" title="the graphic object representing the process hitting extends QGraphicsScene">PHScene</a>* sc);
-<a name="l00041"></a>00041         ~<a class="code" href="class_g_action.html" title="determines the way to draw an action">GAction</a>();
-<a name="l00042"></a>00042 
-<a name="l00048"></a>00048                 QGraphicsItem* <a class="code" href="class_g_action.html#ad3086cca158b494f7c2fd31783fb9f77" title="contains the whole drawing of the action">getDisplayItem</a> (<span class="keywordtype">void</span>);
-<a name="l00049"></a>00049         
-<a name="l00050"></a>00050         <span class="keyword">protected</span>:
-<a name="l00051"></a>00051         
-<a name="l00056"></a><a class="code" href="class_g_action.html#a5318deb6935859f5d2ebd1836ec6eb85">00056</a>                 <a class="code" href="class_p_h_scene.html" title="the graphic object representing the process hitting extends QGraphicsScene">PHScene</a>* <a class="code" href="class_g_action.html#a5318deb6935859f5d2ebd1836ec6eb85" title="the PHScene related to the action">scene</a>;
-<a name="l00057"></a>00057 
-<a name="l00062"></a><a class="code" href="class_g_action.html#a80fd22faf283374dd9861bf4900eafa4">00062</a>                 QGraphicsItem* <a class="code" href="class_g_action.html#a80fd22faf283374dd9861bf4900eafa4" title="the QGraphicsItem* containing the whole drawing">display</a>;
-<a name="l00063"></a>00063 
-<a name="l00068"></a><a class="code" href="class_g_action.html#abc626fc7dc52a5f02960706c02a52db9">00068</a>                 pair&lt;QGraphicsPathItem*, QGraphicsPathItem*&gt;            <a class="code" href="class_g_action.html#abc626fc7dc52a5f02960706c02a52db9" title="the QGraphicsItem* related to the tails of the arrows">arrowTails</a>;
-<a name="l00069"></a>00069 
-<a name="l00074"></a><a class="code" href="class_g_action.html#aab9cc72a8692e0b15f19e192ab21d609">00074</a>         pair&lt;QGraphicsPolygonItem* , QGraphicsPolygonItem*&gt;     <a class="code" href="class_g_action.html#aab9cc72a8692e0b15f19e192ab21d609" title="the QGraphicsPolygonItem* related to the heads of the arrows">arrowHeads</a>;
-<a name="l00075"></a>00075 
-<a name="l00080"></a><a class="code" href="class_g_action.html#a65f9f4938e024adc07cea387079549f8">00080</a>                 pair&lt;GVEdge, GVEdge&gt; <a class="code" href="class_g_action.html#a65f9f4938e024adc07cea387079549f8" title="the GVEdge related to the arrows">edges</a>;
-<a name="l00081"></a>00081 
-<a name="l00086"></a><a class="code" href="class_g_action.html#a22f734f6fb2fade298681819341b4f75">00086</a>                 ActionPtr <a class="code" href="class_g_action.html#a22f734f6fb2fade298681819341b4f75" title="the action object">action</a>;
-<a name="l00087"></a>00087 
-<a name="l00097"></a>00097                 QGraphicsPolygonItem* <a class="code" href="class_g_action.html#afeb408bf85d902191cef8a3cf613c7eb" title="builds the head of the arrow as a QGraphicsPolygonItem*">makeArrowHead</a>(<span class="keyword">const</span> <a class="code" href="struct_g_v_edge.html" title="struct containing the information for a GVGraph&#39;s edge">GVEdge</a>&amp; e, <span class="keyword">const</span> QColor&amp; color);              
-<a name="l00098"></a>00098         
-<a name="l00099"></a>00099 };
+<a name="l00044"></a>00044                 <a class="code" href="class_g_action.html#a697f4b533d191139a1eb401c486afff9" title="constructor">GAction</a>(ActionPtr a, <a class="code" href="struct_g_v_edge.html" title="struct containing the information for a GVGraph&#39;s edge">GVEdge</a> e, <a class="code" href="struct_g_v_edge.html" title="struct containing the information for a GVGraph&#39;s edge">GVEdge</a> f, <a class="code" href="class_p_h_scene.html" title="the graphic object representing the process hitting extends QGraphicsScene">PHScene</a>* sc);
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046         ~<a class="code" href="class_g_action.html" title="contains style and layout info to draw an action">GAction</a>();
+<a name="l00047"></a>00047 
+<a name="l00053"></a>00053                 QGraphicsItem* <a class="code" href="class_g_action.html#ad3086cca158b494f7c2fd31783fb9f77" title="gets the display">getDisplayItem</a> (<span class="keywordtype">void</span>);
+<a name="l00054"></a>00054         
+<a name="l00055"></a>00055         <span class="keyword">protected</span>:
+<a name="l00056"></a>00056         
+<a name="l00061"></a><a class="code" href="class_g_action.html#a5318deb6935859f5d2ebd1836ec6eb85">00061</a>                 <a class="code" href="class_p_h_scene.html" title="the graphic object representing the process hitting extends QGraphicsScene">PHScene</a>* <a class="code" href="class_g_action.html#a5318deb6935859f5d2ebd1836ec6eb85" title="the PHScene related to the Action">scene</a>;
+<a name="l00062"></a>00062 
+<a name="l00067"></a><a class="code" href="class_g_action.html#a80fd22faf283374dd9861bf4900eafa4">00067</a>                 QGraphicsItem* <a class="code" href="class_g_action.html#a80fd22faf283374dd9861bf4900eafa4" title="the graphical item representing the Action">display</a>;
+<a name="l00068"></a>00068 
+<a name="l00073"></a><a class="code" href="class_g_action.html#abc626fc7dc52a5f02960706c02a52db9">00073</a>                 pair&lt;QGraphicsPathItem*, QGraphicsPathItem*&gt;            <a class="code" href="class_g_action.html#abc626fc7dc52a5f02960706c02a52db9" title="the pair of graphical items representing the tails of the arrows of the Action">arrowTails</a>;
+<a name="l00074"></a>00074 
+<a name="l00079"></a><a class="code" href="class_g_action.html#aab9cc72a8692e0b15f19e192ab21d609">00079</a>         pair&lt;QGraphicsPolygonItem* , QGraphicsPolygonItem*&gt;     <a class="code" href="class_g_action.html#aab9cc72a8692e0b15f19e192ab21d609" title="the pair of graphical items representing the heads of the arrows of the Action">arrowHeads</a>;
+<a name="l00080"></a>00080 
+<a name="l00085"></a><a class="code" href="class_g_action.html#a22f734f6fb2fade298681819341b4f75">00085</a>         ActionPtr <a class="code" href="class_g_action.html#a22f734f6fb2fade298681819341b4f75" title="the related Action">action</a>;
+<a name="l00086"></a>00086 
+<a name="l00091"></a><a class="code" href="class_g_action.html#a65f9f4938e024adc07cea387079549f8">00091</a>                 pair&lt;GVEdge, GVEdge&gt; <a class="code" href="class_g_action.html#a65f9f4938e024adc07cea387079549f8" title="the edges related to the arrows">edges</a>;
+<a name="l00092"></a>00092 
+<a name="l00102"></a>00102                 QGraphicsPolygonItem* <a class="code" href="class_g_action.html#afeb408bf85d902191cef8a3cf613c7eb" title="draws the head of the arrow">makeArrowHead</a>(<span class="keyword">const</span> <a class="code" href="struct_g_v_edge.html" title="struct containing the information for a GVGraph&#39;s edge">GVEdge</a>&amp; e, <span class="keyword">const</span> QColor&amp; color);              
+<a name="l00103"></a>00103         
+<a name="l00104"></a>00104 };
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -143,7 +144,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 25 2012 20:33:09 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 8 2012 10:07:49 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

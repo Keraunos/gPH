@@ -92,50 +92,52 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00017"></a>00017 <span class="keyword">using</span> std::vector;
 <a name="l00018"></a>00018 <span class="keyword">using</span> boost::make_shared;
 <a name="l00019"></a>00019 
-<a name="l00020"></a>00020 <span class="comment">//Mutual inclusion</span>
-<a name="l00021"></a>00021 <span class="keyword">class </span><a class="code" href="class_process.html" title="represents a process of the process hitting">Process</a>;
-<a name="l00022"></a>00022 <span class="keyword">typedef</span> boost::shared_ptr&lt;Process&gt; ProcessPtr;
-<a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="keyword">class </span><a class="code" href="class_sort.html" title="represents a sort of the process hitting">Sort</a>;
-<a name="l00025"></a>00025 <span class="keyword">typedef</span> boost::shared_ptr&lt;Sort&gt; SortPtr;
-<a name="l00026"></a>00026 
-<a name="l00027"></a>00027 <span class="keyword">class </span><a class="code" href="class_g_sort.html" title="determines the way to draw a sort">GSort</a>;
-<a name="l00028"></a>00028 
-<a name="l00034"></a><a class="code" href="class_sort.html">00034</a> <span class="keyword">class </span><a class="code" href="class_sort.html" title="represents a sort of the process hitting">Sort</a> {
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036 <span class="keyword">public</span>:
-<a name="l00037"></a>00037         
-<a name="l00045"></a>00045                 <span class="keyword">static</span> SortPtr <a class="code" href="class_sort.html#a9c3fa1c3b71839c425d99a7fa86a9cc2" title="creates pointers to sorts">make</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp;, <span class="keyword">const</span> <span class="keywordtype">int</span>&amp;);
-<a name="l00046"></a>00046                 
-<a name="l00047"></a>00047 
-<a name="l00052"></a>00052                 ProcessPtr <a class="code" href="class_sort.html#a5b30c6e6f75987a8a10bef36762aace6" title="getter for the process">getProcess</a> (<span class="keyword">const</span> uint&amp;);
-<a name="l00053"></a>00053 
-<a name="l00058"></a>00058                 vector&lt;ProcessPtr&gt; <a class="code" href="class_sort.html#a1b76cf03a033bdee33ddd783e6e61f29" title="getter for the vector of processes">getProcesses</a> (<span class="keywordtype">void</span>);
-<a name="l00059"></a>00059 
-<a name="l00064"></a>00064                 ProcessPtr <a class="code" href="class_sort.html#ad77072a25565d843de3ea6a7b47ffbdd" title="getter for the active process">getActiveProcess</a> (<span class="keywordtype">void</span>);
-<a name="l00065"></a>00065 
-<a name="l00070"></a>00070                 <span class="keywordtype">void</span> <a class="code" href="class_sort.html#afb60d6f4e0b2d2984faf33fe16ad29b2" title="setter for the active process">setActiveProcess</a> (<span class="keyword">const</span> <span class="keywordtype">int</span>&amp;);
-<a name="l00071"></a>00071 
-<a name="l00076"></a>00076                 <span class="keywordtype">int</span> <a class="code" href="class_sort.html#a1f91b39f9d5d05ffbf59a1480102e85c" title="counts the number of processes">countProcesses</a> (<span class="keywordtype">void</span>);
-<a name="l00077"></a>00077 
-<a name="l00082"></a>00082                 <span class="keywordtype">string</span> <a class="code" href="class_sort.html#aae171b005c3dada51b7a302230ff501a" title="getter for the Name of the sort">getName</a> (<span class="keywordtype">void</span>);
-<a name="l00083"></a>00083 
-<a name="l00088"></a>00088                 <span class="keywordtype">string</span> <a class="code" href="class_sort.html#ae160613fb2d5c7fd9818a5c7d4be992a" title="gives a text representation of the process hitting (as it would be in a .ph file)">toString</a>(<span class="keywordtype">void</span>);
-<a name="l00089"></a>00089 
-<a name="l00094"></a>00094                 <span class="keywordtype">string</span> <a class="code" href="class_sort.html#a9bb67cd444d217dd477c896a31d869a0" title="gives a text representation of the process hitting (in .dot format, used in Graphviz)">toDotString</a>(<span class="keywordtype">void</span>);
-<a name="l00095"></a>00095 
-<a name="l00096"></a>00096         <span class="keyword">protected</span>:
-<a name="l00097"></a>00097 
-<a name="l00102"></a>00102         <a class="code" href="class_sort.html#ab9d3cb2bb873e058d0129e793c947d45" title="builder for sort">Sort</a> (<span class="keyword">const</span> <span class="keywordtype">string</span>&amp;);
-<a name="l00103"></a>00103 
-<a name="l00108"></a>00108                 <span class="keywordtype">void</span> <a class="code" href="class_sort.html#a63bd04693623b2a269e76b9d5269e880" title="adds a process">addProcess</a>(ProcessPtr p);
-<a name="l00109"></a>00109 
-<a name="l00114"></a><a class="code" href="class_sort.html#a047fd7c62ee90060e2e9374f6dc9ceca">00114</a>                 <span class="keywordtype">string</span> <a class="code" href="class_sort.html#a047fd7c62ee90060e2e9374f6dc9ceca" title="name of the sort">name</a>;
-<a name="l00115"></a>00115 
-<a name="l00120"></a><a class="code" href="class_sort.html#abd772622b6c5b12de38d3a646258cc0a">00120</a>                 vector&lt;ProcessPtr&gt; <a class="code" href="class_sort.html#abd772622b6c5b12de38d3a646258cc0a" title="processes related to the sort">processes</a>;
-<a name="l00121"></a>00121 
-<a name="l00126"></a><a class="code" href="class_sort.html#a941e734fb42ff8042ba0d4e82f22a9d8">00126</a>                 ProcessPtr <a class="code" href="class_sort.html#a941e734fb42ff8042ba0d4e82f22a9d8" title="active process in the sort">activeProcess</a>;
-<a name="l00127"></a>00127 };
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 <span class="comment">// mutual inclusion</span>
+<a name="l00022"></a>00022 <span class="keyword">class </span><a class="code" href="class_process.html" title="represents a Process of the process hitting">Process</a>;
+<a name="l00023"></a>00023 <span class="keyword">typedef</span> boost::shared_ptr&lt;Process&gt; ProcessPtr;
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 <span class="keyword">class </span><a class="code" href="class_sort.html" title="represents a sort of the process hitting">Sort</a>;
+<a name="l00026"></a>00026 <span class="keyword">typedef</span> boost::shared_ptr&lt;Sort&gt; SortPtr;
+<a name="l00027"></a>00027 
+<a name="l00028"></a>00028 <span class="keyword">class </span><a class="code" href="class_g_sort.html" title="contains style and layout info to draw a Sort">GSort</a>;
+<a name="l00029"></a>00029 
+<a name="l00030"></a>00030 
+<a name="l00036"></a><a class="code" href="class_sort.html">00036</a> <span class="keyword">class </span><a class="code" href="class_sort.html" title="represents a sort of the process hitting">Sort</a> {
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038 <span class="keyword">public</span>:
+<a name="l00039"></a>00039         
+<a name="l00047"></a>00047                 <span class="keyword">static</span> SortPtr <a class="code" href="class_sort.html#a9c3fa1c3b71839c425d99a7fa86a9cc2" title="creates a pointer to the Sort which name is given as parameter">make</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp;, <span class="keyword">const</span> <span class="keywordtype">int</span>&amp;);
+<a name="l00048"></a>00048                 
+<a name="l00049"></a>00049 
+<a name="l00055"></a>00055                 ProcessPtr <a class="code" href="class_sort.html#a5b30c6e6f75987a8a10bef36762aace6" title="gets a Process by its index">getProcess</a> (<span class="keyword">const</span> uint&amp;);
+<a name="l00056"></a>00056 
+<a name="l00061"></a>00061         vector&lt;ProcessPtr&gt; <a class="code" href="class_sort.html#a1b76cf03a033bdee33ddd783e6e61f29" title="gets processes vector">getProcesses</a> (<span class="keywordtype">void</span>);
+<a name="l00062"></a>00062 
+<a name="l00067"></a>00067                 ProcessPtr <a class="code" href="class_sort.html#ad77072a25565d843de3ea6a7b47ffbdd" title="gets the active process">getActiveProcess</a> (<span class="keywordtype">void</span>);
+<a name="l00068"></a>00068 
+<a name="l00073"></a>00073                 <span class="keywordtype">void</span> <a class="code" href="class_sort.html#afb60d6f4e0b2d2984faf33fe16ad29b2" title="sets the active process">setActiveProcess</a> (<span class="keyword">const</span> <span class="keywordtype">int</span>&amp;);
+<a name="l00074"></a>00074 
+<a name="l00079"></a>00079                 <span class="keywordtype">int</span> <a class="code" href="class_sort.html#a1f91b39f9d5d05ffbf59a1480102e85c" title="counts the number of processes">countProcesses</a> (<span class="keywordtype">void</span>);
+<a name="l00080"></a>00080 
+<a name="l00085"></a>00085                 <span class="keywordtype">string</span> <a class="code" href="class_sort.html#aae171b005c3dada51b7a302230ff501a" title="gets the name of the Sort">getName</a> (<span class="keywordtype">void</span>);
+<a name="l00086"></a>00086 
+<a name="l00091"></a>00091                 <span class="keywordtype">string</span> <a class="code" href="class_sort.html#ae160613fb2d5c7fd9818a5c7d4be992a" title="gives a text representation of the process hitting (as it would be in a .ph file)">toString</a>(<span class="keywordtype">void</span>);
+<a name="l00092"></a>00092 
+<a name="l00097"></a>00097                 <span class="keywordtype">string</span> <a class="code" href="class_sort.html#a9bb67cd444d217dd477c896a31d869a0" title="gives a text representation of the process hitting (in .dot format, used in Graphviz)">toDotString</a>(<span class="keywordtype">void</span>);
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099         <span class="keyword">protected</span>:
+<a name="l00100"></a>00100 
+<a name="l00105"></a>00105         <a class="code" href="class_sort.html#ab9d3cb2bb873e058d0129e793c947d45" title="constructor">Sort</a> (<span class="keyword">const</span> <span class="keywordtype">string</span>&amp;);
+<a name="l00106"></a>00106 
+<a name="l00111"></a>00111                 <span class="keywordtype">void</span> <a class="code" href="class_sort.html#a63bd04693623b2a269e76b9d5269e880" title="adds a Process">addProcess</a>(ProcessPtr p);
+<a name="l00112"></a>00112 
+<a name="l00117"></a><a class="code" href="class_sort.html#a047fd7c62ee90060e2e9374f6dc9ceca">00117</a>                 <span class="keywordtype">string</span> <a class="code" href="class_sort.html#a047fd7c62ee90060e2e9374f6dc9ceca" title="name of the Sort">name</a>;
+<a name="l00118"></a>00118 
+<a name="l00123"></a><a class="code" href="class_sort.html#abd772622b6c5b12de38d3a646258cc0a">00123</a>                 vector&lt;ProcessPtr&gt; <a class="code" href="class_sort.html#abd772622b6c5b12de38d3a646258cc0a" title="Processes of the Sort.">processes</a>;
+<a name="l00124"></a>00124 
+<a name="l00129"></a><a class="code" href="class_sort.html#a941e734fb42ff8042ba0d4e82f22a9d8">00129</a>                 ProcessPtr <a class="code" href="class_sort.html#a941e734fb42ff8042ba0d4e82f22a9d8" title="active Process in the Sort">activeProcess</a>;
+<a name="l00130"></a>00130 };
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -154,7 +156,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 25 2012 20:33:10 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 8 2012 10:07:50 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

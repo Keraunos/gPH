@@ -88,34 +88,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00006"></a>00006 
 <a name="l00014"></a>00014 <span class="keyword">using</span> std::string;
 <a name="l00015"></a>00015 
-<a name="l00016"></a>00016 <span class="comment">//Mutual inclusion</span>
-<a name="l00017"></a>00017 <span class="keyword">class </span><a class="code" href="class_sort.html" title="represents a sort of the process hitting">Sort</a>;
-<a name="l00018"></a>00018 <span class="keyword">typedef</span> boost::shared_ptr&lt;Sort&gt; SortPtr;
-<a name="l00019"></a>00019 
-<a name="l00020"></a>00020 <span class="keyword">class </span><a class="code" href="class_process.html" title="represents a process of the process hitting">Process</a>;
-<a name="l00021"></a>00021 <span class="keyword">typedef</span> boost::shared_ptr&lt;Process&gt; ProcessPtr;
-<a name="l00022"></a>00022 
-<a name="l00028"></a><a class="code" href="class_process.html">00028</a> <span class="keyword">class </span><a class="code" href="class_process.html" title="represents a process of the process hitting">Process</a> {
-<a name="l00029"></a>00029 
-<a name="l00030"></a>00030         <span class="keyword">public</span>:
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017 <span class="comment">// mutual inclusion</span>
+<a name="l00018"></a>00018 <span class="keyword">class </span><a class="code" href="class_sort.html" title="represents a sort of the process hitting">Sort</a>;
+<a name="l00019"></a>00019 <span class="keyword">typedef</span> boost::shared_ptr&lt;Sort&gt; SortPtr;
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 <span class="keyword">class </span><a class="code" href="class_process.html" title="represents a Process of the process hitting">Process</a>;
+<a name="l00022"></a>00022 <span class="keyword">typedef</span> boost::shared_ptr&lt;Process&gt; ProcessPtr;
+<a name="l00023"></a>00023 
+<a name="l00024"></a>00024 
+<a name="l00030"></a><a class="code" href="class_process.html">00030</a> <span class="keyword">class </span><a class="code" href="class_process.html" title="represents a Process of the process hitting">Process</a> {
 <a name="l00031"></a>00031 
-<a name="l00039"></a>00039                 <a class="code" href="class_process.html#a267617e8f2cfd994e0527635372be90c" title="builder for Process">Process</a> (SortPtr s, <span class="keyword">const</span> <span class="keywordtype">int</span>&amp; n);
-<a name="l00040"></a>00040 
-<a name="l00045"></a>00045                 <span class="keywordtype">int</span> <a class="code" href="class_process.html#acdfa357f41df6f1e09cdffbc5c5b2c3b" title="getter for the number">getNumber</a>(<span class="keywordtype">void</span>);
-<a name="l00046"></a>00046 
-<a name="l00051"></a>00051                 SortPtr <a class="code" href="class_process.html#aaabe803350e1d6dcc23d8aa4ff2314db" title="getter for the sort">getSort</a>(<span class="keywordtype">void</span>);
-<a name="l00052"></a>00052 
-<a name="l00057"></a>00057                 <span class="keywordtype">string</span> <a class="code" href="class_process.html#af9a89e83db6a14451104b49eac7dd313" title="renames in DOT file">getDotName</a> (<span class="keywordtype">void</span>);
-<a name="l00058"></a>00058 
-<a name="l00064"></a>00064                 <span class="keywordtype">string</span> <a class="code" href="class_process.html#ad9c1f2be57856c4e62d00f8494d2281f" title="gives a text representation of the process hitting (in .dot format, used in Graphviz)">toDotString</a> (<span class="keywordtype">void</span>);
-<a name="l00065"></a>00065                 
-<a name="l00066"></a>00066         <span class="keyword">private</span>:
-<a name="l00067"></a>00067 
-<a name="l00072"></a>00072                 SortPtr sort;
-<a name="l00073"></a>00073 
-<a name="l00078"></a>00078                 <span class="keywordtype">int</span> number;
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080 };
+<a name="l00032"></a>00032         <span class="keyword">public</span>:
+<a name="l00033"></a>00033 
+<a name="l00041"></a>00041                 <a class="code" href="class_process.html#a267617e8f2cfd994e0527635372be90c" title="constructor">Process</a> (SortPtr s, <span class="keyword">const</span> <span class="keywordtype">int</span>&amp; n);
+<a name="l00042"></a>00042 
+<a name="l00047"></a>00047                 <span class="keywordtype">int</span> <a class="code" href="class_process.html#acdfa357f41df6f1e09cdffbc5c5b2c3b" title="gets the number">getNumber</a>(<span class="keywordtype">void</span>);
+<a name="l00048"></a>00048 
+<a name="l00053"></a>00053                 SortPtr <a class="code" href="class_process.html#aaabe803350e1d6dcc23d8aa4ff2314db" title="gets the Sort">getSort</a>(<span class="keywordtype">void</span>);
+<a name="l00054"></a>00054 
+<a name="l00059"></a>00059                 <span class="keywordtype">string</span> <a class="code" href="class_process.html#af9a89e83db6a14451104b49eac7dd313" title="builds name for DOT files">getDotName</a> (<span class="keywordtype">void</span>);
+<a name="l00060"></a>00060 
+<a name="l00066"></a>00066                 <span class="keywordtype">string</span> <a class="code" href="class_process.html#ad9c1f2be57856c4e62d00f8494d2281f" title="gives a text representation of the process hitting (in .dot format, used in Graphviz)">toDotString</a> (<span class="keywordtype">void</span>);
+<a name="l00067"></a>00067                 
+<a name="l00068"></a>00068         <span class="keyword">private</span>:
+<a name="l00069"></a>00069 
+<a name="l00074"></a>00074                 SortPtr sort;
+<a name="l00075"></a>00075 
+<a name="l00080"></a>00080                 <span class="keywordtype">int</span> number;
+<a name="l00081"></a>00081 
+<a name="l00082"></a>00082 };
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -134,7 +136,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 25 2012 20:33:10 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 8 2012 10:07:50 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

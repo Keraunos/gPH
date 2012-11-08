@@ -20,7 +20,7 @@ static \-P\-H\-Ptr \hyperlink{class_p_h_i_o_afeb84bb5b7960b8a4733b7345d2db025}{p
 static void \hyperlink{class_p_h_i_o_a8a33a5a439f19caf0619ab7132642846}{write\-To\-File} (string const \&path, \-P\-H\-Ptr ph)
 \begin{DoxyCompactList}\small\item\em saves the \hyperlink{class_p_h}{\-P\-H} object as a \hyperlink{class_p_h}{\-P\-H} file \end{DoxyCompactList}\item 
 static void \hyperlink{class_p_h_i_o_a612f877c6332f9d20d6ef8992c1681f3}{export\-To\-P\-N\-G} (\-P\-H\-Ptr ph, \-Q\-String name)
-\begin{DoxyCompactList}\small\item\em saves as a \-P\-N\-G the representation of the \hyperlink{class_p_h}{\-P\-H} file in the window \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em saves as a \-P\-N\-G the representation of the \hyperlink{class_p_h}{\-P\-H} file as it is displayed in the \-G\-U\-I \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{\-Detailed \-Description}
@@ -40,11 +40,11 @@ checks if the file exists and is recognized by the parser
 
 
 \begin{DoxyParams}{\-Parameters}
-{\em string} & the path of the file \\
+{\em string} & the path of the file to parse \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{\-Returns}
-bool 1 if the file exists 
+bool true if the file can be parsed 
 \end{DoxyReturn}
 \hypertarget{class_p_h_i_o_a612f877c6332f9d20d6ef8992c1681f3}{\index{\-P\-H\-I\-O@{\-P\-H\-I\-O}!export\-To\-P\-N\-G@{export\-To\-P\-N\-G}}
 \index{export\-To\-P\-N\-G@{export\-To\-P\-N\-G}!PHIO@{\-P\-H\-I\-O}}
@@ -56,11 +56,11 @@ bool 1 if the file exists
 )\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{class_p_h_i_o_a612f877c6332f9d20d6ef8992c1681f3}
 
 
-saves as a \-P\-N\-G the representation of the \hyperlink{class_p_h}{\-P\-H} file in the window 
+saves as a \-P\-N\-G the representation of the \hyperlink{class_p_h}{\-P\-H} file as it is displayed in the \-G\-U\-I 
 
 
 \begin{DoxyParams}{\-Parameters}
-{\em \-P\-H\-Ptr} & the \hyperlink{class_p_h}{\-P\-H} object of the active window \\
+{\em \-P\-H\-Ptr} & pointer to the \hyperlink{class_p_h}{\-P\-H} object of the active window \\
 \hline
 {\em \-Q\-String} & the name of the file saved \\
 \hline
@@ -78,11 +78,11 @@ parses the file if it is possible
 
 
 \begin{DoxyParams}{\-Parameters}
-{\em string} & the path of the file \\
+{\em string} & the path of the file to parse \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{\-Returns}
-\-P\-H\-Ptr the \hyperlink{class_p_h}{\-P\-H} file parsed 
+\-P\-H\-Ptr pointer to the \hyperlink{class_p_h}{\-P\-H} object that results form parsing 
 \end{DoxyReturn}
 \hypertarget{class_p_h_i_o_a8a33a5a439f19caf0619ab7132642846}{\index{\-P\-H\-I\-O@{\-P\-H\-I\-O}!write\-To\-File@{write\-To\-File}}
 \index{write\-To\-File@{write\-To\-File}!PHIO@{\-P\-H\-I\-O}}
@@ -100,7 +100,7 @@ saves the \hyperlink{class_p_h}{\-P\-H} object as a \hyperlink{class_p_h}{\-P\-H
 \begin{DoxyParams}{\-Parameters}
 {\em string} & the path of the file \\
 \hline
-{\em \-P\-H\-Ptr} & the object that will be saved \\
+{\em \-P\-H\-Ptr} & pointer to the object that will be saved \\
 \hline
 \end{DoxyParams}
 

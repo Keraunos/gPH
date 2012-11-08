@@ -89,7 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <!-- doxytag: class="GVSubGraph" -->
-<p>defines the object containing a libraph subgraph and its associated nodes and edges  
+<p>the object containing a libraph subgraph and its associated nodes and edges  
  <a href="class_g_v_sub_graph.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_g_v_sub_graph_8h_source.html">GVSubGraph.h</a>&gt;</code></p>
@@ -107,42 +107,39 @@ Inheritance diagram for GVSubGraph:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a830f5288096466cff627fb221003f3"></a><!-- doxytag: member="GVSubGraph::GVSubGraph" ref="a2a830f5288096466cff627fb221003f3" args="(Agraph_t *_graph)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>GVSubGraph</b> (Agraph_t *_graph)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#a2a830f5288096466cff627fb221003f3">GVSubGraph</a> (Agraph_t *<a class="el" href="class_g_v_sub_graph.html#ae9ba380851ecbc611bbe9cd2980ba152">_graph</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_g_v_sub_graph.html" title="the object containing a libraph subgraph and its associated nodes and edges">GVSubGraph</a> constructor.  <a href="#a2a830f5288096466cff627fb221003f3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#a7999f5541dde4ad692b8f1765675e106">addSubGraph</a> (const QString &amp;name)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">add a subgraph  <a href="#a7999f5541dde4ad692b8f1765675e106"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">adds a subgraph  <a href="#a7999f5541dde4ad692b8f1765675e106"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#a1bed9f509bbe210754ed6e2878a75dff">removeSubGraph</a> (const QString &amp;name)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">remove a subgraph  <a href="#a1bed9f509bbe210754ed6e2878a75dff"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">removes a subgraph  <a href="#a1bed9f509bbe210754ed6e2878a75dff"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">GVSubGraphPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#abfbc0deb675aaf2e0bf0551b17506818">getSubGraph</a> (const QString &amp;name)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the SubGraph.  <a href="#abfbc0deb675aaf2e0bf0551b17506818"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">retrieves a <a class="el" href="class_g_v_sub_graph.html" title="the object containing a libraph subgraph and its associated nodes and edges">GVSubGraph</a> by its name  <a href="#abfbc0deb675aaf2e0bf0551b17506818"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#af0087db5d9f5a53132f1b46b636377f9">countNodes</a> (void)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">counts the number of nodes  <a href="#af0087db5d9f5a53132f1b46b636377f9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#a99ea8e4c658ea76fc5425644a460362d">addNode</a> (const QString &amp;name)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">add a node, entering its name  <a href="#a99ea8e4c658ea76fc5425644a460362d"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">adds a node, entering its name  <a href="#a99ea8e4c658ea76fc5425644a460362d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#af805b3fbfb96c0b1cb99ecc311f1a7f8">addNodes</a> (const QStringList &amp;names)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">add a list of nodes, entering the name of the list  <a href="#af805b3fbfb96c0b1cb99ecc311f1a7f8"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">adds a list of nodes, entering their names  <a href="#af805b3fbfb96c0b1cb99ecc311f1a7f8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#ac97b366dadeeb5ac8999ee6b22dd7dd4">removeNode</a> (const QString &amp;name)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">remove a node, entering its name  <a href="#ac97b366dadeeb5ac8999ee6b22dd7dd4"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">removes a node, entering its name  <a href="#ac97b366dadeeb5ac8999ee6b22dd7dd4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57609be587187f492288d224216b3b14"></a><!-- doxytag: member="GVSubGraph::clearNodes" ref="a57609be587187f492288d224216b3b14" args="()" -->
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#a57609be587187f492288d224216b3b14">clearNodes</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">remove all the nodes present <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">removes all the nodes <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#a84df91480a9e3c7ec38658b475e13d90">addEdge</a> (const QString &amp;source, const QString &amp;target)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">add an edge ,entering the names of the source and the target  <a href="#a84df91480a9e3c7ec38658b475e13d90"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">adds an edge  <a href="#a84df91480a9e3c7ec38658b475e13d90"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#adeec195e6301f14864ad3cf4ecb2a7e6">removeEdge</a> (const QString &amp;source, const QString &amp;target)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">remove an edge ,entering the names of the source and the target  <a href="#adeec195e6301f14864ad3cf4ecb2a7e6"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">removes an edge  <a href="#adeec195e6301f14864ad3cf4ecb2a7e6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#a42c2d7c92a223e40364c13fdb1cc46e8">removeEdge</a> (const QPair&lt; QString, QString &gt; &amp;key)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">remove an edge, entering the pair (source target)  <a href="#a42c2d7c92a223e40364c13fdb1cc46e8"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">removes an edge, entering the pair (source, target)  <a href="#a42c2d7c92a223e40364c13fdb1cc46e8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#a14a5e0a85c54220e4908e2692576e62b">setLabel</a> (const QString &amp;name)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">setter for the label  <a href="#a14a5e0a85c54220e4908e2692576e62b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a777c2146e514db2ccded4b3f77993155"></a><!-- doxytag: member="GVSubGraph::nodes" ref="a777c2146e514db2ccded4b3f77993155" args="()" -->
-QList&lt; <a class="el" href="struct_g_v_node.html">GVNode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#a777c2146e514db2ccded4b3f77993155">nodes</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the list of the nodes <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52594db2f31cfb221820cbd48b6d3530"></a><!-- doxytag: member="GVSubGraph::clusters" ref="a52594db2f31cfb221820cbd48b6d3530" args="()" -->
-QList&lt; <a class="el" href="struct_g_v_cluster.html">GVCluster</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#a52594db2f31cfb221820cbd48b6d3530">clusters</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the list of the clusters <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a88469fa80e33d2506cde3b6352c3c508"></a><!-- doxytag: member="GVSubGraph::edges" ref="a88469fa80e33d2506cde3b6352c3c508" args="()" -->
-QList&lt; <a class="el" href="struct_g_v_edge.html">GVEdge</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#a88469fa80e33d2506cde3b6352c3c508">edges</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the list of the edges <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the label  <a href="#a14a5e0a85c54220e4908e2692576e62b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="struct_g_v_node.html">GVNode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#a777c2146e514db2ccded4b3f77993155">nodes</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the list of nodes  <a href="#a777c2146e514db2ccded4b3f77993155"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="struct_g_v_cluster.html">GVCluster</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#a52594db2f31cfb221820cbd48b6d3530">clusters</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the list of clusters  <a href="#a52594db2f31cfb221820cbd48b6d3530"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="struct_g_v_edge.html">GVEdge</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#a88469fa80e33d2506cde3b6352c3c508">edges</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the list of edges  <a href="#a88469fa80e33d2506cde3b6352c3c508"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acad7d627217c64966125e7701142c40b"></a><!-- doxytag: member="GVSubGraph::nodeSize" ref="acad7d627217c64966125e7701142c40b" args="" -->
@@ -151,17 +148,19 @@ static const qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#a0405ca939a02f54ccdf044a5a6f4ff6b">getDPI</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for the DPI  <a href="#a0405ca939a02f54ccdf044a5a6f4ff6b"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the DPI value  <a href="#a0405ca939a02f54ccdf044a5a6f4ff6b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f94775bfde0ef47c59df8a7e6510aaf"></a><!-- doxytag: member="GVSubGraph::setGraphAttributes" ref="a6f94775bfde0ef47c59df8a7e6510aaf" args="(void)" -->
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#a6f94775bfde0ef47c59df8a7e6510aaf">setGraphAttributes</a> (void)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the Graph Attributes <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#af55511f05fe4d65e122cc77c2d02a706">hasNode</a> (const QString &amp;name)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the node exists  <a href="#af55511f05fe4d65e122cc77c2d02a706"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">Agnode_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#aaa1df9ed6bbd2ea697646e8bbfb571da">getNode</a> (const QString &amp;name)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gets a node  <a href="#aaa1df9ed6bbd2ea697646e8bbfb571da"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9ba380851ecbc611bbe9cd2980ba152"></a><!-- doxytag: member="GVSubGraph::_graph" ref="ae9ba380851ecbc611bbe9cd2980ba152" args="" -->
-Agraph_t *&#160;</td><td class="memItemRight" valign="bottom"><b>_graph</b></td></tr>
+Agraph_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_v_sub_graph.html#ae9ba380851ecbc611bbe9cd2980ba152">_graph</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Agraph_t the related Graphviz graph. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab994dac998f44c0566567d9cf28c5aae"></a><!-- doxytag: member="GVSubGraph::_nodes" ref="ab994dac998f44c0566567d9cf28c5aae" args="" -->
 QMap&lt; QString, Agnode_t * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_nodes</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4bfd077344f6c2c530bb614b347ee7e0"></a><!-- doxytag: member="GVSubGraph::_subgraphs" ref="a4bfd077344f6c2c530bb614b347ee7e0" args="" -->
@@ -171,8 +170,34 @@ QMap&lt; QPair&lt; QString, QString &gt;<br class="typebreak"/>
 , Agedge_t * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_edges</b></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>defines the object containing a libraph subgraph and its associated nodes and edges </p>
-</div><hr/><h2>Member Function Documentation</h2>
+<div class="textblock"><p>the object containing a libraph subgraph and its associated nodes and edges </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a2a830f5288096466cff627fb221003f3"></a><!-- doxytag: member="GVSubGraph::GVSubGraph" ref="a2a830f5288096466cff627fb221003f3" args="(Agraph_t *_graph)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_g_v_sub_graph.html#a2a830f5288096466cff627fb221003f3">GVSubGraph::GVSubGraph</a> </td>
+          <td>(</td>
+          <td class="paramtype">Agraph_t *&#160;</td>
+          <td class="paramname"><em>_graph</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p><a class="el" href="class_g_v_sub_graph.html" title="the object containing a libraph subgraph and its associated nodes and edges">GVSubGraph</a> constructor. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Agraph_t</td><td>_graph a Graphviz graph </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a84df91480a9e3c7ec38658b475e13d90"></a><!-- doxytag: member="GVSubGraph::addEdge" ref="a84df91480a9e3c7ec38658b475e13d90" args="(const QString &amp;source, const QString &amp;target)" -->
 <div class="memitem">
 <div class="memproto">
@@ -198,8 +223,8 @@ QMap&lt; QPair&lt; QString, QString &gt;<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
-<p>add an edge ,entering the names of the source and the target </p>
-<p>the name of the source the name of the target </p>
+<p>adds an edge </p>
+<p>QString the name of the edge's source QString the name of the edge's target </p>
 
 </div>
 </div>
@@ -218,10 +243,10 @@ QMap&lt; QPair&lt; QString, QString &gt;<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
-<p>add a node, entering its name </p>
+<p>adds a node, entering its name </p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Qstring</td><td>the name of the node you want to add </td></tr>
+    <tr><td class="paramname">QString</td><td>the name of the node to be added </td></tr>
   </table>
   </dd>
 </dl>
@@ -243,10 +268,10 @@ QMap&lt; QPair&lt; QString, QString &gt;<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
-<p>add a list of nodes, entering the name of the list </p>
+<p>adds a list of nodes, entering their names </p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">QStringList</td><td>of the names of the nodes you want to add </td></tr>
+    <tr><td class="paramname">QStringList</td><td>the list of the names of the nodes to be added </td></tr>
   </table>
   </dd>
 </dl>
@@ -268,13 +293,32 @@ QMap&lt; QPair&lt; QString, QString &gt;<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
-<p>add a subgraph </p>
+<p>adds a subgraph </p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">the</td><td>name of the SubGraph you want to add </td></tr>
+    <tr><td class="paramname">QString</td><td>the name of the SubGraph to be added </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a52594db2f31cfb221820cbd48b6d3530"></a><!-- doxytag: member="GVSubGraph::clusters" ref="a52594db2f31cfb221820cbd48b6d3530" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt;<a class="el" href="struct_g_v_cluster.html">GVCluster</a>&gt; <a class="el" href="class_g_v_sub_graph.html#a52594db2f31cfb221820cbd48b6d3530">GVSubGraph::clusters</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>gets the list of clusters </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>the list of clusters </dd></dl>
 
 </div>
 </div>
@@ -298,6 +342,25 @@ QMap&lt; QPair&lt; QString, QString &gt;<br class="typebreak"/>
 
 </div>
 </div>
+<a class="anchor" id="a88469fa80e33d2506cde3b6352c3c508"></a><!-- doxytag: member="GVSubGraph::edges" ref="a88469fa80e33d2506cde3b6352c3c508" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt;<a class="el" href="struct_g_v_edge.html">GVEdge</a>&gt; <a class="el" href="class_g_v_sub_graph.html#a88469fa80e33d2506cde3b6352c3c508">GVSubGraph::edges</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>gets the list of edges </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>the list of edges </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a0405ca939a02f54ccdf044a5a6f4ff6b"></a><!-- doxytag: member="GVSubGraph::getDPI" ref="a0405ca939a02f54ccdf044a5a6f4ff6b" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -312,8 +375,8 @@ QMap&lt; QPair&lt; QString, QString &gt;<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
-<p>getter for the DPI </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>qreal DPI </dd></dl>
+<p>gets the DPI value </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>qreal the DPI value </dd></dl>
 
 </div>
 </div>
@@ -331,10 +394,11 @@ QMap&lt; QPair&lt; QString, QString &gt;<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
-<p>getter returns the node</p>
+
+<p>gets a node </p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">QString</td><td>name of the node </td></tr>
+    <tr><td class="paramname">QString</td><td>the name of the node </td></tr>
   </table>
   </dd>
 </dl>
@@ -356,14 +420,14 @@ QMap&lt; QPair&lt; QString, QString &gt;<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
-<p>Get the SubGraph. </p>
+<p>retrieves a <a class="el" href="class_g_v_sub_graph.html" title="the object containing a libraph subgraph and its associated nodes and edges">GVSubGraph</a> by its name </p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">the</td><td>name of the SubGraph you want </td></tr>
+    <tr><td class="paramname">QString</td><td>the name of the <a class="el" href="class_g_v_sub_graph.html" title="the object containing a libraph subgraph and its associated nodes and edges">GVSubGraph</a> to be retrieved </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the GVSubGraphPtr related to the name </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>GVSubGraphPtr the pointer to the retrieved <a class="el" href="class_g_v_sub_graph.html" title="the object containing a libraph subgraph and its associated nodes and edges">GVSubGraph</a> </dd></dl>
 
 </div>
 </div>
@@ -385,10 +449,30 @@ QMap&lt; QPair&lt; QString, QString &gt;<br class="typebreak"/>
 <p>checks if the node exists </p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>of the node you want to check the existence </td></tr>
+    <tr><td class="paramname">QString</td><td>the name of the node which existence is to be checked </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>bool true if node exists, else fase </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a777c2146e514db2ccded4b3f77993155"></a><!-- doxytag: member="GVSubGraph::nodes" ref="a777c2146e514db2ccded4b3f77993155" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt;<a class="el" href="struct_g_v_node.html">GVNode</a>&gt; <a class="el" href="class_g_v_sub_graph.html#a777c2146e514db2ccded4b3f77993155">GVSubGraph::nodes</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>gets the list of nodes </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>the list of nodes </dd></dl>
 
 </div>
 </div>
@@ -417,8 +501,8 @@ QMap&lt; QPair&lt; QString, QString &gt;<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
-<p>remove an edge ,entering the names of the source and the target </p>
-<p>the name of the source the name of the target </p>
+<p>removes an edge </p>
+<p>QString the name of the egde's source QString the name of the edge's target </p>
 
 </div>
 </div>
@@ -437,8 +521,8 @@ QMap&lt; QPair&lt; QString, QString &gt;<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
-<p>remove an edge, entering the pair (source target) </p>
-<p>the name of the pair </p>
+<p>removes an edge, entering the pair (source, target) </p>
+<p>QPair&lt;QString, QString&gt; the pair to be removed </p>
 
 </div>
 </div>
@@ -457,10 +541,10 @@ QMap&lt; QPair&lt; QString, QString &gt;<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
-<p>remove a node, entering its name </p>
+<p>removes a node, entering its name </p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">the</td><td>Qstring name of the node you want to remove </td></tr>
+    <tr><td class="paramname">QString</td><td>the name of the node to be removed </td></tr>
   </table>
   </dd>
 </dl>
@@ -482,10 +566,10 @@ QMap&lt; QPair&lt; QString, QString &gt;<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
-<p>remove a subgraph </p>
+<p>removes a subgraph </p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">the</td><td>name of the SubGraph you want to remove </td></tr>
+    <tr><td class="paramname">QString</td><td>the name of the subgraph to be removed </td></tr>
   </table>
   </dd>
 </dl>
@@ -507,10 +591,10 @@ QMap&lt; QPair&lt; QString, QString &gt;<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
-<p>setter for the label </p>
+<p>sets the label </p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>of the label </td></tr>
+    <tr><td class="paramname">QString</td><td>the label </td></tr>
   </table>
   </dd>
 </dl>
@@ -538,7 +622,7 @@ QMap&lt; QPair&lt; QString, QString &gt;<br class="typebreak"/>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 25 2012 20:33:16 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 8 2012 10:07:52 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

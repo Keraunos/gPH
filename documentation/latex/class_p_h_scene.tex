@@ -15,33 +15,33 @@ the graphic object representing the process hitting extends \-Q\-Graphics\-Scene
 \item 
 \hypertarget{class_p_h_scene_ab911261388ccc14254980b5d01909d61}{\hyperlink{class_p_h_scene_ab911261388ccc14254980b5d01909d61}{\-P\-H\-Scene} (\hyperlink{class_p_h}{\-P\-H} $\ast$\-\_\-ph)}\label{class_p_h_scene_ab911261388ccc14254980b5d01909d61}
 
-\begin{DoxyCompactList}\small\item\em builder for \hyperlink{class_p_h_scene}{\-P\-H\-Scene} \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
 \hypertarget{class_p_h_scene_a2f9dbd3f096e6cfcd9e924617bcc7d98}{void \hyperlink{class_p_h_scene_a2f9dbd3f096e6cfcd9e924617bcc7d98}{do\-Render} (void)}\label{class_p_h_scene_a2f9dbd3f096e6cfcd9e924617bcc7d98}
 
-\begin{DoxyCompactList}\small\item\em recalculates the position of the scene \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em forces the re-\/calculation of the layout of the scene \end{DoxyCompactList}\item 
 \-G\-Sort\-Ptr \hyperlink{class_p_h_scene_ae8be020b063c06f135d644937d65147b}{get\-G\-Sort} (const string \&s)
-\begin{DoxyCompactList}\small\item\em getter for the \hyperlink{class_g_sort}{\-G\-Sort} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em gets a \hyperlink{class_g_sort}{\-G\-Sort} by its related \hyperlink{class_sort}{\-Sort}'s name \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{\-Protected \-Member \-Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{class_p_h_scene_ad4a998d52e4b2422101a63ba05a24092}{void \hyperlink{class_p_h_scene_ad4a998d52e4b2422101a63ba05a24092}{draw} (void)}\label{class_p_h_scene_ad4a998d52e4b2422101a63ba05a24092}
 
-\begin{DoxyCompactList}\small\item\em empties the scene and add the elements composing the representation of the process hitting \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em clears the scene and adds the elements composing the representation of the process hitting \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{\-Protected \-Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{class_p_h_scene_a332655cec4c6cca3153ffc3ee14eb465}{\hyperlink{class_p_h}{\-P\-H} $\ast$ \hyperlink{class_p_h_scene_a332655cec4c6cca3153ffc3ee14eb465}{ph}}\label{class_p_h_scene_a332655cec4c6cca3153ffc3ee14eb465}
 
-\begin{DoxyCompactList}\small\item\em \hyperlink{class_p_h}{\-P\-H} file contained. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em the related process hitting \end{DoxyCompactList}\item 
 \hypertarget{class_p_h_scene_a664d48bb0ae4f95df04e7a939855cae5}{map$<$ string, \-G\-Sort\-Ptr $>$ \hyperlink{class_p_h_scene_a664d48bb0ae4f95df04e7a939855cae5}{sorts}}\label{class_p_h_scene_a664d48bb0ae4f95df04e7a939855cae5}
 
-\begin{DoxyCompactList}\small\item\em map of the sorts of the scene \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em map of the \-Sorts drawn in the scene\-: the keys are the names of the \-Sorts \end{DoxyCompactList}\item 
 \hypertarget{class_p_h_scene_a392d190fc16531af5049727766582bed}{std\-::vector$<$ \-G\-Process\-Ptr $>$ \hyperlink{class_p_h_scene_a392d190fc16531af5049727766582bed}{processes}}\label{class_p_h_scene_a392d190fc16531af5049727766582bed}
 
-\begin{DoxyCompactList}\small\item\em vector of the processes of the scene \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em vector of the \-Processes drawn in the scene \end{DoxyCompactList}\item 
 \hypertarget{class_p_h_scene_a5802a1a674ffd883d3bf8403399365fb}{std\-::vector$<$ \-G\-Action\-Ptr $>$ \hyperlink{class_p_h_scene_a5802a1a674ffd883d3bf8403399365fb}{actions}}\label{class_p_h_scene_a5802a1a674ffd883d3bf8403399365fb}
 
-\begin{DoxyCompactList}\small\item\em vector of the actions of the scene \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em vector of the \-Actions drawn in the scene \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{\-Detailed \-Description}
@@ -57,15 +57,15 @@ the graphic object representing the process hitting extends \-Q\-Graphics\-Scene
 )}}\label{class_p_h_scene_ae8be020b063c06f135d644937d65147b}
 
 
-getter for the \hyperlink{class_g_sort}{\-G\-Sort} 
+gets a \hyperlink{class_g_sort}{\-G\-Sort} by its related \hyperlink{class_sort}{\-Sort}'s name 
 
 
 \begin{DoxyParams}{\-Parameters}
-{\em string,\-:} & the name of the sort needed \\
+{\em string} & the name of the (\-G)\hyperlink{class_sort}{\-Sort} to get \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{\-Returns}
-\-G\-Sort\-Ptr\-: the sort called 
+\-G\-Sort\-Ptr pointer to the \hyperlink{class_g_sort}{\-G\-Sort} to get 
 \end{DoxyReturn}
 
 

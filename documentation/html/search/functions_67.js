@@ -6,7 +6,7 @@ var searchData=
   ['getallpaths',['getAllPaths',['../class_main_window.html#a5cc52553f615cb3abeb1198ad8c018a3',1,'MainWindow']]],
   ['getcentralearea',['getCentraleArea',['../class_main_window.html#a398296c146bb239d0b75a24b44132658',1,'MainWindow']]],
   ['getdefaultrate',['getDefaultRate',['../class_p_h.html#aa64e3d43f773122df2329491f6abdf6c',1,'PH']]],
-  ['getdisplayitem',['getDisplayItem',['../class_g_action.html#ad3086cca158b494f7c2fd31783fb9f77',1,'GAction::getDisplayItem()'],['../class_g_process.html#abc8cdf8bb0a8402a1b507005be3a97f9',1,'GProcess::getDisplayItem()'],['../class_g_sort.html#aeff35f1b750ec1a81e6ea7034458c742',1,'GSort::getDisplayItem()']]],
+  ['getdisplayitem',['getDisplayItem',['../class_g_action.html#ad3086cca158b494f7c2fd31783fb9f77',1,'GAction::getDisplayItem()'],['../class_g_process.html#abc8cdf8bb0a8402a1b507005be3a97f9',1,'GProcess::getDisplayItem()'],['../class_g_sort.html#a1b930cc66df1898109e8ca82788b93c0',1,'GSort::getDisplayItem()']]],
   ['getdotname',['getDotName',['../class_process.html#af9a89e83db6a14451104b49eac7dd313',1,'Process']]],
   ['getdpi',['getDPI',['../class_g_v_sub_graph.html#a0405ca939a02f54ccdf044a5a6f4ff6b',1,'GVSubGraph']]],
   ['getgraphicsscene',['getGraphicsScene',['../class_p_h.html#aaf75a785bb9bd06cec611f0fb69d05f6',1,'PH']]],
@@ -28,5 +28,7 @@ var searchData=
   ['gettarget',['getTarget',['../class_action.html#a1a6bbe7a883a55d0c446ec5e23ae36d6',1,'Action']]],
   ['gprocess',['GProcess',['../class_g_process.html#a16ff7286ec7b0081a6d2a25f9784460f',1,'GProcess']]],
   ['gsort',['GSort',['../class_g_sort.html#a423709cc4cc15bc05219b08e1276f455',1,'GSort']]],
-  ['gvgraph',['GVGraph',['../class_g_v_graph.html#af47604f64a70e17ba11af26787497fbb',1,'GVGraph']]]
+  ['gsortitem',['GSortItem',['../class_g_sort_item.html#a73198723d0a4ed67978d468d0c19815a',1,'GSortItem']]],
+  ['gvgraph',['GVGraph',['../class_g_v_graph.html#af47604f64a70e17ba11af26787497fbb',1,'GVGraph']]],
+  ['gvsubgraph',['GVSubGraph',['../class_g_v_sub_graph.html#a2a830f5288096466cff627fb221003f3',1,'GVSubGraph']]]
 ];

@@ -61,6 +61,12 @@ class PHScene: public QGraphicsScene {
           *
           */
 		GSortPtr getGSort (const string& s);
+
+        /**
+          * @brief getter for sorts
+          *
+          */
+        map<string, GSortPtr> getGSorts();
 		
 	protected:
 
@@ -80,7 +86,7 @@ class PHScene: public QGraphicsScene {
           * @brief map of the Sorts drawn in the scene: the keys are the names of the Sorts
           *
           */
-		map<string, GSortPtr> sorts;
+        map<string, GSortPtr> sorts;
 
         /**
           * @brief vector of the Processes drawn in the scene

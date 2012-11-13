@@ -99,6 +99,7 @@ protected:
     QAction *actionZoomOut;
     QMenu *menuPreferences;
     QAction *actionBackgroundColor;
+    QAction *actionSortColor;
     QAction *actionShowInit;
     QAction *actionHighlight;
     QAction *actionHide;
@@ -184,6 +185,13 @@ public slots:
       *
       */
     void changeBackgroundColor();
+
+    /**
+      * @brief let the user set the sorts color
+      *
+      */
+    void changeSortColor();
+
 
     //menu computation
 

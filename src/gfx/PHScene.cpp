@@ -88,8 +88,14 @@ void PHScene::draw(void) {
 
 // retrieve GSort by its related Sort's name
 GSortPtr PHScene::getGSort (const string& s) {
-	map<string, GSortPtr>::iterator f = sorts.find(s);
+    map<string, GSortPtr>::iterator f = sorts.find(s);
 	if (f == sorts.end())
 		throw sort_not_found() << sort_info(s);
 	return sorts[s];
 }
+
+// get all the GSort
+map<string, GSortPtr> PHScene::getGSorts(){
+    return this->sorts;
+}
+

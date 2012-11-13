@@ -65,6 +65,7 @@ MainWindow::MainWindow() {
     menuView->addSeparator();
     menuPreferences = menuView->addMenu("Preferences");
     actionBackgroundColor = menuPreferences->addAction("Set background color");
+    actionSortColor = menuPreferences->addAction("Set sorts color");
     actionShowInit = menuView->addAction("Show initial state");
     actionHighlight = menuView->addAction("Highlight possible actions");
     actionHide = menuView->addAction("Hide actions");
@@ -78,7 +79,8 @@ MainWindow::MainWindow() {
     QObject::connect(actionAdjust,    SIGNAL(triggered()), this, SLOT(adjust()));
     QObject::connect(actionZoomIn, SIGNAL(triggered()), this, SLOT(zoomIn()));
     QObject::connect(actionZoomOut, SIGNAL(triggered()), this, SLOT(zoomOut()));
-    QObject::connect(actionBackgroundColor, SIGNAL(triggered()), this, SLOT(changeBackgroundColor()));
+    QObject::connect(actionBackgroundColor, SIGNAL(triggered()), this, SLOT(changeBackgroundColor()));    
+    QObject::connect(actionSortColor, SIGNAL(triggered()), this, SLOT(changeSortColor()));
 
     // shortcuts for the menu View
     actionAdjust->setShortcut(     QKeySequence(Qt::CTRL + Qt::Key_A));
@@ -131,6 +133,7 @@ MainWindow::MainWindow() {
         this->actionZoomOut->setEnabled(false);
         this->actionZoomIn->setEnabled(false);
         this->actionBackgroundColor->setEnabled(false);
+        this->actionSortColor->setEnabled(false);
         this->actionFindFixpoints->setEnabled(false);
         this->actionRunStochasticSimulation->setEnabled(false);
         this->actionStatistics->setEnabled(false);
@@ -366,7 +369,25 @@ void MainWindow::changeBackgroundColor()
 
      MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
      view->getPHPtr()->getGraphicsScene()->setBackgroundBrush(couleur);
+
 }
+
+// method to change the sorts color
+void MainWindow::changeSortColor()
+{
+    QColor couleur = QColorDialog::getColor();
+
+     MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
+     map<string, GSortPtr> listeSort = view->getPHPtr()->getGraphicsScene()->getGSorts();
+
+     typedef map<string, GSortPtr>::iterator it_type;
+     for(it_type iterator=listeSort.begin(); iterator!=listeSort.end(); iterator++)
+     {
+         iterator->second->getRect()->setPen(QPen(QColor(couleur)));
+         iterator->second->getRect()->setBrush(QBrush(QColor(couleur)));
+     }
+}
+
 
 // main method for the computation menu
 void MainWindow::compute(QString program, QStringList arguments, QString fileName) {

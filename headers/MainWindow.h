@@ -94,6 +94,9 @@ protected:
     QAction *actionRedo;
 
     // actions for the menu View
+    QAction *actionAdjust;
+    QAction *actionZoomIn;
+    QAction *actionZoomOut;
     QAction *actionShowInit;
     QAction *actionHighlight;
     QAction *actionHide;
@@ -142,6 +145,37 @@ public slots:
       *
       */
     void exportPng();
+
+    // menu view
+
+    /**
+      * @brief fits the scale to see the entire window
+      *
+      */
+    void adjust();
+
+
+    /**
+      * @brief zooms the view in
+      *
+      */
+    void zoomIn();
+
+    /**
+      * @brief zooms the view out
+      *
+      */
+    void zoomOut();
+
+    /* smooth Zoom
+    void animFinished();
+    void scalingTime(qreal x);*/
+
+    /**
+      * @brief zooms the view in and out while scrolling
+      *
+      */
+    void wheelEvent(QWheelEvent *event);
 
     //menu computation
 

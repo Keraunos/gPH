@@ -560,6 +560,7 @@ void MainWindow::disableMenu(QMdiSubWindow* subwindow){
         this->actionZoomIn->setEnabled(false);
         this->actionZoomOut->setEnabled(false);
         this->actionBackgroundColor->setEnabled(false);
+        this->actionSortColor->setEnabled(false);
         this->actionFindFixpoints->setEnabled(false);
         this->actionComputeReachability->setEnabled(false);
         this->actionRunStochasticSimulation->setEnabled(false);
@@ -578,6 +579,7 @@ void MainWindow::enableMenu(){
         this->actionZoomIn->setEnabled(true);
         this->actionZoomOut->setEnabled(true);
         this->actionBackgroundColor->setEnabled(true);
+        this->actionSortColor->setEnabled(true);
         this->actionFindFixpoints->setEnabled(true);
         this->actionComputeReachability->setEnabled(true);
         this->actionRunStochasticSimulation->setEnabled(true);

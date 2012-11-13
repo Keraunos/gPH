@@ -127,6 +127,10 @@ MainWindow::MainWindow() {
         this->actionClose->setEnabled(false);
         this->actionSaveas->setEnabled(false);
         this->actionPng->setEnabled(false);
+        this->actionAdjust->setEnabled(false);
+        this->actionZoomOut->setEnabled(false);
+        this->actionZoomIn->setEnabled(false);
+        this->actionBackgroundColor->setEnabled(false);
         this->actionFindFixpoints->setEnabled(false);
         this->actionRunStochasticSimulation->setEnabled(false);
         this->actionStatistics->setEnabled(false);

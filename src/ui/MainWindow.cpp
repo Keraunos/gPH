@@ -59,13 +59,27 @@ MainWindow::MainWindow() {
     actionRedo->setEnabled(false);
 
     // actions for the menu View
+    actionAdjust = menuView->addAction("Adjust View");
+    actionZoomIn = menuView->addAction("Zoom In");
+    actionZoomOut = menuView->addAction("Zoom Out");
     actionShowInit = menuView->addAction("Show initial state");
     actionHighlight = menuView->addAction("Highlight possible actions");
     actionHide = menuView->addAction("Hide actions");
     actionDisplayDetailed = menuView->addAction("Display detailed cooperativities");
 
+
     actionShowInit->setCheckable(true);
     actionHighlight->setCheckable(true);
+
+    // connect the menu View
+    QObject::connect(actionAdjust,    SIGNAL(triggered()), this, SLOT(adjust()));
+    QObject::connect(actionZoomIn, SIGNAL(triggered()), this, SLOT(zoomIn()));
+    QObject::connect(actionZoomOut, SIGNAL(triggered()), this, SLOT(zoomOut()));
+
+    // shortcuts for the menu View
+    actionAdjust->setShortcut(     QKeySequence(Qt::CTRL + Qt::Key_A));
+    actionZoomIn->setShortcut(  QKeySequence(Qt::CTRL + Qt::Key_Plus));
+    actionZoomOut->setShortcut(  QKeySequence(Qt::CTRL + Qt::Key_Minus));
 
     // disable what does not work
     actionShowInit->setEnabled(false);
@@ -253,6 +267,89 @@ void MainWindow::exportPng() {
 	
 }
 
+// method to adjust the view
+void MainWindow::adjust()
+{
+    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
+    view->fitInView(view->scene()->itemsBoundingRect(), Qt::KeepAspectRatio);
+}
+
+// method to zoom In
+void MainWindow::zoomIn()
+{
+    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
+    view->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
+    view->scale(1.2, 1.2);
+}
+
+// method to zoom out
+void MainWindow::zoomOut()
+{
+    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
+    view->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
+    view->scale(1 / 1.2, 1 / 1.2);
+}
+
+// method to zoom in and out when scrolling. Follows the pointer.
+void MainWindow::wheelEvent(QWheelEvent *event)
+{
+    if (event->modifiers() == Qt::ControlModifier)
+    {
+        MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
+        if(event->delta()>=0)
+        {
+
+            view->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+            view->scale(1.2, 1.2);
+        }
+        else
+        {
+            view->scale(1 / 1.2, 1 / 1.2);
+        }
+
+    }
+    else
+    {
+        MainWindow::wheelEvent(event);
+    }
+}
+
+/* methods for Smooth Zoom
+void MainWindow::scalingTime(qreal x)
+{
+    qreal factor = 1.0 + qreal(_numScheduledScalings) / 300;
+    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
+    view->scale(factor, factor);
+}
+
+void MainWindow::animFinished()
+{
+    if(_numScheduledScalings > 0)
+        _numScheduledScalings--;
+    else
+        _numScheduledScalings++;
+    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
+    view->sender()->~QObject();
+}
+
+void MainWindow::wheelEvent(QwheelEvent * event)
+{
+    int numDegrees = event->dekta() / 8;
+    int numSteps = numDegrees / 15;
+    _numScheduledScalings += numSteps;
+    if (_numScheduledScalings * numSteps < 0)
+        _numScheduledScalings = numSteps;
+
+    QTimeLine *anim = new QTimeLine(350, this);
+    anim->setUpdateInterval(20);
+
+    connect(anim, SIGNAL(valueChanged(qreal)), SLOT(scalingTime(qreal)));
+    connect(anim, SIGNAL(finished()), SLOT(animFinished));
+    anim->start();
+}
+
+*/
+
 
 // main method for the computation menu
 void MainWindow::compute(QString program, QStringList arguments, QString fileName) {
@@ -421,6 +518,9 @@ void MainWindow::disableMenu(QMdiSubWindow* subwindow){
         this->actionClose->setEnabled(false);
         this->actionSaveas->setEnabled(false);
         this->actionPng->setEnabled(false);
+        this->actionAdjust->setEnabled(false);
+        this->actionZoomIn->setEnabled(false);
+        this->actionZoomOut->setEnabled(false);
         this->actionFindFixpoints->setEnabled(false);
         this->actionComputeReachability->setEnabled(false);
         this->actionRunStochasticSimulation->setEnabled(false);
@@ -435,9 +535,13 @@ void MainWindow::enableMenu(){
         this->actionClose->setEnabled(true);
         this->actionSaveas->setEnabled(true);
         this->actionPng->setEnabled(true);
+        this->actionAdjust->setEnabled(true);
+        this->actionZoomIn->setEnabled(true);
+        this->actionZoomOut->setEnabled(true);
         this->actionFindFixpoints->setEnabled(true);
         this->actionComputeReachability->setEnabled(true);
         this->actionRunStochasticSimulation->setEnabled(true);
         this->actionStatistics->setEnabled(true);
     }
 }
+

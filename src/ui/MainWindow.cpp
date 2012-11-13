@@ -314,9 +314,10 @@ void MainWindow::wheelEvent(QWheelEvent *event)
     }
     else
     {
-        MainWindow::wheelEvent(event);
+        //MainWindow::wheelEvent(event);
     }
 }
+
 
 /* methods for Smooth Zoom
 void MainWindow::scalingTime(qreal x)
@@ -357,7 +358,10 @@ void MainWindow::wheelEvent(QwheelEvent * event)
 // method to change the background color
 void MainWindow::changeBackgroundColor()
 {
+    QColor couleur = QColorDialog::getColor();
 
+     MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
+     view->getPHPtr()->getGraphicsScene()->setBackgroundBrush(couleur);
 }
 
 // main method for the computation menu

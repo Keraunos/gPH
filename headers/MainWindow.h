@@ -97,6 +97,8 @@ protected:
     QAction *actionAdjust;
     QAction *actionZoomIn;
     QAction *actionZoomOut;
+    QMenu *menuPreferences;
+    QAction *actionBackgroundColor;
     QAction *actionShowInit;
     QAction *actionHighlight;
     QAction *actionHide;
@@ -176,6 +178,12 @@ public slots:
       *
       */
     void wheelEvent(QWheelEvent *event);
+
+    /**
+      * @brief let the user set the background color
+      *
+      */
+    void changeBackgroundColor();
 
     //menu computation
 

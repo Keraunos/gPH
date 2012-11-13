@@ -62,6 +62,9 @@ MainWindow::MainWindow() {
     actionAdjust = menuView->addAction("Adjust View");
     actionZoomIn = menuView->addAction("Zoom In");
     actionZoomOut = menuView->addAction("Zoom Out");
+    menuView->addSeparator();
+    menuPreferences = menuView->addMenu("Preferences");
+    actionBackgroundColor = menuPreferences->addAction("Set background color");
     actionShowInit = menuView->addAction("Show initial state");
     actionHighlight = menuView->addAction("Highlight possible actions");
     actionHide = menuView->addAction("Hide actions");
@@ -75,6 +78,7 @@ MainWindow::MainWindow() {
     QObject::connect(actionAdjust,    SIGNAL(triggered()), this, SLOT(adjust()));
     QObject::connect(actionZoomIn, SIGNAL(triggered()), this, SLOT(zoomIn()));
     QObject::connect(actionZoomOut, SIGNAL(triggered()), this, SLOT(zoomOut()));
+    QObject::connect(actionBackgroundColor, SIGNAL(triggered()), this, SLOT(changeBackgroundColor()));
 
     // shortcuts for the menu View
     actionAdjust->setShortcut(     QKeySequence(Qt::CTRL + Qt::Key_A));
@@ -350,6 +354,11 @@ void MainWindow::wheelEvent(QwheelEvent * event)
 
 */
 
+// method to change the background color
+void MainWindow::changeBackgroundColor()
+{
+
+}
 
 // main method for the computation menu
 void MainWindow::compute(QString program, QStringList arguments, QString fileName) {
@@ -521,6 +530,7 @@ void MainWindow::disableMenu(QMdiSubWindow* subwindow){
         this->actionAdjust->setEnabled(false);
         this->actionZoomIn->setEnabled(false);
         this->actionZoomOut->setEnabled(false);
+        this->actionBackgroundColor->setEnabled(false);
         this->actionFindFixpoints->setEnabled(false);
         this->actionComputeReachability->setEnabled(false);
         this->actionRunStochasticSimulation->setEnabled(false);
@@ -538,6 +548,7 @@ void MainWindow::enableMenu(){
         this->actionAdjust->setEnabled(true);
         this->actionZoomIn->setEnabled(true);
         this->actionZoomOut->setEnabled(true);
+        this->actionBackgroundColor->setEnabled(true);
         this->actionFindFixpoints->setEnabled(true);
         this->actionComputeReachability->setEnabled(true);
         this->actionRunStochasticSimulation->setEnabled(true);

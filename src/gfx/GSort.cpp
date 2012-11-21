@@ -4,6 +4,7 @@
 #include <QBrush>
 #include <QTextDocument>
 #include <QCursor>
+#include <QDebug>
 #include "GSort.h"
 
 
@@ -11,32 +12,27 @@ GSort::GSort(SortPtr s, GVCluster c) : sort(s), cluster(c) {
 	
     // graphic items set and Actions color
     //display = new QGraphicsItemGroup();
+    color = makeColor();
     display = new GSortItem(this);
-    display->setFlag(display->ItemIsMovable, true);
 
-    QCursor *curs = new QCursor(Qt::OpenHandCursor);
-    //display->setCursor(*curs);
-	color = makeColor();
-	
     // rectangle
-	rect = new QGraphicsRectItem(cluster.topLeft.x(), cluster.topLeft.y(), cluster.width, cluster.height, display);
-	rect->setPen(QPen(QColor(7,54,66)));
-	rect->setBrush(QBrush(QColor(7,54,66)));
-    rect->setCursor(*curs);
+//    rect = new QGraphicsRectItem(cluster.topLeft.x(), cluster.topLeft.y(), cluster.width, cluster.height, display);
+//    rect->setPen(QPen(QColor(7,54,66)));
+//    rect->setBrush(QBrush(QColor(255,54,66)));
 
     // label
-	text = new QGraphicsTextItem (QString(), display);
-	text->setHtml(QString::fromStdString("<u>sort " + sort->getName() + "</u>"));
-	text->setDefaultTextColor(*color);
-	text->setPos(cluster.labelPos.x(), cluster.labelPos.y());	
-	QSizeF textSize = text->document()->size();
-	text->setPos(text->x() - textSize.width()/2, text->y() - textSize.height()/2);
+//    text = new QGraphicsTextItem (QString(), display);
+//    text->setHtml(QString::fromStdString("<u>sort " + sort->getName() + "</u>"));
+//    text->setDefaultTextColor(*color);
+//    text->setPos(cluster.labelPos.x(), cluster.labelPos.y());
+//    QSizeF textSize = text->document()->size();
+//    text->setPos(text->x() - textSize.width()/2, text->y() - textSize.height()/2);
 }
 
 
 GSort::~GSort() {
-	delete rect;
-	delete text;
+    delete rect;
+    delete text;
 	delete display;
 }
 
@@ -67,10 +63,15 @@ QColor* GSort::makeColor () {
 	return &(palette[paletteIndex]);
 }
 
-QGraphicsRectItem* GSort::getRect() {
-    return rect;
-}
+
+// getters
 
 GVCluster GSort::getCluster() {
     return cluster;
 }
+
+SortPtr GSort::getSort() {
+    return sort;
+}
+
+

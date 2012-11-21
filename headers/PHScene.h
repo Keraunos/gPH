@@ -99,5 +99,11 @@ class PHScene: public QGraphicsScene {
           *
           */
 		std::vector<GActionPtr> actions;
+
+
+        void dragEnterEvent(QGraphicsSceneDragDropEvent *event);
+        void dragMoveEvent(QGraphicsSceneDragDropEvent *event);
+        void dragLeaveEvent(QGraphicsSceneDragDropEvent *event);
+        void dropEvent(QGraphicsSceneDragDropEvent *event);
 	
 };

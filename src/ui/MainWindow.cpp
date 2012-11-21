@@ -383,8 +383,8 @@ void MainWindow::changeSortColor()
      typedef map<string, GSortPtr>::iterator it_type;
      for(it_type iterator=listeSort.begin(); iterator!=listeSort.end(); iterator++)
      {
-         iterator->second->getRect()->setPen(QPen(QColor(couleur)));
-         iterator->second->getRect()->setBrush(QBrush(QColor(couleur)));
+         iterator->second->getDisplayItem()->getRect()->setPen(QPen(QColor(couleur)));
+         iterator->second->getDisplayItem()->getRect()->setBrush(QBrush(QColor(couleur)));
      }
 }
 

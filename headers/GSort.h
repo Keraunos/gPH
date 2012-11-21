@@ -46,8 +46,8 @@ class GSort {
         //QGraphicsItem* getDisplayItem (void);
         GSortItem* getDisplayItem (void);
 
-        QGraphicsRectItem* getRect();
         GVCluster getCluster();
+        SortPtr getSort();
 
         /**
           * @brief the color used by the Actions that have this Sort as source

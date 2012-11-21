@@ -21,6 +21,8 @@ typedef boost::shared_ptr<Sort> SortPtr;
 class Process;
 typedef boost::shared_ptr<Process> ProcessPtr;
 
+class GProcess;
+typedef boost::shared_ptr<GProcess> GProcessPtr;
 
 /**
   * @class Process
@@ -64,7 +66,21 @@ class Process {
           *
           */
 		string toDotString (void);
-		
+
+        /**
+          * @brief sets the related GProcess
+          * @param a pointer to the related GProcess object
+          */
+        void setGProcess(GProcessPtr gPPtr);
+
+        /**
+          * @brief gets the related GProcess
+          * @return GProcessPtr a pointer to the related GProcess object
+          *
+          */
+        GProcessPtr getGProcess();
+
+
 	private:
 
         /**
@@ -78,5 +94,11 @@ class Process {
           *
           */
 		int number;
+
+        /**
+          * @brief a pointer to the related GProcess
+          *
+          */
+        GProcessPtr gProcess;
 
 };

@@ -19,6 +19,13 @@ string Process::getDotName () {
 }
 
 
+// setter
+void Process::setGProcess(GProcessPtr gPPtr) {
+    gProcess = gPPtr;
+}
+
+
 // getters
 int Process::getNumber () { return number; }
 SortPtr Process::getSort () { return sort; }
+GProcessPtr Process::getGProcess() { return gProcess; }

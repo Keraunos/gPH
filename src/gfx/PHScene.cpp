@@ -10,6 +10,8 @@
 #include "Process.h"
 #include "PHScene.h"
 #include "GVGraph.h"
+#include <QDebug>
+#include <QGraphicsSceneDragDropEvent>
 
 
 PHScene::PHScene(PH* _ph) : ph(_ph) {
@@ -28,9 +30,12 @@ void PHScene::doRender(void) {
 	QList<GVNode> gnodes = graph->nodes();	
 	for (GVNode &gn : gnodes) {
 		for (SortPtr &s : ph->getSorts())
-			for (ProcessPtr &p : s->getProcesses()) {				
-				if (gn.name == makeProcessName(p))
-					processes.push_back(make_shared<GProcess>(p, gn));		
+            for (ProcessPtr &p : s->getProcesses()) {
+                if (gn.name == makeProcessName(p)) {
+                    GProcessPtr gp = make_shared<GProcess>(p, gn);
+                    processes.push_back(gp);
+                    p.get()->setGProcess(gp);
+                }
 			}
 	}
 	
@@ -40,7 +45,7 @@ void PHScene::doRender(void) {
 		for (SortPtr &s : ph->getSorts())
 			if (gc.name == makeClusterName(s->getName()))
 				sorts.insert(GSortEntry(s->getName(), make_shared<GSort>(s, gc)));
-				
+
     // create GActions linking actual actions to GVEdges (display info)
     QList<GVEdge> gEdges = graph->edges();
     using std::pair;
@@ -69,7 +74,7 @@ void PHScene::doRender(void) {
 			}
 		}
 	}			
-	
+
 	draw();
 }
 
@@ -78,9 +83,9 @@ void PHScene::doRender(void) {
 void PHScene::draw(void) {
     clear();
     for (auto &s : sorts)
-		addItem(s.second->getDisplayItem());
-	for (GProcessPtr &p : processes)
-		addItem(p->getDisplayItem());
+        addItem(s.second->getDisplayItem());
+//	for (GProcessPtr &p : processes)
+//		addItem(p->getDisplayItem());
 	for (GActionPtr &a : actions)
 		addItem(a->getDisplayItem());
 }
@@ -99,3 +104,20 @@ map<string, GSortPtr> PHScene::getGSorts(){
     return this->sorts;
 }
 
+
+void PHScene::dragEnterEvent(QGraphicsSceneDragDropEvent *event) {
+    event->accept();
+}
+
+void PHScene::dragMoveEvent(QGraphicsSceneDragDropEvent *event) {
+    event->accept();
+}
+
+void PHScene::dragLeaveEvent(QGraphicsSceneDragDropEvent *event) {
+
+}
+
+void PHScene::dropEvent(QGraphicsSceneDragDropEvent *event) {
+    event->accept();
+    qDebug() << "Drop event in scene";
+}

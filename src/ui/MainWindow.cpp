@@ -83,7 +83,7 @@ MainWindow::MainWindow() {
     QObject::connect(actionSortColor, SIGNAL(triggered()), this, SLOT(changeSortColor()));
 
     // shortcuts for the menu View
-    actionAdjust->setShortcut(     QKeySequence(Qt::CTRL + Qt::Key_A));
+    actionAdjust->setShortcut(     QKeySequence(Qt::CTRL + Qt::Key_L));
     actionZoomIn->setShortcut(  QKeySequence(Qt::CTRL + Qt::Key_Plus));
     actionZoomOut->setShortcut(  QKeySequence(Qt::CTRL + Qt::Key_Minus));
 

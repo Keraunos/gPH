@@ -23,7 +23,6 @@ class MyArea : public QGraphicsView {
     Q_OBJECT
 
     public:
-        //builder
 
         /**
           * @brief constructor

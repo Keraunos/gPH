@@ -104,6 +104,9 @@ protected:
     QAction *actionHighlight;
     QAction *actionHide;
     QAction *actionDisplayDetailed;
+    QMenu *menuDefaultStyles;
+    QAction *actionNaturalStyle;
+    QAction *actionNegativeStyle;
 
     // actions for the menu Computation
     QAction *actionFindFixpoints;
@@ -187,6 +190,20 @@ public slots:
       *
       */
     void changeSortColor();
+
+    /**
+      * @brief set natural styles
+      *
+      */
+    void naturalStyles();
+
+    /**
+      * @brief set negative styles
+      *
+      */
+    void negativeStyles();
+
+
 
 
     //menu computation

@@ -66,6 +66,10 @@ MainWindow::MainWindow() {
     menuPreferences = menuView->addMenu("Preferences");
     actionBackgroundColor = menuPreferences->addAction("Set background color");
     actionSortColor = menuPreferences->addAction("Set sorts color");
+
+    menuDefaultStyles = menuPreferences->addMenu("Default Styles");
+    actionNaturalStyle = menuDefaultStyles->addAction("Natural");
+    actionNegativeStyle = menuDefaultStyles->addAction("Negative");
     actionShowInit = menuView->addAction("Show initial state");
     actionHighlight = menuView->addAction("Highlight possible actions");
     actionHide = menuView->addAction("Hide actions");
@@ -81,6 +85,8 @@ MainWindow::MainWindow() {
     QObject::connect(actionZoomOut, SIGNAL(triggered()), this, SLOT(zoomOut()));
     QObject::connect(actionBackgroundColor, SIGNAL(triggered()), this, SLOT(changeBackgroundColor()));    
     QObject::connect(actionSortColor, SIGNAL(triggered()), this, SLOT(changeSortColor()));
+    QObject::connect(actionNaturalStyle, SIGNAL(triggered()), this, SLOT(naturalStyles()));
+    QObject::connect(actionNegativeStyle, SIGNAL(triggered()), this, SLOT(negativeStyles()));
 
     // shortcuts for the menu View
     actionAdjust->setShortcut(     QKeySequence(Qt::CTRL + Qt::Key_L));
@@ -134,6 +140,8 @@ MainWindow::MainWindow() {
         this->actionZoomIn->setEnabled(false);
         this->actionBackgroundColor->setEnabled(false);
         this->actionSortColor->setEnabled(false);
+        this->actionNaturalStyle->setEnabled(false);
+        this->actionNegativeStyle->setEnabled(false);
         this->actionFindFixpoints->setEnabled(false);
         this->actionRunStochasticSimulation->setEnabled(false);
         this->actionStatistics->setEnabled(false);
@@ -374,6 +382,36 @@ void MainWindow::changeSortColor()
 
 }
 
+void MainWindow::naturalStyles(){
+    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
+    map<string, GSortPtr> listeSort = view->getPHPtr()->getGraphicsScene()->getGSorts();
+
+    view->getPHPtr()->getGraphicsScene()->setBackgroundBrush(QColor(255,255,255));
+
+    typedef map<string, GSortPtr>::iterator it_type;
+    for(it_type iterator=listeSort.begin(); iterator!=listeSort.end(); iterator++)
+    {
+        iterator->second->getDisplayItem()->getRect()->setPen(QPen(QColor(0,51,102)));
+        iterator->second->getDisplayItem()->getRect()->setBrush(QBrush(QColor(0,51,102)));
+    }
+
+}
+
+void MainWindow::negativeStyles(){
+    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
+    map<string, GSortPtr> listeSort = view->getPHPtr()->getGraphicsScene()->getGSorts();
+
+    view->getPHPtr()->getGraphicsScene()->setBackgroundBrush(QColor(31,31,31));
+
+    typedef map<string, GSortPtr>::iterator it_type;
+    for(it_type iterator=listeSort.begin(); iterator!=listeSort.end(); iterator++)
+    {
+        iterator->second->getDisplayItem()->getRect()->setPen(QPen(QColor(110,110,110)));
+        iterator->second->getDisplayItem()->getRect()->setBrush(QBrush(QColor(110,110,110)));
+    }
+
+}
+
 
 // main method for the computation menu
 void MainWindow::compute(QString program, QStringList arguments, QString fileName) {
@@ -547,6 +585,8 @@ void MainWindow::disableMenu(QMdiSubWindow* subwindow){
         this->actionZoomOut->setEnabled(false);
         this->actionBackgroundColor->setEnabled(false);
         this->actionSortColor->setEnabled(false);
+        this->actionNaturalStyle->setEnabled(false);
+        this->actionNegativeStyle->setEnabled(false);
         this->actionFindFixpoints->setEnabled(false);
         this->actionComputeReachability->setEnabled(false);
         this->actionRunStochasticSimulation->setEnabled(false);
@@ -566,6 +606,8 @@ void MainWindow::enableMenu(){
         this->actionZoomOut->setEnabled(true);
         this->actionBackgroundColor->setEnabled(true);
         this->actionSortColor->setEnabled(true);
+        this->actionNaturalStyle->setEnabled(true);
+        this->actionNegativeStyle->setEnabled(true);
         this->actionFindFixpoints->setEnabled(true);
         this->actionComputeReachability->setEnabled(true);
         this->actionRunStochasticSimulation->setEnabled(true);

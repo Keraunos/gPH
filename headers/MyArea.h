@@ -59,6 +59,26 @@ class MyArea : public QGraphicsView {
           */
         void setPath(QString);
 
+        /**
+          * @brief zooms the view in
+          *
+          */
+        void zoomIn();
+
+        /**
+          * @brief zooms the view out
+          *
+          */
+        void zoomOut();
+
+        /**
+          * @brief zooms the view in and out while scrolling
+          *
+          */
+        void wheelEvent(QWheelEvent *event);
+
+
+
     protected:
         /**
           * @brief pointer to a PH object

@@ -289,40 +289,14 @@ void MainWindow::adjust()
 void MainWindow::zoomIn()
 {
     MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
-    view->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
-    view->scale(1.2, 1.2);
+    view->zoomIn();
 }
 
 // method to zoom out
 void MainWindow::zoomOut()
 {
     MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
-    view->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
-    view->scale(1 / 1.2, 1 / 1.2);
-}
-
-// method to zoom in and out when scrolling. Follows the pointer.
-void MainWindow::wheelEvent(QWheelEvent *event)
-{
-    if (event->modifiers() == Qt::ControlModifier)
-    {
-        MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
-        if(event->delta()>=0)
-        {
-
-            view->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
-            view->scale(1.2, 1.2);
-        }
-        else
-        {
-            view->scale(1 / 1.2, 1 / 1.2);
-        }
-
-    }
-    else
-    {
-        //MainWindow::wheelEvent(event);
-    }
+    view->zoomOut();
 }
 
 
@@ -368,8 +342,13 @@ void MainWindow::changeBackgroundColor()
     QColor couleur = QColorDialog::getColor();
 
      MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
-     view->getPHPtr()->getGraphicsScene()->setBackgroundBrush(couleur);
 
+     if(!couleur.isValid()){
+
+         return ;
+    }
+    else { view->getPHPtr()->getGraphicsScene()->setBackgroundBrush(couleur);
+     }
 }
 
 // method to change the sorts color
@@ -380,12 +359,19 @@ void MainWindow::changeSortColor()
      MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
      map<string, GSortPtr> listeSort = view->getPHPtr()->getGraphicsScene()->getGSorts();
 
-     typedef map<string, GSortPtr>::iterator it_type;
-     for(it_type iterator=listeSort.begin(); iterator!=listeSort.end(); iterator++)
-     {
-         iterator->second->getDisplayItem()->getRect()->setPen(QPen(QColor(couleur)));
-         iterator->second->getDisplayItem()->getRect()->setBrush(QBrush(QColor(couleur)));
+     if(!couleur.isValid()){
+         return ;
      }
+     else
+     {
+         typedef map<string, GSortPtr>::iterator it_type;
+         for(it_type iterator=listeSort.begin(); iterator!=listeSort.end(); iterator++)
+         {
+             iterator->second->getDisplayItem()->getRect()->setPen(QPen(QColor(couleur)));
+             iterator->second->getDisplayItem()->getRect()->setBrush(QBrush(QColor(couleur)));
+         }
+     }
+
 }
 
 

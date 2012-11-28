@@ -174,11 +174,7 @@ public slots:
     void animFinished();
     void scalingTime(qreal x);*/
 
-    /**
-      * @brief zooms the view in and out while scrolling
-      *
-      */
-    void wheelEvent(QWheelEvent *event);
+
 
     /**
       * @brief let the user set the background color

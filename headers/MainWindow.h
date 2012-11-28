@@ -192,16 +192,16 @@ public slots:
     void changeSortColor();
 
     /**
-      * @brief set natural styles
+      * @brief sets default style: natural contrast (white background)
       *
       */
-    void naturalStyles();
+    void positiveContrast();
 
     /**
-      * @brief set negative styles
+      * @brief sets default style: negative contrast (dark background)
       *
       */
-    void negativeStyles();
+    void negativeContrast();
 
 
 

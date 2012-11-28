@@ -68,8 +68,8 @@ MainWindow::MainWindow() {
     actionSortColor = menuPreferences->addAction("Set sorts color");
 
     menuDefaultStyles = menuPreferences->addMenu("Default Styles");
-    actionNaturalStyle = menuDefaultStyles->addAction("Natural");
-    actionNegativeStyle = menuDefaultStyles->addAction("Negative");
+    actionNaturalStyle = menuDefaultStyles->addAction("Positive contrast");
+    actionNegativeStyle = menuDefaultStyles->addAction("Negative contrast");
     actionShowInit = menuView->addAction("Show initial state");
     actionHighlight = menuView->addAction("Highlight possible actions");
     actionHide = menuView->addAction("Hide actions");
@@ -85,8 +85,8 @@ MainWindow::MainWindow() {
     QObject::connect(actionZoomOut, SIGNAL(triggered()), this, SLOT(zoomOut()));
     QObject::connect(actionBackgroundColor, SIGNAL(triggered()), this, SLOT(changeBackgroundColor()));    
     QObject::connect(actionSortColor, SIGNAL(triggered()), this, SLOT(changeSortColor()));
-    QObject::connect(actionNaturalStyle, SIGNAL(triggered()), this, SLOT(naturalStyles()));
-    QObject::connect(actionNegativeStyle, SIGNAL(triggered()), this, SLOT(negativeStyles()));
+    QObject::connect(actionNaturalStyle, SIGNAL(triggered()), this, SLOT(positiveContrast()));
+    QObject::connect(actionNegativeStyle, SIGNAL(triggered()), this, SLOT(negativeContrast()));
 
     // shortcuts for the menu View
     actionAdjust->setShortcut(     QKeySequence(Qt::CTRL + Qt::Key_L));
@@ -382,7 +382,8 @@ void MainWindow::changeSortColor()
 
 }
 
-void MainWindow::naturalStyles(){
+
+void MainWindow::positiveContrast(){
     MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
     map<string, GSortPtr> listeSort = view->getPHPtr()->getGraphicsScene()->getGSorts();
 
@@ -397,7 +398,8 @@ void MainWindow::naturalStyles(){
 
 }
 
-void MainWindow::negativeStyles(){
+
+void MainWindow::negativeContrast(){
     MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
     map<string, GSortPtr> listeSort = view->getPHPtr()->getGraphicsScene()->getGSorts();
 
@@ -406,8 +408,8 @@ void MainWindow::negativeStyles(){
     typedef map<string, GSortPtr>::iterator it_type;
     for(it_type iterator=listeSort.begin(); iterator!=listeSort.end(); iterator++)
     {
-        iterator->second->getDisplayItem()->getRect()->setPen(QPen(QColor(110,110,110)));
-        iterator->second->getDisplayItem()->getRect()->setBrush(QBrush(QColor(110,110,110)));
+        iterator->second->getDisplayItem()->getRect()->setPen(QPen(QColor(7,54,66)));
+        iterator->second->getDisplayItem()->getRect()->setBrush(QBrush(QColor(7,54,66)));
     }
 
 }

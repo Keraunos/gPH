@@ -30,17 +30,18 @@ class PH;
 typedef boost::shared_ptr<PH> PHPtr;
 typedef std::pair<string, SortPtr> SortEntry;
 
+
 /**
-  * @brief builds node and subgraph names for graphviz
-  *
+  * @brief builds cluster name for graphviz, from Sort name
+  * @param String the Sort's name to be adapted for graphviz cluster
   */
 static inline QString makeClusterName (string s) {
 	return QString::fromStdString("cluster_" + s);
 }
 
 /**
-  * @brief builds node and subgraph names for graphviz
-  *
+  * @brief builds node name for graphviz, from Process name
+  * @param ProcessPtr pointer to the Process which name is to be adapted for graphviz node
   */
 static inline QString makeProcessName (ProcessPtr p) {
 	return QString::fromStdString(p->getSort()->getName()) + QString("_%1").arg(p->getNumber());
@@ -57,7 +58,7 @@ class PH {
 	public:
 
         /**
-          * @brief builder for PH
+          * @brief constructor
           *
           */
 		PH();

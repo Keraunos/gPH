@@ -10,8 +10,6 @@
 #include "Process.h"
 #include "PHScene.h"
 #include "GVGraph.h"
-#include <QDebug>
-#include <QGraphicsSceneDragDropEvent>
 
 
 PHScene::PHScene(PH* _ph) : ph(_ph) {
@@ -104,20 +102,3 @@ map<string, GSortPtr> PHScene::getGSorts(){
     return this->sorts;
 }
 
-
-void PHScene::dragEnterEvent(QGraphicsSceneDragDropEvent *event) {
-    event->accept();
-}
-
-void PHScene::dragMoveEvent(QGraphicsSceneDragDropEvent *event) {
-    event->accept();
-}
-
-void PHScene::dragLeaveEvent(QGraphicsSceneDragDropEvent *event) {
-
-}
-
-void PHScene::dropEvent(QGraphicsSceneDragDropEvent *event) {
-    event->accept();
-    qDebug() << "Drop event in scene";
-}

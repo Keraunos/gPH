@@ -67,7 +67,8 @@ class PHScene: public QGraphicsScene {
           *
           */
         map<string, GSortPtr> getGSorts();
-		
+
+
 	protected:
 
         /**
@@ -98,12 +99,6 @@ class PHScene: public QGraphicsScene {
           * @brief vector of the Actions drawn in the scene
           *
           */
-		std::vector<GActionPtr> actions;
+        std::vector<GActionPtr> actions;
 
-
-        void dragEnterEvent(QGraphicsSceneDragDropEvent *event);
-        void dragMoveEvent(QGraphicsSceneDragDropEvent *event);
-        void dragLeaveEvent(QGraphicsSceneDragDropEvent *event);
-        void dropEvent(QGraphicsSceneDragDropEvent *event);
-	
 };

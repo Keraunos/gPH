@@ -30,47 +30,32 @@ class GSortItem : public QGraphicsRectItem {
         ~GSortItem();
 
         /**
-          * @brief Handles mouse press event
+          * @brief Handles mouse press event (handles drag start)
           *
           * @param QGraphicsSceneMouseEvent the event to be handled
           */
-        //void mousePressEvent(QGraphicsSceneMouseEvent *event);
+        void mousePressEvent(QGraphicsSceneMouseEvent *event);
 
         /**
-          * @brief Handles mouse release event
+          * @brief Handles mouse move event (handles drag)
           *
           * @param QGraphicsSceneMouseEvent the event to be handled
           */
-        //void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+        void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
 
         /**
-          * @brief Handles mouse move event
+          * @brief Handles mouse release event (handles drop)
           *
           * @param QGraphicsSceneMouseEvent the event to be handled
           */
-        //void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+        void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 
         /**
-          * @brief Handles drag move event
-          *
-          * @param QGraphicsSceneDragDropEvent the event to be handled
-          */
-        //void dragEnterEvent(QGraphicsSceneDragDropEvent *event);
-        //void dragMoveEvent(QGraphicsSceneDragDropEvent *event);
-
-
-        /**
-          * @brief Handles context menu event (typically: right click)
+          * @brief Handles context menu event (typically on right click)
           *
           * @param QGraphicsSceneContextMenuEvent the event to be handled
           */
-        //void contextMenuEvent(QGraphicsSceneContextMenuEvent *event);
-
-        /**
-          * @brief Paints the item
-          *
-          */
-        //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+        void contextMenuEvent(QGraphicsSceneContextMenuEvent *event);
 
         /**
           * @brief gets the rectangle item of the sort
@@ -98,12 +83,18 @@ class GSortItem : public QGraphicsRectItem {
           * @brief the graphical item representing the rectangle of the Sort
           *
           */
-        QGraphicsRectItem* rect;
+        QGraphicsRectItem* _rect;
 
         /**
           * @brief the graphical item representing the label of the Sort
           *
           */
         QGraphicsTextItem* text;
+
+        /**
+          * @brief the point used to record coordinates when user clicks on the item (ie. starts drag&drop)
+          *
+          */
+        QPoint mousePressPoint;
 
 };

@@ -31,8 +31,8 @@ GSort::GSort(SortPtr s, GVCluster c) : sort(s), cluster(c) {
 
 
 GSort::~GSort() {
-    delete rect;
-    delete text;
+    //delete rect;
+    //delete text;
 	delete display;
 }
 

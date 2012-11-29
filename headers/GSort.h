@@ -68,7 +68,7 @@ class GSort {
           * @brief the graphical item representing the rectangle of the Sort
           *
           */
-		QGraphicsRectItem* rect;
+        QGraphicsRectItem* rect;
 
         /**
           * @brief the graphical item representing the text of the Sort

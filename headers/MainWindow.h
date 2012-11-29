@@ -107,6 +107,7 @@ protected:
     QMenu *menuDefaultStyles;
     QAction *actionNaturalStyle;
     QAction *actionNegativeStyle;
+    QAction *actionPrintStyle;
 
     // actions for the menu Computation
     QAction *actionFindFixpoints;
@@ -203,6 +204,11 @@ public slots:
       */
     void negativeContrast();
 
+    /**
+      * @brief sets default style: compatible with print (empty sorts: "wired" style)
+      *
+      */
+    void printStyle();
 
 
 

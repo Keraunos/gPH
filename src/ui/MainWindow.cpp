@@ -70,6 +70,7 @@ MainWindow::MainWindow() {
     menuDefaultStyles = menuPreferences->addMenu("Default Styles");
     actionNaturalStyle = menuDefaultStyles->addAction("Positive contrast");
     actionNegativeStyle = menuDefaultStyles->addAction("Negative contrast");
+    actionPrintStyle = menuDefaultStyles->addAction("Print");
     actionShowInit = menuView->addAction("Show initial state");
     actionHighlight = menuView->addAction("Highlight possible actions");
     actionHide = menuView->addAction("Hide actions");
@@ -87,6 +88,7 @@ MainWindow::MainWindow() {
     QObject::connect(actionSortColor, SIGNAL(triggered()), this, SLOT(changeSortColor()));
     QObject::connect(actionNaturalStyle, SIGNAL(triggered()), this, SLOT(positiveContrast()));
     QObject::connect(actionNegativeStyle, SIGNAL(triggered()), this, SLOT(negativeContrast()));
+    QObject::connect(actionPrintStyle, SIGNAL(triggered()), this, SLOT(printStyle()));
 
     // shortcuts for the menu View
     actionAdjust->setShortcut(     QKeySequence(Qt::CTRL + Qt::Key_L));
@@ -142,6 +144,7 @@ MainWindow::MainWindow() {
         this->actionSortColor->setEnabled(false);
         this->actionNaturalStyle->setEnabled(false);
         this->actionNegativeStyle->setEnabled(false);
+        this->actionPrintStyle->setEnabled(false);
         this->actionFindFixpoints->setEnabled(false);
         this->actionRunStochasticSimulation->setEnabled(false);
         this->actionStatistics->setEnabled(false);
@@ -344,74 +347,84 @@ void MainWindow::wheelEvent(QwheelEvent * event)
 
 */
 
+
 // method to change the background color
-void MainWindow::changeBackgroundColor()
-{
+void MainWindow::changeBackgroundColor() {
+
     QColor couleur = QColorDialog::getColor();
 
-     MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
+    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
 
-     if(!couleur.isValid()){
-
-         return ;
+    if(!couleur.isValid()){
+        return ;
+    } else {
+        view->getPHPtr()->getGraphicsScene()->setBackgroundBrush(couleur);
     }
-    else { view->getPHPtr()->getGraphicsScene()->setBackgroundBrush(couleur);
-     }
 }
+
 
 // method to change the sorts color
-void MainWindow::changeSortColor()
-{
+void MainWindow::changeSortColor() {
+
     QColor couleur = QColorDialog::getColor();
 
-     MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
-     map<string, GSortPtr> listeSort = view->getPHPtr()->getGraphicsScene()->getGSorts();
+    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
+    map<string, GSortPtr> sortList = view->getPHPtr()->getGraphicsScene()->getGSorts();
 
-     if(!couleur.isValid()){
-         return ;
-     }
-     else
-     {
-         typedef map<string, GSortPtr>::iterator it_type;
-         for(it_type iterator=listeSort.begin(); iterator!=listeSort.end(); iterator++)
-         {
-             iterator->second->getDisplayItem()->getRect()->setPen(QPen(QColor(couleur)));
-             iterator->second->getDisplayItem()->getRect()->setBrush(QBrush(QColor(couleur)));
-         }
-     }
-
+    if (!couleur.isValid()) {
+        return ;
+    } else {
+        map<string, GSortPtr>::iterator it;
+        for(it=sortList.begin(); it!=sortList.end(); it++) {
+            //iterator->second->getDisplayItem()->getRect()->setPen(QPen(QColor(couleur)));
+            it->second->getDisplayItem()->getRect()->setBrush(QBrush(QColor(couleur)));
+        }
+    }
 }
 
 
-void MainWindow::positiveContrast(){
+void MainWindow::positiveContrast() {
+
     MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
-    map<string, GSortPtr> listeSort = view->getPHPtr()->getGraphicsScene()->getGSorts();
+    map<string, GSortPtr> sortList = view->getPHPtr()->getGraphicsScene()->getGSorts();
 
     view->getPHPtr()->getGraphicsScene()->setBackgroundBrush(QColor(255,255,255));
 
-    typedef map<string, GSortPtr>::iterator it_type;
-    for(it_type iterator=listeSort.begin(); iterator!=listeSort.end(); iterator++)
-    {
-        iterator->second->getDisplayItem()->getRect()->setPen(QPen(QColor(0,51,102)));
-        iterator->second->getDisplayItem()->getRect()->setBrush(QBrush(QColor(0,51,102)));
+    map<string, GSortPtr>::iterator it;
+    for(it=sortList.begin(); it!=sortList.end(); it++) {
+        it->second->getDisplayItem()->getRect()->setPen(QPen(QColor(0,51,102)));
+        it->second->getDisplayItem()->getRect()->setBrush(QBrush(QColor(0,51,102)));
     }
-
 }
 
 
-void MainWindow::negativeContrast(){
+void MainWindow::negativeContrast() {
+
     MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
-    map<string, GSortPtr> listeSort = view->getPHPtr()->getGraphicsScene()->getGSorts();
+    map<string, GSortPtr> sortList = view->getPHPtr()->getGraphicsScene()->getGSorts();
 
     view->getPHPtr()->getGraphicsScene()->setBackgroundBrush(QColor(31,31,31));
 
-    typedef map<string, GSortPtr>::iterator it_type;
-    for(it_type iterator=listeSort.begin(); iterator!=listeSort.end(); iterator++)
-    {
-        iterator->second->getDisplayItem()->getRect()->setPen(QPen(QColor(7,54,66)));
-        iterator->second->getDisplayItem()->getRect()->setBrush(QBrush(QColor(7,54,66)));
+    map<string, GSortPtr>::iterator it;
+    for(it = sortList.begin(); it != sortList.end(); it++) {
+        it->second->getDisplayItem()->getRect()->setPen(QPen(QColor(7,54,66)));
+        it->second->getDisplayItem()->getRect()->setBrush(QBrush(QColor(7,54,66)));
     }
+}
 
+
+void MainWindow::printStyle() {
+
+    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
+    map<string, GSortPtr> sortList = view->getPHPtr()->getGraphicsScene()->getGSorts();
+
+    view->getPHPtr()->getGraphicsScene()->setBackgroundBrush(Qt::white);
+
+    map<string, GSortPtr>::iterator it;
+    for(it = sortList.begin(); it != sortList.end(); it++) {
+        it->second->getDisplayItem()->getRect()->setPen(QPen(Qt::black, 4));
+        it->second->getDisplayItem()->getRect()->setBrush(Qt::NoBrush);
+    }
 }
 
 
@@ -589,6 +602,7 @@ void MainWindow::disableMenu(QMdiSubWindow* subwindow){
         this->actionSortColor->setEnabled(false);
         this->actionNaturalStyle->setEnabled(false);
         this->actionNegativeStyle->setEnabled(false);
+        this->actionPrintStyle->setEnabled(false);
         this->actionFindFixpoints->setEnabled(false);
         this->actionComputeReachability->setEnabled(false);
         this->actionRunStochasticSimulation->setEnabled(false);
@@ -610,6 +624,7 @@ void MainWindow::enableMenu(){
         this->actionSortColor->setEnabled(true);
         this->actionNaturalStyle->setEnabled(true);
         this->actionNegativeStyle->setEnabled(true);
+        this->actionPrintStyle->setEnabled(true);
         this->actionFindFixpoints->setEnabled(true);
         this->actionComputeReachability->setEnabled(true);
         this->actionRunStochasticSimulation->setEnabled(true);

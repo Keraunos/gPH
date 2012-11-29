@@ -6,7 +6,6 @@
 MyArea::MyArea(QString path) : QGraphicsView() {
     this->path = path;
 	setRenderHints (QPainter::Antialiasing);
-    setAcceptDrops(true);
 }
 
 

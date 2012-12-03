@@ -50,18 +50,6 @@ public:
     QLineEdit* searchBox;
 
     /**
-      * @brief pointer to the TreeWidgetItem father of all the sorts
-      *
-      */
-    QTreeWidgetItem* sortsFather;
-
-    /**
-      * @brief pointer to the TreeWidgetItem father of all the groups
-      *
-      */
-    QTreeWidgetItem* groupsFather;
-
-    /**
       * @brief list containing all the sorts. Built when the file is opened
       *
       */
@@ -82,6 +70,12 @@ public slots:
       *
       */
     void searchSort();
+
+    /**
+      * @brief cancel the search of the sort. Shows all the items in the tree
+      *
+      */
+    void cancelSearch();
 
 };
 

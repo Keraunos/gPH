@@ -12,12 +12,6 @@ TreeArea::TreeArea(QWidget *parent): QWidget(parent)
     p.setColor(QPalette::Base, QColor(207, 226, 243));
     this->tree->setPalette(p);
 
-    this->sortsFather = new QTreeWidgetItem(this->tree);
-    sortsFather->setText(0, tr("Sorts"));
-
-    this->groupsFather = new QTreeWidgetItem(this->tree);
-    groupsFather->setText(0, tr("Groups"));
-
     QWidget *search = new QWidget(this);
     search->setMinimumWidth(250);
     search->setMaximumWidth(250);
@@ -51,8 +45,8 @@ TreeArea::TreeArea(QWidget *parent): QWidget(parent)
     layout->addWidget(search);
     this->setLayout(layout);
 
-    QObject::connect(this->searchButton, SIGNAL(clicked()), this->tree, SLOT(clear()));
-    QObject::connect(this->cancelSearchButton, SIGNAL(clicked()), this, SLOT(build()));
+    QObject::connect(this->searchButton, SIGNAL(clicked()), this, SLOT(searchSort()));
+    QObject::connect(this->cancelSearchButton, SIGNAL(clicked()), this, SLOT(cancelSearch()));
 
 }
 
@@ -60,20 +54,33 @@ void TreeArea::build(){
 
     list<SortPtr> allSorts = this->myPHPtr->getSorts();
     for(SortPtr &s : allSorts){
-        QTreeWidgetItem* a = new QTreeWidgetItem(this->sortsFather);
+        QTreeWidgetItem* a = new QTreeWidgetItem(this->tree);
         a->setText(0, QString::fromStdString(s->getName()));
         this->sorts.push_back(a);
     }
 }
 
 void TreeArea::searchSort(){
-    this->tree->clear();
     QString text = this->searchBox->text();
 
+    QList<QTreeWidgetItem*> foundItems = this->tree->findItems("", Qt::MatchStartsWith, 0);
+    for (QTreeWidgetItem* &q: foundItems){
+        q->setHidden(true);
+    }
 
-    /*for (QTreeWidgetItem* &q : this->sorts){
-        if (q->text(0) == text){
-            QTreeWidgetItem* s = new QTreeWidgetItem(this->tree);
-        }
-    }*/
+       //this->tree->hideColumn(0);
+       //this->tree->hideColumn(1);
+
+    QList<QTreeWidgetItem*> foundItems2 = this->tree->findItems(text, Qt::MatchStartsWith, 0);
+    for (QTreeWidgetItem* &q: foundItems2){
+        q->setHidden(false);
+    }
+
+}
+
+void TreeArea::cancelSearch(){
+    QList<QTreeWidgetItem*> foundItems2 = this->tree->findItems("", Qt::MatchStartsWith, 0);
+    for (QTreeWidgetItem* &q: foundItems2){
+        q->setHidden(false);
+    }
 }

@@ -126,10 +126,11 @@ public slots:
     void removeGroup();
 
     /**
-      * @brief signal to call when the groupsTree item is selected
+      * @brief add a sort to a selected group
       *
       */
-    void selectGroup(QTreeWidgetItem*);
+    void addToGroup();
+
 
 };
 

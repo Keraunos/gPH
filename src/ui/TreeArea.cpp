@@ -106,7 +106,8 @@ TreeArea::TreeArea(QWidget *parent): QWidget(parent)
     QObject::connect(this->cancelSearchButton, SIGNAL(clicked()), this, SLOT(cancelSearch()));
 
     QObject::connect(this->addGroupButton, SIGNAL(clicked()), this, SLOT(addGroup()));
-    QObject::connect(this->groupsTree, SIGNAL(clicked()), this, SLOT(removeGroup()));
+    QObject::connect(this->removeGroupButton, SIGNAL(clicked()), this, SLOT(removeGroup()));
+    QObject::connect(this->addToGroupButton, SIGNAL(clicked()), this, SLOT(addToGroup()));
 
 }
 
@@ -156,23 +157,44 @@ void TreeArea::addGroup(){
         }
         else {
                 QErrorMessage* nameError = new QErrorMessage(this);
-                nameError->showMessage("Name already chosen");
+                nameError->showMessage("Name already chosen.");
     }
     }
 
 }
 
 void TreeArea::removeGroup(){
-    QList<QTreeWidgetItem*> selected = this->groupsTree->selectedItems();
-    for (QTreeWidgetItem* &a: selected){
-        a->setHidden(true);
+    QTreeWidgetItem* item = this->groupsTree->currentItem();
+    int i = this->groupsTree->indexOfTopLevelItem(item);
+    this->groupsTree->takeTopLevelItem(i);
+    delete item;
+}
+
+// The exception doesn't work
+void TreeArea::addToGroup(){
+    if(!this->sortsTree->selectedItems().isEmpty() && !this->groupsTree->selectedItems().isEmpty()){
+        QList<QTreeWidgetItem*> selected = this->sortsTree->selectedItems();
+        int i = 0;
+        for (QTreeWidgetItem* &a: selected){
+            if (this->groupsTree->findItems(a->text(0), Qt::MatchExactly, 0).isEmpty() == false){
+                i++;
+            }
+        }
+        if (i == 0){
+            for (QTreeWidgetItem* &a: selected){
+                QTreeWidgetItem* b = new QTreeWidgetItem(this->groupsTree->currentItem());
+                b->setText(0, a->text(0));
+            }
+        }
+        else {
+            QErrorMessage* nameError = new QErrorMessage(this);
+            nameError->showMessage("At least one sort you selected is already in a group.");
+        }
+    }
+    else {
+        QErrorMessage* nameError = new QErrorMessage(this);
+        nameError->showMessage("You must select one group and at least one sort.");
     }
 
-    //this->groupsTree->removeItemWidget(selected,0);
 }
-
-void TreeArea::selectGroup(QTreeWidgetItem* item){
-    this->groupsTree->setCurrentItem(item);
-}
-
 

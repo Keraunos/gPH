@@ -23,9 +23,9 @@ HEADERS 	= 	headers/Action.h 		\
 				headers/Process.h 		\
 				headers/Sort.h \
     headers/GSortItem.h \
-    src/ui/TextArea.h \
-    src/ui/TreeArea.h \
-    src/ui/Area.h
+    headers/Area.h \
+    headers/TextArea.h \
+    headers/TreeArea.h
 				
 INCLUDEPATH = headers headers/axe headers/test
 

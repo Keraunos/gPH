@@ -23,9 +23,9 @@ public:
     void changeBackgroundColor(QColor);
 
 signals:
-
+    
 public slots:
-
+    
 };
 
 #endif // TEXTAREA_H

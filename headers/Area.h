@@ -59,11 +59,11 @@ public:
       *
       */
     void showTree();
-    
+
 signals:
-    
+
 public slots:
-    
+
 };
 
 #endif // AREA_H

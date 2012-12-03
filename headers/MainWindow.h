@@ -108,6 +108,13 @@ protected:
     QAction *actionNaturalStyle;
     QAction *actionNegativeStyle;
     QAction *actionPrintStyle;
+    QMenu *menuText;
+    QAction *actionHideText;
+    QAction *actionShowText;
+    QAction *actionChangeTextBackgroundColor;
+    QMenu *menuTree;
+    QAction *actionHideTree;
+    QAction *actionShowTree;
 
     // actions for the menu Computation
     QAction *actionFindFixpoints;
@@ -210,6 +217,35 @@ public slots:
       */
     void printStyle();
 
+    /**
+      * @brief hide the text area
+      *
+      */
+    void hideText();
+
+    /**
+      * @brief show the text area
+      *
+      */
+    void showText();
+
+    /**
+      * @brief change text background color
+      *
+      */
+    void changeTextBackgroundColor();
+
+    /**
+      * @brief hide the tree area
+      *
+      */
+    void hideTree();
+
+    /**
+      * @brief show the tree area
+      *
+      */
+    void showTree();
 
 
     //menu computation
@@ -251,4 +287,6 @@ public slots:
       *
       */
     void disableMenu(QMdiSubWindow* subWindow);
+
+    void searchSort();
 };

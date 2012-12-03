@@ -31,6 +31,14 @@ class MyArea : public QGraphicsView {
           */
         MyArea(QString path);
 
+        /**
+          * @brief constructor
+          * @param QWidget parent of the MyArea, which is the Area
+          * @param QString path of the area
+          *
+          */
+        MyArea(QWidget *parent, QString path);
+
         // getter + setter for myPHPtr
         /**
           * @brief gets myPHPtr

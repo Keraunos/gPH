@@ -22,7 +22,10 @@ HEADERS 	= 	headers/Action.h 		\
 				headers/PHIO.h 			\
 				headers/Process.h 		\
 				headers/Sort.h \
-    headers/GSortItem.h
+    headers/GSortItem.h \
+    src/ui/TextArea.h \
+    src/ui/TreeArea.h \
+    src/ui/Area.h
 				
 INCLUDEPATH = headers headers/axe headers/test
 
@@ -40,7 +43,10 @@ SOURCES			= 	src/gfx/GProcess.cpp	\
 					src/ph/Sort.cpp			\
 					src/ui/MainWindow.cpp 	\
 					src/ui/MyArea.cpp \
-    src/gfx/GSortItem.cpp
+    src/gfx/GSortItem.cpp \
+    src/ui/TextArea.cpp \
+    src/ui/TreeArea.cpp \
+    src/ui/Area.cpp
 
 #So 2013 (needed for Axe)
 QMAKE_CXXFLAGS += -std=c++0x
@@ -59,3 +65,5 @@ test {
 	SOURCES	+= src/Main.cpp
 
 }
+
+FORMS +=

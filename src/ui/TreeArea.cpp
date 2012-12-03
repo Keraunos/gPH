@@ -11,7 +11,7 @@ TreeArea::TreeArea(QWidget *parent): QWidget(parent)
 
     this->sortsTree = new QTreeWidget(this);
     this->sortsTree->setHeaderLabel("Sorts");
-    this->groupsTree->setSelectionMode(QAbstractItemView::MultiSelection);
+    this->sortsTree->setSelectionMode(QAbstractItemView::MultiSelection);
     QPalette p = this->sortsTree->palette();
     p.setColor(QPalette::Base, QColor(207, 226, 243));
     this->sortsTree->setPalette(p);

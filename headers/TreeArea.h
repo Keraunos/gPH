@@ -62,22 +62,16 @@ public:
     QPushButton* addToGroupButton;
 
     /**
-      * @brief pointer to the removeFromGroup button
+      * @brief pointer to the removeGroup button
       *
       */
-    QPushButton* removeFromGroupButton;
+    QPushButton* removeGroupButton;
 
     /**
       * @brief pointer to the addGroup button
       *
       */
     QPushButton* addGroupButton;
-
-    /**
-      * @brief pointer to the removeGroup button
-      *
-      */
-    QPushButton* removeGroupButton;
 
     /**
       * @brief list containing all the sorts. Built when the file is opened
@@ -123,13 +117,15 @@ public slots:
       * @brief remove the selected group from the groupsTree
       *
       */
-    void removeGroup();
+    void remove();
 
     /**
       * @brief add a sort to a selected group
       *
       */
     void addToGroup();
+
+
 
 
 };

@@ -49,20 +49,14 @@ TreeArea::TreeArea(QWidget *parent): QWidget(parent)
     sortsToGroup->setMaximumWidth(250);
     sortsToGroup->setMinimumHeight(50);
     sortsToGroup->setMaximumHeight(50);
-    this->addToGroupButton = new QPushButton("v Add to", sortsToGroup);
-    this->addToGroupButton->setMinimumWidth(100);
-    this->addToGroupButton->setMaximumWidth(100);
+    this->addToGroupButton = new QPushButton("Add to", sortsToGroup);
+    this->addToGroupButton->setMinimumWidth(220);
+    this->addToGroupButton->setMaximumWidth(220);
     this->addToGroupButton->setMinimumHeight(30);
     this->addToGroupButton->setMaximumHeight(30);
-    this->removeFromGroupButton = new QPushButton("Remove from ^", sortsToGroup);
-    this->removeFromGroupButton->setMinimumWidth(110);
-    this->removeFromGroupButton->setMaximumWidth(110);
-    this->removeFromGroupButton->setMinimumHeight(30);
-    this->removeFromGroupButton->setMaximumHeight(30);
 
     QHBoxLayout *layoutSortsToGroup = new QHBoxLayout;
     layoutSortsToGroup->addWidget(this->addToGroupButton);
-    layoutSortsToGroup->addWidget(this->removeFromGroupButton);
     sortsToGroup->setLayout(layoutSortsToGroup);
 
     QWidget *group = new QWidget(this);
@@ -75,7 +69,7 @@ TreeArea::TreeArea(QWidget *parent): QWidget(parent)
     this->addGroupButton->setMaximumWidth(100);
     this->addGroupButton->setMinimumHeight(30);
     this->addGroupButton->setMaximumHeight(30);
-    this->removeGroupButton = new QPushButton("Remove group", group);
+    this->removeGroupButton = new QPushButton("Remove", group);
     this->removeGroupButton->setMinimumWidth(110);
     this->removeGroupButton->setMaximumWidth(110);
     this->removeGroupButton->setMinimumHeight(30);
@@ -106,7 +100,7 @@ TreeArea::TreeArea(QWidget *parent): QWidget(parent)
     QObject::connect(this->cancelSearchButton, SIGNAL(clicked()), this, SLOT(cancelSearch()));
 
     QObject::connect(this->addGroupButton, SIGNAL(clicked()), this, SLOT(addGroup()));
-    QObject::connect(this->removeGroupButton, SIGNAL(clicked()), this, SLOT(removeGroup()));
+    QObject::connect(this->removeGroupButton, SIGNAL(clicked()), this, SLOT(remove()));
     QObject::connect(this->addToGroupButton, SIGNAL(clicked()), this, SLOT(addToGroup()));
 
 }
@@ -163,7 +157,7 @@ void TreeArea::addGroup(){
 
 }
 
-void TreeArea::removeGroup(){
+void TreeArea::remove(){
     QTreeWidgetItem* item = this->groupsTree->currentItem();
     int i = this->groupsTree->indexOfTopLevelItem(item);
     this->groupsTree->takeTopLevelItem(i);

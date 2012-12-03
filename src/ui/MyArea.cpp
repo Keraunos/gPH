@@ -3,9 +3,14 @@
 
 
 // constructor
-MyArea::MyArea(QString path) : QGraphicsView() {
+MyArea::MyArea(QWidget *parent, QString path) : QGraphicsView(parent) {
     this->path = path;
 	setRenderHints (QPainter::Antialiasing);
+}
+
+MyArea::MyArea(QString path) : QGraphicsView() {
+    this->path = path;
+    setRenderHints (QPainter::Antialiasing);
 }
 
 

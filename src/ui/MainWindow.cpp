@@ -4,6 +4,7 @@
 #include "MyArea.h"
 #include "PHIO.h"
 #include "Exceptions.h"
+#include "Area.h"
 
 
 MainWindow::MainWindow() {
@@ -66,11 +67,17 @@ MainWindow::MainWindow() {
     menuPreferences = menuView->addMenu("Preferences");
     actionBackgroundColor = menuPreferences->addAction("Set background color");
     actionSortColor = menuPreferences->addAction("Set sorts color");
-
     menuDefaultStyles = menuPreferences->addMenu("Default Styles");
     actionNaturalStyle = menuDefaultStyles->addAction("Positive contrast");
     actionNegativeStyle = menuDefaultStyles->addAction("Negative contrast");
-    actionPrintStyle = menuDefaultStyles->addAction("Print");
+    actionPrintStyle = menuDefaultStyles->addAction("Print");    
+    menuText = menuPreferences->addMenu("Text Preferences");
+    actionHideText = menuText->addAction("Hide Text");
+    actionShowText = menuText->addAction("Show Text");
+    actionChangeTextBackgroundColor = menuText->addAction("Change Text Background Color");
+    menuTree = menuPreferences->addMenu("Tree Preferences");
+    actionHideTree = menuTree->addAction("Hide Tree");
+    actionShowTree = menuTree->addAction("Show Tree");
     actionShowInit = menuView->addAction("Show initial state");
     actionHighlight = menuView->addAction("Highlight possible actions");
     actionHide = menuView->addAction("Hide actions");
@@ -89,6 +96,11 @@ MainWindow::MainWindow() {
     QObject::connect(actionNaturalStyle, SIGNAL(triggered()), this, SLOT(positiveContrast()));
     QObject::connect(actionNegativeStyle, SIGNAL(triggered()), this, SLOT(negativeContrast()));
     QObject::connect(actionPrintStyle, SIGNAL(triggered()), this, SLOT(printStyle()));
+    QObject::connect(actionHideText, SIGNAL(triggered()), this, SLOT(hideText()));
+    QObject::connect(actionShowText, SIGNAL(triggered()), this, SLOT(showText()));
+    QObject::connect(actionChangeTextBackgroundColor, SIGNAL(triggered()), this, SLOT(changeTextBackgroundColor()));
+    QObject::connect(actionHideTree, SIGNAL(triggered()), this, SLOT(hideTree()));
+    QObject::connect(actionShowTree, SIGNAL(triggered()), this, SLOT(showTree()));
 
     // shortcuts for the menu View
     actionAdjust->setShortcut(     QKeySequence(Qt::CTRL + Qt::Key_L));
@@ -145,6 +157,11 @@ MainWindow::MainWindow() {
         this->actionNaturalStyle->setEnabled(false);
         this->actionNegativeStyle->setEnabled(false);
         this->actionPrintStyle->setEnabled(false);
+        this->actionShowText->setEnabled(false);
+        this->actionHideText->setEnabled(false);
+        this->actionChangeTextBackgroundColor->setEnabled(false);
+        this->actionShowTree->setEnabled(false);
+        this->actionHideTree->setEnabled(false);
         this->actionFindFixpoints->setEnabled(false);
         this->actionRunStochasticSimulation->setEnabled(false);
         this->actionStatistics->setEnabled(false);
@@ -201,14 +218,23 @@ MyArea* MainWindow::openTab() {
                 std::string path =	file.toStdString();
 
                 // parse file
-                MyArea *area = new MyArea(file);
+                Area *area = new Area();
                 try {
                     // render graph
                     PHPtr myPHPtr = PHIO::parseFile(path);
-                    area->setPHPtr(myPHPtr);
+                    area->myArea->setPHPtr(myPHPtr);
 					myPHPtr->render();
                     PHScenePtr scene = myPHPtr->getGraphicsScene();
-                    area->setScene(&*scene);
+                    area->myArea->setScene(&*scene);
+
+                    // set the pointer of the treeArea
+                    area->treeArea->myPHPtr = myPHPtr;
+                    // build the tree in the treeArea
+                    area->treeArea->build();
+
+                    // call the PH string and write it in the text area
+                    std::string string(myPHPtr->toString());
+                    area->textArea->setPlainText(QString::fromStdString(string));
 
                     // make the subwindow for the new tab
                     QMdiSubWindow *theNewTab = this->getCentraleArea()->addSubWindow(area);
@@ -216,7 +242,9 @@ MyArea* MainWindow::openTab() {
                     theNewTab->setWindowTitle(fileName);
                     this->enableMenu();
 
-                    return area;
+                    return area->myArea;
+
+
                 } catch(exception_base& argh) {
                     QMessageBox::critical(this, "Error", "Extension not recognized. Only ph files are accepted.");
                     return NULL;
@@ -280,7 +308,7 @@ void MainWindow::exportPng() {
         QString fichier = QFileDialog::getSaveFileName(this, "Export as .png file", QString(), "*.png");
 
         // need the PHPtr which is associated with the subwindow
-        PHPtr ph= ((MyArea*) subWindow->widget())->getPHPtr();
+        PHPtr ph= ((Area*) subWindow->widget())->myArea->getPHPtr();
 
         // save as PNG
 		PHIO::exportToPNG(ph, fichier);
@@ -292,22 +320,28 @@ void MainWindow::exportPng() {
 // method to adjust the view
 void MainWindow::adjust()
 {
-    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
-    view->fitInView(view->scene()->itemsBoundingRect(), Qt::KeepAspectRatio);
+    Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    view->myArea->fitInView(view->myArea->scene()->itemsBoundingRect(), Qt::KeepAspectRatio);
 }
 
 // method to zoom In
 void MainWindow::zoomIn()
 {
-    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
-    view->zoomIn();
+    Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    view->myArea->zoomIn();
 }
 
 // method to zoom out
 void MainWindow::zoomOut()
 {
-    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
-    view->zoomOut();
+    Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    view->myArea->zoomOut();
+}
+
+void MainWindow::searchSort()
+{
+    Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    view->treeArea->searchSort();
 }
 
 
@@ -353,12 +387,12 @@ void MainWindow::changeBackgroundColor() {
 
     QColor couleur = QColorDialog::getColor();
 
-    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
+    Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
 
     if(!couleur.isValid()){
         return ;
     } else {
-        view->getPHPtr()->getGraphicsScene()->setBackgroundBrush(couleur);
+        view->myArea->getPHPtr()->getGraphicsScene()->setBackgroundBrush(couleur);
     }
 }
 
@@ -368,8 +402,8 @@ void MainWindow::changeSortColor() {
 
     QColor couleur = QColorDialog::getColor();
 
-    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
-    map<string, GSortPtr> sortList = view->getPHPtr()->getGraphicsScene()->getGSorts();
+    Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    map<string, GSortPtr> sortList = view->myArea->getPHPtr()->getGraphicsScene()->getGSorts();
 
     if (!couleur.isValid()) {
         return ;
@@ -383,12 +417,13 @@ void MainWindow::changeSortColor() {
 }
 
 
+// method to set the default style: positive
 void MainWindow::positiveContrast() {
 
-    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
-    map<string, GSortPtr> sortList = view->getPHPtr()->getGraphicsScene()->getGSorts();
+    Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    map<string, GSortPtr> sortList = view->myArea->getPHPtr()->getGraphicsScene()->getGSorts();
 
-    view->getPHPtr()->getGraphicsScene()->setBackgroundBrush(QColor(255,255,255));
+    view->myArea->getPHPtr()->getGraphicsScene()->setBackgroundBrush(QColor(255,255,255));
 
     map<string, GSortPtr>::iterator it;
     for(it=sortList.begin(); it!=sortList.end(); it++) {
@@ -397,13 +432,13 @@ void MainWindow::positiveContrast() {
     }
 }
 
-
+// method to set the default style: negative
 void MainWindow::negativeContrast() {
 
-    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
-    map<string, GSortPtr> sortList = view->getPHPtr()->getGraphicsScene()->getGSorts();
+    Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    map<string, GSortPtr> sortList = view->myArea->getPHPtr()->getGraphicsScene()->getGSorts();
 
-    view->getPHPtr()->getGraphicsScene()->setBackgroundBrush(QColor(31,31,31));
+    view->myArea->getPHPtr()->getGraphicsScene()->setBackgroundBrush(QColor(31,31,31));
 
     map<string, GSortPtr>::iterator it;
     for(it = sortList.begin(); it != sortList.end(); it++) {
@@ -412,13 +447,13 @@ void MainWindow::negativeContrast() {
     }
 }
 
-
+// method to set the default style: print
 void MainWindow::printStyle() {
 
-    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
-    map<string, GSortPtr> sortList = view->getPHPtr()->getGraphicsScene()->getGSorts();
+    Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    map<string, GSortPtr> sortList = view->myArea->getPHPtr()->getGraphicsScene()->getGSorts();
 
-    view->getPHPtr()->getGraphicsScene()->setBackgroundBrush(Qt::white);
+    view->myArea->getPHPtr()->getGraphicsScene()->setBackgroundBrush(Qt::white);
 
     map<string, GSortPtr>::iterator it;
     for(it = sortList.begin(); it != sortList.end(); it++) {
@@ -427,6 +462,36 @@ void MainWindow::printStyle() {
     }
 }
 
+// hide the text area. Called by the signal actionHideText
+void MainWindow::hideText(){
+    Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    view->hideText();
+}
+
+// show the text area. Called by the signal actionShowText
+void MainWindow::showText(){
+    Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    view->showText();
+}
+
+// change the text background color in the text area. Called by the signal actionChangeTextBackgroundColor
+void MainWindow::changeTextBackgroundColor(){
+    QColor couleur = QColorDialog::getColor();
+    Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    view->textArea->changeBackgroundColor(couleur);
+}
+
+// hide the tree area. Called by the signal actionHideTree
+void MainWindow::hideTree(){
+    Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    view->hideTree();
+}
+
+// show the tree area. Called by the signal actionShowTree
+void MainWindow::showTree(){
+    Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    view->showTree();
+}
 
 // main method for the computation menu
 void MainWindow::compute(QString program, QStringList arguments, QString fileName) {
@@ -603,6 +668,11 @@ void MainWindow::disableMenu(QMdiSubWindow* subwindow){
         this->actionNaturalStyle->setEnabled(false);
         this->actionNegativeStyle->setEnabled(false);
         this->actionPrintStyle->setEnabled(false);
+        this->actionShowText->setEnabled(false);
+        this->actionHideText->setEnabled(false);
+        this->actionChangeTextBackgroundColor->setEnabled(false);
+        this->actionShowTree->setEnabled(false);
+        this->actionHideTree->setEnabled(false);
         this->actionFindFixpoints->setEnabled(false);
         this->actionComputeReachability->setEnabled(false);
         this->actionRunStochasticSimulation->setEnabled(false);
@@ -625,6 +695,11 @@ void MainWindow::enableMenu(){
         this->actionNaturalStyle->setEnabled(true);
         this->actionNegativeStyle->setEnabled(true);
         this->actionPrintStyle->setEnabled(true);
+        this->actionShowText->setEnabled(true);
+        this->actionHideText->setEnabled(true);
+        this->actionChangeTextBackgroundColor->setEnabled(true);
+        this->actionShowTree->setEnabled(true);
+        this->actionHideTree->setEnabled(true);
         this->actionFindFixpoints->setEnabled(true);
         this->actionComputeReachability->setEnabled(true);
         this->actionRunStochasticSimulation->setEnabled(true);

@@ -26,10 +26,16 @@ public:
     PHPtr myPHPtr;
 
     /**
-      * @brief pointer to the QTreeWidget
+      * @brief pointer to the sorts QTreeWidget
       *
       */
-    QTreeWidget* tree;
+    QTreeWidget* sortsTree;
+
+    /**
+      * @brief pointer to the groups QTreeWidget
+      *
+      */
+    QTreeWidget* groupsTree;
 
     /**
       * @brief pointer to the search button
@@ -50,10 +56,40 @@ public:
     QLineEdit* searchBox;
 
     /**
+      * @brief pointer to the addToGroup button
+      *
+      */
+    QPushButton* addToGroupButton;
+
+    /**
+      * @brief pointer to the removeFromGroup button
+      *
+      */
+    QPushButton* removeFromGroupButton;
+
+    /**
+      * @brief pointer to the addGroup button
+      *
+      */
+    QPushButton* addGroupButton;
+
+    /**
+      * @brief pointer to the removeGroup button
+      *
+      */
+    QPushButton* removeGroupButton;
+
+    /**
       * @brief list containing all the sorts. Built when the file is opened
       *
       */
     QList<QTreeWidgetItem*> sorts;
+
+    /**
+      * @brief list containing all the groups.
+      *
+      */
+    QList<QTreeWidgetItem*> groups;
 
 signals:
 
@@ -76,6 +112,24 @@ public slots:
       *
       */
     void cancelSearch();
+
+    /**
+      * @brief add a group to the groupsTree
+      *
+      */
+    void addGroup();
+
+    /**
+      * @brief remove the selected group from the groupsTree
+      *
+      */
+    void removeGroup();
+
+    /**
+      * @brief signal to call when the groupsTree item is selected
+      *
+      */
+    void selectGroup(QTreeWidgetItem*);
 
 };
 

@@ -1,16 +1,20 @@
 #include "TreeArea.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QInputDialog>
+#include <QErrorMessage>
 
 TreeArea::TreeArea(QWidget *parent): QWidget(parent)
 {
     this->setMinimumWidth(250);
     this->setMaximumWidth(250);
 
-    this->tree = new QTreeWidget(this);
-    QPalette p = this->tree->palette();
+    this->sortsTree = new QTreeWidget(this);
+    this->sortsTree->setHeaderLabel("Sorts");
+    this->groupsTree->setSelectionMode(QAbstractItemView::MultiSelection);
+    QPalette p = this->sortsTree->palette();
     p.setColor(QPalette::Base, QColor(207, 226, 243));
-    this->tree->setPalette(p);
+    this->sortsTree->setPalette(p);
 
     QWidget *search = new QWidget(this);
     search->setMinimumWidth(250);
@@ -19,8 +23,8 @@ TreeArea::TreeArea(QWidget *parent): QWidget(parent)
     search->setMaximumHeight(50);
     this->searchBox = new QLineEdit(search);
     this->searchBox->setAlignment(Qt::AlignLeft);
-    this->searchBox->setMinimumWidth(135);
-    this->searchBox->setMaximumWidth(135);
+    this->searchBox->setMinimumWidth(125);
+    this->searchBox->setMaximumWidth(125);
     this->searchBox->setMinimumHeight(30);
     this->searchBox->setMaximumHeight(30);
     this->searchButton = new QPushButton("Search", search);
@@ -40,13 +44,69 @@ TreeArea::TreeArea(QWidget *parent): QWidget(parent)
     layoutsearch->addWidget(this->cancelSearchButton);
     search->setLayout(layoutsearch);
 
+    QWidget *sortsToGroup = new QWidget(this);
+    sortsToGroup->setMinimumWidth(250);
+    sortsToGroup->setMaximumWidth(250);
+    sortsToGroup->setMinimumHeight(50);
+    sortsToGroup->setMaximumHeight(50);
+    this->addToGroupButton = new QPushButton("v Add to", sortsToGroup);
+    this->addToGroupButton->setMinimumWidth(100);
+    this->addToGroupButton->setMaximumWidth(100);
+    this->addToGroupButton->setMinimumHeight(30);
+    this->addToGroupButton->setMaximumHeight(30);
+    this->removeFromGroupButton = new QPushButton("Remove from ^", sortsToGroup);
+    this->removeFromGroupButton->setMinimumWidth(110);
+    this->removeFromGroupButton->setMaximumWidth(110);
+    this->removeFromGroupButton->setMinimumHeight(30);
+    this->removeFromGroupButton->setMaximumHeight(30);
+
+    QHBoxLayout *layoutSortsToGroup = new QHBoxLayout;
+    layoutSortsToGroup->addWidget(this->addToGroupButton);
+    layoutSortsToGroup->addWidget(this->removeFromGroupButton);
+    sortsToGroup->setLayout(layoutSortsToGroup);
+
+    QWidget *group = new QWidget(this);
+    group->setMinimumWidth(250);
+    group->setMaximumWidth(250);
+    group->setMinimumHeight(50);
+    group->setMaximumHeight(50);
+    this->addGroupButton = new QPushButton("Add group", group);
+    this->addGroupButton->setMinimumWidth(100);
+    this->addGroupButton->setMaximumWidth(100);
+    this->addGroupButton->setMinimumHeight(30);
+    this->addGroupButton->setMaximumHeight(30);
+    this->removeGroupButton = new QPushButton("Remove group", group);
+    this->removeGroupButton->setMinimumWidth(110);
+    this->removeGroupButton->setMaximumWidth(110);
+    this->removeGroupButton->setMinimumHeight(30);
+    this->removeGroupButton->setMaximumHeight(30);
+
+    QHBoxLayout *layoutGroup = new QHBoxLayout;
+    layoutGroup->addWidget(this->addGroupButton);
+    layoutGroup->addWidget(this->removeGroupButton);
+    group->setLayout(layoutGroup);
+
+    this->groupsTree = new QTreeWidget(this);
+    this->groupsTree->setHeaderLabel("Groups");
+    this->groupsTree->setSelectionMode(QAbstractItemView::SingleSelection);
+    QPalette f = this->groupsTree->palette();
+    f.setColor(QPalette::Base, QColor(207, 226, 243));
+    this->groupsTree->setPalette(f);
+
+
     QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget(this->tree);
     layout->addWidget(search);
+    layout->addWidget(this->sortsTree);
+    layout->addWidget(sortsToGroup);
+    layout->addWidget(this->groupsTree);
+    layout->addWidget(group);
     this->setLayout(layout);
 
     QObject::connect(this->searchButton, SIGNAL(clicked()), this, SLOT(searchSort()));
     QObject::connect(this->cancelSearchButton, SIGNAL(clicked()), this, SLOT(cancelSearch()));
+
+    QObject::connect(this->addGroupButton, SIGNAL(clicked()), this, SLOT(addGroup()));
+    QObject::connect(this->groupsTree, SIGNAL(clicked()), this, SLOT(removeGroup()));
 
 }
 
@@ -54,7 +114,7 @@ void TreeArea::build(){
 
     list<SortPtr> allSorts = this->myPHPtr->getSorts();
     for(SortPtr &s : allSorts){
-        QTreeWidgetItem* a = new QTreeWidgetItem(this->tree);
+        QTreeWidgetItem* a = new QTreeWidgetItem(this->sortsTree);
         a->setText(0, QString::fromStdString(s->getName()));
         this->sorts.push_back(a);
     }
@@ -63,7 +123,7 @@ void TreeArea::build(){
 void TreeArea::searchSort(){
     QString text = this->searchBox->text();
 
-    QList<QTreeWidgetItem*> foundItems = this->tree->findItems("", Qt::MatchStartsWith, 0);
+    QList<QTreeWidgetItem*> foundItems = this->sortsTree->findItems("", Qt::MatchStartsWith, 0);
     for (QTreeWidgetItem* &q: foundItems){
         q->setHidden(true);
     }
@@ -71,7 +131,7 @@ void TreeArea::searchSort(){
        //this->tree->hideColumn(0);
        //this->tree->hideColumn(1);
 
-    QList<QTreeWidgetItem*> foundItems2 = this->tree->findItems(text, Qt::MatchStartsWith, 0);
+    QList<QTreeWidgetItem*> foundItems2 = this->sortsTree->findItems(text, Qt::MatchStartsWith, 0);
     for (QTreeWidgetItem* &q: foundItems2){
         q->setHidden(false);
     }
@@ -79,8 +139,40 @@ void TreeArea::searchSort(){
 }
 
 void TreeArea::cancelSearch(){
-    QList<QTreeWidgetItem*> foundItems2 = this->tree->findItems("", Qt::MatchStartsWith, 0);
+    QList<QTreeWidgetItem*> foundItems2 = this->sortsTree->findItems("", Qt::MatchStartsWith, 0);
     for (QTreeWidgetItem* &q: foundItems2){
         q->setHidden(false);
     }
 }
+
+void TreeArea::addGroup(){
+    bool ok;
+    QString text = QInputDialog::getText(this, "Add group...", "Name:", QLineEdit::Normal, QString::null, &ok);
+    if(ok && !text.isEmpty()){
+        if (this->groupsTree->findItems(text, Qt::MatchExactly,0).isEmpty()){
+            QTreeWidgetItem* a = new QTreeWidgetItem(this->groupsTree);
+            a->setText(0, text);
+            this->groups.push_back(a);
+        }
+        else {
+                QErrorMessage* nameError = new QErrorMessage(this);
+                nameError->showMessage("Name already chosen");
+    }
+    }
+
+}
+
+void TreeArea::removeGroup(){
+    QList<QTreeWidgetItem*> selected = this->groupsTree->selectedItems();
+    for (QTreeWidgetItem* &a: selected){
+        a->setHidden(true);
+    }
+
+    //this->groupsTree->removeItemWidget(selected,0);
+}
+
+void TreeArea::selectGroup(QTreeWidgetItem* item){
+    this->groupsTree->setCurrentItem(item);
+}
+
+

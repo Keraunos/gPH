@@ -229,6 +229,8 @@ MyArea* MainWindow::openTab() {
 
                     // set the pointer of the treeArea
                     area->treeArea->myPHPtr = myPHPtr;
+                    //set the pointer of the treeArea
+                    area->treeArea->myArea = area->myArea;
                     // build the tree in the treeArea
                     area->treeArea->build();
 

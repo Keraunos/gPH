@@ -51,6 +51,12 @@ class GAction {
        * @return QGraphicsItem the graphical item representing the Action
        */
 		QGraphicsItem* getDisplayItem (void);
+
+        /**
+          * @brief the related Action
+          *
+          */
+        ActionPtr action;
 	
 	protected:
 	
@@ -77,12 +83,6 @@ class GAction {
           *
           */
         pair<QGraphicsPolygonItem* , QGraphicsPolygonItem*>	arrowHeads;
-
-        /**
-          * @brief the related Action
-          *
-          */
-        ActionPtr action;
 
         /**
           * @brief the edges related to the arrows

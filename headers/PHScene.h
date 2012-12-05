@@ -68,6 +68,12 @@ class PHScene: public QGraphicsScene {
           */
         map<string, GSortPtr> getGSorts();
 
+        /**
+          * @brief vector of the Actions drawn in the scene
+          *
+          */
+        std::vector<GActionPtr> actions;
+
 
 	protected:
 
@@ -95,10 +101,6 @@ class PHScene: public QGraphicsScene {
           */
 		std::vector<GProcessPtr> processes;
 
-        /**
-          * @brief vector of the Actions drawn in the scene
-          *
-          */
-        std::vector<GActionPtr> actions;
+
 
 };

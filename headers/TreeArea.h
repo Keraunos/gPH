@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include "PH.h"
+#include "MyArea.h"
 
 class TreeArea : public QWidget
 {
@@ -24,6 +25,12 @@ public:
       *
       */
     PHPtr myPHPtr;
+
+    /**
+      * @brief pointer to the myArea
+      *
+      */
+    MyArea* myArea;
 
     /**
       * @brief pointer to the sorts QTreeWidget
@@ -85,6 +92,8 @@ public:
       */
     QList<QTreeWidgetItem*> groups;
 
+
+
 signals:
 
 public slots:
@@ -124,6 +133,54 @@ public slots:
       *
       */
     void addToGroup();
+
+    /**
+      * @brief menu to show when the sort is clicked
+      *
+      */
+    void sortsItemClicked(QTreeWidgetItem* item);
+
+    /**
+      * @brief hide a sort
+      *
+      */
+    void hideSort();
+
+    /**
+      * @brief show a sort
+      *
+      */
+    void showSort();
+
+    /**
+      * @brief change sort color
+      *
+      */
+    void changeSortColor();
+
+    /**
+      * @brief menu to show when the sort is clicked
+      *
+      */
+    void groupsItemClicked(QTreeWidgetItem* item);
+
+    /**
+      * @brief hide a sort
+      *
+      */
+    void hideGroup();
+
+    /**
+      * @brief show a sort
+      *
+      */
+    void showGroup();
+
+    /**
+      * @brief change sort color
+      *
+      */
+    void changeGroupColor();
 
 
 

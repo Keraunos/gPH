@@ -257,14 +257,13 @@ void TreeArea::hideSort(){
     // Hide the QGraphicsItem representing the sort
     this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->getDisplayItem()->hide();
 
-    // DOESNT WORK Hide all the actions related to the sort
-    /*std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->actions;
+    // Hide all the actions related to the sort
+    std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
     for (GActionPtr &a: allActions){
-        if (a->action->getSource()->getSort()->getName() == text.toStdString()) || a->action->getTarget()->getSort()->getName() == text.toStdString() || a->action->getResult()->getSort()->getName() == text.toStdString()){
+        if (a->getAction()->getSource()->getSort()->getName() == text.toStdString() || a->getAction()->getTarget()->getSort()->getName() == text.toStdString() || a->getAction()->getResult()->getSort()->getName() == text.toStdString()){
             a->getDisplayItem()->hide();
         }
-    }*/
-
+    }
 }
 
 void TreeArea::showSort(){
@@ -291,6 +290,13 @@ void TreeArea::showSort(){
     SortPtr sortFound = this->myArea->getPHPtr()->getSort(text.toStdString());
     // Show the QGraphicsItem representing the sort
     this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->getDisplayItem()->show();
+
+    std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
+    for (GActionPtr &a: allActions){
+        if (a->getAction()->getSource()->getSort()->getName() == text.toStdString() || a->getAction()->getTarget()->getSort()->getName() == text.toStdString() || a->getAction()->getResult()->getSort()->getName() == text.toStdString()){
+            a->getDisplayItem()->show();
+        }
+    }
 
 }
 
@@ -476,13 +482,13 @@ void TreeArea::hideSortFromGroup(){
     // Hide the QGraphicsItem representing the sort
     this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->getDisplayItem()->hide();
 
-    // DOESNT WORK Hide all the actions related to the sort
-    /*std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->actions;
+    // Hide all the actions related to the sort
+    std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
     for (GActionPtr &a: allActions){
-        if (a->action->getSource()->getSort()->getName() == text.toStdString()) || a->action->getTarget()->getSort()->getName() == text.toStdString() || a->action->getResult()->getSort()->getName() == text.toStdString()){
+        if (a->getAction()->getSource()->getSort()->getName() == text.toStdString() || a->getAction()->getTarget()->getSort()->getName() == text.toStdString() || a->getAction()->getResult()->getSort()->getName() == text.toStdString()){
             a->getDisplayItem()->hide();
         }
-    }*/
+    }
 
 }
 
@@ -510,6 +516,14 @@ void TreeArea::showSortFromGroup(){
     SortPtr sortFound = this->myArea->getPHPtr()->getSort(text.toStdString());
     // Show the QGraphicsItem representing the sort
     this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->getDisplayItem()->show();
+
+    // Show all the actions related to the sort
+    std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
+    for (GActionPtr &a: allActions){
+        if (a->getAction()->getSource()->getSort()->getName() == text.toStdString() || a->getAction()->getTarget()->getSort()->getName() == text.toStdString() || a->getAction()->getResult()->getSort()->getName() == text.toStdString()){
+            a->getDisplayItem()->show();
+        }
+    }
 
 }
 

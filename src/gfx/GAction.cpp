@@ -65,3 +65,7 @@ QGraphicsPolygonItem* GAction::makeArrowHead(const GVEdge& e, const QColor& colo
     res->setBrush(QBrush(color));
     return res;
 }
+
+ActionPtr GAction::getAction(){
+    return action;
+}

@@ -11,7 +11,7 @@ TreeArea::TreeArea(QWidget *parent): QWidget(parent)
     this->setMaximumWidth(250);
 
     this->sortsTree = new QTreeWidget(this);
-    this->sortsTree->setContextMenuPolicy(Qt::ActionsContextMenu);
+    this->sortsTree->setContextMenuPolicy(Qt::CustomContextMenu);
     this->sortsTree->setHeaderLabel("Sorts");
     this->sortsTree->setSelectionMode(QAbstractItemView::MultiSelection);
     QPalette p = this->sortsTree->palette();
@@ -83,7 +83,7 @@ TreeArea::TreeArea(QWidget *parent): QWidget(parent)
     group->setLayout(layoutGroup);
 
     this->groupsTree = new QTreeWidget(this);
-    this->groupsTree->setContextMenuPolicy(Qt::ActionsContextMenu);
+    this->groupsTree->setContextMenuPolicy(Qt::CustomContextMenu);
     this->groupsTree->setHeaderLabel("Groups");
     this->groupsTree->setSelectionMode(QAbstractItemView::SingleSelection);
     QPalette f = this->groupsTree->palette();
@@ -106,8 +106,8 @@ TreeArea::TreeArea(QWidget *parent): QWidget(parent)
     QObject::connect(this->removeGroupButton, SIGNAL(clicked()), this, SLOT(remove()));
     QObject::connect(this->addToGroupButton, SIGNAL(clicked()), this, SLOT(addToGroup()));
 
-    QObject::connect(this->sortsTree, SIGNAL(itemClicked(QTreeWidgetItem*, int)), this, SLOT(sortsItemClicked(QTreeWidgetItem*)));
-    QObject::connect(this->groupsTree, SIGNAL(itemClicked(QTreeWidgetItem*, int)), this, SLOT(groupsItemClicked(QTreeWidgetItem*)));
+    QObject::connect(this->sortsTree, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(sortsItemClicked(const QPoint&)));
+    QObject::connect(this->groupsTree, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(groupsItemClicked(const QPoint&)));
 
 }
 
@@ -217,20 +217,21 @@ void TreeArea::addToGroup(){
 
 }
 
-void TreeArea::sortsItemClicked(QTreeWidgetItem* item){
-    // Add a menu
-    QMenu menu(this->sortsTree);
-    // Add the actions to the menu
-    QAction* actionHide = menu.addAction("Hide Sort");
-    QAction* actionShow = menu.addAction("Show Sort");
-    QAction* actionColor = menu.addAction("Change Sort Color");
-    // Connect the actions created with their slots
-    QObject::connect(actionHide, SIGNAL(triggered()), this, SLOT(hideSort()));
-    QObject::connect(actionShow, SIGNAL(triggered()), this, SLOT(showSort()));
-    QObject::connect(actionColor, SIGNAL(triggered()), this, SLOT(changeSortColor()));
-    // Show the menu at the current position
-    menu.exec(QCursor::pos());
+void TreeArea::sortsItemClicked(const QPoint& pos){
+        // Add a menu
+        QMenu menu(this->sortsTree);
+        // Add the actions to the menu
+        QAction* actionHide = menu.addAction("Hide Sort");
+        QAction* actionShow = menu.addAction("Show Sort");
+        QAction* actionColor = menu.addAction("Change Sort Color");
+        // Connect the actions created with their slots
+        QObject::connect(actionHide, SIGNAL(triggered()), this, SLOT(hideSort()));
+        QObject::connect(actionShow, SIGNAL(triggered()), this, SLOT(showSort()));
+        QObject::connect(actionColor, SIGNAL(triggered()), this, SLOT(changeSortColor()));
+        // Show the menu at the current position
+        menu.exec(QCursor::pos());
 }
+
 
 void TreeArea::hideSort(){
     // Get the current item
@@ -321,36 +322,38 @@ void TreeArea::changeSortColor(){
     }
 }
 
-void TreeArea::groupsItemClicked(QTreeWidgetItem* item){
-    // We assume that if the item clicked does not have any child, it is a group
-    if (item->childCount() != 0){
-        // Add a menu
-        QMenu menu(this->groupsTree);
-        // Add the actions to the menu
-        QAction* actionHide = menu.addAction("Hide Group");
-        QAction* actionShow = menu.addAction("Show Group");
-        QAction* actionColor = menu.addAction("Change Group Color");
-        // Connect the actions created with their slots
-        QObject::connect(actionHide, SIGNAL(triggered()), this, SLOT(hideGroup()));
-        QObject::connect(actionShow, SIGNAL(triggered()), this, SLOT(showGroup()));
-        QObject::connect(actionColor, SIGNAL(triggered()), this, SLOT(changeGroupColor()));
-        // Show the menu at the current position
-        menu.exec(QCursor::pos());
-    }
-    else {
-        // Add a menu
-        QMenu menu(this->groupsTree);
-        // Add the actions to the menu
-        QAction* actionHide = menu.addAction("Hide Sort");
-        QAction* actionShow = menu.addAction("Show Sort");
-        QAction* actionColor = menu.addAction("Change Sort Color");
-        // Connect the actions created with their slots
-        QObject::connect(actionHide, SIGNAL(triggered()), this, SLOT(hideSortFromGroup()));
-        QObject::connect(actionShow, SIGNAL(triggered()), this, SLOT(showSortFromGroup()));
-        QObject::connect(actionColor, SIGNAL(triggered()), this, SLOT(changeSortColorFromGroup()));
-        // Show the menu at the current position
-        menu.exec(QCursor::pos());
-    }
+void TreeArea::groupsItemClicked(const QPoint& pos){
+        // We assume that if the item clicked does not have any child, it is a group
+        QTreeWidgetItem* item = this->groupsTree->currentItem();
+        if (item->childCount() != 0){
+            // Add a menu
+            QMenu menu(this->groupsTree);
+            // Add the actions to the menu
+            QAction* actionHide = menu.addAction("Hide Group");
+            QAction* actionShow = menu.addAction("Show Group");
+            QAction* actionColor = menu.addAction("Change Group Color");
+            // Connect the actions created with their slots
+            QObject::connect(actionHide, SIGNAL(triggered()), this, SLOT(hideGroup()));
+            QObject::connect(actionShow, SIGNAL(triggered()), this, SLOT(showGroup()));
+            QObject::connect(actionColor, SIGNAL(triggered()), this, SLOT(changeGroupColor()));
+            // Show the menu at the current position
+            menu.exec(QCursor::pos());
+        }
+        else {
+            // Add a menu
+            QMenu menu(this->groupsTree);
+            // Add the actions to the menu
+            QAction* actionHide = menu.addAction("Hide Sort");
+            QAction* actionShow = menu.addAction("Show Sort");
+            QAction* actionColor = menu.addAction("Change Sort Color");
+            // Connect the actions created with their slots
+            QObject::connect(actionHide, SIGNAL(triggered()), this, SLOT(hideSortFromGroup()));
+            QObject::connect(actionShow, SIGNAL(triggered()), this, SLOT(showSortFromGroup()));
+            QObject::connect(actionColor, SIGNAL(triggered()), this, SLOT(changeSortColorFromGroup()));
+            // Show the menu at the current position
+            menu.exec(QCursor::pos());
+        }
+
 }
 
 void TreeArea::showGroup(){
@@ -359,7 +362,8 @@ void TreeArea::showGroup(){
     // Get all the items of the tree
     QList<QTreeWidgetItem*> wholeTree = this->groupsTree->findItems("", Qt::MatchContains | Qt::MatchRecursive, 0);
     // Get all the items in the tree whose parent is the current item
-    for (QTreeWidgetItem* &a: wholeTree){
+    if (item->childCount() != 0){
+        for (QTreeWidgetItem* &a: wholeTree){
             if (a->parent() == item){
                 // Show the GraphicsItem
                 this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->getDisplayItem()->show();
@@ -377,6 +381,7 @@ void TreeArea::showGroup(){
                 }
             }
       }
+    }
 
     // Set the group font to italic
     QFont f = item->font(0);
@@ -391,29 +396,32 @@ void TreeArea::hideGroup(){
     // Get all the items of the tree
     QList<QTreeWidgetItem*> wholeTree = this->groupsTree->findItems("", Qt::MatchContains | Qt::MatchRecursive, 0);
     // Get all the items in the tree whose parent is the current item
-    for (QTreeWidgetItem* &a: wholeTree){
-            if (a->parent() == item){
-                // Hide the GraphicsItem
-                this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->getDisplayItem()->hide();
-                // Set the font to Italic
-                QFont f = a->font(0);
-                f.setItalic(true);
-                a->setFont(0, f);
+    if (item->childCount() != 0){
+        for (QTreeWidgetItem* &a: wholeTree){
+                if (a->parent() == item){
+                    // Hide the GraphicsItem
+                    this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->getDisplayItem()->hide();
+                    // Set the font to Italic
+                    QFont f = a->font(0);
+                    f.setItalic(true);
+                    a->setFont(0, f);
 
-                // Set the italic font for the items related to the same sort in the sortsTree
-                QList<QTreeWidgetItem*> sortsInTheSortsTree = this->sortsTree->findItems(a->text(0), Qt::MatchExactly, 0);
-                for (QTreeWidgetItem* &a: sortsInTheSortsTree){
-                    QFont b = a->font(0);
-                    b.setItalic(true);
-                    a->setFont(0,b);
+                    // Set the italic font for the items related to the same sort in the sortsTree
+                    QList<QTreeWidgetItem*> sortsInTheSortsTree = this->sortsTree->findItems(a->text(0), Qt::MatchExactly, 0);
+                    for (QTreeWidgetItem* &a: sortsInTheSortsTree){
+                        QFont b = a->font(0);
+                        b.setItalic(true);
+                        a->setFont(0,b);
+                    }
                 }
-            }
-      }
+          }
 
-    // Set the group font to italic
-    QFont f = item->font(0);
-    f.setItalic(true);
-    item->setFont(0, f);
+
+        // Set the group font to italic
+        QFont f = item->font(0);
+        f.setItalic(true);
+        item->setFont(0, f);
+    }
 }
 
 void TreeArea::changeGroupColor(){
@@ -422,23 +430,24 @@ void TreeArea::changeGroupColor(){
     QTreeWidgetItem* item = this->groupsTree->currentItem();
     // Get all the items of the tree
     QList<QTreeWidgetItem*> wholeTree = this->groupsTree->findItems("", Qt::MatchContains | Qt::MatchRecursive, 0);
+    if (item->childCount() != 0){
+        if (!couleur.isValid()) {
+            return ;
+        } else {
+            for (QTreeWidgetItem* &a: wholeTree){
+                // If the sort is in the group, change rect color
+                if (a->parent() == item){
+                    GSortPtr sortFound = this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString());
 
-    if (!couleur.isValid()) {
-        return ;
-    } else {
-        for (QTreeWidgetItem* &a: wholeTree){
-            // If the sort is in the group, change rect color
-            if (a->parent() == item){
-                GSortPtr sortFound = this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString());
-
-                QPen p;
-                p.setBrush(QBrush(QColor(couleur)));
-                //sortFound->getRect()->setPen(p);
+                    QPen p;
+                    p.setBrush(QBrush(QColor(couleur)));
+                    //sortFound->getRect()->setPen(p);
+                }
             }
-        }
 
-            // Set the color of the item in the sortsTree to the same color
-            item->setForeground(0, QBrush(QColor(couleur)));
+                // Set the color of the item in the sortsTree to the same color
+                item->setForeground(0, QBrush(QColor(couleur)));
+        }
     }
 
 }

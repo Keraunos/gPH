@@ -329,7 +329,7 @@ void TreeArea::groupsItemClicked(QTreeWidgetItem* item){
         // Add the actions to the menu
         QAction* actionHide = menu.addAction("Hide Group");
         QAction* actionShow = menu.addAction("Show Group");
-        QAction* actionColor = menu.addAction("Change Sort Group");
+        QAction* actionColor = menu.addAction("Change Group Color");
         // Connect the actions created with their slots
         QObject::connect(actionHide, SIGNAL(triggered()), this, SLOT(hideGroup()));
         QObject::connect(actionShow, SIGNAL(triggered()), this, SLOT(showGroup()));
@@ -417,24 +417,30 @@ void TreeArea::hideGroup(){
 }
 
 void TreeArea::changeGroupColor(){
+    QColor couleur = QColorDialog::getColor();
     // Get the current item
     QTreeWidgetItem* item = this->groupsTree->currentItem();
     // Get all the items of the tree
     QList<QTreeWidgetItem*> wholeTree = this->groupsTree->findItems("", Qt::MatchContains | Qt::MatchRecursive, 0);
 
-    QColor couleur = QColorDialog::getColor();
-
     if (!couleur.isValid()) {
         return ;
     } else {
         for (QTreeWidgetItem* &a: wholeTree){
-            //GSortPtr sortFound = this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->getRect()->paint();
-            //sortFound->getDisplayItem()->getRect()->setBrush(QBrush(QColor(couleur)));
+            // If the sort is in the group, change rect color
+            if (a->parent() == item){
+                GSortPtr sortFound = this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString());
+
+                QPen p;
+                p.setBrush(QBrush(QColor(couleur)));
+                //sortFound->getRect()->setPen(p);
+            }
+        }
 
             // Set the color of the item in the sortsTree to the same color
             item->setForeground(0, QBrush(QColor(couleur)));
     }
-}
+
 }
 
 void TreeArea::hideSortFromGroup(){

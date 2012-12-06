@@ -46,6 +46,12 @@ class GSort {
         //QGraphicsItem* getDisplayItem (void);
         GSortItem* getDisplayItem (void);
 
+        /**
+          * @brief get the rect item
+          *
+          */
+        QGraphicsRectItem* getRect(void);
+
         GVCluster getCluster();
         SortPtr getSort();
 

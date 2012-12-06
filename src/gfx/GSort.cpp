@@ -74,4 +74,6 @@ SortPtr GSort::getSort() {
     return sort;
 }
 
-
+QGraphicsRectItem* GSort::getRect(){
+    return this->rect;
+}

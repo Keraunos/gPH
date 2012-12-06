@@ -243,8 +243,8 @@ void TreeArea::hideSort(){
     // Get the name of the item
     QString text = item->text(0);
 
-    // DOESNT WORK Set the italic font for the items related to the same sort in the groupsTree
-    QList<QTreeWidgetItem*> sortsInTheGroupTree = this->groupsTree->findItems(text, Qt::MatchExactly, 0);
+    // Set the italic font for the items related to the same sort in the groupsTree
+    QList<QTreeWidgetItem*> sortsInTheGroupTree = this->groupsTree->findItems(text, Qt::MatchContains | Qt::MatchRecursive, 0);
     for (QTreeWidgetItem* &a: sortsInTheGroupTree){
         QFont b = a->font(0);
         b.setItalic(true);
@@ -278,8 +278,8 @@ void TreeArea::showSort(){
     // Get the name of the item
     QString text = item->text(0);
 
-    // DOESNT WORK Set the normal font for the items related to the same sort in the groupsTree
-    QList<QTreeWidgetItem*> sortsInTheGroupTree = this->groupsTree->findItems(text, Qt::MatchExactly, 0);
+    // Set the normal font for the items related to the same sort in the groupsTree
+    QList<QTreeWidgetItem*> sortsInTheGroupTree = this->groupsTree->findItems(text, Qt::MatchContains | Qt::MatchRecursive, 0);
     for (QTreeWidgetItem* &a: sortsInTheGroupTree){
         QFont b = a->font(0);
         b.setItalic(false);
@@ -314,15 +314,15 @@ void TreeArea::changeSortColor(){
     // Set the color of the item in the sortsTree to the same color
     item->setForeground(0, QBrush(QColor(couleur)));
 
-    // DOESNT WORK Set the same color for the items related to the same sort in the groupsTree
-    QList<QTreeWidgetItem*> sortsInTheGroupTree = this->groupsTree->findItems(text, Qt::MatchExactly, 0);
+    // Set the same color for the items related to the same sort in the groupsTree
+    QList<QTreeWidgetItem*> sortsInTheGroupTree = this->groupsTree->findItems(text, Qt::MatchContains | Qt::MatchRecursive, 0);
     for (QTreeWidgetItem* &a: sortsInTheGroupTree){
         a->setForeground(0, QBrush(QColor(couleur)));
     }
 }
 
 void TreeArea::groupsItemClicked(QTreeWidgetItem* item){
-    // DOESNT WORK Check that it is a group that is selected
+    // We assume that if the item clicked does not have any child, it is a group
     if (item->childCount() != 0){
         // Add a menu
         QMenu menu(this->groupsTree);
@@ -354,25 +354,86 @@ void TreeArea::groupsItemClicked(QTreeWidgetItem* item){
 }
 
 void TreeArea::showGroup(){
+    // Get the current item
+    QTreeWidgetItem* item = this->groupsTree->currentItem();
+    // Get all the items of the tree
+    QList<QTreeWidgetItem*> wholeTree = this->groupsTree->findItems("", Qt::MatchContains | Qt::MatchRecursive, 0);
+    // Get all the items in the tree whose parent is the current item
+    for (QTreeWidgetItem* &a: wholeTree){
+            if (a->parent() == item){
+                // Show the GraphicsItem
+                this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->getDisplayItem()->show();
+                // Set the font to Normal
+                QFont f = a->font(0);
+                f.setItalic(false);
+                a->setFont(0, f);
+
+                // Set the italic font for the items related to the same sort in the sortsTree
+                QList<QTreeWidgetItem*> sortsInTheSortsTree = this->sortsTree->findItems(a->text(0), Qt::MatchExactly, 0);
+                for (QTreeWidgetItem* &a: sortsInTheSortsTree){
+                    QFont b = a->font(0);
+                    b.setItalic(false);
+                    a->setFont(0,b);
+                }
+            }
+      }
+
+    // Set the group font to italic
+    QFont f = item->font(0);
+    f.setItalic(false);
+    item->setFont(0, f);
 
 }
 
-// DOESNT WORK
 void TreeArea::hideGroup(){
+    // Get the current item
     QTreeWidgetItem* item = this->groupsTree->currentItem();
-    QList<QTreeWidgetItem*> wholeTree = this->groupsTree->findItems("", Qt::MatchStartsWith, 1);
+    // Get all the items of the tree
+    QList<QTreeWidgetItem*> wholeTree = this->groupsTree->findItems("", Qt::MatchContains | Qt::MatchRecursive, 0);
+    // Get all the items in the tree whose parent is the current item
     for (QTreeWidgetItem* &a: wholeTree){
             if (a->parent() == item){
+                // Hide the GraphicsItem
                 this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->getDisplayItem()->hide();
+                // Set the font to Italic
                 QFont f = a->font(0);
                 f.setItalic(true);
                 a->setFont(0, f);
+
+                // Set the italic font for the items related to the same sort in the sortsTree
+                QList<QTreeWidgetItem*> sortsInTheSortsTree = this->sortsTree->findItems(a->text(0), Qt::MatchExactly, 0);
+                for (QTreeWidgetItem* &a: sortsInTheSortsTree){
+                    QFont b = a->font(0);
+                    b.setItalic(true);
+                    a->setFont(0,b);
+                }
             }
-    }
+      }
+
+    // Set the group font to italic
+    QFont f = item->font(0);
+    f.setItalic(true);
+    item->setFont(0, f);
 }
 
 void TreeArea::changeGroupColor(){
+    // Get the current item
+    QTreeWidgetItem* item = this->groupsTree->currentItem();
+    // Get all the items of the tree
+    QList<QTreeWidgetItem*> wholeTree = this->groupsTree->findItems("", Qt::MatchContains | Qt::MatchRecursive, 0);
 
+    QColor couleur = QColorDialog::getColor();
+
+    if (!couleur.isValid()) {
+        return ;
+    } else {
+        for (QTreeWidgetItem* &a: wholeTree){
+            //GSortPtr sortFound = this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->getRect()->paint();
+            //sortFound->getDisplayItem()->getRect()->setBrush(QBrush(QColor(couleur)));
+
+            // Set the color of the item in the sortsTree to the same color
+            item->setForeground(0, QBrush(QColor(couleur)));
+    }
 }
 
 void TreeArea::hideSortFromGroup(){
@@ -387,8 +448,8 @@ void TreeArea::hideSortFromGroup(){
     QString text = item->text(0);
 
     // Set the italic font for the items related to the same sort in the sortsTree
-    QList<QTreeWidgetItem*> sortsInTheGroupTree = this->sortsTree->findItems(text, Qt::MatchExactly, 0);
-    for (QTreeWidgetItem* &a: sortsInTheGroupTree){
+    QList<QTreeWidgetItem*> sortsInTheSortsTree = this->sortsTree->findItems(text, Qt::MatchExactly, 0);
+    for (QTreeWidgetItem* &a: sortsInTheSortsTree){
         QFont b = a->font(0);
         b.setItalic(true);
         a->setFont(0,b);
@@ -422,8 +483,8 @@ void TreeArea::showSortFromGroup(){
     QString text = item->text(0);
 
     // Set the normal font for the items related to the same sort in the sortsTree
-    QList<QTreeWidgetItem*> sortsInTheGroupTree = this->sortsTree->findItems(text, Qt::MatchExactly, 0);
-    for (QTreeWidgetItem* &a: sortsInTheGroupTree){
+    QList<QTreeWidgetItem*> sortsInTheSortsTree = this->sortsTree->findItems(text, Qt::MatchExactly, 0);
+    for (QTreeWidgetItem* &a: sortsInTheSortsTree){
         QFont b = a->font(0);
         b.setItalic(false);
         a->setFont(0,b);
@@ -457,9 +518,9 @@ void TreeArea::changeSortColorFromGroup(){
     // Set the color of the item in the sortsTree to the same color
     item->setForeground(0, QBrush(QColor(couleur)));
 
-    // Set the same color for the items related to the same sort in the groupsTree
-    QList<QTreeWidgetItem*> sortsInTheGroupTree = this->sortsTree->findItems(text, Qt::MatchExactly, 0);
-    for (QTreeWidgetItem* &a: sortsInTheGroupTree){
+    // Set the same color for the items related to the same sort in the sortsTree
+    QList<QTreeWidgetItem*> sortsInTheSortsTree = this->sortsTree->findItems(text, Qt::MatchExactly, 0);
+    for (QTreeWidgetItem* &a: sortsInTheSortsTree){
         a->setForeground(0, QBrush(QColor(couleur)));
     }
 }

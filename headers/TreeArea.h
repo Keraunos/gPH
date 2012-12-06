@@ -182,6 +182,25 @@ public slots:
       */
     void changeGroupColor();
 
+    /**
+      * @brief hide a sort clicked from the groupsTree
+      *
+      */
+    void hideSortFromGroup();
+
+    /**
+      * @brief show a sort clicked from the groupsTree
+      *
+      */
+    void showSortFromGroup();
+
+    /**
+      * @brief change sort color clicked from the groupsTree
+      *
+      */
+    void changeSortColorFromGroup();
+
+
 
 
 

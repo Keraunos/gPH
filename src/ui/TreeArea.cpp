@@ -435,6 +435,7 @@ void TreeArea::changeGroupColor(){
             item->setForeground(0, QBrush(QColor(couleur)));
     }
 }
+}
 
 void TreeArea::hideSortFromGroup(){
     // Get the current item

@@ -462,6 +462,14 @@ void MainWindow::printStyle() {
         it->second->getDisplayItem()->getRect()->setPen(QPen(Qt::black, 4));
         it->second->getDisplayItem()->getRect()->setBrush(Qt::NoBrush);
     }
+
+    std::vector<GProcessPtr> processes = view->myArea->getPHPtr()->getGraphicsScene()->getProcesses();
+    for (GProcessPtr &a: processes){
+        a->getEllipseItem()->setPen(QPen(Qt::black, 3));
+        a->getEllipseItem()->setBrush(Qt::NoBrush);
+    }
+
+
 }
 
 // hide the text area. Called by the signal actionHideText

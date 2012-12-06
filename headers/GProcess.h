@@ -45,6 +45,12 @@ class GProcess {
           * @return QGraphicsItem the graphical item representing the Process
           */
 		QGraphicsItem* getDisplayItem (void);
+
+        /**
+          * @brief gets the ellipse
+          *
+          */
+        QGraphicsEllipseItem* getEllipseItem();
 	
 	protected:
 

@@ -138,7 +138,7 @@ public slots:
       * @brief menu to show when the sort is clicked
       *
       */
-    void sortsItemClicked(QTreeWidgetItem* item);
+    void sortsItemClicked(const QPoint& pos);
 
     /**
       * @brief hide a sort
@@ -162,7 +162,7 @@ public slots:
       * @brief menu to show when the sort is clicked
       *
       */
-    void groupsItemClicked(QTreeWidgetItem* item);
+    void groupsItemClicked(const QPoint& pos);
 
     /**
       * @brief hide a sort

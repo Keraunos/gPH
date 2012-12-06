@@ -53,10 +53,10 @@ class GAction {
 		QGraphicsItem* getDisplayItem (void);
 
         /**
-          * @brief the related Action
+          * @brief get the action
           *
           */
-        ActionPtr action;
+        ActionPtr getAction();
 	
 	protected:
 	
@@ -71,6 +71,12 @@ class GAction {
           *
           */
 		QGraphicsItem* display;
+
+        /**
+          * @brief the related Action
+          *
+          */
+        ActionPtr action;
 
         /**
           * @brief the pair of graphical items representing the tails of the arrows of the Action

@@ -102,3 +102,6 @@ map<string, GSortPtr> PHScene::getGSorts(){
     return this->sorts;
 }
 
+std::vector<GProcessPtr> PHScene::getProcesses(){
+    return processes;
+}

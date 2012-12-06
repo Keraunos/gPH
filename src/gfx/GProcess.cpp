@@ -38,3 +38,7 @@ GProcess::~GProcess() {
 QGraphicsItem* GProcess::getDisplayItem (void) {
 	return display;
 }
+
+QGraphicsEllipseItem* GProcess::getEllipseItem(){
+    return ellipse;
+}

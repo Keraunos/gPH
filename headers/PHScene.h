@@ -74,6 +74,12 @@ class PHScene: public QGraphicsScene {
           */
         std::vector<GActionPtr> actions;
 
+        /**
+          * @brief get the processes
+          *
+          */
+        std::vector<GProcessPtr> getProcesses();
+
 
 	protected:
 

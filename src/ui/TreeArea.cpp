@@ -193,7 +193,7 @@ void TreeArea::addToGroup(){
         // counter for the exception. Does not work
         int i = 0;
         for (QTreeWidgetItem* &a: selected){
-            if (this->groupsTree->findItems(a->text(0), Qt::MatchExactly, 0).isEmpty() == false){
+            if (this->groupsTree->findItems(a->text(0), Qt::MatchExactly | Qt::MatchRecursive, 0).isEmpty() == false){
                 i++;
             }
         }

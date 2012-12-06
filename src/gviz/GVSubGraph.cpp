@@ -35,9 +35,11 @@ GVSubGraph::~GVSubGraph() {
 const qreal GVSubGraph::nodeSize= 50;
 void GVSubGraph::setGraphAttributes(void) {
 	//Set graph attributes
-    _agset(_graph, "overlap", "prism");
+    //_agset(_graph, "overlap", "prism");
+    _agset(_graph, "overlap", "scale");
     _agset(_graph, "splines", "true");
 	_agset(_graph, "dpi", "96,0");
+    _agset(_graph, "sep", "+12");
 	 //Divide the wanted width by the DPI to get the value in points
     QString nodePtsWidth = QString("%1").arg(GVSubGraph::nodeSize/_agget(_graph, "dpi", "96,0").replace(',', ".").toDouble());
 	//GV uses , instead of . for the separator in floats
@@ -219,3 +221,12 @@ void GVSubGraph::removeEdge(const QPair<QString, QString>& key) {
 qreal GVSubGraph::getDPI() {
 	return _agget(_graph, "dpi", "96,0").replace(',', ".").toDouble();
 }
+
+Agedge_t* GVSubGraph::getEdge(const QString &sourceName, const QString &targetName) {
+    QPair<QString, QString> key(sourceName, targetName);
+    if (!_edges.contains(key)) return NULL;
+    return _edges.value(key);
+}
+
+
+Agraph_t* GVSubGraph::graph() { return this->_graph; }

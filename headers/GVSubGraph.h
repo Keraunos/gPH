@@ -170,6 +170,30 @@ class GVSubGraph {
           */
 		QList<GVEdge> edges();
 
+        /**
+          * @brief gets a graphviz edge by its source node name and target node name
+          *
+          * @param QString the name of the source node
+          * @param QString the name of the target name
+          * @return Agedge_t* a pointer to the retrieved edge
+          */
+        Agedge_t* getEdge(const QString& sourceName, const QString& targetName);
+
+        /**
+          * @brief gets a node by its name
+          *
+          * @param QString the name of the node
+          * @return Agnode_t* a pointer to the retrieved node
+          */
+        Agnode_t* getNode (const QString& name);
+
+        /**
+          * @brief gets the graphviz graph struct of this GVSubGraph
+          *
+          * @return Agraph_t* a pointer to the graph
+          */
+        Agraph_t* graph();
+
 	protected:
 		GVSubGraph();
 
@@ -201,13 +225,6 @@ class GVSubGraph {
           */
 		bool hasNode (const QString& name);
 
-        /**
-          * @brief gets a node
-          *
-          * @param QString the name of the node
-          *
-          */
-		Agnode_t* getNode (const QString& name);
 
 
 		QMap<QString, Agnode_t*> _nodes;

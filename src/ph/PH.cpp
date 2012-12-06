@@ -6,6 +6,9 @@
 #include "PHScene.h"
 #include "Sort.h"
 
+#include <GVSubGraph.h>
+#include <QDebug>
+
 
 #define DEFAULT_INFINITE_DEFAULT_RATE true
 #define DEFAULT_RATE 0.
@@ -87,13 +90,31 @@ GVGraphPtr PH::toGVGraph(void) {
 	GVGraphPtr res = make_shared<GVGraph>(QString("PH Graph"));
 	QString s;	
 	
+    QString posVal;
     // add Sorts and Processes (well named)
 	for (auto &e : sorts) {
 		s = makeClusterName(e.second->getName());
 		res->addSubGraph(s);
 		res->getSubGraph(s)->setLabel(QString::fromStdString(e.second->getName()));
-		for (int i = 0; i < e.second->countProcesses(); i++)
-			res->getSubGraph(s)->addNode(makeProcessName(e.second->getProcess(i)));
+        for (int i = 0; i < e.second->countProcesses(); i++) {
+            res->getSubGraph(s)->addNode(makeProcessName(e.second->getProcess(i)));
+
+            // check if _agset works on processes:
+            //agsafeset(res->getNode(makeProcessName(e.second->getProcess(i))), "shape", "Msquare", "Mdiamond");
+
+            posVal = QString::number(0).append(",").append(QString::number(i)).append("!");
+            _agset(res->getNode(makeProcessName(e.second->getProcess(i))), "pos", posVal);
+            //qDebug() << makeProcessName(e.second->getProcess(i)) << " >> " << posVal;
+        }
+
+        // check if _agset works on clusters:
+        //_agset(res->getSubGraph(s)->graph(), "labelloc", "b"); // set label location in cluster: b(ottom), t(op)
+
+        // pos attr DOES NOT WORK on clusters for fdp!
+        //posVal = QString::number(k).append(",").append(QString::number(0)).append("!");
+        //k++;
+        //_agset(res->getSubGraph(s)->graph(), "pos", posVal);
+        //qDebug() << ">>>> " << s << " >> " << posVal;
 	}
 	
     // add Actions (well named)
@@ -102,6 +123,17 @@ GVGraphPtr PH::toGVGraph(void) {
 					, 	makeProcessName(a->getTarget()));
 		res->addEdge(	makeProcessName(a->getTarget())
 					, 	makeProcessName(a->getResult()));
+
+        // if the target and the result are next to each other in their sort, prevent overlap
+//        if (a->getTarget()->getSort() == a->getResult()->getSort()) {
+//            //qDebug() << "intern bounce in " << a->getTarget()->getSort()->getName().c_str();
+//            int diffIndex(a->getTarget()->getNumber() - a->getResult()->getNumber());
+//            if (diffIndex == 1 || diffIndex == -1) {
+//                // TODO do something to avoid edge overlap
+//                //qDebug() << "close bounce: " << makeProcessName(a->getTarget()) << " -> " << makeProcessName(a->getResult());
+//                //_agset(res->getEdge(makeProcessName(a->getTarget()), makeProcessName(a->getResult())), "len", "10");
+//            }
+//        }
 	}
 	
     // make graphviz calculate an appropriate layout

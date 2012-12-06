@@ -23,7 +23,7 @@ GVGraph::GVGraph(QString name, QFont font) : GVSubGraph() {
 // layout elements
 void GVGraph::applyLayout() {	
     gvFreeLayout(_context, _graph);
-    _gvLayout(_context, _graph, "dot");
+    _gvLayout(_context, _graph, "fdp");
 }
 
 

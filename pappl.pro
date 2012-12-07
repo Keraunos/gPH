@@ -24,8 +24,7 @@ HEADERS 	= 	headers/Action.h 		\
 				headers/Sort.h \
     headers/Area.h \
     headers/TextArea.h \
-    headers/TreeArea.h \
-    headers/QProgressIndicator.h
+    headers/TreeArea.h
 				
 INCLUDEPATH = headers headers/axe headers/test
 
@@ -45,8 +44,7 @@ SOURCES			= 	src/gfx/GProcess.cpp	\
 					src/ui/MyArea.cpp \
     src/ui/TextArea.cpp \
     src/ui/TreeArea.cpp \
-    src/ui/Area.cpp \
-    src/ui/QProgressIndicator.cpp
+    src/ui/Area.cpp
 
 #So 2013 (needed for Axe)
 QMAKE_CXXFLAGS += -std=c++0x

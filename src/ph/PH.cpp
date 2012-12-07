@@ -6,7 +6,7 @@
 #include "PHScene.h"
 #include "Sort.h"
 
-#include <GVSubGraph.h>
+#include <GVGraph.h>
 #include <QDebug>
 
 
@@ -104,6 +104,7 @@ GVGraphPtr PH::toGVGraph(void) {
 
             posVal = QString::number(0).append(",").append(QString::number(i)).append("!");
             _agset(res->getNode(makeProcessName(e.second->getProcess(i))), "pos", posVal);
+
             //qDebug() << makeProcessName(e.second->getProcess(i)) << " >> " << posVal;
         }
 
@@ -138,9 +139,69 @@ GVGraphPtr PH::toGVGraph(void) {
 	
     // make graphviz calculate an appropriate layout
 	res->applyLayout();
+
+    for (auto &e : sorts) {
+        s = makeClusterName(e.second->getName());
+//        if (s == "cluster_c") {
+//            qDebug() << "cluster_c top left x = " << GD_bb(res->getSubGraph(s)->graph()).LL.x <<
+//                        " | y = " << GD_bb(res->getSubGraph(s)->graph()).UR.y;
+//        }
+        for (int i = 0; i < e.second->countProcesses(); i++) {
+            s = makeProcessName(e.second->getProcess(i));
+            //qDebug() << s << ": x = " << ND_coord(res->getNode(s)).x << " | y = " << ND_coord(res->getNode(s)).y;
+            //qDebug() << s << ": x = " << res->getNode(s)->u.coord.x << " | y = " << res->getNode(s)->u.coord.y;
+        }
+    }
+
 	return res;
 }
 
+
+GVGraphPtr PH::updateGVGraph(PHScene *scene) {
+
+    // TODO make sure graph name is always unique in the application (see GVGraph constructor)
+    GVGraphPtr res = make_shared<GVGraph>(QString("PH Graph 2"));
+
+    // add Processes as Nodes (well named)
+    QString clusterName, processName, posVal;
+    qreal nodeX, nodeY;
+    for (auto &e : scene->getGSorts()) {
+        clusterName = makeClusterName(e.second->getSort()->getName());
+        //qDebug() << "cluster name: " << clusterName;
+        for (int i(0); i < e.second->getSort()->countProcesses(); i++) {
+            processName = makeProcessName(e.second->getSort()->getProcess(i));
+            res->addNode(processName);
+            nodeX =   (qreal) e.second->getSort()->getProcess(i)->getGProcess()->getNode()->centerPos.x() / res->getDPI();
+            nodeY = - (qreal) e.second->getSort()->getProcess(i)->getGProcess()->getNode()->centerPos.y() / res->getDPI();
+            //qDebug() << processName << ": x = " << nodeX << " | y = " << nodeY;
+            posVal = QString::number(nodeX).append(",").append(QString::number(nodeY)).append("!");
+            _agset(res->getNode(processName), "pos", posVal);
+        }
+    }
+
+    // add Actions as Edges (well named)
+    for (ActionPtr &a : actions) {
+        res->addEdge(	makeProcessName(a->getSource())
+                    , 	makeProcessName(a->getTarget()));
+        res->addEdge(	makeProcessName(a->getTarget())
+                    , 	makeProcessName(a->getResult()));
+    }
+
+    // let graphviz apply layout
+    qDebug() << "start applying layout";
+    res->applyLayout();
+    qDebug() << "stop applying layout";
+
+    for (auto &e : sorts) {
+        for (int i = 0; i < e.second->countProcesses(); i++) {
+            processName = makeProcessName(e.second->getProcess(i));
+            //qDebug() << processName << ": x = " << ND_coord(res->getNode(processName)).x << " | y = " << ND_coord(res->getNode(processName)).y;
+            //qDebug() << processName << ": x = " << res->getNode(processName)->u.coord.x << " | y = " << res->getNode(processName)->u.coord.y;
+        }
+    }
+
+    return res;
+}
 
 // output for DOT file
 string PH::toDotString (void) {

@@ -5,7 +5,6 @@
 #include "PHIO.h"
 #include "Exceptions.h"
 #include "Area.h"
-#include "QProgressIndicator.h"
 
 MainWindow::MainWindow() {
 
@@ -208,16 +207,6 @@ std::vector<QString> MainWindow::getAllPaths() {
 // open a new tab
 MyArea* MainWindow::openTab() {
 
-//        QProgressBar* progressBar = new QProgressBar(this);
-//        progressBar->setMaximumHeight(16);
-//        progressBar->setMaximumWidth(200);
-//        progressBar->setTextVisible(false);
-//        progressBar->setRange(0,0);
-//        progressBar->setValue(1);
-//        this->statusBar()->addPermanentWidget(progressBar);
-//        this->statusBar()->showMessage("Opening PH file...");
-//        this->show();
-
         // OpenFile dialog
         QFileDialog* filedialog = new QFileDialog(this);
         QString file = filedialog->getOpenFileName(this, "Open...");
@@ -230,7 +219,6 @@ MyArea* MainWindow::openTab() {
         if(file!=NULL) {
 
 
-            filedialog->close();
             QFileInfo pathInfo(file);
             std::vector<QString> allPath = this->getAllPaths();
             int size = allPath.size();
@@ -256,9 +244,17 @@ MyArea* MainWindow::openTab() {
 
                 try {
 
-                    QMessageBox mb;
-                    mb.setText("Click OK to load the PH file. \nFor big files, this may take 1 to 2 minutes.");
-                    mb.exec();
+                    if (pathInfo.size()>1000){
+                        QMessageBox mb;
+                        mb.setText("\nClick OK to load the PH file. \nFor big files, this may take 1 to 2 minutes.");
+                        //QProgressBar* progressBar = new QProgressBar(&mb);
+                        //progressBar->setMaximumHeight(16);
+                        //progressBar->setMaximumWidth(200);
+                        //progressBar->setTextVisible(false);
+                        //progressBar->setRange(0,0);
+                        //progressBar->setValue(1);
+                        mb.exec();
+                    }
 
                     // render graph
                     PHPtr myPHPtr = PHIO::parseFile(path);

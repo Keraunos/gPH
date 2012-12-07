@@ -6,6 +6,7 @@
 #include "TextArea.h"
 #include "TreeArea.h"
 #include "MyArea.h"
+#include "MainWindow.h"
 
 class Area : public QWidget
 {
@@ -35,6 +36,12 @@ public:
       *
       */
     TreeArea *treeArea;
+
+    /**
+      * @brief pointer to the MainWindow;
+      *
+      */
+    MainWindow* mainWindow;
 
     /**
       * @brief hides the text. Called from a signal in MainWindow

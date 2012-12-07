@@ -17,17 +17,29 @@ Area::Area(QWidget *parent) :
 }
 
 void Area::hideText(){
-    this->textArea->hide();
+    QList<QMdiSubWindow*> tabs = this->mainWindow->getCentraleArea()->subWindowList();
+    for (QMdiSubWindow* &a: tabs){
+        ((Area*)a->widget())->textArea->hide();
+    }
 }
 
 void Area::showText(){
-    this->textArea->show();
+    QList<QMdiSubWindow*> tabs = this->mainWindow->getCentraleArea()->subWindowList();
+    for (QMdiSubWindow* &a: tabs){
+        ((Area*)a->widget())->textArea->show();
+    }
 }
 
 void Area::hideTree(){
-    this->treeArea->hide();
+    QList<QMdiSubWindow*> tabs = this->mainWindow->getCentraleArea()->subWindowList();
+    for (QMdiSubWindow* &a: tabs){
+        ((Area*)a->widget())->treeArea->hide();
+    }
 }
 
 void Area::showTree(){
-    this->treeArea->show();
+    QList<QMdiSubWindow*> tabs = this->mainWindow->getCentraleArea()->subWindowList();
+    for (QMdiSubWindow* &a: tabs){
+        ((Area*)a->widget())->treeArea->show();
+    }
 }

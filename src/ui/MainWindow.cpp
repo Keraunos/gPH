@@ -219,6 +219,7 @@ MyArea* MainWindow::openTab() {
 
                 // parse file
                 Area *area = new Area();
+                area->mainWindow = this;
                 try {
                     // render graph
                     PHPtr myPHPtr = PHIO::parseFile(path);

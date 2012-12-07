@@ -373,6 +373,15 @@ void TreeArea::showGroup(){
             if (a->parent() == item){
                 // Show the GraphicsItem
                 this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->getDisplayItem()->show();
+
+                // Hide all the actions related to the sort
+                std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
+                for (GActionPtr &b: allActions){
+                    if (b->getAction()->getSource()->getSort()->getName() == a->text(0).toStdString() || b->getAction()->getTarget()->getSort()->getName() == a->text(0).toStdString() || b->getAction()->getResult()->getSort()->getName() == a->text(0).toStdString()){
+                        b->getDisplayItem()->show();
+                    }
+                }
+
                 // Set the font to Normal
                 QFont f = a->font(0);
                 f.setItalic(false);
@@ -407,6 +416,15 @@ void TreeArea::hideGroup(){
                 if (a->parent() == item){
                     // Hide the GraphicsItem
                     this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->getDisplayItem()->hide();
+
+                    // Hide all the actions related to the sort
+                    std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
+                    for (GActionPtr &b: allActions){
+                        if (b->getAction()->getSource()->getSort()->getName() == a->text(0).toStdString() || b->getAction()->getTarget()->getSort()->getName() == a->text(0).toStdString() || b->getAction()->getResult()->getSort()->getName() == a->text(0).toStdString()){
+                            b->getDisplayItem()->hide();
+                        }
+                    }
+
                     // Set the font to Italic
                     QFont f = a->font(0);
                     f.setItalic(true);

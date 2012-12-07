@@ -109,12 +109,10 @@ protected:
     QAction *actionNegativeStyle;
     QAction *actionPrintStyle;
     QMenu *menuText;
-    QAction *actionHideText;
-    QAction *actionShowText;
+    QAction *actionHideShowText;
     QAction *actionChangeTextBackgroundColor;
     QMenu *menuTree;
-    QAction *actionHideTree;
-    QAction *actionShowTree;
+    QAction *actionHideShowTree;
 
     // actions for the menu Computation
     QAction *actionFindFixpoints;
@@ -218,16 +216,10 @@ public slots:
     void printStyle();
 
     /**
-      * @brief hide the text area
+      * @brief hide / show the text area
       *
       */
-    void hideText();
-
-    /**
-      * @brief show the text area
-      *
-      */
-    void showText();
+    void hideShowText();
 
     /**
       * @brief change text background color
@@ -236,16 +228,10 @@ public slots:
     void changeTextBackgroundColor();
 
     /**
-      * @brief hide the tree area
+      * @brief hide / show the tree area
       *
       */
-    void hideTree();
-
-    /**
-      * @brief show the tree area
-      *
-      */
-    void showTree();
+    void hideShowTree();
 
 
     //menu computation

@@ -67,9 +67,31 @@ public:
       */
     void showTree();
 
+
+
+    QWidget* textButtonArea;
+    QWidget* treeButtonArea;
+
+    QPushButton* leftButton;
+    QPushButton* rightButton;
+
 signals:
 
 public slots:
+
+
+
+    /**
+      * @brief method to hide or show the text area clicking on the button
+      *
+      */
+    void hideOrShowText();
+
+    /**
+      * @brief method to hide or show the text area clicking on the button
+      *
+      */
+    void hideOrShowTree();
 
 };
 

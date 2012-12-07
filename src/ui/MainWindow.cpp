@@ -72,12 +72,12 @@ MainWindow::MainWindow() {
     actionNegativeStyle = menuDefaultStyles->addAction("Negative contrast");
     actionPrintStyle = menuDefaultStyles->addAction("Print");    
     menuText = menuPreferences->addMenu("Text Preferences");
-    actionHideText = menuText->addAction("Hide Text");
-    actionShowText = menuText->addAction("Show Text");
+    actionHideShowText = menuText->addAction("Hide / Show Text");
+    actionHideShowText->setCheckable(true);
     actionChangeTextBackgroundColor = menuText->addAction("Change Text Background Color");
     menuTree = menuPreferences->addMenu("Tree Preferences");
-    actionHideTree = menuTree->addAction("Hide Tree");
-    actionShowTree = menuTree->addAction("Show Tree");
+    actionHideShowTree = menuTree->addAction("Hide / Show Tree");
+    actionHideShowTree->setCheckable(true);
     actionShowInit = menuView->addAction("Show initial state");
     actionHighlight = menuView->addAction("Highlight possible actions");
     actionHide = menuView->addAction("Hide actions");
@@ -96,11 +96,9 @@ MainWindow::MainWindow() {
     QObject::connect(actionNaturalStyle, SIGNAL(triggered()), this, SLOT(positiveContrast()));
     QObject::connect(actionNegativeStyle, SIGNAL(triggered()), this, SLOT(negativeContrast()));
     QObject::connect(actionPrintStyle, SIGNAL(triggered()), this, SLOT(printStyle()));
-    QObject::connect(actionHideText, SIGNAL(triggered()), this, SLOT(hideText()));
-    QObject::connect(actionShowText, SIGNAL(triggered()), this, SLOT(showText()));
+    QObject::connect(actionHideShowText, SIGNAL(triggered()), this, SLOT(hideShowText()));
     QObject::connect(actionChangeTextBackgroundColor, SIGNAL(triggered()), this, SLOT(changeTextBackgroundColor()));
-    QObject::connect(actionHideTree, SIGNAL(triggered()), this, SLOT(hideTree()));
-    QObject::connect(actionShowTree, SIGNAL(triggered()), this, SLOT(showTree()));
+    QObject::connect(actionHideShowTree, SIGNAL(triggered()), this, SLOT(hideShowTree()));
 
     // shortcuts for the menu View
     actionAdjust->setShortcut(     QKeySequence(Qt::CTRL + Qt::Key_L));
@@ -157,11 +155,9 @@ MainWindow::MainWindow() {
         this->actionNaturalStyle->setEnabled(false);
         this->actionNegativeStyle->setEnabled(false);
         this->actionPrintStyle->setEnabled(false);
-        this->actionShowText->setEnabled(false);
-        this->actionHideText->setEnabled(false);
+        this->actionHideShowText->setEnabled(false);
         this->actionChangeTextBackgroundColor->setEnabled(false);
-        this->actionShowTree->setEnabled(false);
-        this->actionHideTree->setEnabled(false);
+        this->actionHideShowTree->setEnabled(false);
         this->actionFindFixpoints->setEnabled(false);
         this->actionRunStochasticSimulation->setEnabled(false);
         this->actionStatistics->setEnabled(false);
@@ -196,10 +192,13 @@ std::vector<QString> MainWindow::getAllPaths() {
 MyArea* MainWindow::openTab() {
 
         // OpenFile dialog
-        QString file = QFileDialog::getOpenFileName(this, "Open...");
+        QFileDialog filedialog(this);
+        QString file = filedialog.getOpenFileName(this, "Open...");
 
         // TODO refactor using early returns
         if(file!=NULL) {
+
+
             QFileInfo pathInfo(file);
             std::vector<QString> allPath = this->getAllPaths();
             int size = allPath.size();
@@ -215,7 +214,7 @@ MyArea* MainWindow::openTab() {
 
             if(!alreadyOpen) {
                 //need a std::string instead of a QString
-                std::string path =	file.toStdString();
+                std::string path =	file.toStdString();                
 
                 // parse file
                 Area *area = new Area();
@@ -245,17 +244,24 @@ MyArea* MainWindow::openTab() {
                     theNewTab->setWindowTitle(fileName);
                     this->enableMenu();
 
+
+
                     return area->myArea;
+
 
 
                 } catch(exception_base& argh) {
                     QMessageBox::critical(this, "Error", "Extension not recognized. Only ph files are accepted.");
                     return NULL;
                 }
-            } else {
+            }
+
+            else {
                 QMessageBox::critical(this, "Error", "This file is already opened !");
                 return NULL;
             }
+
+
         } else {
             return NULL;
         }
@@ -473,16 +479,10 @@ void MainWindow::printStyle() {
 
 }
 
-// hide the text area. Called by the signal actionHideText
-void MainWindow::hideText(){
+// hide / show the text area. Called by the signal actionHideShowText
+void MainWindow::hideShowText(){
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
-    view->hideText();
-}
-
-// show the text area. Called by the signal actionShowText
-void MainWindow::showText(){
-    Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
-    view->showText();
+    view->hideOrShowText();
 }
 
 // change the text background color in the text area. Called by the signal actionChangeTextBackgroundColor
@@ -493,15 +493,9 @@ void MainWindow::changeTextBackgroundColor(){
 }
 
 // hide the tree area. Called by the signal actionHideTree
-void MainWindow::hideTree(){
+void MainWindow::hideShowTree(){
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
-    view->hideTree();
-}
-
-// show the tree area. Called by the signal actionShowTree
-void MainWindow::showTree(){
-    Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
-    view->showTree();
+    view->hideOrShowTree();
 }
 
 // main method for the computation menu
@@ -679,11 +673,9 @@ void MainWindow::disableMenu(QMdiSubWindow* subwindow){
         this->actionNaturalStyle->setEnabled(false);
         this->actionNegativeStyle->setEnabled(false);
         this->actionPrintStyle->setEnabled(false);
-        this->actionShowText->setEnabled(false);
-        this->actionHideText->setEnabled(false);
+        this->actionHideShowText->setEnabled(false);
         this->actionChangeTextBackgroundColor->setEnabled(false);
-        this->actionShowTree->setEnabled(false);
-        this->actionHideTree->setEnabled(false);
+        this->actionHideShowTree->setEnabled(false);
         this->actionFindFixpoints->setEnabled(false);
         this->actionComputeReachability->setEnabled(false);
         this->actionRunStochasticSimulation->setEnabled(false);
@@ -706,11 +698,9 @@ void MainWindow::enableMenu(){
         this->actionNaturalStyle->setEnabled(true);
         this->actionNegativeStyle->setEnabled(true);
         this->actionPrintStyle->setEnabled(true);
-        this->actionShowText->setEnabled(true);
-        this->actionHideText->setEnabled(true);
+        this->actionHideShowText->setEnabled(true);
         this->actionChangeTextBackgroundColor->setEnabled(true);
-        this->actionShowTree->setEnabled(true);
-        this->actionHideTree->setEnabled(true);
+        this->actionHideShowTree->setEnabled(true);
         this->actionFindFixpoints->setEnabled(true);
         this->actionComputeReachability->setEnabled(true);
         this->actionRunStochasticSimulation->setEnabled(true);

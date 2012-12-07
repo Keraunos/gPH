@@ -462,17 +462,14 @@ void TreeArea::changeGroupColor(){
                 // If the sort is in the group, change rect color
                 if (a->parent() == item){
                     GSortPtr sortFound = this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString());
-
-                    QPen p;
-                    p.setBrush(QBrush(QColor(couleur)));
-                    //sortFound->getRect()->setPen(p);
+                    sortFound->getDisplayItem()->getRect()->setPen(QPen(QColor(couleur), 4));
                 }
             }
-
-                // Set the color of the item in the sortsTree to the same color
-                item->setForeground(0, QBrush(QColor(couleur)));
+        // Set the color of the item in the sortsTree to the same color
+        item->setForeground(0, QBrush(QColor(couleur)));
         }
     }
+
 
 }
 

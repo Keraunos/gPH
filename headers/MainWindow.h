@@ -78,6 +78,8 @@ protected:
     QMenu *menuFile;
     QMenu *menuEdit;
     QMenu *menuView;
+    QMenu *menuStyles;
+    QMenu *menuWorkspace;
     QMenu *menuComputation;
     QMenu *menuHelp;
 
@@ -99,17 +101,20 @@ protected:
     QAction *actionAdjust;
     QAction *actionZoomIn;
     QAction *actionZoomOut;
-    QMenu *menuPreferences;
-    QAction *actionBackgroundColor;
-    QAction *actionSortColor;
     QAction *actionShowInit;
     QAction *actionHighlight;
     QAction *actionHide;
     QAction *actionDisplayDetailed;
+
+    //actions for the menu Styles
+    QAction *actionBackgroundColor;
+    QAction *actionSortColor;
     QMenu *menuDefaultStyles;
     QAction *actionNaturalStyle;
     QAction *actionNegativeStyle;
     QAction *actionPrintStyle;
+
+    // actions for the menu Workspace
     QMenu *menuText;
     QAction *actionHideShowText;
     QAction *actionChangeTextBackgroundColor;

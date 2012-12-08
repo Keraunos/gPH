@@ -69,11 +69,34 @@ public:
 
 
 
+    /**
+      * @brief pointer to the widget containing the hide / show text buttons
+      *
+      */
     QWidget* textButtonArea;
+
+    /**
+      * @brief pointer to the widget containing the hide / show tree button
+      *
+      */
     QWidget* treeButtonArea;
 
+    /**
+      * @brief pointer to the hide / show tree button
+      *
+      */
     QPushButton* leftButton;
+
+    /**
+      * @brief pointer to the hide / show text button
+      *
+      */
     QPushButton* rightButton;
+
+    /**
+      * @brief pointer to the expand / reduce text button
+      *
+      */
     QPushButton* rightExpandButton;
 
 signals:

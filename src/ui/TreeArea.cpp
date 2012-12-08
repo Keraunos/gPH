@@ -99,6 +99,18 @@ TreeArea::TreeArea(QWidget *parent): QWidget(parent)
     layout->addWidget(group);
     this->setLayout(layout);
 
+    this->palette = new QList<QColor>();
+    this->palette->push_back(Qt::red);
+    this->palette->push_back(Qt::yellow);
+    this->palette->push_back(Qt::blue);
+    this->palette->push_back(Qt::green);
+    this->palette->push_back(Qt::cyan);
+    this->palette->push_back(Qt::magenta);
+    this->palette->push_back(Qt::gray);
+    this->palette->push_back(Qt::darkRed);
+
+    this->groupsPalette = new QMap<QTreeWidgetItem*, QColor>();
+
     QObject::connect(this->searchButton, SIGNAL(clicked()), this, SLOT(searchSort()));
     QObject::connect(this->cancelSearchButton, SIGNAL(clicked()), this, SLOT(cancelSearch()));
 
@@ -164,6 +176,8 @@ void TreeArea::addGroup(){
             a->setText(0, text);
             // Insert the item at the end of the attribute: groups
             this->groups.push_back(a);
+            int size = this->groupsPalette->size();
+            this->groupsPalette->insert(a, this->palette->at(size%8));
         }
         else {
                 QErrorMessage* nameError = new QErrorMessage(this);
@@ -177,7 +191,16 @@ void TreeArea::remove(){
     // The way this method is done is weird, but it is the only way to do it properly
     // Select the current item
     QTreeWidgetItem* item = this->groupsTree->currentItem();
-    // Put it at the top
+    QList<QTreeWidgetItem*> itemFounds = this->groupsTree->findItems("", Qt::MatchContains | Qt::MatchRecursive, 0);
+    for (QTreeWidgetItem* &s: itemFounds){
+        if(s->parent() == item || (s == item && item->childCount() ==0)){
+            try {
+                this->myPHPtr->getGraphicsScene()->getGSort(s->text(0).toStdString())->getDisplayItem()->getRect()->setPen(QPen(Qt::transparent));
+            }
+            catch (const std::exception e){ }
+        }
+    }
+    // Put the current item at the top
     int i = this->groupsTree->indexOfTopLevelItem(item);
     // Select the item at the top
     this->groupsTree->takeTopLevelItem(i);
@@ -190,7 +213,7 @@ void TreeArea::addToGroup(){
     // Check that at least one sort and one group are selected
     if(!this->sortsTree->selectedItems().isEmpty() && !this->groupsTree->selectedItems().isEmpty()){
         QList<QTreeWidgetItem*> selected = this->sortsTree->selectedItems();
-        // counter for the exception. Does not work
+        // counter for the exception
         int i = 0;
         for (QTreeWidgetItem* &a: selected){
             if (this->groupsTree->findItems(a->text(0), Qt::MatchExactly | Qt::MatchRecursive, 0).isEmpty() == false){
@@ -203,6 +226,13 @@ void TreeArea::addToGroup(){
                 // Create a new item named after those item, whose parent is the groupsTree
                 QTreeWidgetItem* b = new QTreeWidgetItem(this->groupsTree->currentItem());
                 b->setText(0, a->text(0));
+                //QColor* coul(this->groupsPalette->value(this->groupsTree->currentItem()));
+                QColor coul = this->groupsPalette->value(this->groupsTree->currentItem());
+                QPen* pen = new QPen();
+                pen->setColor(coul);
+                pen->setWidth(4);
+                this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->getDisplayItem()->getRect()->setPen(*pen);
+                //this->changeSortRectColor(a, this->groupsPalette->value(this->groupsTree->currentItem()));
             }
         }
         else {
@@ -326,6 +356,10 @@ void TreeArea::changeSortColor(){
     for (QTreeWidgetItem* &a: sortsInTheGroupTree){
         a->setForeground(0, QBrush(QColor(couleur)));
     }
+}
+
+void TreeArea::changeSortRectColor(QTreeWidgetItem * item, QColor * couleur){
+    this->myPHPtr->getGraphicsScene()->getGSort(item->text(0).toStdString())->getRect()->setPen(QPen(*couleur, 4));
 }
 
 void TreeArea::groupsItemClicked(const QPoint& pos){
@@ -464,6 +498,7 @@ void TreeArea::changeGroupColor(){
                     GSortPtr sortFound = this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString());
                     sortFound->getDisplayItem()->getRect()->setPen(QPen(QColor(couleur), 4));
                 }
+                this->groupsPalette->insert(this->groupsTree->currentItem(), couleur);
             }
         // Set the color of the item in the sortsTree to the same color
         item->setForeground(0, QBrush(QColor(couleur)));

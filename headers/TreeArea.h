@@ -92,6 +92,18 @@ public:
       */
     QList<QTreeWidgetItem*> groups;
 
+    /**
+      * @brief map containing the colors of the groups
+      *
+      */
+    QMap<QTreeWidgetItem*, QColor>* groupsPalette;
+
+    /**
+      * @brief list containing the standard colors for the groups
+      *
+      */
+    QList<QColor>* palette;
+
 
 
 signals:
@@ -157,6 +169,12 @@ public slots:
       *
       */
     void changeSortColor();
+
+    /**
+      * @brief change sort's rect color
+      *
+      */
+    void changeSortRectColor(QTreeWidgetItem*, QColor*);
 
     /**
       * @brief menu to show when the sort is clicked

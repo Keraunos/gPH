@@ -31,6 +31,7 @@ MainWindow::MainWindow() {
     actionSaveas = menuFile->addAction("Save as...");
     menuExport = menuFile->addMenu("Export");
     actionPng = menuExport->addAction("png");
+    actionDot = menuExport->addAction("dot");
     menuFile->addSeparator();
     actionClose = menuFile->addAction("Close");
     actionQuit = menuFile->addAction("Quit");
@@ -50,6 +51,7 @@ MainWindow::MainWindow() {
     QObject::connect(actionSaveas,  SIGNAL(triggered()), this, SLOT(save()));
     QObject::connect(actionPng,     SIGNAL(triggered()), this, SLOT(exportPng()));
     QObject::connect(actionClose,   SIGNAL(triggered()), this, SLOT(closeTab()));
+    QObject::connect(actionDot, SIGNAL(triggered()), this, SLOT(exportDot()));
 
     // actions for the menu Edit
     actionUndo = menuEdit->addAction("Undo");
@@ -147,6 +149,7 @@ MainWindow::MainWindow() {
         this->actionClose->setEnabled(false);
         this->actionSaveas->setEnabled(false);
         this->actionPng->setEnabled(false);
+        this->actionDot->setEnabled(false);
         this->actionAdjust->setEnabled(false);
         this->actionZoomOut->setEnabled(false);
         this->actionZoomIn->setEnabled(false);
@@ -193,6 +196,16 @@ std::vector<QString> MainWindow::getAllPaths() {
 // open a new tab
 MyArea* MainWindow::openTab() {
 
+        QProgressBar* progressBar = new QProgressBar(this);
+        progressBar->setMaximumHeight(16);
+        progressBar->setMaximumWidth(200);
+        progressBar->setTextVisible(false);
+        progressBar->setRange(0,0);
+        progressBar->setValue(1);
+        this->statusBar()->addPermanentWidget(progressBar);
+        this->statusBar()->showMessage("Opening PH file...");
+        this->show();
+
         // OpenFile dialog
         QFileDialog* filedialog = new QFileDialog(this);
         QString file = filedialog->getOpenFileName(this, "Open...");
@@ -226,6 +239,8 @@ MyArea* MainWindow::openTab() {
                 // parse file
                 Area *area = new Area();
                 area->mainWindow = this;
+
+
                 try {
 
                     // render graph
@@ -282,6 +297,8 @@ MyArea* MainWindow::openTab() {
         } else {
             return NULL;
         }
+
+        this->statusBar()->hide();
 }
 
 
@@ -341,6 +358,31 @@ void MainWindow::exportPng() {
 		
     } else QMessageBox::critical(this, "Error", "No file opened !");
 	
+}
+
+void MainWindow::exportDot() {
+
+    /*if(!this->getCentraleArea()->subWindowList().isEmpty()){
+        // get the current subwindow
+        QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
+
+        // SaveFile dialog
+        QString fichier = QFileDialog::getSaveFileName(this, "Export as .dot file", QString(), "*.png");
+
+        // need the String file of the Dot
+        QString str= ((Area*) subWindow->widget())->myArea->getPHPtr()->toDotString()->(QString::fromStdString());
+
+
+
+        // add .dot to the name if necessary
+        if (fichier.indexOf(QString(".dot"), 0, Qt::CaseInsensitive) < 0)
+            fichier += ".dot";
+
+        // save it
+        image->save(fichier, "DOT");
+
+    } else QMessageBox::critical(this, "Error", "No file opened !");*/
+
 }
 
 // method to adjust the view
@@ -682,6 +724,7 @@ void MainWindow::disableMenu(QMdiSubWindow* subwindow){
         this->actionClose->setEnabled(false);
         this->actionSaveas->setEnabled(false);
         this->actionPng->setEnabled(false);
+        this->actionDot->setEnabled(false);
         this->actionAdjust->setEnabled(false);
         this->actionZoomIn->setEnabled(false);
         this->actionZoomOut->setEnabled(false);
@@ -707,6 +750,7 @@ void MainWindow::enableMenu(){
         this->actionClose->setEnabled(true);
         this->actionSaveas->setEnabled(true);
         this->actionPng->setEnabled(true);
+        this->actionDot->setEnabled(true);
         this->actionAdjust->setEnabled(true);
         this->actionZoomIn->setEnabled(true);
         this->actionZoomOut->setEnabled(true);

@@ -87,6 +87,7 @@ protected:
     QAction *actionSaveas;
     QMenu   *menuExport;
     QAction *actionPng;
+    QAction *actionDot;
     QAction *actionClose;
     QAction *actionQuit;
 
@@ -160,6 +161,12 @@ public slots:
       *
       */
     void exportPng();
+
+    /**
+      * @brief exports the current file to DOT file
+      *
+      */
+    void exportDot();
 
     // menu view
 

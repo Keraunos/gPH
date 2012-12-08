@@ -5,7 +5,7 @@
 #include "PHIO.h"
 #include "Exceptions.h"
 #include "Area.h"
-
+#include "QProgressIndicator.h"
 
 MainWindow::MainWindow() {
 
@@ -162,6 +162,8 @@ MainWindow::MainWindow() {
         this->actionRunStochasticSimulation->setEnabled(false);
         this->actionStatistics->setEnabled(false);
     }
+
+    this->indicator = new QProgressIndicator(this);
 }
 
 
@@ -192,8 +194,12 @@ std::vector<QString> MainWindow::getAllPaths() {
 MyArea* MainWindow::openTab() {
 
         // OpenFile dialog
-        QFileDialog filedialog(this);
-        QString file = filedialog.getOpenFileName(this, "Open...");
+        QFileDialog* filedialog = new QFileDialog(this);
+        QString file = filedialog->getOpenFileName(this, "Open...");
+
+        QObject::connect(filedialog, SIGNAL(accepted()), this->indicator, SLOT(startAnimation()));
+
+
 
         // TODO refactor using early returns
         if(file!=NULL) {
@@ -213,6 +219,7 @@ MyArea* MainWindow::openTab() {
             }
 
             if(!alreadyOpen) {
+
                 //need a std::string instead of a QString
                 std::string path =	file.toStdString();                
 
@@ -220,6 +227,7 @@ MyArea* MainWindow::openTab() {
                 Area *area = new Area();
                 area->mainWindow = this;
                 try {
+
                     // render graph
                     PHPtr myPHPtr = PHIO::parseFile(path);
                     area->myArea->setPHPtr(myPHPtr);
@@ -238,6 +246,7 @@ MyArea* MainWindow::openTab() {
                     //std::string string(myPHPtr->toString());
                     //area->textArea->setPlainText(QString::fromStdString(string));
 
+                    // call the PH file and write it in the text area (same as .ph)
                     QFile fichier(file);
                     fichier.open(QIODevice::ReadOnly);
                     QByteArray data;
@@ -252,7 +261,6 @@ MyArea* MainWindow::openTab() {
                     this->enableMenu();
 
 
-
                     return area->myArea;
 
 
@@ -263,10 +271,12 @@ MyArea* MainWindow::openTab() {
                 }
             }
 
+
             else {
                 QMessageBox::critical(this, "Error", "This file is already opened !");
                 return NULL;
             }
+
 
 
         } else {

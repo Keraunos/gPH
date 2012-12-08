@@ -235,8 +235,15 @@ MyArea* MainWindow::openTab() {
                     area->treeArea->build();
 
                     // call the PH string and write it in the text area
-                    std::string string(myPHPtr->toString());
-                    area->textArea->setPlainText(QString::fromStdString(string));
+                    //std::string string(myPHPtr->toString());
+                    //area->textArea->setPlainText(QString::fromStdString(string));
+
+                    QFile fichier(file);
+                    fichier.open(QIODevice::ReadOnly);
+                    QByteArray data;
+                    data = fichier.readAll();
+                    QString ligne(data);
+                    area->textArea->setPlainText(ligne);
 
                     // make the subwindow for the new tab
                     QMdiSubWindow *theNewTab = this->getCentraleArea()->addSubWindow(area);

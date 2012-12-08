@@ -74,6 +74,7 @@ public:
 
     QPushButton* leftButton;
     QPushButton* rightButton;
+    QPushButton* rightExpandButton;
 
 signals:
 
@@ -86,6 +87,12 @@ public slots:
       *
       */
     void hideOrShowText();
+
+    /**
+      * @brief method to expand or reduce the text area clicking on the button
+      *
+      */
+    void expandOrReduceText();
 
     /**
       * @brief method to hide or show the text area clicking on the button

@@ -166,7 +166,7 @@ void TreeArea::cancelSearch(){
 void TreeArea::addGroup(){
     // Classic method to show a new window with a TextBox
     bool ok;
-    QString text = QInputDialog::getText(this, "Add group...", "Name:", QLineEdit::Normal, QString::null, &ok);
+    QString text = QInputDialog::getText(this, "Add group...", "Name:", QLineEdit::Normal, QString::null, &ok).trimmed();
     // If the user entered a text
     if(ok && !text.isEmpty()){
         // Check that there isnt another group with the same name

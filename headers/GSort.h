@@ -1,12 +1,11 @@
 #pragma once
-#include <QGraphicsItem>
+#include <QGraphicsRectItem>
 #include <QGraphicsTextItem>
 #include <QColor>
 #include <list>
 #include "PH.h"
 #include "Sort.h"
 #include "GVCluster.h"
-#include "GSortItem.h"
 
 /**
   * @file GSort.h
@@ -24,7 +23,7 @@ typedef boost::shared_ptr<GSort> GSortPtr;
   * @brief contains style and layout info to draw a Sort
   *
   */
-class GSort {
+class GSort : public QGraphicsRectItem {
 
 	public:
 
@@ -39,36 +38,47 @@ class GSort {
 		~GSort();
 
         /**
-          * @brief gets the display
-          *
-          * @return QGraphicsItem the graphical item representing the Sort
-          */
-        //QGraphicsItem* getDisplayItem (void);
-        GSortItem* getDisplayItem (void);
-
-        /**
           * @brief get the rect item
           *
           */
-        QGraphicsRectItem* getRect(void);
-
-        GVCluster getCluster();
-        SortPtr getSort();
+        QGraphicsRectItem* getRect();
 
         /**
           * @brief the color used by the Actions that have this Sort as source
           *
           */
 		QColor* color;
-		
-	protected:
 
         /**
-          * @brief the graphical item representing the Sort
+          * @brief Handles mouse press event (handles drag start)
           *
+          * @param QGraphicsSceneMouseEvent the event to be handled
           */
-        //QGraphicsItem* display;
-        GSortItem* display;
+        void mousePressEvent(QGraphicsSceneMouseEvent *event);
+
+        /**
+          * @brief Handles mouse move event (handles drag)
+          *
+          * @param QGraphicsSceneMouseEvent the event to be handled
+          */
+        void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+
+        /**
+          * @brief Handles mouse release event (handles drop)
+          *
+          * @param QGraphicsSceneMouseEvent the event to be handled
+          */
+        void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+
+        /**
+          * @brief Handles context menu event (typically on right click)
+          *
+          * @param QGraphicsSceneContextMenuEvent the event to be handled
+          */
+        void contextMenuEvent(QGraphicsSceneContextMenuEvent *event);
+
+		
+	protected:
 
         /**
           * @brief the graphical item representing the rectangle of the Sort
@@ -112,5 +122,11 @@ class GSort {
           * @return QColor* the color retrieved in the palette
           */
 		static QColor* makeColor(void);
+
+        /**
+          * @brief the point used to record coor²dinates when user clicks on the item (ie. starts drag&drop)
+          *
+          */
+        QPoint mousePressPoint;
 	
 };

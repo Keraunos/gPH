@@ -195,7 +195,7 @@ void TreeArea::remove(){
     for (QTreeWidgetItem* &s: itemFounds){
         if(s->parent() == item || (s == item && item->childCount() ==0)){
             try {
-                this->myPHPtr->getGraphicsScene()->getGSort(s->text(0).toStdString())->getDisplayItem()->getRect()->setPen(QPen(Qt::transparent));
+                this->myPHPtr->getGraphicsScene()->getGSort(s->text(0).toStdString())->getRect()->setPen(QPen(Qt::transparent));
             }
             catch (const std::exception e){ }
         }
@@ -231,7 +231,7 @@ void TreeArea::addToGroup(){
                 QPen* pen = new QPen();
                 pen->setColor(coul);
                 pen->setWidth(4);
-                this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->getDisplayItem()->getRect()->setPen(*pen);
+                this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->getRect()->setPen(*pen);
                 //this->changeSortRectColor(a, this->groupsPalette->value(this->groupsTree->currentItem()));
             }
         }
@@ -285,7 +285,7 @@ void TreeArea::hideSort(){
     // Find the sort with the same name that the selected QTreeWidgetItem
     SortPtr sortFound = this->myArea->getPHPtr()->getSort(text.toStdString());
     // Hide the QGraphicsItem representing the sort
-    this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->getDisplayItem()->hide();
+    this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->hide();
 
     // Hide all the actions related to the sort
     std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
@@ -319,7 +319,7 @@ void TreeArea::showSort(){
     // Find the sort with the same name
     SortPtr sortFound = this->myArea->getPHPtr()->getSort(text.toStdString());
     // Show the QGraphicsItem representing the sort
-    this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->getDisplayItem()->show();
+    this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->show();
 
     std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
     for (GActionPtr &a: allActions){
@@ -345,7 +345,7 @@ void TreeArea::changeSortColor(){
         return ;
     } else {
             // Set the color of the sort's rect item with the chosen color
-            sortFound->getDisplayItem()->getRect()->setBrush(QBrush(QColor(couleur)));
+            sortFound->getRect()->setBrush(QBrush(QColor(couleur)));
     }
 
     // Set the color of the item in the sortsTree to the same color
@@ -406,7 +406,7 @@ void TreeArea::showGroup(){
         for (QTreeWidgetItem* &a: wholeTree){
             if (a->parent() == item){
                 // Show the GraphicsItem
-                this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->getDisplayItem()->show();
+                this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->show();
 
                 // Hide all the actions related to the sort
                 std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
@@ -449,7 +449,7 @@ void TreeArea::hideGroup(){
         for (QTreeWidgetItem* &a: wholeTree){
                 if (a->parent() == item){
                     // Hide the GraphicsItem
-                    this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->getDisplayItem()->hide();
+                    this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->hide();
 
                     // Hide all the actions related to the sort
                     std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
@@ -496,7 +496,7 @@ void TreeArea::changeGroupColor(){
                 // If the sort is in the group, change rect color
                 if (a->parent() == item){
                     GSortPtr sortFound = this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString());
-                    sortFound->getDisplayItem()->getRect()->setPen(QPen(QColor(couleur), 4));
+                    sortFound->getRect()->setPen(QPen(QColor(couleur), 4));
                 }
                 this->groupsPalette->insert(this->groupsTree->currentItem(), couleur);
             }
@@ -530,7 +530,7 @@ void TreeArea::hideSortFromGroup(){
     // Find the sort with the same name that the selected QTreeWidgetItem
     SortPtr sortFound = this->myArea->getPHPtr()->getSort(text.toStdString());
     // Hide the QGraphicsItem representing the sort
-    this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->getDisplayItem()->hide();
+    this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->hide();
 
     // Hide all the actions related to the sort
     std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
@@ -565,7 +565,7 @@ void TreeArea::showSortFromGroup(){
     // Find the sort with the same name
     SortPtr sortFound = this->myArea->getPHPtr()->getSort(text.toStdString());
     // Show the QGraphicsItem representing the sort
-    this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->getDisplayItem()->show();
+    this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->show();
 
     // Show all the actions related to the sort
     std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
@@ -592,7 +592,7 @@ void TreeArea::changeSortColorFromGroup(){
         return ;
     } else {
             // Set the color of the sort's rect item with the chosen color
-            sortFound->getDisplayItem()->getRect()->setBrush(QBrush(QColor(couleur)));
+            sortFound->getRect()->setBrush(QBrush(QColor(couleur)));
     }
 
     // Set the color of the item in the sortsTree to the same color

@@ -166,7 +166,7 @@ MainWindow::MainWindow() {
         this->actionStatistics->setEnabled(false);
     }
 
-    this->indicator = new QProgressIndicator(this);
+//    this->indicator = new QProgressIndicator(this);
 }
 
 
@@ -196,21 +196,21 @@ std::vector<QString> MainWindow::getAllPaths() {
 // open a new tab
 MyArea* MainWindow::openTab() {
 
-        QProgressBar* progressBar = new QProgressBar(this);
-        progressBar->setMaximumHeight(16);
-        progressBar->setMaximumWidth(200);
-        progressBar->setTextVisible(false);
-        progressBar->setRange(0,0);
-        progressBar->setValue(1);
-        this->statusBar()->addPermanentWidget(progressBar);
-        this->statusBar()->showMessage("Opening PH file...");
-        this->show();
+//        QProgressBar* progressBar = new QProgressBar(this);
+//        progressBar->setMaximumHeight(16);
+//        progressBar->setMaximumWidth(200);
+//        progressBar->setTextVisible(false);
+//        progressBar->setRange(0,0);
+//        progressBar->setValue(1);
+//        this->statusBar()->addPermanentWidget(progressBar);
+//        this->statusBar()->showMessage("Opening PH file...");
+//        this->show();
 
         // OpenFile dialog
         QFileDialog* filedialog = new QFileDialog(this);
         QString file = filedialog->getOpenFileName(this, "Open...");
 
-        QObject::connect(filedialog, SIGNAL(accepted()), this->indicator, SLOT(startAnimation()));
+//        QObject::connect(filedialog, SIGNAL(accepted()), this->indicator, SLOT(startAnimation()));
 
 
 
@@ -468,18 +468,18 @@ void MainWindow::changeBackgroundColor() {
 // method to change the sorts color
 void MainWindow::changeSortColor() {
 
-    QColor couleur = QColorDialog::getColor();
+    QColor color = QColorDialog::getColor();
 
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
     map<string, GSortPtr> sortList = view->myArea->getPHPtr()->getGraphicsScene()->getGSorts();
 
-    if (!couleur.isValid()) {
+    if (!color.isValid()) {
         return ;
     } else {
         map<string, GSortPtr>::iterator it;
         for(it=sortList.begin(); it!=sortList.end(); it++) {
-            //iterator->second->getDisplayItem()->getRect()->setPen(QPen(QColor(couleur)));
-            it->second->getDisplayItem()->getRect()->setBrush(QBrush(QColor(couleur)));
+            //it->second->getRect()->setPen(QPen(QColor(color)));
+            it->second->getRect()->setBrush(QBrush(QColor(color)));
         }
     }
 }
@@ -495,8 +495,8 @@ void MainWindow::positiveContrast() {
 
     map<string, GSortPtr>::iterator it;
     for(it=sortList.begin(); it!=sortList.end(); it++) {
-        it->second->getDisplayItem()->getRect()->setPen(QPen(QColor(0,51,102)));
-        it->second->getDisplayItem()->getRect()->setBrush(QBrush(QColor(0,51,102)));
+        it->second->getRect()->setPen(QPen(QColor(0,51,102)));
+        it->second->getRect()->setBrush(QBrush(QColor(0,51,102)));
     }
 }
 
@@ -510,8 +510,8 @@ void MainWindow::negativeContrast() {
 
     map<string, GSortPtr>::iterator it;
     for(it = sortList.begin(); it != sortList.end(); it++) {
-        it->second->getDisplayItem()->getRect()->setPen(QPen(QColor(7,54,66)));
-        it->second->getDisplayItem()->getRect()->setBrush(QBrush(QColor(7,54,66)));
+        it->second->getRect()->setPen(QPen(QColor(7,54,66)));
+        it->second->getRect()->setBrush(QBrush(QColor(7,54,66)));
     }
 }
 
@@ -525,8 +525,8 @@ void MainWindow::printStyle() {
 
     map<string, GSortPtr>::iterator it;
     for(it = sortList.begin(); it != sortList.end(); it++) {
-        it->second->getDisplayItem()->getRect()->setPen(QPen(Qt::black, 4));
-        it->second->getDisplayItem()->getRect()->setBrush(Qt::NoBrush);
+        it->second->getRect()->setPen(QPen(Qt::black, 4));
+        it->second->getRect()->setBrush(Qt::NoBrush);
     }
 
     std::vector<GProcessPtr> processes = view->myArea->getPHPtr()->getGraphicsScene()->getProcesses();

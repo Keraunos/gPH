@@ -22,7 +22,6 @@ HEADERS 	= 	headers/Action.h 		\
 				headers/PHIO.h 			\
 				headers/Process.h 		\
 				headers/Sort.h \
-    headers/GSortItem.h \
     headers/Area.h \
     headers/TextArea.h \
     headers/TreeArea.h \
@@ -44,7 +43,6 @@ SOURCES			= 	src/gfx/GProcess.cpp	\
 					src/ph/Sort.cpp			\
 					src/ui/MainWindow.cpp 	\
 					src/ui/MyArea.cpp \
-    src/gfx/GSortItem.cpp \
     src/ui/TextArea.cpp \
     src/ui/TreeArea.cpp \
     src/ui/Area.cpp \

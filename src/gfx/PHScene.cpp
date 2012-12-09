@@ -81,7 +81,7 @@ void PHScene::doRender(void) {
 void PHScene::draw(void) {
     clear();
     for (auto &s : sorts)
-        addItem(s.second->getDisplayItem());
+        addItem(s.second.get());
 //	for (GProcessPtr &p : processes)
 //		addItem(p->getDisplayItem());
 	for (GActionPtr &a : actions)
@@ -92,8 +92,8 @@ void PHScene::draw(void) {
 // retrieve GSort by its related Sort's name
 GSortPtr PHScene::getGSort (const string& s) {
     map<string, GSortPtr>::iterator f = sorts.find(s);
-	if (f == sorts.end())
-		throw sort_not_found() << sort_info(s);
+    if (f == sorts.end())
+        throw sort_not_found() << sort_info(s);
 	return sorts[s];
 }
 

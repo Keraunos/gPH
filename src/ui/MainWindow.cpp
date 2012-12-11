@@ -218,6 +218,7 @@ MyArea* MainWindow::openTab() {
         if(file!=NULL) {
 
 
+            filedialog->close();
             QFileInfo pathInfo(file);
             std::vector<QString> allPath = this->getAllPaths();
             int size = allPath.size();
@@ -243,6 +244,10 @@ MyArea* MainWindow::openTab() {
 
                 try {
 
+                    QMessageBox mb;
+                    mb.setText("Click OK to load the PH file. \nFor big files, this may take 1 to 2 minutes.");
+                    mb.exec();
+
                     // render graph
                     PHPtr myPHPtr = PHIO::parseFile(path);
                     area->myArea->setPHPtr(myPHPtr);
@@ -257,7 +262,7 @@ MyArea* MainWindow::openTab() {
                     // build the tree in the treeArea
                     area->treeArea->build();
 
-                    // call the PH string and write it in the text area
+                    // call the PH string and write it in the text area (dump)
                     //std::string string(myPHPtr->toString());
                     //area->textArea->setPlainText(QString::fromStdString(string));
 
@@ -388,78 +393,52 @@ void MainWindow::exportDot() {
 // method to adjust the view
 void MainWindow::adjust()
 {
+    // get the widget in the centrale area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    // get the myArea (middle) part and fit the view
     view->myArea->fitInView(view->myArea->scene()->itemsBoundingRect(), Qt::KeepAspectRatio);
 }
 
 // method to zoom In
 void MainWindow::zoomIn()
 {
+    // get the widget in the central area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    // get the myArea (middle) part and call the method associated to zoom in
     view->myArea->zoomIn();
 }
 
 // method to zoom out
 void MainWindow::zoomOut()
 {
+    // get the widget in the central area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    // get the myArea (middle) part and call the method associated to zoom out
     view->myArea->zoomOut();
 }
 
 void MainWindow::searchSort()
 {
+    // get the widget in the centrale area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    // get the treeArea (left) part and call the method associated to search a sort
     view->treeArea->searchSort();
 }
-
-
-/* methods for Smooth Zoom
-void MainWindow::scalingTime(qreal x)
-{
-    qreal factor = 1.0 + qreal(_numScheduledScalings) / 300;
-    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
-    view->scale(factor, factor);
-}
-
-void MainWindow::animFinished()
-{
-    if(_numScheduledScalings > 0)
-        _numScheduledScalings--;
-    else
-        _numScheduledScalings++;
-    MyArea* view = (MyArea*) this->getCentraleArea()->currentSubWindow()->widget();
-    view->sender()->~QObject();
-}
-
-void MainWindow::wheelEvent(QwheelEvent * event)
-{
-    int numDegrees = event->dekta() / 8;
-    int numSteps = numDegrees / 15;
-    _numScheduledScalings += numSteps;
-    if (_numScheduledScalings * numSteps < 0)
-        _numScheduledScalings = numSteps;
-
-    QTimeLine *anim = new QTimeLine(350, this);
-    anim->setUpdateInterval(20);
-
-    connect(anim, SIGNAL(valueChanged(qreal)), SLOT(scalingTime(qreal)));
-    connect(anim, SIGNAL(finished()), SLOT(animFinished));
-    anim->start();
-}
-
-*/
 
 
 // method to change the background color
 void MainWindow::changeBackgroundColor() {
 
+    // open a color dialog and get the color chosen
     QColor couleur = QColorDialog::getColor();
 
+    // get the widget in the centrale area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
 
     if(!couleur.isValid()){
         return ;
     } else {
+        // If the color chosen is valid, get the myArea (middle) part and set the backgroundbrush of the PH Scene
         view->myArea->getPHPtr()->getGraphicsScene()->setBackgroundBrush(couleur);
     }
 }
@@ -468,9 +447,12 @@ void MainWindow::changeBackgroundColor() {
 // method to change the sorts color
 void MainWindow::changeSortColor() {
 
+    // open a color dialog and get the color chosen
     QColor color = QColorDialog::getColor();
 
+    // get the widget in the central area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    // get the map of all the gsorts in the myArea, related to the name of the sorts
     map<string, GSortPtr> sortList = view->myArea->getPHPtr()->getGraphicsScene()->getGSorts();
 
     if (!color.isValid()) {
@@ -478,7 +460,7 @@ void MainWindow::changeSortColor() {
     } else {
         map<string, GSortPtr>::iterator it;
         for(it=sortList.begin(); it!=sortList.end(); it++) {
-            //it->second->getRect()->setPen(QPen(QColor(color)));
+            // for all the GSort in the map, set the brush
             it->second->getRect()->setBrush(QBrush(QColor(color)));
         }
     }
@@ -488,11 +470,15 @@ void MainWindow::changeSortColor() {
 // method to set the default style: positive
 void MainWindow::positiveContrast() {
 
+    // get the widget in the central area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    // get the map of all the gsorts
     map<string, GSortPtr> sortList = view->myArea->getPHPtr()->getGraphicsScene()->getGSorts();
 
+    // set the background color to white
     view->myArea->getPHPtr()->getGraphicsScene()->setBackgroundBrush(QColor(255,255,255));
 
+    // set the sorts brush to dark
     map<string, GSortPtr>::iterator it;
     for(it=sortList.begin(); it!=sortList.end(); it++) {
         it->second->getRect()->setPen(QPen(QColor(0,51,102)));
@@ -503,11 +489,15 @@ void MainWindow::positiveContrast() {
 // method to set the default style: negative
 void MainWindow::negativeContrast() {
 
+    // get the widget in the central area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    // get the map of all the gsorts associated to their names
     map<string, GSortPtr> sortList = view->myArea->getPHPtr()->getGraphicsScene()->getGSorts();
 
+    // set the background color to dark grey
     view->myArea->getPHPtr()->getGraphicsScene()->setBackgroundBrush(QColor(31,31,31));
 
+    // set the sorts brush to clear
     map<string, GSortPtr>::iterator it;
     for(it = sortList.begin(); it != sortList.end(); it++) {
         it->second->getRect()->setPen(QPen(QColor(7,54,66)));
@@ -518,18 +508,24 @@ void MainWindow::negativeContrast() {
 // method to set the default style: print
 void MainWindow::printStyle() {
 
+    // get the widget in the central area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    // get the map of all the gsorts associated to their names
     map<string, GSortPtr> sortList = view->myArea->getPHPtr()->getGraphicsScene()->getGSorts();
 
+    // set the background color to white
     view->myArea->getPHPtr()->getGraphicsScene()->setBackgroundBrush(Qt::white);
 
+    // set the brush color to black
     map<string, GSortPtr>::iterator it;
     for(it = sortList.begin(); it != sortList.end(); it++) {
         it->second->getRect()->setPen(QPen(Qt::black, 4));
         it->second->getRect()->setBrush(Qt::NoBrush);
     }
 
+    // get all the processes of the PH scene
     std::vector<GProcessPtr> processes = view->myArea->getPHPtr()->getGraphicsScene()->getProcesses();
+    // set the color ellipse to transparent
     for (GProcessPtr &a: processes){
         a->getEllipseItem()->setPen(QPen(Qt::black, 3));
         a->getEllipseItem()->setBrush(Qt::NoBrush);
@@ -540,20 +536,32 @@ void MainWindow::printStyle() {
 
 // hide / show the text area. Called by the signal actionHideShowText
 void MainWindow::hideShowText(){
+    // get the widget in the central area, cast it to Area (to use the methods)
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    // cal the method to hide or show text
     view->hideOrShowText();
 }
 
 // change the text background color in the text area. Called by the signal actionChangeTextBackgroundColor
 void MainWindow::changeTextBackgroundColor(){
+    // open a color dialog and get the color chosen
     QColor couleur = QColorDialog::getColor();
+    // get the widget in the central area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
-    view->textArea->changeBackgroundColor(couleur);
+
+    if (!color.isValid()) {
+        return ;
+    } else {
+        // call the method in textArea to set the background color to the color chosen
+        view->textArea->changeBackgroundColor(couleur);
+    }
 }
 
 // hide the tree area. Called by the signal actionHideTree
 void MainWindow::hideShowTree(){
+    // get the widget in the central area, cast it to Area (to use the methods)
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    // call the method to hide or show the tree
     view->hideOrShowTree();
 }
 

@@ -33,15 +33,19 @@ void MyArea::setPath(QString Path) {
 
 void MyArea::wheelEvent(QWheelEvent *event)
 {
-
+        // get the delta of the wheel event and check if control key is pushed
         if(event->delta()>=0 && event->modifiers() == Qt::ControlModifier)
         {
+            // if the delta is positive, the action must follow the position of the pointer
             this->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+            // scale positively
             this->scale(1.2, 1.2);
         }
         else if(event->delta()<0 && event->modifiers() == Qt::ControlModifier)
         {
+            // if the delta is negative, the action must follow the center of the view
             this->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
+            // scale negatively
             this->scale(1 / 1.2, 1 / 1.2);
         }
         else

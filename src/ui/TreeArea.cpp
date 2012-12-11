@@ -10,6 +10,7 @@ TreeArea::TreeArea(QWidget *parent): QWidget(parent)
     this->setMinimumWidth(250);
     this->setMaximumWidth(250);
 
+    // sorts Tree
     this->sortsTree = new QTreeWidget(this);
     this->sortsTree->setContextMenuPolicy(Qt::CustomContextMenu);
     this->sortsTree->setHeaderLabel("Sorts");
@@ -18,6 +19,7 @@ TreeArea::TreeArea(QWidget *parent): QWidget(parent)
     p.setColor(QPalette::Base, QColor(207, 226, 243));
     this->sortsTree->setPalette(p);
 
+    // search field
     QWidget *search = new QWidget(this);
     search->setMinimumWidth(250);
     search->setMaximumWidth(250);
@@ -46,6 +48,7 @@ TreeArea::TreeArea(QWidget *parent): QWidget(parent)
     layoutsearch->addWidget(this->cancelSearchButton);
     search->setLayout(layoutsearch);
 
+    // widget containing the button to add a sort to a group
     QWidget *sortsToGroup = new QWidget(this);
     sortsToGroup->setMinimumWidth(250);
     sortsToGroup->setMaximumWidth(250);
@@ -82,6 +85,7 @@ TreeArea::TreeArea(QWidget *parent): QWidget(parent)
     layoutGroup->addWidget(this->removeGroupButton);
     group->setLayout(layoutGroup);
 
+    // groups Tree
     this->groupsTree = new QTreeWidget(this);
     this->groupsTree->setContextMenuPolicy(Qt::CustomContextMenu);
     this->groupsTree->setHeaderLabel("Groups");
@@ -99,6 +103,7 @@ TreeArea::TreeArea(QWidget *parent): QWidget(parent)
     layout->addWidget(group);
     this->setLayout(layout);
 
+    // palette of the groups tree
     this->palette = new QList<QColor>();
     this->palette->push_back(Qt::red);
     this->palette->push_back(Qt::yellow);
@@ -111,6 +116,7 @@ TreeArea::TreeArea(QWidget *parent): QWidget(parent)
 
     this->groupsPalette = new QMap<QTreeWidgetItem*, QColor>();
 
+    // connect
     QObject::connect(this->searchButton, SIGNAL(clicked()), this, SLOT(searchSort()));
     QObject::connect(this->cancelSearchButton, SIGNAL(clicked()), this, SLOT(cancelSearch()));
 

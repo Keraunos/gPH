@@ -430,16 +430,16 @@ void MainWindow::searchSort()
 void MainWindow::changeBackgroundColor() {
 
     // open a color dialog and get the color chosen
-    QColor couleur = QColorDialog::getColor();
+    QColor color = QColorDialog::getColor();
 
     // get the widget in the centrale area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
 
-    if(!couleur.isValid()){
+    if(!color.isValid()){
         return ;
     } else {
         // If the color chosen is valid, get the myArea (middle) part and set the backgroundbrush of the PH Scene
-        view->myArea->getPHPtr()->getGraphicsScene()->setBackgroundBrush(couleur);
+        view->myArea->getPHPtr()->getGraphicsScene()->setBackgroundBrush(color);
     }
 }
 
@@ -545,7 +545,7 @@ void MainWindow::hideShowText(){
 // change the text background color in the text area. Called by the signal actionChangeTextBackgroundColor
 void MainWindow::changeTextBackgroundColor(){
     // open a color dialog and get the color chosen
-    QColor couleur = QColorDialog::getColor();
+    QColor color = QColorDialog::getColor();
     // get the widget in the central area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
 
@@ -553,7 +553,7 @@ void MainWindow::changeTextBackgroundColor(){
         return ;
     } else {
         // call the method in textArea to set the background color to the color chosen
-        view->textArea->changeBackgroundColor(couleur);
+        view->textArea->changeBackgroundColor(color);
     }
 }
 

@@ -95,7 +95,7 @@ GVGraphPtr PH::toGVGraph(void) {
 	for (auto &e : sorts) {
 		s = makeClusterName(e.second->getName());
 		res->addSubGraph(s);
-		res->getSubGraph(s)->setLabel(QString::fromStdString(e.second->getName()));
+        res->getSubGraph(s)->setLabel(QString::fromStdString(e.second->getName()));
         for (int i = 0; i < e.second->countProcesses(); i++) {
             res->getSubGraph(s)->addNode(makeProcessName(e.second->getProcess(i)));
 
@@ -118,12 +118,23 @@ GVGraphPtr PH::toGVGraph(void) {
         //qDebug() << ">>>> " << s << " >> " << posVal;
 	}
 	
+//    // to solve the issue : corespondance between nodes and edges
+//    QString port[] = { "n", "ne", "e", "se", "sw", "w", "nw" };
+//    int i=0;
+
     // add Actions (well named)
 	for (ActionPtr &a : actions) {
 		res->addEdge(	makeProcessName(a->getSource())
 					, 	makeProcessName(a->getTarget()));
 		res->addEdge(	makeProcessName(a->getTarget())
 					, 	makeProcessName(a->getResult()));
+
+//    // to solve the issue : corespondance between nodes and edges
+//        _agset(res->getEdge(makeProcessName(a->getSource()), makeProcessName(a->getTarget())), "headport", port[i]);
+//        _agset(res->getEdge(makeProcessName(a->getTarget()), makeProcessName(a->getResult())), "tailport", port[i]);
+
+//        i = i+1;
+//        if (i>6) {i=0;}
 
         // if the target and the result are next to each other in their sort, prevent overlap
 //        if (a->getTarget()->getSort() == a->getResult()->getSort()) {

@@ -234,13 +234,13 @@ MyArea* MainWindow::openTab() {
 
                     if (pathInfo.size()>1000){
                         QMessageBox mb;
-                        mb.setText("\n\nClick OK to load the PH file. \nFor big files, this may take 1 to 2 minutes.");
-                        QProgressBar* progressBar = new QProgressBar(&mb);
-                        progressBar->setMaximumHeight(16);
-                        progressBar->setMaximumWidth(200);
-                        progressBar->setTextVisible(false);
-                        progressBar->setRange(0,0);
-                        progressBar->setValue(1);
+                        mb.setText("\nClick OK to load the PH file. \nFor big files, this may take 1 to 2 minutes.");
+                        //QProgressBar* progressBar = new QProgressBar(&mb);
+                        //progressBar->setMaximumHeight(16);
+                        //progressBar->setMaximumWidth(200);
+                        //progressBar->setTextVisible(false);
+                        //progressBar->setRange(0,0);
+                        //progressBar->setValue(1);
                         mb.exec();
                     }
 

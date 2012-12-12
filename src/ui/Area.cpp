@@ -112,18 +112,6 @@ void Area::hideOrShowTree(){
     }
 }
 
-Area::~Area(){
-    delete myArea;
-    delete textArea;
-    delete treeArea;
-    delete mainWindow;
-    delete textButtonArea;
-    delete treeButtonArea;
-    delete rightButton;
-    delete rightExpandButton;
-    delete leftButton;
-}
-
 void Area::hideOrShowText(){
     // get all the subwindows in the central area
     QList<QMdiSubWindow*> tabs = this->mainWindow->getCentraleArea()->subWindowList();

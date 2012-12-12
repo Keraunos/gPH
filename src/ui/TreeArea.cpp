@@ -186,8 +186,7 @@ void TreeArea::addGroup(){
             this->groupsPalette->insert(a, this->palette->at(size%8));
         }
         else {
-                QErrorMessage* nameError = new QErrorMessage(this);
-                nameError->showMessage("Name already chosen.");
+            QMessageBox::warning(this, "Error", "Name already chosen.");
     }
     }
 
@@ -242,13 +241,11 @@ void TreeArea::addToGroup(){
             }
         }
         else {
-            QErrorMessage* nameError = new QErrorMessage(this);
-            nameError->showMessage("At least one sort you selected is already in a group.");
+            QMessageBox::warning(this, "Error", "At least one sort you selected is already in a group.");
         }
     }
     else {
-        QErrorMessage* nameError = new QErrorMessage(this);
-        nameError->showMessage("You must select one group and at least one sort.");
+        QMessageBox::warning(this, "Error", "You must select one group and at least one sort.");
     }
 
 }

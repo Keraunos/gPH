@@ -20,6 +20,12 @@ public:
     explicit Area(QWidget *parent = 0);
 
     /**
+      * @brief destructor for Area
+      *
+      */
+    ~Area();
+
+    /**
       * @brief pointer to the MyArea
       *
       */

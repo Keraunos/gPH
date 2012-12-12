@@ -230,6 +230,8 @@ MyArea* MainWindow::openTab() {
 
             if(!alreadyOpen) {
 
+
+
                 //need a std::string instead of a QString
                 std::string path =	file.toStdString();                
 
@@ -240,19 +242,19 @@ MyArea* MainWindow::openTab() {
 
                 try {
 
-                    if (pathInfo.size()>1000){
-                        QMessageBox mb;
-                        mb.setWindowModality(Qt::NonModal);
-                        mb.setText("\nClick OK to load the PH file. \nFor big files, this may take 1 to 2 minutes.");
-                        //mb.setStandardButtons(0);
-                        //QProgressBar* progressBar = new QProgressBar(&mb);
-                        //progressBar->setMaximumHeight(16);
-                        //progressBar->setMaximumWidth(200);
-                        //progressBar->setTextVisible(false);
-                        //progressBar->setRange(0,0);
-                        //progressBar->setValue(1);
-                        mb.exec();
-                    }
+                    filedialog->setLabelText(QFileDialog::LookIn, "Please Wait");
+
+                    /*if (pathInfo.size()>1000){
+                        QDialog* mb = new QDialog(this);
+                        QProgressBar* progressBar = new QProgressBar(mb);
+                        progressBar->setMaximumHeight(16);
+                        progressBar->setMaximumWidth(200);
+                        progressBar->setTextVisible(false);
+                        progressBar->setRange(0,0);
+                        progressBar->setValue(1);
+                        mb->setModal(false);
+                        mb->open();
+                    }*/
 
                     // render graph
                     PHPtr myPHPtr = PHIO::parseFile(path);
@@ -288,6 +290,7 @@ MyArea* MainWindow::openTab() {
 
 
                     return area->myArea;
+
 
 
                 } catch(exception_base& argh) {

@@ -7,7 +7,7 @@ TextArea::TextArea(QWidget *parent) :
  this->setMaximumWidth(200);
 
     QPalette p = this->palette();
-    p.setColor(QPalette::Base, QColor(194, 132, 160));
+    p.setColor(QPalette::Base, QColor(10, 10, 10));
     this->setPalette(p);
     this->setCurrentFont(QFont("TypeWriter", 10));
     this->setTextColor(QColor("white"));

@@ -1,7 +1,6 @@
 #pragma once
 #include <QMainWindow>
 #include "MyArea.h"
-#include "QProgressIndicator.h"
 
 /**
   * @file MainWindow.h
@@ -125,8 +124,6 @@ protected:
 
     // action for the menu Help
     QAction *actionHelp;
-
-    QProgressIndicator* indicator;
 
 
 signals:

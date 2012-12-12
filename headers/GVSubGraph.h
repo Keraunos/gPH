@@ -194,16 +194,17 @@ class GVSubGraph {
           */
         Agraph_t* graph();
 
-	protected:
-		GVSubGraph();
-
         /**
           * @brief gets the DPI value
           *
           * @return qreal the DPI value
           *
           */
-		qreal getDPI();
+        qreal getDPI();
+
+
+	protected:
+		GVSubGraph();
 
         /**
           * @brief sets the Graph Attributes

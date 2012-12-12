@@ -80,6 +80,18 @@ class PHScene: public QGraphicsScene {
           */
         std::vector<GActionPtr> getActions();
 
+        /**
+          * @brief hides all action arrows
+          *
+          */
+        void hideActions();
+
+        /**
+          * @brief recalculates the graph functions of customized positions
+          *
+          */
+        void updateGraph();
+
 
 	protected:
 

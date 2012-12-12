@@ -127,6 +127,14 @@ class PH {
 		GVGraphPtr toGVGraph(void);
 
         /**
+          * @brief updates the representation of the process hitting as a graph after user's customizations
+          * @details calls graphviz to calculate the graph
+          * @return
+          *
+          */
+        GVGraphPtr updateGVGraph(PHScene *scene);
+
+        /**
           * @brief outputs for display
           * @return PHScenePtr pointer to the Scene built
           */

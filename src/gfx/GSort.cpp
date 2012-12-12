@@ -16,13 +16,16 @@ GSort::GSort(SortPtr s, GVCluster c) :
     QGraphicsRectItem(c.topLeft.x(), c.topLeft.y(), c.width, c.height),
     sort(s), cluster(c) {
 	
+    qDebug() << "GVCluster " << s->getName().c_str() << " x = " << c.topLeft.x() <<
+                " | y = " << c.topLeft.y();
+
     // graphic items set and Actions color
     color = makeColor();
 
     // rectangle
-    rect = new QGraphicsRectItem(boundingRect(), this);
-    rect->setPen(QPen(QColor(7,54,66)));
-    rect->setBrush(QBrush(QColor(7,54,66)));
+    _rect = new QGraphicsRectItem(boundingRect(), this);
+    _rect->setPen(QPen(QColor(7,54,66)));
+    _rect->setBrush(QBrush(QColor(7,54,66)));
 
     // label
     text = new QGraphicsTextItem (QString(), this);
@@ -44,7 +47,7 @@ GSort::GSort(SortPtr s, GVCluster c) :
 
 
 GSort::~GSort() {
-    delete rect;
+    delete _rect;
     delete text;
 }
 
@@ -60,9 +63,13 @@ void GSort::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 
     setCursor(QCursor(Qt::ClosedHandCursor));
 
+    dynamic_cast<PHScene*>(scene())->hideActions();
+
     // record coordinates for drawing item when mouse is moved/released
-    mousePressPoint.setX(pos().x() - event->scenePos().x());
-    mousePressPoint.setY(pos().y() - event->scenePos().y());
+    initPosPoint.setX(pos().x());
+    initPosPoint.setY(pos().y());
+    eventPressPoint.setX(event->scenePos().x());
+    eventPressPoint.setY(event->scenePos().y());
 
     event->accept();
 }
@@ -72,8 +79,8 @@ void GSort::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 void GSort::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
     // update item position
-    setX(mousePressPoint.x() + event->scenePos().x());
-    setY(mousePressPoint.y() + event->scenePos().y());
+    setX(initPosPoint.x() + event->scenePos().x() - eventPressPoint.x());
+    setY(initPosPoint.y() + event->scenePos().y() - eventPressPoint.y());
 
     event->accept();
 }
@@ -85,8 +92,24 @@ void GSort::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     setCursor(QCursor(Qt::OpenHandCursor));
 
     // update item position
-    setX(mousePressPoint.x() + event->scenePos().x());
-    setY(mousePressPoint.y() + event->scenePos().y());
+    setX(initPosPoint.x() + event->scenePos().x() - eventPressPoint.x());
+    setY(initPosPoint.y() + event->scenePos().y() - eventPressPoint.y());
+
+    // update cluster position
+    cluster.topLeft.setX(boundingRect().x() + pos().x());
+    cluster.topLeft.setY(boundingRect().y() + pos().y());
+    qDebug() << cluster.name << cluster.topLeft.x();
+    qDebug() << cluster.name << cluster.topLeft.y();
+
+    vector<ProcessPtr> processes = sort->getProcesses();
+    for (ProcessPtr &process : processes) {
+        process->getGProcess()->setNodeCoords(
+                    pos().x() - initPosPoint.x(),
+                    pos().y() - initPosPoint.y());
+        process->getGProcess()->displayCoords();
+    }
+
+    dynamic_cast<PHScene*>(scene())->updateGraph();
 
     event->accept();
 }
@@ -141,6 +164,9 @@ QColor* GSort::makeColor () {
 
 // getters
 
-QGraphicsRectItem* GSort::getRect(){
-    return this->rect;
-}
+QGraphicsRectItem* GSort::getRect() { return this->_rect; }
+
+SortPtr GSort::getSort() { return this->sort; }
+
+GVCluster GSort::getCluster() { return this->cluster; }
+

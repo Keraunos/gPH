@@ -330,7 +330,9 @@ void TreeArea::showSort(){
     std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
     for (GActionPtr &a: allActions){
         if (a->getAction()->getSource()->getSort()->getName() == text.toStdString() || a->getAction()->getTarget()->getSort()->getName() == text.toStdString() || a->getAction()->getResult()->getSort()->getName() == text.toStdString()){
-            a->getDisplayItem()->show();
+            if ((this->myPHPtr->getGraphicsScene()->getGSort(a->getAction()->getSource()->getSort()->getName())->isVisible()) && (this->myPHPtr->getGraphicsScene()->getGSort(a->getAction()->getTarget()->getSort()->getName())->isVisible()) && (this->myPHPtr->getGraphicsScene()->getGSort(a->getAction()->getResult()->getSort()->getName())->isVisible())){
+                a->getDisplayItem()->show();
+            }
         }
     }
 

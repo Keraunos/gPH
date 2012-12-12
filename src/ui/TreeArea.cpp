@@ -152,7 +152,7 @@ void TreeArea::searchSort(){
     }
 
     // Find the items which names begin with the text entered in the searchBox
-    QList<QTreeWidgetItem*> foundItems2 = this->sortsTree->findItems(text, Qt::MatchStartsWith, 0);
+    QList<QTreeWidgetItem*> foundItems2 = this->sortsTree->findItems(text, Qt::MatchContains, 0);
     for (QTreeWidgetItem* &q: foundItems2){
         // Show those items
         q->setHidden(false);
@@ -217,7 +217,7 @@ void TreeArea::remove(){
 // The exception doesn't work
 void TreeArea::addToGroup(){
     // Check that at least one sort and one group are selected
-    if(!this->sortsTree->selectedItems().isEmpty() && !this->groupsTree->selectedItems().isEmpty()){
+    if(!this->sortsTree->selectedItems().isEmpty() && !this->groupsTree->selectedItems().isEmpty() && !this->groupsTree->currentItem()->parent()){
         QList<QTreeWidgetItem*> selected = this->sortsTree->selectedItems();
         // counter for the exception
         int i = 0;
@@ -330,7 +330,9 @@ void TreeArea::showSort(){
     std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
     for (GActionPtr &a: allActions){
         if (a->getAction()->getSource()->getSort()->getName() == text.toStdString() || a->getAction()->getTarget()->getSort()->getName() == text.toStdString() || a->getAction()->getResult()->getSort()->getName() == text.toStdString()){
-            a->getDisplayItem()->show();
+            if ((this->myPHPtr->getGraphicsScene()->getGSort(a->getAction()->getSource()->getSort()->getName())->isVisible()) && (this->myPHPtr->getGraphicsScene()->getGSort(a->getAction()->getTarget()->getSort()->getName())->isVisible()) && (this->myPHPtr->getGraphicsScene()->getGSort(a->getAction()->getResult()->getSort()->getName())->isVisible())){
+                a->getDisplayItem()->show();
+            }
         }
     }
 

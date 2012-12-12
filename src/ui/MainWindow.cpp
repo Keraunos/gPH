@@ -112,11 +112,9 @@ MainWindow::MainWindow() {
 
     //actions for the menu Workspace
     actionHideShowText = menuWindow->addAction("Hide / Show Text");
-    actionHideShowText->setCheckable(true);
     actionChangeTextBackgroundColor = menuWindow->addAction("Set Text Background Color");
     menuWindow->addSeparator();
     actionHideShowTree = menuWindow->addAction("Hide / Show Tree");
-    actionHideShowTree->setCheckable(true);
 
     //connect to the menu Workspace
     QObject::connect(actionHideShowText, SIGNAL(triggered()), this, SLOT(hideShowText()));
@@ -212,9 +210,6 @@ MyArea* MainWindow::openTab() {
         QFileDialog* filedialog = new QFileDialog(this);
         QString file = filedialog->getOpenFileName(this, "Open...");
 
-//        QObject::connect(filedialog, SIGNAL(accepted()), this->indicator, SLOT(startAnimation()));
-
-
 
         // TODO refactor using early returns
         if(file!=NULL) {
@@ -247,7 +242,9 @@ MyArea* MainWindow::openTab() {
 
                     if (pathInfo.size()>1000){
                         QMessageBox mb;
+                        mb.setWindowModality(Qt::NonModal);
                         mb.setText("\nClick OK to load the PH file. \nFor big files, this may take 1 to 2 minutes.");
+                        //mb.setStandardButtons(0);
                         //QProgressBar* progressBar = new QProgressBar(&mb);
                         //progressBar->setMaximumHeight(16);
                         //progressBar->setMaximumWidth(200);
@@ -293,7 +290,6 @@ MyArea* MainWindow::openTab() {
                     return area->myArea;
 
 
-
                 } catch(exception_base& argh) {
                     QMessageBox::critical(this, "Error", "Extension not recognized. Only ph files are accepted.");
                     return NULL;
@@ -311,8 +307,6 @@ MyArea* MainWindow::openTab() {
         } else {
             return NULL;
         }
-
-        this->statusBar()->hide();
 }
 
 

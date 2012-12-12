@@ -118,9 +118,10 @@ GVGraphPtr PH::toGVGraph(void) {
         //qDebug() << ">>>> " << s << " >> " << posVal;
 	}
 	
-//    // to solve the issue : corespondance between nodes and edges
-//    QString port[] = { "n", "ne", "e", "se", "sw", "w", "nw" };
-//    int i=0;
+    // to solve the issue of coincidence between hits' heads and bounces' tails:
+//    const int nbPorts(8);
+//    QString ports[nbPorts] = { "n", "ne", "e", "se", "s", "sw", "w", "nw" };
+//    int i(0);
 
     // add Actions (well named)
 	for (ActionPtr &a : actions) {
@@ -129,12 +130,10 @@ GVGraphPtr PH::toGVGraph(void) {
 		res->addEdge(	makeProcessName(a->getTarget())
 					, 	makeProcessName(a->getResult()));
 
-//    // to solve the issue : corespondance between nodes and edges
-//        _agset(res->getEdge(makeProcessName(a->getSource()), makeProcessName(a->getTarget())), "headport", port[i]);
-//        _agset(res->getEdge(makeProcessName(a->getTarget()), makeProcessName(a->getResult())), "tailport", port[i]);
-
-//        i = i+1;
-//        if (i>6) {i=0;}
+        // to solve the issue of coincidence between hits' heads and bounces' tails:
+//        _agset(res->getEdge(makeProcessName(a->getSource()), makeProcessName(a->getTarget())), "headport", ports[i]);
+//        _agset(res->getEdge(makeProcessName(a->getTarget()), makeProcessName(a->getResult())), "tailport", ports[i]);
+//        i = (i+1) % (nbPorts-1);
 
         // if the target and the result are next to each other in their sort, prevent overlap
 //        if (a->getTarget()->getSort() == a->getResult()->getSort()) {

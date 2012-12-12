@@ -33,6 +33,7 @@ MainWindow::MainWindow() {
     menuExport = menuFile->addMenu("Export");
     actionPng = menuExport->addAction("png");
     actionDot = menuExport->addAction("dot");
+    actionPreferences = menuExport->addAction("preferences");
     menuFile->addSeparator();
     actionClose = menuFile->addAction("Close");
     actionQuit = menuFile->addAction("Quit");
@@ -52,6 +53,7 @@ MainWindow::MainWindow() {
     QObject::connect(actionSaveas,  SIGNAL(triggered()), this, SLOT(save()));
     QObject::connect(actionPng,     SIGNAL(triggered()), this, SLOT(exportPng()));
     QObject::connect(actionClose,   SIGNAL(triggered()), this, SLOT(closeTab()));
+    QObject::connect(actionPreferences, SIGNAL(triggered()), this, SLOT(exportPreferences()));
     QObject::connect(actionDot, SIGNAL(triggered()), this, SLOT(exportDot()));
 
     // actions for the menu Edit
@@ -159,6 +161,7 @@ MainWindow::MainWindow() {
         this->actionSaveas->setEnabled(false);
         this->actionPng->setEnabled(false);
         this->actionDot->setEnabled(false);
+        this->actionPreferences->setEnabled(false);
         this->actionAdjust->setEnabled(false);
         this->actionZoomOut->setEnabled(false);
         this->actionZoomIn->setEnabled(false);
@@ -401,6 +404,11 @@ void MainWindow::exportDot() {
         }
 
     } else QMessageBox::critical(this, "Error", "No file opened !");
+
+}
+
+// method to export preferences
+void MainWindow::exportPreferences(){
 
 }
 
@@ -762,6 +770,7 @@ void MainWindow::disableMenu(QMdiSubWindow* subwindow){
         this->actionSaveas->setEnabled(false);
         this->actionPng->setEnabled(false);
         this->actionDot->setEnabled(false);
+        this->actionPreferences->setEnabled(false);
         this->actionAdjust->setEnabled(false);
         this->actionZoomIn->setEnabled(false);
         this->actionZoomOut->setEnabled(false);
@@ -788,6 +797,7 @@ void MainWindow::enableMenu(){
         this->actionSaveas->setEnabled(true);
         this->actionPng->setEnabled(true);
         this->actionDot->setEnabled(true);
+        this->actionPreferences->setEnabled(true);
         this->actionAdjust->setEnabled(true);
         this->actionZoomIn->setEnabled(true);
         this->actionZoomOut->setEnabled(true);

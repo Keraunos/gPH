@@ -38,6 +38,7 @@ void GVSubGraph::setGraphAttributes(void) {
     //_agset(_graph, "overlap", "prism");
     _agset(_graph, "overlap", "scale");
     _agset(_graph, "splines", "true");
+    _agset(_graph, "splines", "curved");
 	_agset(_graph, "dpi", "96,0");
     _agset(_graph, "sep", "+12");
 	 //Divide the wanted width by the DPI to get the value in points

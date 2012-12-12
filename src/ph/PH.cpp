@@ -104,6 +104,7 @@ GVGraphPtr PH::toGVGraph(void) {
 
             posVal = QString::number(0).append(",").append(QString::number(i)).append("!");
             _agset(res->getNode(makeProcessName(e.second->getProcess(i))), "pos", posVal);
+
             //qDebug() << makeProcessName(e.second->getProcess(i)) << " >> " << posVal;
         }
 

@@ -1,7 +1,6 @@
 #pragma once
 #include <QMainWindow>
 #include "MyArea.h"
-#include "QProgressIndicator.h"
 
 /**
   * @file MainWindow.h
@@ -126,8 +125,6 @@ protected:
     // action for the menu Help
     QAction *actionHelp;
 
-    QProgressIndicator* indicator;
-
 
 signals:
 
@@ -188,12 +185,6 @@ public slots:
       *
       */
     void zoomOut();
-
-    /* smooth Zoom
-    void animFinished();
-    void scalingTime(qreal x);*/
-
-
 
     /**
       * @brief let the user set the background color
@@ -284,5 +275,9 @@ public slots:
       */
     void disableMenu(QMdiSubWindow* subWindow);
 
+    /**
+      * @brief search a sort in the Sort Tree
+      *
+      */
     void searchSort();
 };

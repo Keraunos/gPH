@@ -5,7 +5,6 @@
 #include "PHIO.h"
 #include "Exceptions.h"
 #include "Area.h"
-#include "QProgressIndicator.h"
 
 MainWindow::MainWindow() {
 
@@ -196,16 +195,6 @@ std::vector<QString> MainWindow::getAllPaths() {
 // open a new tab
 MyArea* MainWindow::openTab() {
 
-//        QProgressBar* progressBar = new QProgressBar(this);
-//        progressBar->setMaximumHeight(16);
-//        progressBar->setMaximumWidth(200);
-//        progressBar->setTextVisible(false);
-//        progressBar->setRange(0,0);
-//        progressBar->setValue(1);
-//        this->statusBar()->addPermanentWidget(progressBar);
-//        this->statusBar()->showMessage("Opening PH file...");
-//        this->show();
-
         // OpenFile dialog
         QFileDialog* filedialog = new QFileDialog(this);
         QString file = filedialog->getOpenFileName(this, "Open...");
@@ -218,7 +207,6 @@ MyArea* MainWindow::openTab() {
         if(file!=NULL) {
 
 
-            filedialog->close();
             QFileInfo pathInfo(file);
             std::vector<QString> allPath = this->getAllPaths();
             int size = allPath.size();
@@ -244,9 +232,17 @@ MyArea* MainWindow::openTab() {
 
                 try {
 
-                    QMessageBox mb;
-                    mb.setText("Click OK to load the PH file. \nFor big files, this may take 1 to 2 minutes.");
-                    mb.exec();
+                    if (pathInfo.size()>1000){
+                        QMessageBox mb;
+                        mb.setText("\nClick OK to load the PH file. \nFor big files, this may take 1 to 2 minutes.");
+                        //QProgressBar* progressBar = new QProgressBar(&mb);
+                        //progressBar->setMaximumHeight(16);
+                        //progressBar->setMaximumWidth(200);
+                        //progressBar->setTextVisible(false);
+                        //progressBar->setRange(0,0);
+                        //progressBar->setValue(1);
+                        mb.exec();
+                    }
 
                     // render graph
                     PHPtr myPHPtr = PHIO::parseFile(path);
@@ -430,16 +426,16 @@ void MainWindow::searchSort()
 void MainWindow::changeBackgroundColor() {
 
     // open a color dialog and get the color chosen
-    QColor couleur = QColorDialog::getColor();
+    QColor color = QColorDialog::getColor();
 
     // get the widget in the centrale area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
 
-    if(!couleur.isValid()){
+    if(!color.isValid()){
         return ;
     } else {
         // If the color chosen is valid, get the myArea (middle) part and set the backgroundbrush of the PH Scene
-        view->myArea->getPHPtr()->getGraphicsScene()->setBackgroundBrush(couleur);
+        view->myArea->getPHPtr()->getGraphicsScene()->setBackgroundBrush(color);
     }
 }
 
@@ -545,7 +541,7 @@ void MainWindow::hideShowText(){
 // change the text background color in the text area. Called by the signal actionChangeTextBackgroundColor
 void MainWindow::changeTextBackgroundColor(){
     // open a color dialog and get the color chosen
-    QColor couleur = QColorDialog::getColor();
+    QColor color = QColorDialog::getColor();
     // get the widget in the central area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
 
@@ -553,7 +549,7 @@ void MainWindow::changeTextBackgroundColor(){
         return ;
     } else {
         // call the method in textArea to set the background color to the color chosen
-        view->textArea->changeBackgroundColor(couleur);
+        view->textArea->changeBackgroundColor(color);
     }
 }
 

@@ -417,7 +417,9 @@ void TreeArea::showGroup(){
                 std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
                 for (GActionPtr &b: allActions){
                     if (b->getAction()->getSource()->getSort()->getName() == a->text(0).toStdString() || b->getAction()->getTarget()->getSort()->getName() == a->text(0).toStdString() || b->getAction()->getResult()->getSort()->getName() == a->text(0).toStdString()){
-                        b->getDisplayItem()->show();
+                        if ((this->myPHPtr->getGraphicsScene()->getGSort(b->getAction()->getSource()->getSort()->getName())->isVisible()) && (this->myPHPtr->getGraphicsScene()->getGSort(b->getAction()->getTarget()->getSort()->getName())->isVisible()) && (this->myPHPtr->getGraphicsScene()->getGSort(b->getAction()->getResult()->getSort()->getName())->isVisible())){
+                            b->getDisplayItem()->show();
+                        }
                     }
                 }
 

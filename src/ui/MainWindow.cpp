@@ -373,26 +373,34 @@ void MainWindow::exportPng() {
 
 void MainWindow::exportDot() {
 
-    /*if(!this->getCentraleArea()->subWindowList().isEmpty()){
+    if(!this->getCentraleArea()->subWindowList().isEmpty()){
         // get the current subwindow
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
 
         // SaveFile dialog
-        QString fichier = QFileDialog::getSaveFileName(this, "Export as .dot file", QString(), "*.png");
-
-        // need the String file of the Dot
-        QString str= ((Area*) subWindow->widget())->myArea->getPHPtr()->toDotString()->(QString::fromStdString());
-
-
+        QString fichier = QFileDialog::getSaveFileName(this, "Export as .dot file", QString(), "*.dot");
 
         // add .dot to the name if necessary
-        if (fichier.indexOf(QString(".dot"), 0, Qt::CaseInsensitive) < 0)
+        if (fichier.indexOf(QString(".dot"), 0, Qt::CaseInsensitive) < 0){
             fichier += ".dot";
+        }
 
-        // save it
-        image->save(fichier, "DOT");
+        // need the String file of the Dot
+        QString str= QString::fromStdString(((Area*) subWindow->widget())->myArea->getPHPtr()->toDotString());
 
-    } else QMessageBox::critical(this, "Error", "No file opened !");*/
+        QFile file(fichier);
+        if (!file.open(QIODevice::WriteOnly)){
+            QMessageBox::critical(this, "Error", "Unable to open file");
+            file.errorString();
+            return;
+        }
+        else{
+            QDataStream out(&file);
+            out.setVersion(QDataStream::Qt_4_5);
+            out << str;
+        }
+
+    } else QMessageBox::critical(this, "Error", "No file opened !");
 
 }
 

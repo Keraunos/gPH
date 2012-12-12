@@ -19,7 +19,7 @@ MainWindow::MainWindow() {
     menuEdit =          menuBar()->addMenu("&Edit");
     menuView =          menuBar()->addMenu("&View");
     menuStyles =        menuBar()->addMenu("&Styles");
-    menuWorkspace =     menuBar()->addMenu("&Workspace");
+    menuWindow =     menuBar()->addMenu("&Window");
     menuComputation =   menuBar()->addMenu("&Computation");
     menuHelp =          menuBar()->addMenu("&Help");
 
@@ -109,11 +109,11 @@ MainWindow::MainWindow() {
 
 
     //actions for the menu Workspace
-    actionHideShowText = menuWorkspace->addAction("Hide / Show Text");
+    actionHideShowText = menuWindow->addAction("Hide / Show Text");
     actionHideShowText->setCheckable(true);
-    actionChangeTextBackgroundColor = menuWorkspace->addAction("Set Text Background Color");
-    menuWorkspace->addSeparator();
-    actionHideShowTree = menuWorkspace->addAction("Hide / Show Tree");
+    actionChangeTextBackgroundColor = menuWindow->addAction("Set Text Background Color");
+    menuWindow->addSeparator();
+    actionHideShowTree = menuWindow->addAction("Hide / Show Tree");
     actionHideShowTree->setCheckable(true);
 
     //connect to the menu Workspace

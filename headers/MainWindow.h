@@ -78,7 +78,7 @@ protected:
     QMenu *menuEdit;
     QMenu *menuView;
     QMenu *menuStyles;
-    QMenu *menuWorkspace;
+    QMenu *menuWindow;
     QMenu *menuComputation;
     QMenu *menuHelp;
 

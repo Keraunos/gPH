@@ -109,11 +109,9 @@ MainWindow::MainWindow() {
 
 
     //actions for the menu Workspace
-            //menuText = menuPreferences->addMenu("Text Preferences");
     actionHideShowText = menuWorkspace->addAction("Hide / Show Text");
     actionHideShowText->setCheckable(true);
-    actionChangeTextBackgroundColor = menuWorkspace->addAction("Change Text Background Color");
-    //menuTree = menuPreferences->addMenu("Tree Preferences");
+    actionChangeTextBackgroundColor = menuWorkspace->addAction("Set Text Background Color");
     menuWorkspace->addSeparator();
     actionHideShowTree = menuWorkspace->addAction("Hide / Show Tree");
     actionHideShowTree->setCheckable(true);
@@ -492,6 +490,14 @@ void MainWindow::positiveContrast() {
         it->second->getRect()->setPen(QPen(QColor(0,51,102)));
         it->second->getRect()->setBrush(QBrush(QColor(0,51,102)));
     }
+
+    // get all the processes of the PH scene
+    std::vector<GProcessPtr> processes = view->myArea->getPHPtr()->getGraphicsScene()->getProcesses();
+    // set the color ellipse to transparent
+    for (GProcessPtr &a: processes){
+        a->getEllipseItem()->setPen(QPen(Qt::black, 1));
+        a->getEllipseItem()->setBrush(QBrush(QColor(220,220,220)));
+    }
 }
 
 // method to set the default style: negative
@@ -509,7 +515,14 @@ void MainWindow::negativeContrast() {
     map<string, GSortPtr>::iterator it;
     for(it = sortList.begin(); it != sortList.end(); it++) {
         it->second->getRect()->setPen(QPen(QColor(7,54,66)));
-        it->second->getRect()->setBrush(QBrush(QColor(7,54,66)));
+        it->second->getRect()->setBrush(QBrush(QColor(100,100,100)));
+    }
+    // get all the processes of the PH scene
+    std::vector<GProcessPtr> processes = view->myArea->getPHPtr()->getGraphicsScene()->getProcesses();
+    // set the color ellipse to transparent
+    for (GProcessPtr &a: processes){
+        a->getEllipseItem()->setPen(QPen(Qt::black, 1));
+        a->getEllipseItem()->setBrush(QBrush(QColor(160,160,160)));
     }
 }
 

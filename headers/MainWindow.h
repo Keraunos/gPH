@@ -189,12 +189,6 @@ public slots:
       */
     void zoomOut();
 
-    /* smooth Zoom
-    void animFinished();
-    void scalingTime(qreal x);*/
-
-
-
     /**
       * @brief let the user set the background color
       *
@@ -284,5 +278,9 @@ public slots:
       */
     void disableMenu(QMdiSubWindow* subWindow);
 
+    /**
+      * @brief search a sort in the Sort Tree
+      *
+      */
     void searchSort();
 };

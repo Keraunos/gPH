@@ -14,6 +14,9 @@ MainWindow::MainWindow() {
     // icon
     setWindowIcon(QIcon("gph.png"));
 
+    // min size
+    setMinimumWidth(600);
+
     // menu
     menuFile =          menuBar()->addMenu("&File");
     menuEdit =          menuBar()->addMenu("&Edit");

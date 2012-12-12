@@ -77,6 +77,20 @@ class GSort : public QGraphicsRectItem {
           */
         void contextMenuEvent(QGraphicsSceneContextMenuEvent *event);
 
+        /**
+          * @brief gets the related Sort object
+          *
+          * @return SortPtr a pointer to the related Sort object
+          */
+        SortPtr getSort();
+
+        /**
+          * @brief gets the related GVCluster which stores GSort absolute coordinates
+          *
+          * @return GVCluster the related GVCluster
+          */
+        GVCluster getCluster();
+
 		
 	protected:
 
@@ -84,7 +98,7 @@ class GSort : public QGraphicsRectItem {
           * @brief the graphical item representing the rectangle of the Sort
           *
           */
-        QGraphicsRectItem* rect;
+        QGraphicsRectItem* _rect;
 
         /**
           * @brief the graphical item representing the text of the Sort
@@ -124,9 +138,15 @@ class GSort : public QGraphicsRectItem {
 		static QColor* makeColor(void);
 
         /**
-          * @brief the point used to record coor²dinates when user clicks on the item (ie. starts drag&drop)
+          * @brief the point used to record this GSort's coordinates when user clicks it (ie. starts drag&drop)
           *
           */
-        QPoint mousePressPoint;
+        QPoint initPosPoint;
+
+        /**
+          * @brief the point used to record mouse press event position
+          *
+          */
+        QPoint eventPressPoint;
 	
 };

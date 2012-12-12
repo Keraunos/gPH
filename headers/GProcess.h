@@ -51,6 +51,30 @@ class GProcess {
           *
           */
         QGraphicsEllipseItem* getEllipseItem();
+
+        /**
+          * @brief gets the related GVNode
+          *
+          * @return the related GVNode
+          */
+        GVNode* getNode();
+
+        /**
+          * @brief sets the related GVNode
+          *
+          */
+        void setNode(GVNode gvNode);
+
+        /**
+          * @brief updates the related GVNode's coordinates
+          *
+          * @param int dx the horizontal component of the translation
+          * @param int dy the vertical component of the translation
+          *
+          */
+        void setNodeCoords(int dx, int dy);
+
+        void displayCoords();
 	
 	protected:
 

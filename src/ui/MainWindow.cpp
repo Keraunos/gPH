@@ -18,6 +18,8 @@ MainWindow::MainWindow() {
     menuFile =          menuBar()->addMenu("&File");
     menuEdit =          menuBar()->addMenu("&Edit");
     menuView =          menuBar()->addMenu("&View");
+    menuStyles =        menuBar()->addMenu("&Styles");
+    menuWorkspace =     menuBar()->addMenu("&Workspace");
     menuComputation =   menuBar()->addMenu("&Computation");
     menuHelp =          menuBar()->addMenu("&Help");
 
@@ -64,53 +66,61 @@ MainWindow::MainWindow() {
     actionAdjust = menuView->addAction("Adjust View");
     actionZoomIn = menuView->addAction("Zoom In");
     actionZoomOut = menuView->addAction("Zoom Out");
-    menuView->addSeparator();
-    menuPreferences = menuView->addMenu("Preferences");
-    actionBackgroundColor = menuPreferences->addAction("Set background color");
-    actionSortColor = menuPreferences->addAction("Set sorts color");
-    menuDefaultStyles = menuPreferences->addMenu("Default Styles");
-    actionNaturalStyle = menuDefaultStyles->addAction("Positive contrast");
-    actionNegativeStyle = menuDefaultStyles->addAction("Negative contrast");
-    actionPrintStyle = menuDefaultStyles->addAction("Print");    
-    menuText = menuPreferences->addMenu("Text Preferences");
-    actionHideShowText = menuText->addAction("Hide / Show Text");
-    actionHideShowText->setCheckable(true);
-    actionChangeTextBackgroundColor = menuText->addAction("Change Text Background Color");
-    menuTree = menuPreferences->addMenu("Tree Preferences");
-    actionHideShowTree = menuTree->addAction("Hide / Show Tree");
-    actionHideShowTree->setCheckable(true);
+
     actionShowInit = menuView->addAction("Show initial state");
     actionHighlight = menuView->addAction("Highlight possible actions");
     actionHide = menuView->addAction("Hide actions");
     actionDisplayDetailed = menuView->addAction("Display detailed cooperativities");
 
-
     actionShowInit->setCheckable(true);
     actionHighlight->setCheckable(true);
 
-    // connect the menu View
+    // connect to the menu View
     QObject::connect(actionAdjust,    SIGNAL(triggered()), this, SLOT(adjust()));
     QObject::connect(actionZoomIn, SIGNAL(triggered()), this, SLOT(zoomIn()));
     QObject::connect(actionZoomOut, SIGNAL(triggered()), this, SLOT(zoomOut()));
-    QObject::connect(actionBackgroundColor, SIGNAL(triggered()), this, SLOT(changeBackgroundColor()));    
-    QObject::connect(actionSortColor, SIGNAL(triggered()), this, SLOT(changeSortColor()));
-    QObject::connect(actionNaturalStyle, SIGNAL(triggered()), this, SLOT(positiveContrast()));
-    QObject::connect(actionNegativeStyle, SIGNAL(triggered()), this, SLOT(negativeContrast()));
-    QObject::connect(actionPrintStyle, SIGNAL(triggered()), this, SLOT(printStyle()));
-    QObject::connect(actionHideShowText, SIGNAL(triggered()), this, SLOT(hideShowText()));
-    QObject::connect(actionChangeTextBackgroundColor, SIGNAL(triggered()), this, SLOT(changeTextBackgroundColor()));
-    QObject::connect(actionHideShowTree, SIGNAL(triggered()), this, SLOT(hideShowTree()));
 
     // shortcuts for the menu View
-    actionAdjust->setShortcut(     QKeySequence(Qt::CTRL + Qt::Key_L));
+    actionAdjust->setShortcut(  QKeySequence(Qt::CTRL + Qt::Key_L));
     actionZoomIn->setShortcut(  QKeySequence(Qt::CTRL + Qt::Key_Plus));
     actionZoomOut->setShortcut(  QKeySequence(Qt::CTRL + Qt::Key_Minus));
 
-    // disable what does not work
+    // disable what does not work well
     actionShowInit->setEnabled(false);
     actionHighlight->setEnabled(false);
     actionHide->setEnabled(false);
     actionDisplayDetailed->setEnabled(false);
+
+
+    //actions for the menu Styles
+    actionBackgroundColor = menuStyles->addAction("Set background color");
+    actionSortColor = menuStyles->addAction("Set sorts color");
+    menuDefaultStyles = menuStyles->addMenu("Default Styles");
+    actionNaturalStyle = menuDefaultStyles->addAction("Positive contrast");
+    actionNegativeStyle = menuDefaultStyles->addAction("Negative contrast");
+    actionPrintStyle = menuDefaultStyles->addAction("Print");    
+
+    //connect to the menu Styles
+    QObject::connect(actionBackgroundColor, SIGNAL(triggered()), this, SLOT(changeBackgroundColor()));
+    QObject::connect(actionSortColor, SIGNAL(triggered()), this, SLOT(changeSortColor()));
+    QObject::connect(actionNaturalStyle, SIGNAL(triggered()), this, SLOT(positiveContrast()));
+    QObject::connect(actionNegativeStyle, SIGNAL(triggered()), this, SLOT(negativeContrast()));
+    QObject::connect(actionPrintStyle, SIGNAL(triggered()), this, SLOT(printStyle()));
+
+
+    //actions for the menu Workspace
+    actionHideShowText = menuWorkspace->addAction("Hide / Show Text");
+    actionHideShowText->setCheckable(true);
+    actionChangeTextBackgroundColor = menuWorkspace->addAction("Set Text Background Color");
+    menuWorkspace->addSeparator();
+    actionHideShowTree = menuWorkspace->addAction("Hide / Show Tree");
+    actionHideShowTree->setCheckable(true);
+
+    //connect to the menu Workspace
+    QObject::connect(actionHideShowText, SIGNAL(triggered()), this, SLOT(hideShowText()));
+    QObject::connect(actionChangeTextBackgroundColor, SIGNAL(triggered()), this, SLOT(changeTextBackgroundColor()));
+    QObject::connect(actionHideShowTree, SIGNAL(triggered()), this, SLOT(hideShowTree()));
+
 
     // actions for the menu Computation
     actionFindFixpoints = menuComputation->addAction("Find fixpoints...");
@@ -234,13 +244,13 @@ MyArea* MainWindow::openTab() {
 
                     if (pathInfo.size()>1000){
                         QMessageBox mb;
-                        mb.setText("\n\nClick OK to load the PH file. \nFor big files, this may take 1 to 2 minutes.");
-                        QProgressBar* progressBar = new QProgressBar(&mb);
-                        progressBar->setMaximumHeight(16);
-                        progressBar->setMaximumWidth(200);
-                        progressBar->setTextVisible(false);
-                        progressBar->setRange(0,0);
-                        progressBar->setValue(1);
+                        mb.setText("\nClick OK to load the PH file. \nFor big files, this may take 1 to 2 minutes.");
+                        //QProgressBar* progressBar = new QProgressBar(&mb);
+                        //progressBar->setMaximumHeight(16);
+                        //progressBar->setMaximumWidth(200);
+                        //progressBar->setTextVisible(false);
+                        //progressBar->setRange(0,0);
+                        //progressBar->setValue(1);
                         mb.exec();
                     }
 
@@ -480,6 +490,14 @@ void MainWindow::positiveContrast() {
         it->second->getRect()->setPen(QPen(QColor(0,51,102)));
         it->second->getRect()->setBrush(QBrush(QColor(0,51,102)));
     }
+
+    // get all the processes of the PH scene
+    std::vector<GProcessPtr> processes = view->myArea->getPHPtr()->getGraphicsScene()->getProcesses();
+    // set the color ellipse to transparent
+    for (GProcessPtr &a: processes){
+        a->getEllipseItem()->setPen(QPen(Qt::black, 1));
+        a->getEllipseItem()->setBrush(QBrush(QColor(220,220,220)));
+    }
 }
 
 // method to set the default style: negative
@@ -497,7 +515,14 @@ void MainWindow::negativeContrast() {
     map<string, GSortPtr>::iterator it;
     for(it = sortList.begin(); it != sortList.end(); it++) {
         it->second->getRect()->setPen(QPen(QColor(7,54,66)));
-        it->second->getRect()->setBrush(QBrush(QColor(7,54,66)));
+        it->second->getRect()->setBrush(QBrush(QColor(100,100,100)));
+    }
+    // get all the processes of the PH scene
+    std::vector<GProcessPtr> processes = view->myArea->getPHPtr()->getGraphicsScene()->getProcesses();
+    // set the color ellipse to transparent
+    for (GProcessPtr &a: processes){
+        a->getEllipseItem()->setPen(QPen(Qt::black, 1));
+        a->getEllipseItem()->setBrush(QBrush(QColor(160,160,160)));
     }
 }
 

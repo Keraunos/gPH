@@ -27,7 +27,7 @@ void PHScene::doRender(void) {
     // create GProcesses linking actual processes (PH info) with GVNodes (display info)
 	QList<GVNode> gnodes = graph->nodes();	
 	for (GVNode &gn : gnodes) {
-		for (SortPtr &s : ph->getSorts())
+        for (SortPtr &s : ph->getSorts()) {
             for (ProcessPtr &p : s->getProcesses()) {
                 if (gn.name == makeProcessName(p)) {
                     GProcessPtr gp = make_shared<GProcess>(p, gn);
@@ -35,6 +35,7 @@ void PHScene::doRender(void) {
                     p.get()->setGProcess(gp);
                 }
 			}
+        }
 	}
 	
     // create GSorts linking actual sorts (PH info) with GVClusters (display info)
@@ -109,3 +110,85 @@ std::vector<GProcessPtr> PHScene::getProcesses(){
 std::vector<GActionPtr> PHScene::getActions(){
     return actions;
 }
+
+
+void PHScene::hideActions() {
+    for (GActionPtr &action : actions) {
+        action->getDisplayItem()->hide();
+    }
+}
+
+
+void PHScene::updateGraph() {
+
+    for (GActionPtr &action : actions) {
+        action->getDisplayItem()->show();
+    }
+
+    GVGraphPtr graph = ph->updateGVGraph(this);
+
+    processes.clear();
+    // create GProcesses linking actual processes (PH info) with GVNodes (display info)
+    QList<GVNode> gnodes = graph->nodes();
+    for (GVNode &gn : gnodes) {
+        for (SortPtr &s : ph->getSorts()) {
+            for (ProcessPtr &p : s->getProcesses()) {
+                if (gn.name == makeProcessName(p)) {
+                    GProcessPtr gp = make_shared<GProcess>(p, gn);
+                    processes.push_back(gp);
+                    p.get()->setGProcess(gp);
+                    //p.get()->getGProcess()->setNode(gn);
+                }
+            }
+        }
+    }
+
+//    // create GSorts linking actual sorts (PH info) with GVClusters (display info)
+//	QList<GVCluster> gclusters = graph->clusters();
+//	for (GVCluster &gc : gclusters)
+//		for (SortPtr &s : ph->getSorts())
+//			if (gc.name == makeClusterName(s->getName()))
+//				sorts.insert(GSortEntry(s->getName(), make_shared<GSort>(s, gc)));
+
+    // create GActions linking actual actions to GVEdges (display info)
+    actions.clear();
+    QList<GVEdge> gEdges = graph->edges();
+    using std::pair;
+    pair<GVEdge*, GVEdge*> edges;
+    for (ActionPtr &a : ph->getActions()) {
+        edges.first = NULL;
+        edges.second = NULL;
+
+        // find graph edges that match the Action
+        for (GVEdge &gEdge : gEdges) {
+
+            // check the hit of the Action
+            if 	(	makeProcessName(a->getSource()) == gEdge.source
+                &&	makeProcessName(a->getTarget()) == gEdge.target
+                ) 	edges.first = &gEdge;
+
+            // check the bounce (result) of the Action
+            if 	(	makeProcessName(a->getTarget()) == gEdge.source
+                &&	makeProcessName(a->getResult()) == gEdge.target
+                ) 	edges.second = &gEdge;
+
+            // if match, add Action to objects to be drawn
+            if (edges.first != NULL && edges.second != NULL) {
+                actions.push_back(make_shared<GAction>(a, *(edges.first), *(edges.second), this));
+                break;
+            }
+        }
+    }
+
+//	draw();
+
+//    clear();
+//    for (auto &s : sorts)
+//        addItem(s.second.get());
+    for (GProcessPtr &p : processes)
+        addItem(p->getDisplayItem());
+    for (GActionPtr &a : actions)
+        addItem(a->getDisplayItem());
+
+}
+

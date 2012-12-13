@@ -170,3 +170,5 @@ SortPtr GSort::getSort() { return this->sort; }
 
 GVCluster GSort::getCluster() { return this->cluster; }
 
+QGraphicsTextItem* GSort::getText() { return this->text; }
+

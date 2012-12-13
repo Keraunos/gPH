@@ -184,6 +184,7 @@ void TreeArea::addGroup(){
             this->groups.push_back(a);
             int size = this->groupsPalette->size();
             this->groupsPalette->insert(a, this->palette->at(size%8));
+            a->setForeground(0, QBrush(palette->at(size%8)));
         }
         else {
             QMessageBox::warning(this, "Error", "Name already chosen.");

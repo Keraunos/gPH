@@ -5,6 +5,8 @@
 #include "PHIO.h"
 #include "Exceptions.h"
 #include "Area.h"
+#include <QXmlStreamWriter>
+#include <stdio.h>
 
 MainWindow::MainWindow() {
 
@@ -411,7 +413,144 @@ void MainWindow::exportDot() {
 // method to export preferences
 void MainWindow::exportPreferences(){
 
+    if(!this->getCentraleArea()->subWindowList().isEmpty()){
+        // get the current subwindow
+        QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
+
+        // SaveFile dialog
+        QString fichier = QFileDialog::getSaveFileName(this, "Export preferences", QString(), "*.xml");
+
+        // add .dot to the name if necessary
+        if (fichier.indexOf(QString(".xml"), 0, Qt::CaseInsensitive) < 0){
+            fichier += ".xml";
+        }
+
+        QFile output(fichier);
+        if (!output.open(QIODevice::WriteOnly)){
+            QMessageBox::critical(this, "Error", "Sorry, unable to open file.");
+            output.errorString();
+            return;
+        }
+        else{
+
+            Area* area = (Area*)this->getCentraleArea()->currentSubWindow()->widget();
+            MyArea* myarea = ((Area*)this->getCentraleArea()->currentSubWindow()->widget())->myArea;
+            QList<QTreeWidgetItem*> sortsFound = area->treeArea->groupsTree->findItems("", Qt::MatchContains, 0);
+
+            QXmlStreamWriter stream(&output);
+            stream.setAutoFormatting(true);
+            stream.writeStartDocument();
+
+            stream.writeStartElement("graph_metadata");
+            stream.writeStartElement("global");
+            stream.writeStartElement("ph_file");
+            stream.writeTextElement("name", this->getCentraleArea()->currentSubWindow()->windowTitle());
+            stream.writeTextElement("path", myarea->getPath());
+
+            stream.writeEndElement(); // ph_file
+
+            stream.writeStartElement("styles");
+            stream.writeTextElement("bg_color", myarea->getPHPtr()->getGraphicsScene()->backgroundBrush().color().name());
+            stream.writeEndElement(); // styles
+
+            stream.writeStartElement("scene");
+            stream.writeTextElement("height", QString::number(this->height()));
+            stream.writeTextElement("width", QString::number(this->width()));
+            stream.writeEndElement(); //scene
+
+            stream.writeEndElement(); // global
+
+            stream.writeStartElement("sorts");
+            for (SortPtr &a: myarea->getPHPtr()->getSorts()){
+                stream.writeStartElement("sort");
+                stream.writeAttribute("name", QString::fromStdString(a->getName()));
+                stream.writeAttribute("visible", QString::number(myarea->getPHPtr()->getGraphicsScene()->getGSort(a->getName())->getRect()->isVisible()));
+
+                stream.writeStartElement("pos");
+                stream.writeAttribute("x", "");
+                stream.writeAttribute("y", "");
+                stream.writeEndElement(); // pos
+
+                stream.writeStartElement("size");
+                stream.writeAttribute("w", "");
+                stream.writeAttribute("h", "");
+                stream.writeEndElement(); // size
+
+                stream.writeTextElement("color", myarea->getPHPtr()->getGraphicsScene()->getGSort(a->getName())->getRect()->brush().color().name());
+
+                stream.writeStartElement("label");
+                stream.writeAttribute("text", myarea->getPHPtr()->getGraphicsScene()->getGSort(a->getName())->getText()->toPlainText());
+
+                stream.writeTextElement("font", myarea->getPHPtr()->getGraphicsScene()->getGSort(a->getName())->getText()->font().toString());
+
+                stream.writeStartElement("pos");
+                stream.writeAttribute("x", "");
+                stream.writeAttribute("y", "");
+                stream.writeEndElement(); //pos
+
+                stream.writeEndElement(); // label
+
+                stream.writeStartElement("processes");
+                stream.writeAttribute("nb", QString::number(a->getProcesses().size()));
+
+                for (ProcessPtr &b : a->getProcesses()){
+                    stream.writeStartElement("process");
+                    stream.writeAttribute("i", QString::number(b->getNumber()));
+
+                    stream.writeStartElement("pos");
+                    stream.writeAttribute("x", "");
+                    stream.writeAttribute("y", "");
+                    stream.writeEndElement(); // pos
+
+                    stream.writeStartElement("size");
+                    stream.writeAttribute("w", "");
+                    stream.writeAttribute("h", "");
+                    stream.writeEndElement(); // size
+
+                    stream.writeEndElement(); // process
+                }
+
+                stream.writeEndElement(); // processes
+
+                stream.writeEndElement(); // sort
+            }
+
+            stream.writeEndElement(); // sorts
+
+            stream.writeStartElement("sorts_group");
+
+            for (QTreeWidgetItem* &a: sortsFound){
+                    if (a->parent() == NULL){
+                    stream.writeStartElement("group");
+                    stream.writeAttribute("name", a->text(0));
+                    stream.writeAttribute("visible", QString::number(!a->font(0).italic()));
+                    for (QTreeWidgetItem* &b: sortsFound){
+                        if (b->parent() == a){
+                            stream.writeStartElement("sort");
+                            stream.writeAttribute("name", b->text(0));
+                            stream.writeEndElement(); // sort
+                        }
+                    }
+                    stream.writeTextElement("color", a->foreground(0).color().name());
+                    stream.writeEndElement(); // group
+
+                }
+            }
+
+
+            stream.writeEndElement(); // sorts_group
+
+            stream.writeEndElement(); // graph_metadata
+
+            stream.writeEndDocument();
+
+        }
+
+    } else QMessageBox::critical(this, "Error", "No file opened!");
+
 }
+
+
 
 // method to adjust the view
 void MainWindow::adjust()

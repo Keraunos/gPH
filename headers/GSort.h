@@ -91,6 +91,12 @@ class GSort : public QGraphicsRectItem {
           */
         GVCluster getCluster();
 
+        /**
+          * @brief gets the text of the sort
+          *
+          */
+        QGraphicsTextItem* getText();
+
 		
 	protected:
 

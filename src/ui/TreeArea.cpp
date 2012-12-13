@@ -241,7 +241,7 @@ void TreeArea::addToGroup(){
             }
         }
         else {
-            QMessageBox::warning(this, "Error", "At least one sort you selected is already in a group.");
+            QMessageBox::warning(this, "Error", "At least one sort you selected already belongs to a group.");
         }
     }
     else {

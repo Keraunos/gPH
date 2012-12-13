@@ -16,6 +16,7 @@ MainWindow::MainWindow() {
 
     // min size
     setMinimumWidth(600);
+    setMinimumHeight(400);
 
     // menu
     menuFile =          menuBar()->addMenu("&File");
@@ -304,7 +305,7 @@ MyArea* MainWindow::openTab() {
 
 
             else {
-                QMessageBox::critical(this, "Error", "This file is already opened !");
+                QMessageBox::critical(this, "Error", "This file is already opened!");
                 return NULL;
             }
 
@@ -324,7 +325,7 @@ void MainWindow::closeTab() {
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
         subWindow->close();
     } else {
-        QMessageBox::critical(this, "Error", "No file opened !");
+        QMessageBox::critical(this, "Error", "No file opened!");
     }
 }
 
@@ -348,7 +349,7 @@ void MainWindow::save() {
         // save file
         PHIO::writeToFile (path, ph);
     } else {
-        QMessageBox::critical(this, "Error", "No file opened !");
+        QMessageBox::critical(this, "Error", "No file opened!");
     }
 }
 
@@ -370,7 +371,7 @@ void MainWindow::exportPng() {
         // save as PNG
 		PHIO::exportToPNG(ph, fichier);
 		
-    } else QMessageBox::critical(this, "Error", "No file opened !");
+    } else QMessageBox::critical(this, "Error", "No file opened!");
 	
 }
 
@@ -393,7 +394,7 @@ void MainWindow::exportDot() {
 
         QFile file(fichier);
         if (!file.open(QIODevice::WriteOnly)){
-            QMessageBox::critical(this, "Error", "Unable to open file");
+            QMessageBox::critical(this, "Error", "Sorry, unable to open file.");
             file.errorString();
             return;
         }
@@ -403,7 +404,7 @@ void MainWindow::exportDot() {
             out << str;
         }
 
-    } else QMessageBox::critical(this, "Error", "No file opened !");
+    } else QMessageBox::critical(this, "Error", "No file opened!");
 
 }
 

@@ -1,13 +1,15 @@
 #include "Area.h"
 #include "QHBoxLayout"
 
-Area::Area(QWidget *parent) :
+Area::Area(QWidget *parent, QString path) :
     QWidget(parent)
 {
+    this->path = path;
+
     // call the constructors of all the areas
     this->textArea = new TextArea(this);
     this->textArea->setReadOnly(true);
-    this->myArea = new MyArea(this, "");
+    this->myArea = new MyArea(this, this->path);
     this->treeArea = new TreeArea(this);
 
     // treeArea: create widgets containing the buttons

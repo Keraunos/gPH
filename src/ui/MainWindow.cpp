@@ -202,7 +202,7 @@ std::vector<QString> MainWindow::getAllPaths() {
     std::vector<QString> allPaths;
     QString path;
     for(int n=0; n<size; n++) {
-        path = ((MyArea*) this->getCentraleArea()->subWindowList()[n]->widget())->getPath();
+        path = ((Area*) this->getCentraleArea()->subWindowList()[n]->widget())->path;
         allPaths.push_back(path);
     }
     return allPaths;
@@ -242,7 +242,7 @@ MyArea* MainWindow::openTab() {
                 std::string path =	file.toStdString();                
 
                 // parse file
-                Area *area = new Area();
+                Area *area = new Area(this, QString::fromStdString(path));
                 area->mainWindow = this;
 
 
@@ -445,11 +445,17 @@ void MainWindow::exportXMLMetadata(){
 
             stream.writeStartElement("ph_file");
             stream.writeTextElement("name", this->getCentraleArea()->currentSubWindow()->windowTitle());
-            stream.writeTextElement("path", myarea->getPath());
+            stream.writeTextElement("path", area->path);
             stream.writeEndElement(); // ph_file
 
             stream.writeStartElement("styles");
             stream.writeTextElement("bg_color", myarea->getPHPtr()->getGraphicsScene()->backgroundBrush().color().name());
+            stream.writeTextElement("sort_color", "#073642");
+            stream.writeTextElement("process_color", "#EEE8D5");
+            stream.writeTextElement("text_bg_color", "#0A0A0A");
+            stream.writeTextElement("sort_font", "");
+            stream.writeTextElement("process_font", "");
+            stream.writeTextElement("text_font", "TypeWriter");
             stream.writeEndElement(); // styles
 
             stream.writeStartElement("scene");
@@ -798,7 +804,7 @@ void MainWindow::findFixpoints() {
     QString fileName;
     if(this->getCentraleArea()->currentSubWindow() != 0) {
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
-        fileName = ((MyArea*) subWindow->widget())->getPath();
+        fileName = ((Area*) subWindow->widget())->path;
     } else {
         fileName = "";
     }
@@ -822,7 +828,7 @@ void MainWindow::computeReachability() {
     QString fileName;
     if(this->getCentraleArea()->currentSubWindow() != 0){ // if a subWindow exists
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
-        fileName = ((MyArea*) subWindow->widget())->getPath();
+        fileName = ((Area*) subWindow->widget())->path;
     } else {
         fileName = "";
     }
@@ -849,7 +855,7 @@ void MainWindow::runStochasticSimulation() {
     QString fileName;
     if(this->getCentraleArea()->currentSubWindow() != 0) { // if a subWindow exists
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
-        fileName = ((MyArea*) subWindow->widget())->getPath();
+        fileName = ((Area*) subWindow->widget())->path;
     } else {
         fileName = "";
     }
@@ -892,7 +898,7 @@ void MainWindow::statistics(){
     QString fileName;
     if(this->getCentraleArea()->currentSubWindow() != 0) { // if a subWindow exists
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
-        fileName = ((MyArea*) subWindow->widget())->getPath();
+        fileName = ((Area*) subWindow->widget())->path;
     } else {
         fileName = "";
     }

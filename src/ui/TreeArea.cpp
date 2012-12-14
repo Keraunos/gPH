@@ -176,7 +176,16 @@ void TreeArea::addGroup(){
     // If the user entered a text
     if(ok && !text.isEmpty()){
         // Check that there isnt another group with the same name
-        if (this->groupsTree->findItems(text, Qt::MatchExactly,0).isEmpty()){
+        int i = 0;
+        if (!this->groupsTree->findItems(text, Qt::MatchExactly,0).isEmpty()){
+            for (QTreeWidgetItem* &a : this->groupsTree->findItems(text, Qt::MatchExactly,0)){
+                if (a->parent() == NULL) {
+                    i=i++;
+                }
+            }
+        }
+
+        if (i == 0){
             // Create a new item named after the text entered
             QTreeWidgetItem* a = new QTreeWidgetItem(this->groupsTree);
             a->setText(0, text);

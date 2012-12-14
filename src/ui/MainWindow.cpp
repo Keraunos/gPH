@@ -37,9 +37,9 @@ MainWindow::MainWindow() {
     menuFile->addSeparator();
     actionSaveas = menuFile->addAction("Save as...");
     menuExport = menuFile->addMenu("Export");
-    actionPng = menuExport->addAction("png");
-    actionDot = menuExport->addAction("dot");
-    actionPreferences = menuExport->addAction("preferences");
+    actionPng = menuExport->addAction("PNG graph");
+    actionDot = menuExport->addAction("DOT graph");
+    actionExportXMLData = menuExport->addAction("Style and Layout");
     menuFile->addSeparator();
     actionClose = menuFile->addAction("Close");
     actionQuit = menuFile->addAction("Quit");
@@ -59,7 +59,7 @@ MainWindow::MainWindow() {
     QObject::connect(actionSaveas,  SIGNAL(triggered()), this, SLOT(save()));
     QObject::connect(actionPng,     SIGNAL(triggered()), this, SLOT(exportPng()));
     QObject::connect(actionClose,   SIGNAL(triggered()), this, SLOT(closeTab()));
-    QObject::connect(actionPreferences, SIGNAL(triggered()), this, SLOT(exportPreferences()));
+    QObject::connect(actionExportXMLData, SIGNAL(triggered()), this, SLOT(exportXMLMetadata()));
     QObject::connect(actionDot, SIGNAL(triggered()), this, SLOT(exportDot()));
 
     // actions for the menu Edit
@@ -165,7 +165,7 @@ MainWindow::MainWindow() {
         this->actionSaveas->setEnabled(false);
         this->actionPng->setEnabled(false);
         this->actionDot->setEnabled(false);
-        this->actionPreferences->setEnabled(false);
+        this->actionExportXMLData->setEnabled(false);
         this->actionAdjust->setEnabled(false);
         this->actionZoomOut->setEnabled(false);
         this->actionZoomIn->setEnabled(false);
@@ -410,22 +410,21 @@ void MainWindow::exportDot() {
 
 }
 
-// method to export preferences
-void MainWindow::exportPreferences(){
+// method to export style and layout data to XML format
+void MainWindow::exportXMLMetadata(){
 
     if(!this->getCentraleArea()->subWindowList().isEmpty()){
-        // get the current subwindow
-        QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
 
         // SaveFile dialog
-        QString fichier = QFileDialog::getSaveFileName(this, "Export preferences", QString(), "*.xml");
+        QString xmlFile = QFileDialog::getSaveFileName(this, "Export preferences", QString(), "*.xml");
 
         // add .dot to the name if necessary
-        if (fichier.indexOf(QString(".xml"), 0, Qt::CaseInsensitive) < 0){
-            fichier += ".xml";
+        if (xmlFile.indexOf(QString(".xml"), 0, Qt::CaseInsensitive) < 0){
+            xmlFile += ".xml";
         }
 
-        QFile output(fichier);
+        // open file if possible and write XML tree into it
+        QFile output(xmlFile);
         if (!output.open(QIODevice::WriteOnly)){
             QMessageBox::critical(this, "Error", "Sorry, unable to open file.");
             output.errorString();
@@ -443,10 +442,10 @@ void MainWindow::exportPreferences(){
 
             stream.writeStartElement("graph_metadata");
             stream.writeStartElement("global");
+
             stream.writeStartElement("ph_file");
             stream.writeTextElement("name", this->getCentraleArea()->currentSubWindow()->windowTitle());
             stream.writeTextElement("path", myarea->getPath());
-
             stream.writeEndElement(); // ph_file
 
             stream.writeStartElement("styles");
@@ -517,28 +516,31 @@ void MainWindow::exportPreferences(){
 
             stream.writeEndElement(); // sorts
 
-            stream.writeStartElement("sorts_group");
+            stream.writeStartElement("sort_groups");
 
-            for (QTreeWidgetItem* &a: sortsFound){
+            for (QTreeWidgetItem* &a : sortsFound){
                     if (a->parent() == NULL){
                     stream.writeStartElement("group");
                     stream.writeAttribute("name", a->text(0));
                     stream.writeAttribute("visible", QString::number(!a->font(0).italic()));
-                    for (QTreeWidgetItem* &b: sortsFound){
-                        if (b->parent() == a){
-                            stream.writeStartElement("sort");
-                            stream.writeAttribute("name", b->text(0));
-                            stream.writeEndElement(); // sort
-                        }
-                    }
                     stream.writeTextElement("color", a->foreground(0).color().name());
+                    // sorts list
+                    if (a->childCount()) {
+                        stream.writeStartElement("sorts");
+                        for (int i(0); i < a->childCount(); i++) {
+                            stream.writeStartElement("sort");
+                            stream.writeAttribute("name", a->child(i)->text(0));
+                            stream.writeEndElement(); // sorts
+                        }
+                        stream.writeEndElement();
+                    }
                     stream.writeEndElement(); // group
 
                 }
             }
 
 
-            stream.writeEndElement(); // sorts_group
+            stream.writeEndElement(); // sort_groups
 
             stream.writeEndElement(); // graph_metadata
 
@@ -910,7 +912,7 @@ void MainWindow::disableMenu(QMdiSubWindow* subwindow){
         this->actionSaveas->setEnabled(false);
         this->actionPng->setEnabled(false);
         this->actionDot->setEnabled(false);
-        this->actionPreferences->setEnabled(false);
+        this->actionExportXMLData->setEnabled(false);
         this->actionAdjust->setEnabled(false);
         this->actionZoomIn->setEnabled(false);
         this->actionZoomOut->setEnabled(false);
@@ -937,7 +939,7 @@ void MainWindow::enableMenu(){
         this->actionSaveas->setEnabled(true);
         this->actionPng->setEnabled(true);
         this->actionDot->setEnabled(true);
-        this->actionPreferences->setEnabled(true);
+        this->actionExportXMLData->setEnabled(true);
         this->actionAdjust->setEnabled(true);
         this->actionZoomIn->setEnabled(true);
         this->actionZoomOut->setEnabled(true);

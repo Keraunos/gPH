@@ -89,7 +89,7 @@ protected:
     QMenu   *menuExport;
     QAction *actionPng;
     QAction *actionDot;
-    QAction *actionPreferences;
+    QAction *actionExportXMLData;
     QAction *actionClose;
     QAction *actionQuit;
 
@@ -172,10 +172,10 @@ public slots:
     void exportDot();
 
     /**
-      * @brief exports the preferences
+      * @brief exports style and layout data to XML format
       *
       */
-    void exportPreferences();
+    void exportXMLMetadata();
 
     // menu view
 

@@ -84,6 +84,18 @@ class MyArea : public QGraphicsView {
           */
         void wheelEvent(QWheelEvent *event);
 
+        /**
+          * @brief gets the scaling factor
+          *
+          */
+        float getScalingFactor();
+
+        /**
+          * @brief sets the scaling factor
+          *
+          */
+        void setScalingFactor(float);
+
 
 
     protected:
@@ -97,7 +109,13 @@ class MyArea : public QGraphicsView {
           * @brief the path to the file
           *
           */
-        QString path;
+        QString path;        
+
+        /**
+          * @brief the scaling factor
+          *
+          */
+        float scalingFactor;
 
     signals:
 

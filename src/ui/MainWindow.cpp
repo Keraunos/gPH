@@ -182,7 +182,6 @@ MainWindow::MainWindow() {
         this->actionStatistics->setEnabled(false);
     }
 
-//    this->indicator = new QProgressIndicator(this);
 }
 
 
@@ -557,8 +556,6 @@ void MainWindow::exportXMLMetadata(){
     } else QMessageBox::critical(this, "Error", "No file opened!");
 
 }
-
-
 
 // method to adjust the view
 void MainWindow::adjust()

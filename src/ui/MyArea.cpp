@@ -6,11 +6,15 @@
 MyArea::MyArea(QWidget *parent, QString path) : QGraphicsView(parent) {
     this->path = path;
 	setRenderHints (QPainter::Antialiasing);
+
+    this->scalingFactor = 1.2;
 }
 
 MyArea::MyArea(QString path) : QGraphicsView() {
     this->path = path;
     setRenderHints (QPainter::Antialiasing);
+
+    this->scalingFactor = 1.2;
 }
 
 
@@ -22,6 +26,14 @@ void MyArea::setPHPtr(PHPtr pPHPtr) {
      this->myPHPtr = pPHPtr;
 }
 
+// get/set scalingFactor
+void MyArea::setScalingFactor(float scale){
+    this->scalingFactor = scale;
+}
+
+float MyArea::getScalingFactor(){
+    return this->scalingFactor;
+}
 
 // get/set path
 QString MyArea::getPath() {
@@ -39,14 +51,14 @@ void MyArea::wheelEvent(QWheelEvent *event)
             // if the delta is positive, the action must follow the position of the pointer
             this->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
             // scale positively
-            this->scale(1.2, 1.2);
+            this->scale(this->getScalingFactor(), this->getScalingFactor());
         }
         else if(event->delta()<0 && event->modifiers() == Qt::ControlModifier)
         {
             // if the delta is negative, the action must follow the center of the view
             this->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
             // scale negatively
-            this->scale(1 / 1.2, 1 / 1.2);
+            this->scale(1 / this->getScalingFactor(), 1 / this->getScalingFactor());
         }
         else
         {
@@ -59,14 +71,14 @@ void MyArea::wheelEvent(QWheelEvent *event)
 void MyArea::zoomIn()
 {
     this->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
-    this->scale(1.2, 1.2);
+    this->scale(this->getScalingFactor(), this->getScalingFactor());
 }
 
 // method to zoom out
 void MyArea::zoomOut()
 {
     this->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
-    this->scale(1 / 1.2, 1 / 1.2);
+    this->scale(1 / this->getScalingFactor(), 1 / this->getScalingFactor());
 }
 
 

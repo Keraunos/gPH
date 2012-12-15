@@ -180,7 +180,7 @@ void TreeArea::addGroup(){
         if (!this->groupsTree->findItems(text, Qt::MatchExactly,0).isEmpty()){
             for (QTreeWidgetItem* &a : this->groupsTree->findItems(text, Qt::MatchExactly,0)){
                 if (a->parent() == NULL) {
-                    i=i++;
+                    i++;
                 }
             }
         }

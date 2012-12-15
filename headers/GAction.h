@@ -53,10 +53,32 @@ class GAction {
 		QGraphicsItem* getDisplayItem (void);
 
         /**
-          * @brief get the action
+          * @brief gets the action
           *
           */
         ActionPtr getAction();
+
+        /**
+          * @brief gets the source GProcess item
+          *
+          * @param GProcessPtr a pointer to the source GProcess item
+          */
+        GProcessPtr getSource();
+
+        /**
+          * @brief gets the target GProcess item
+          *
+          * @param GProcessPtr a pointer to the target GProcess item
+          */
+        GProcessPtr getTarget();
+
+        /**
+          * @brief gets the result GProcess item
+          *
+          * @param GProcessPtr a pointer to the result GProcess item
+          */
+        GProcessPtr getResult();
+
 	
 	protected:
 	

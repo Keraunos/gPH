@@ -34,12 +34,6 @@ GAction::~GAction() {
 }
 
 
-// getter
-QGraphicsItem* GAction::getDisplayItem (void) {
-    return display;
-}
-
-
 // draw an arrowhead
 QGraphicsPolygonItem* GAction::makeArrowHead(const GVEdge& e, const QColor& color) {
 
@@ -66,6 +60,25 @@ QGraphicsPolygonItem* GAction::makeArrowHead(const GVEdge& e, const QColor& colo
     return res;
 }
 
-ActionPtr GAction::getAction(){
+
+// getters
+
+QGraphicsItem* GAction::getDisplayItem (void) {
+    return display;
+}
+
+ActionPtr GAction::getAction() {
     return action;
+}
+
+GProcessPtr GAction::getSource() {
+    return action->getSource()->getGProcess();
+}
+
+GProcessPtr GAction::getTarget() {
+    return action->getTarget()->getGProcess();
+}
+
+GProcessPtr GAction::getResult() {
+    return action->getResult()->getGProcess();
 }

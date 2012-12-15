@@ -110,13 +110,8 @@ void PHScene::hideActions() {
 }
 
 
+#include <QDebug>
 void PHScene::updateGraph() {
-
-    // TODO show only actions that are NOT related to hidden sorts
-    // show actions
-    for (GActionPtr &action : actions) {
-        action->getDisplayItem()->show();
-    }
 
     GVGraphPtr graph = ph->updateGVGraph(this);
 
@@ -143,6 +138,16 @@ void PHScene::updateGraph() {
 
     for (GActionPtr &a : actions)
         addItem(a->getDisplayItem());
+
+    // hide actions that are related to hidden sorts
+    for (GActionPtr &action : actions) {
+        if (!action->getSource()->getDisplayItem()->isVisible() ||
+            !action->getTarget()->getDisplayItem()->isVisible() ||
+            !action->getResult()->getDisplayItem()->isVisible()) // non-required condition as bounces concern couples of processes in same sorts
+        {
+                action->getDisplayItem()->hide();
+        }
+    }
 
 }
 

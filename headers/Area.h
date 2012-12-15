@@ -17,7 +17,13 @@ public:
       * @param QWidget parent, the widget containing the Area, which is the TabbedView
       *
       */
-    explicit Area(QWidget *parent = 0);
+    Area(QWidget *parent = 0, QString = "");
+
+    /**
+      * @brief pointer to the path
+      *
+      */
+    QString path;
 
     /**
       * @brief pointer to the MyArea

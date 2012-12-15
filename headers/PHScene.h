@@ -89,6 +89,12 @@ class PHScene: public QGraphicsScene {
         void hideActions();
 
         /**
+          * @brief shows all the action arrows which are NOT related to hidden sorts
+          *
+          */
+        void showActions();
+
+        /**
           * @brief recalculates the graph, functions of customized GSort items positions
           *
           */

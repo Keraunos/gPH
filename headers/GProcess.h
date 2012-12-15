@@ -76,6 +76,12 @@ class GProcess {
           */
         void setNode(GVNode gvnode);
 
+        /**
+          * @brief checks collisions with margins of other GProcess items (see graph attribute "sep" in GVSubGraph)
+          *
+          * @return bool true if this GProcess' margin collides with another one's margin, else false
+          */
+        bool checkCollisions();
 	
 	protected:
 
@@ -108,5 +114,16 @@ class GProcess {
           *
           */
 		GVNode node;
-	
+
+        /**
+          * @brief the margin around this process, must exclude any other process' margin (cf. graphviz attribute "pos" in GVSubGraph)
+          *
+          */
+        QGraphicsRectItem* marginRect;
+
+        /**
+          * @brief key for "margin item" data
+          *
+          */
+        static const int marginZone = 10;
 };

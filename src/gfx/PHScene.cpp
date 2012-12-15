@@ -110,6 +110,20 @@ void PHScene::hideActions() {
 }
 
 
+void PHScene::showActions() {
+
+    for (GActionPtr &action : actions) {
+        if (!action->getSource()->getDisplayItem()->isVisible() ||
+            !action->getTarget()->getDisplayItem()->isVisible() ||
+            !action->getResult()->getDisplayItem()->isVisible()) // optional condition as bounces concern couples of processes in same sorts
+        {
+                action->getDisplayItem()->hide();
+        }
+        else    action->getDisplayItem()->show();
+    }
+}
+
+
 #include <QDebug>
 void PHScene::updateGraph() {
 
@@ -140,14 +154,7 @@ void PHScene::updateGraph() {
         addItem(a->getDisplayItem());
 
     // hide actions that are related to hidden sorts
-    for (GActionPtr &action : actions) {
-        if (!action->getSource()->getDisplayItem()->isVisible() ||
-            !action->getTarget()->getDisplayItem()->isVisible() ||
-            !action->getResult()->getDisplayItem()->isVisible()) // non-required condition as bounces concern couples of processes in same sorts
-        {
-                action->getDisplayItem()->hide();
-        }
-    }
+    showActions();
 
 }
 

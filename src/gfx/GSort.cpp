@@ -41,6 +41,7 @@ GSort::GSort(SortPtr s, GVCluster c) :
         process->getGProcess()->getDisplayItem()->setParentItem(this);
     }
     paddingTop = processes.back()->getGProcess()->getEllipseItem()->rect().y() - c.topLeft.y();
+
 }
 
 
@@ -93,19 +94,40 @@ void GSort::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     setX(initPosPoint.x() + event->scenePos().x() - eventPressPoint.x());
     setY(initPosPoint.y() + event->scenePos().y() - eventPressPoint.y());
 
-    // update cluster position
-    cluster.topLeft.setX(boundingRect().x() + pos().x());
-    cluster.topLeft.setY(boundingRect().y() + pos().y());
-
-    // update nodes positions
+    bool collisionDetected = false;
     vector<ProcessPtr> processes = sort->getProcesses();
     for (ProcessPtr &process : processes) {
-        process->getGProcess()->setNodeCoords(
-                    pos().x() - initPosPoint.x(),
-                    pos().y() - initPosPoint.y());
+        //ProcessPtr process;
+        qDebug() << "check collisions for process " << process->getGProcess()->getNode()->name;
+        if (process->getGProcess()->checkCollisions()) {
+            collisionDetected = true;
+            qDebug() << "COLLISION DETECTED!";
+            break;
+        }
     }
 
-    dynamic_cast<PHScene*>(scene())->updateGraph();
+    if (collisionDetected) {
+
+        setX(initPosPoint.x());
+        setY(initPosPoint.y());
+
+        dynamic_cast<PHScene*>(scene())->showActions();
+
+    } else {
+
+        // update cluster position
+        cluster.topLeft.setX(boundingRect().x() + pos().x());
+        cluster.topLeft.setY(boundingRect().y() + pos().y());
+
+        // update nodes positions
+        for (ProcessPtr &process : processes) {
+            process->getGProcess()->setNodeCoords(
+                        pos().x() - initPosPoint.x(),
+                        pos().y() - initPosPoint.y());
+        }
+
+        dynamic_cast<PHScene*>(scene())->updateGraph();
+    }
 
     event->accept();
 }

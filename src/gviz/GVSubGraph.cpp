@@ -34,17 +34,19 @@ GVSubGraph::~GVSubGraph() {
 //Set basic graph attributes for graphviz
 const qreal GVSubGraph::nodeSize= 50;
 void GVSubGraph::setGraphAttributes(void) {
-	//Set graph attributes
-    //_agset(_graph, "overlap", "prism");
+
+    // set graph attributes
     _agset(_graph, "overlap", "scale");
     _agset(_graph, "splines", "true");
     //_agset(_graph, "splines", "curved"); // with fdp, "curved" provokes edge overlap on nodes
 	_agset(_graph, "dpi", "96,0");
     _agset(_graph, "sep", "+12");
-	 //Divide the wanted width by the DPI to get the value in points
+
+    // divide the wanted width by the DPI to get the value in points
     QString nodePtsWidth = QString("%1").arg(GVSubGraph::nodeSize/_agget(_graph, "dpi", "96,0").replace(',', ".").toDouble());
 	//GV uses , instead of . for the separator in floats
     _agnodeattr(_graph, "width", nodePtsWidth.replace('.', ","));
+
 }
 
 //Set name
@@ -79,6 +81,7 @@ QList<GVCluster> GVSubGraph::clusters() {
 }
 
 //Retrieve nodes for drawing (after layout has been done)
+#include <QDebug>
 QList<GVNode> GVSubGraph::nodes() {	
 	QList<GVNode> list;
 	qreal dpi = this->getDPI();
@@ -94,6 +97,8 @@ QList<GVNode> GVSubGraph::nodes() {
         object.height = node->u.height * dpi;
         object.width = node->u.width * dpi;
         list << object;
+        qDebug() << object.name << ">> x=" << x << " | y=" << y;
+        qDebug() << object.name << ">> w=" << object.width << " | h=" << object.height;
     }
 	for (auto &s : _subgraphs)
 		list += s->nodes();

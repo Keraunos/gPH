@@ -15,9 +15,6 @@
 GSort::GSort(SortPtr s, GVCluster c) :
     QGraphicsRectItem(c.topLeft.x(), c.topLeft.y(), c.width, c.height),
     sort(s), cluster(c) {
-	
-    qDebug() << "GVCluster " << s->getName().c_str() << " x = " << c.topLeft.x() <<
-                " | y = " << c.topLeft.y();
 
     // graphic items set and Actions color
     color = makeColor();
@@ -43,6 +40,7 @@ GSort::GSort(SortPtr s, GVCluster c) :
     for (ProcessPtr &process : processes) {
         process->getGProcess()->getDisplayItem()->setParentItem(this);
     }
+    paddingTop = processes.back()->getGProcess()->getEllipseItem()->rect().y() - c.topLeft.y();
 }
 
 
@@ -98,15 +96,13 @@ void GSort::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     // update cluster position
     cluster.topLeft.setX(boundingRect().x() + pos().x());
     cluster.topLeft.setY(boundingRect().y() + pos().y());
-    qDebug() << cluster.name << cluster.topLeft.x();
-    qDebug() << cluster.name << cluster.topLeft.y();
 
+    // update nodes positions
     vector<ProcessPtr> processes = sort->getProcesses();
     for (ProcessPtr &process : processes) {
         process->getGProcess()->setNodeCoords(
                     pos().x() - initPosPoint.x(),
                     pos().y() - initPosPoint.y());
-        process->getGProcess()->displayCoords();
     }
 
     dynamic_cast<PHScene*>(scene())->updateGraph();
@@ -124,20 +120,21 @@ void GSort::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
         return;
     }
 
-    // build context menu
-    QMenu menu;
-    QAction *actionSetColor = menu.addAction("Set color...");
-    menu.addSeparator();
-    QAction *actionProperties = menu.addAction("Properties");
-
     // TODO create acual context menu
 
-    // manage user click
-    QAction *a = menu.exec(event->screenPos());
-    if (a != NULL) {
-        QString text = a->text();
-        qDebug("User clicked %s", qPrintable(text));
-    }
+
+//    //build context menu
+//    QMenu menu;
+//    QAction *actionSetColor = menu.addAction("Set color...");
+//    menu.addSeparator();
+//    QAction *actionProperties = menu.addAction("Properties");
+//
+//    // manage user click
+//    QAction *a = menu.exec(event->screenPos());
+//    if (a != NULL) {
+//        QString text = a->text();
+//        qDebug("User clicked %s", qPrintable(text));
+//    }
 
 }
 
@@ -172,3 +169,22 @@ GVCluster GSort::getCluster() { return this->cluster; }
 
 QGraphicsTextItem* GSort::getText() { return this->text; }
 
+
+void GSort::updatePosition() {
+
+    // compute coords of process n°0 in this sort
+    GVNode *gvNode0 = sort->getProcesses().back()->getGProcess()->getNode();
+    qreal process0X = gvNode0->centerPos.x() - gvNode0->width/2;
+    qreal process0Y = gvNode0->centerPos.y() - gvNode0->height/2;
+
+    // GSort's new absolute coords
+    qreal newX = process0X - (cluster.width - gvNode0->width)/2; // processes are centered in sort
+    qreal newY = process0Y - paddingTop;
+
+    // update GSort and cluster's coords
+    setX(newX - boundingRect().x());
+    setY(newY - boundingRect().y());
+    cluster.topLeft.setX(boundingRect().x() + pos().x());
+    cluster.topLeft.setY(boundingRect().y() + pos().y());
+
+}

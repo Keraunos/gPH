@@ -97,6 +97,12 @@ class GSort : public QGraphicsRectItem {
           */
         QGraphicsTextItem* getText();
 
+        /**
+          * @brief updates the position of this GSort after drag&drop
+          *
+          */
+        void updatePosition();
+
 		
 	protected:
 
@@ -154,5 +160,11 @@ class GSort : public QGraphicsRectItem {
           *
           */
         QPoint eventPressPoint;
-	
+
+        /**
+          * @brief the space between this GSort's top side and the top GProcess
+          *
+          */
+        qreal paddingTop;
+
 };

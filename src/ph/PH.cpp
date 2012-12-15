@@ -96,29 +96,20 @@ GVGraphPtr PH::toGVGraph(void) {
 		s = makeClusterName(e.second->getName());
 		res->addSubGraph(s);
         res->getSubGraph(s)->setLabel(QString::fromStdString(e.second->getName()));
+        // add constraints on Processes: displayed vertically in their Sort
         for (int i = 0; i < e.second->countProcesses(); i++) {
-            res->getSubGraph(s)->addNode(makeProcessName(e.second->getProcess(i)));
-
-            // check if _agset works on processes:
-            //agsafeset(res->getNode(makeProcessName(e.second->getProcess(i))), "shape", "Msquare", "Mdiamond");
-
+            res->getSubGraph(s)->addNode(makeProcessName(e.second->getProcess(i)));            
             posVal = QString::number(0).append(",").append(QString::number(i)).append("!");
             _agset(res->getNode(makeProcessName(e.second->getProcess(i))), "pos", posVal);
-
-            //qDebug() << makeProcessName(e.second->getProcess(i)) << " >> " << posVal;
         }
 
         // check if _agset works on clusters:
         //_agset(res->getSubGraph(s)->graph(), "labelloc", "b"); // set label location in cluster: b(ottom), t(op)
 
-        // pos attr DOES NOT WORK on clusters for fdp!
-        //posVal = QString::number(k).append(",").append(QString::number(0)).append("!");
-        //k++;
-        //_agset(res->getSubGraph(s)->graph(), "pos", posVal);
-        //qDebug() << ">>>> " << s << " >> " << posVal;
 	}
 	
-    // to solve the issue of coincidence between hits' heads and bounces' tails:
+    // BUG FIXING ATTEMPT:
+    // to force hits' heads and bounces' tails to coincide
 //    const int nbPorts(8);
 //    QString ports[nbPorts] = { "n", "ne", "e", "se", "s", "sw", "w", "nw" };
 //    int i(0);
@@ -130,12 +121,14 @@ GVGraphPtr PH::toGVGraph(void) {
 		res->addEdge(	makeProcessName(a->getTarget())
 					, 	makeProcessName(a->getResult()));
 
-        // to solve the issue of coincidence between hits' heads and bounces' tails:
+        // BUG FIXING ATTEMPT:
+        // to force hits' heads and bounces' tails to coincide
 //        _agset(res->getEdge(makeProcessName(a->getSource()), makeProcessName(a->getTarget())), "headport", ports[i]);
 //        _agset(res->getEdge(makeProcessName(a->getTarget()), makeProcessName(a->getResult())), "tailport", ports[i]);
 //        i = (i+1) % (nbPorts-1);
 
-        // if the target and the result are next to each other in their sort, prevent overlap
+        // BUG FIXING ATTEMPT:
+        // if the target and the result are next to each other in their sort, then prevent overlap
 //        if (a->getTarget()->getSort() == a->getResult()->getSort()) {
 //            //qDebug() << "intern bounce in " << a->getTarget()->getSort()->getName().c_str();
 //            int diffIndex(a->getTarget()->getNumber() - a->getResult()->getNumber());
@@ -147,21 +140,8 @@ GVGraphPtr PH::toGVGraph(void) {
 //        }
 	}
 	
-    // make graphviz calculate an appropriate layout
+    // let graphviz calculate an appropriate layout
 	res->applyLayout();
-
-    for (auto &e : sorts) {
-        s = makeClusterName(e.second->getName());
-//        if (s == "cluster_c") {
-//            qDebug() << "cluster_c top left x = " << GD_bb(res->getSubGraph(s)->graph()).LL.x <<
-//                        " | y = " << GD_bb(res->getSubGraph(s)->graph()).UR.y;
-//        }
-        for (int i = 0; i < e.second->countProcesses(); i++) {
-            s = makeProcessName(e.second->getProcess(i));
-            //qDebug() << s << ": x = " << ND_coord(res->getNode(s)).x << " | y = " << ND_coord(res->getNode(s)).y;
-            //qDebug() << s << ": x = " << res->getNode(s)->u.coord.x << " | y = " << res->getNode(s)->u.coord.y;
-        }
-    }
 
 	return res;
 }
@@ -170,20 +150,19 @@ GVGraphPtr PH::toGVGraph(void) {
 GVGraphPtr PH::updateGVGraph(PHScene *scene) {
 
     // TODO make sure graph name is always unique in the application (see GVGraph constructor)
-    GVGraphPtr res = make_shared<GVGraph>(QString("PH Graph 2"));
+    GVGraphPtr res = make_shared<GVGraph>(QString("PH Graph"));
 
-    // add Processes as Nodes (well named)
+    // add Processes as Nodes (well named and well located)
     QString clusterName, processName, posVal;
     qreal nodeX, nodeY;
     for (auto &e : scene->getGSorts()) {
         clusterName = makeClusterName(e.second->getSort()->getName());
-        //qDebug() << "cluster name: " << clusterName;
+        // add constraints on Processes: positions retrieved from graphics scene
         for (int i(0); i < e.second->getSort()->countProcesses(); i++) {
             processName = makeProcessName(e.second->getSort()->getProcess(i));
             res->addNode(processName);
             nodeX =   (qreal) e.second->getSort()->getProcess(i)->getGProcess()->getNode()->centerPos.x() / res->getDPI();
             nodeY = - (qreal) e.second->getSort()->getProcess(i)->getGProcess()->getNode()->centerPos.y() / res->getDPI();
-            //qDebug() << processName << ": x = " << nodeX << " | y = " << nodeY;
             posVal = QString::number(nodeX).append(",").append(QString::number(nodeY)).append("!");
             _agset(res->getNode(processName), "pos", posVal);
         }
@@ -197,18 +176,8 @@ GVGraphPtr PH::updateGVGraph(PHScene *scene) {
                     , 	makeProcessName(a->getResult()));
     }
 
-    // let graphviz apply layout
-    qDebug() << "start applying layout";
+    // let graphviz calculate an appropriate layout
     res->applyLayout();
-    qDebug() << "stop applying layout";
-
-    for (auto &e : sorts) {
-        for (int i = 0; i < e.second->countProcesses(); i++) {
-            processName = makeProcessName(e.second->getProcess(i));
-            //qDebug() << processName << ": x = " << ND_coord(res->getNode(processName)).x << " | y = " << ND_coord(res->getNode(processName)).y;
-            //qDebug() << processName << ": x = " << res->getNode(processName)->u.coord.x << " | y = " << res->getNode(processName)->u.coord.y;
-        }
-    }
 
     return res;
 }

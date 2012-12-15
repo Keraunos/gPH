@@ -60,13 +60,7 @@ class GProcess {
         GVNode* getNode();
 
         /**
-          * @brief sets the related GVNode
-          *
-          */
-        void setNode(GVNode gvNode);
-
-        /**
-          * @brief updates the related GVNode's coordinates
+          * @brief updates the related GVNode's coordinates with a vector
           *
           * @param int dx the horizontal component of the translation
           * @param int dy the vertical component of the translation
@@ -74,7 +68,14 @@ class GProcess {
           */
         void setNodeCoords(int dx, int dy);
 
-        void displayCoords();
+        /**
+          * @brief sets the related GVNode structure
+          *
+          * @param GVNode the GVNode to copy geometry from
+          *
+          */
+        void setNode(GVNode gvnode);
+
 	
 	protected:
 

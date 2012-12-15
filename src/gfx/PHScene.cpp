@@ -9,7 +9,6 @@
 #include "Sort.h"
 #include "Process.h"
 #include "PHScene.h"
-#include "GVGraph.h"
 
 
 PHScene::PHScene(PH* _ph) : ph(_ph) {
@@ -46,33 +45,7 @@ void PHScene::doRender(void) {
 				sorts.insert(GSortEntry(s->getName(), make_shared<GSort>(s, gc)));
 
     // create GActions linking actual actions to GVEdges (display info)
-    QList<GVEdge> gEdges = graph->edges();
-    using std::pair;
-    pair<GVEdge*, GVEdge*> edges;
-    for (ActionPtr &a : ph->getActions()) {
-        edges.first = NULL;
-        edges.second = NULL;
-
-        // find graph edges that match the Action
-        for (GVEdge &gEdge : gEdges) {
-
-            // check the hit of the Action
-            if 	(	makeProcessName(a->getSource()) == gEdge.source
-                &&	makeProcessName(a->getTarget()) == gEdge.target
-                ) 	edges.first = &gEdge;
-
-            // check the bounce (result) of the Action
-            if 	(	makeProcessName(a->getTarget()) == gEdge.source
-                &&	makeProcessName(a->getResult()) == gEdge.target
-                ) 	edges.second = &gEdge;
-
-            // if match, add Action to objects to be drawn
-            if (edges.first != NULL && edges.second != NULL) {
-				actions.push_back(make_shared<GAction>(a, *(edges.first), *(edges.second), this));
-				break;
-			}
-		}
-	}			
+    createActions(graph);
 
 	draw();
 }
@@ -80,13 +53,31 @@ void PHScene::doRender(void) {
 
 // draw all the elements of the scene
 void PHScene::draw(void) {
+
     clear();
     for (auto &s : sorts)
         addItem(s.second.get());
-//	for (GProcessPtr &p : processes)
-//		addItem(p->getDisplayItem());
 	for (GActionPtr &a : actions)
 		addItem(a->getDisplayItem());
+
+    // add a grid for tests
+    int step(200),   nbLines(15),
+        minX(-1000), maxX(2000),
+        minY(-2000), maxY(1000);
+    QGraphicsLineItem *lH = new QGraphicsLineItem(minX, 0, maxX, 0);
+    lH->setPen(QPen(QColor(Qt::yellow)));
+    this->addItem(lH);
+    QGraphicsLineItem *lV = new QGraphicsLineItem(0, minY, 0, maxY);
+    lV->setPen(QPen(QColor(Qt::yellow)));
+    this->addItem(lV);
+    for (int i(0); i < nbLines; i++) {
+        lH = new QGraphicsLineItem(minX, minY+step*i, maxX, minY+step*i);
+        lH->setPen(QPen(Qt::DotLine));
+        this->addItem(lH);
+        lV = new QGraphicsLineItem(minX+step*i, minY, minX+step*i, maxY);
+        lV->setPen(QPen(Qt::DotLine));
+        this->addItem(lV);
+    }
 }
 
 
@@ -121,38 +112,47 @@ void PHScene::hideActions() {
 
 void PHScene::updateGraph() {
 
+    // TODO show only actions that are NOT related to hidden sorts
+    // show actions
     for (GActionPtr &action : actions) {
         action->getDisplayItem()->show();
     }
 
     GVGraphPtr graph = ph->updateGVGraph(this);
 
-    processes.clear();
-    // create GProcesses linking actual processes (PH info) with GVNodes (display info)
-    QList<GVNode> gnodes = graph->nodes();
-    for (GVNode &gn : gnodes) {
-        for (SortPtr &s : ph->getSorts()) {
-            for (ProcessPtr &p : s->getProcesses()) {
-                if (gn.name == makeProcessName(p)) {
-                    GProcessPtr gp = make_shared<GProcess>(p, gn);
-                    processes.push_back(gp);
-                    p.get()->setGProcess(gp);
-                    //p.get()->getGProcess()->setNode(gn);
-                }
+    // update GProcess items' positions
+    // using nested loops to make sure that each GVNode matches related GProcess
+    list<ProcessPtr> phProcesses = ph->getProcesses();
+    for (GVNode &gvnode : graph->nodes())
+        for (list<ProcessPtr>::iterator it = phProcesses.begin(); it != phProcesses.end(); ++it)
+            if (gvnode.name == makeProcessName(*it)) {
+                (*it)->getGProcess()->setNode(gvnode);
+                break;
             }
-        }
-    }
 
-//    // create GSorts linking actual sorts (PH info) with GVClusters (display info)
-//	QList<GVCluster> gclusters = graph->clusters();
-//	for (GVCluster &gc : gclusters)
-//		for (SortPtr &s : ph->getSorts())
-//			if (gc.name == makeClusterName(s->getName()))
-//				sorts.insert(GSortEntry(s->getName(), make_shared<GSort>(s, gc)));
+    // update GSort items' positions (including related GProcess items)
+    map<string, GSortPtr>::iterator it;
+    for(it = sorts.begin(); it != sorts.end(); it++) {
+        it->second->updatePosition();
+    }
 
     // create GActions linking actual actions to GVEdges (display info)
     actions.clear();
+    createActions(graph);
+
+
+    for (GActionPtr &a : actions)
+        addItem(a->getDisplayItem());
+
+}
+
+
+void PHScene::createActions(GVGraphPtr graph) {
+
+    // retrieve list of GVEdge structs from graphviz geometry data
     QList<GVEdge> gEdges = graph->edges();
+
+    // create GAction items
     using std::pair;
     pair<GVEdge*, GVEdge*> edges;
     for (ActionPtr &a : ph->getActions()) {
@@ -180,15 +180,4 @@ void PHScene::updateGraph() {
         }
     }
 
-//	draw();
-
-//    clear();
-//    for (auto &s : sorts)
-//        addItem(s.second.get());
-    for (GProcessPtr &p : processes)
-        addItem(p->getDisplayItem());
-    for (GActionPtr &a : actions)
-        addItem(a->getDisplayItem());
-
 }
-

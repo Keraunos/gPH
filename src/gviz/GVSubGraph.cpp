@@ -79,7 +79,6 @@ QList<GVCluster> GVSubGraph::clusters() {
 }
 
 //Retrieve nodes for drawing (after layout has been done)
-#include <QDebug>
 QList<GVNode> GVSubGraph::nodes() {	
 	QList<GVNode> list;
 	qreal dpi = this->getDPI();
@@ -90,13 +89,12 @@ QList<GVNode> GVSubGraph::nodes() {
 		//Position
         qreal x =  node->u.coord.x * (dpi/GVGraph::DotDefaultDPI);
         qreal y = -node->u.coord.y * (dpi/GVGraph::DotDefaultDPI);
-        qDebug() << object.name << ": x=" << x << " | y=" << y;
         object.centerPos = QPoint(x, y);
 		//Size
         object.height = node->u.height * dpi;
         object.width = node->u.width * dpi;
         list << object;
-    }	
+    }
 	for (auto &s : _subgraphs)
 		list += s->nodes();
     return list;

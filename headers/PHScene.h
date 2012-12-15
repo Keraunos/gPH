@@ -7,6 +7,8 @@
 #include "GAction.h"
 #include "GProcess.h"
 #include "GSort.h"
+#include "GVGraph.h"
+
 
 /**
   * @file PHScene.h
@@ -87,7 +89,7 @@ class PHScene: public QGraphicsScene {
         void hideActions();
 
         /**
-          * @brief recalculates the graph functions of customized positions
+          * @brief recalculates the graph, functions of customized GSort items positions
           *
           */
         void updateGraph();
@@ -106,6 +108,14 @@ class PHScene: public QGraphicsScene {
           *
           */
 		void draw(void);
+
+        /**
+          * @brief creates GAction items from graphviz graph (GVEdge structs)
+          *
+          * @param GVGraphPtr a smart pointer to the graphviz graph to convert
+          *
+          */
+        void createActions(GVGraphPtr graph);
 
         /**
           * @brief map of the Sorts drawn in the scene: the keys are the names of the Sorts

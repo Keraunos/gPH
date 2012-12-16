@@ -97,11 +97,8 @@ void GSort::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     bool collisionDetected = false;
     vector<ProcessPtr> processes = sort->getProcesses();
     for (ProcessPtr &process : processes) {
-        //ProcessPtr process;
-        qDebug() << "check collisions for process " << process->getGProcess()->getNode()->name;
         if (process->getGProcess()->checkCollisions()) {
             collisionDetected = true;
-            qDebug() << "COLLISION DETECTED!";
             break;
         }
     }
@@ -209,4 +206,17 @@ void GSort::updatePosition() {
     cluster.topLeft.setX(boundingRect().x() + pos().x());
     cluster.topLeft.setY(boundingRect().y() + pos().y());
 
+}
+
+
+void GSort::hide() {
+    this->setOpacity(0);
+}
+
+void GSort::show() {
+    this->setOpacity(1);
+}
+
+bool GSort::isVisible() {
+    return (this->opacity() == 1);
 }

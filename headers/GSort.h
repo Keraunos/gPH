@@ -103,6 +103,21 @@ class GSort : public QGraphicsRectItem {
           */
         void updatePosition();
 
+        /**
+          * @brief hides this GSort setting opacity to 0
+          */
+        void hide();
+
+        /**
+          * @brief show the GSort setting full opacity
+          */
+        void show();
+
+        /**
+          * @brief indicates whether or not this GSort is made visible (test based on opacity, cf. hide() and show())
+          */
+        bool isVisible();
+
 		
 	protected:
 

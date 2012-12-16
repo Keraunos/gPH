@@ -7,6 +7,8 @@
 #include "PH.h"
 #include "PHScene.h"
 #include "Action.h"
+#include "GSort.h"
+
 
 /**
   * @file GAction.h
@@ -63,21 +65,21 @@ class GAction {
           *
           * @param GProcessPtr a pointer to the source GProcess item
           */
-        GProcessPtr getSource();
+        GSortPtr getSourceSort();
 
         /**
           * @brief gets the target GProcess item
           *
           * @param GProcessPtr a pointer to the target GProcess item
           */
-        GProcessPtr getTarget();
+        GSortPtr getTargetSort();
 
         /**
           * @brief gets the result GProcess item
           *
           * @param GProcessPtr a pointer to the result GProcess item
           */
-        GProcessPtr getResult();
+        GSortPtr getResultSort();
 
 	
 	protected:

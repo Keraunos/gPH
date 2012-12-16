@@ -141,6 +141,4 @@ class PHScene: public QGraphicsScene {
           */
         std::vector<GActionPtr> actions;
 
-
-
 };

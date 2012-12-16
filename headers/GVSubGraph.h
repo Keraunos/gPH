@@ -34,6 +34,12 @@ class GVSubGraph {
           *
           */
 		static const qreal nodeSize;
+
+        /**
+          * @brief the minimum margin around each node (in points for graphviz)
+          *
+          */
+        static const qreal sepValue;
 		
         /**
           * @brief GVSubGraph constructor

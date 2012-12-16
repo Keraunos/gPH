@@ -71,14 +71,17 @@ ActionPtr GAction::getAction() {
     return action;
 }
 
-GProcessPtr GAction::getSource() {
-    return action->getSource()->getGProcess();
+GSortPtr GAction::getSourceSort() {
+    return scene->getGSort(action->getSource()->getSort()->getName());
+    //return action->getSource()->getGProcess();
 }
 
-GProcessPtr GAction::getTarget() {
-    return action->getTarget()->getGProcess();
+GSortPtr GAction::getTargetSort() {
+    return scene->getGSort(action->getTarget()->getSort()->getName());
+    //return action->getTarget()->getGProcess();
 }
 
-GProcessPtr GAction::getResult() {
-    return action->getResult()->getGProcess();
+GSortPtr GAction::getResultSort() {
+    return scene->getGSort(action->getResult()->getSort()->getName());
+    //return action->getResult()->getGProcess();
 }

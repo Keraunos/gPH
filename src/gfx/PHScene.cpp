@@ -18,6 +18,7 @@ PHScene::PHScene(PH* _ph) : ph(_ph) {
 
 
 // render the scene from the related PH graph
+#include <QDebug>
 void PHScene::doRender(void) {
 	
     // retrieve graph
@@ -29,7 +30,7 @@ void PHScene::doRender(void) {
         for (SortPtr &s : ph->getSorts()) {
             for (ProcessPtr &p : s->getProcesses()) {
                 if (gn.name == makeProcessName(p)) {
-                    GProcessPtr gp = make_shared<GProcess>(p, gn);
+                    GProcessPtr gp = make_shared<GProcess>(p, gn, graph->getDPI());
                     processes.push_back(gp);
                     p.get()->setGProcess(gp);
                 }
@@ -60,24 +61,6 @@ void PHScene::draw(void) {
 	for (GActionPtr &a : actions)
 		addItem(a->getDisplayItem());
 
-    // add a grid for tests
-    int step(200),   nbLines(15),
-        minX(-1000), maxX(2000),
-        minY(-2000), maxY(1000);
-    QGraphicsLineItem *lH = new QGraphicsLineItem(minX, 0, maxX, 0);
-    lH->setPen(QPen(QColor(Qt::yellow)));
-    this->addItem(lH);
-    QGraphicsLineItem *lV = new QGraphicsLineItem(0, minY, 0, maxY);
-    lV->setPen(QPen(QColor(Qt::yellow)));
-    this->addItem(lV);
-    for (int i(0); i < nbLines; i++) {
-        lH = new QGraphicsLineItem(minX, minY+step*i, maxX, minY+step*i);
-        lH->setPen(QPen(Qt::DotLine));
-        this->addItem(lH);
-        lV = new QGraphicsLineItem(minX+step*i, minY, minX+step*i, maxY);
-        lV->setPen(QPen(Qt::DotLine));
-        this->addItem(lV);
-    }
 }
 
 
@@ -113,18 +96,19 @@ void PHScene::hideActions() {
 void PHScene::showActions() {
 
     for (GActionPtr &action : actions) {
-        if (!action->getSource()->getDisplayItem()->isVisible() ||
-            !action->getTarget()->getDisplayItem()->isVisible() ||
-            !action->getResult()->getDisplayItem()->isVisible()) // optional condition as bounces concern couples of processes in same sorts
+        // hide actions related to hidden sorts
+        if (!action->getSourceSort()->GSort::isVisible() ||
+            !action->getTargetSort()->GSort::isVisible() ||
+            !action->getResultSort()->GSort::isVisible()) // optional condition as bounces concern couples of processes in same sorts
         {
                 action->getDisplayItem()->hide();
         }
+        // show other actions
         else    action->getDisplayItem()->show();
     }
 }
 
 
-#include <QDebug>
 void PHScene::updateGraph() {
 
     GVGraphPtr graph = ph->updateGVGraph(this);
@@ -193,3 +177,4 @@ void PHScene::createActions(GVGraphPtr graph) {
     }
 
 }
+

@@ -34,8 +34,9 @@ class GProcess {
           *
           * @param ProcessPtr the related Process object
           * @param GVNode the object that contains style and layout info
+          * @param qreal graph DPI value (graphviz)
           */
-		GProcess(ProcessPtr p, GVNode n);
+        GProcess(ProcessPtr p, GVNode n, qreal graphDPI);
 
 		~GProcess();
 
@@ -60,6 +61,12 @@ class GProcess {
         GVNode* getNode();
 
         /**
+          * @brief gets the rect item that represents the margin of this GProcess
+          *
+          */
+        QGraphicsRectItem* getMarginRect();
+
+        /**
           * @brief updates the related GVNode's coordinates with a vector
           *
           * @param int dx the horizontal component of the translation
@@ -79,9 +86,10 @@ class GProcess {
         /**
           * @brief checks collisions with margins of other GProcess items (see graph attribute "sep" in GVSubGraph)
           *
-          * @return bool true if this GProcess' margin collides with another one's margin, else false
+          * @return bool true if this GProcess' margin collides with another one's margin (of a different sort), else false
           */
         bool checkCollisions();
+
 	
 	protected:
 
@@ -122,8 +130,15 @@ class GProcess {
         QGraphicsRectItem* marginRect;
 
         /**
-          * @brief key for "margin item" data
+          * @brief arbitrarily-chosen key for "margin item" data
           *
           */
-        static const int marginZone = 10;
+        static const int marginZone;
+
+        /**
+          * @brief arbitrarily-chosen key for sort name data
+          *
+          */
+        static const int sortName;
+
 };

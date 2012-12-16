@@ -303,7 +303,7 @@ void TreeArea::hideSort(){
     // Find the sort with the same name that the selected QTreeWidgetItem
     SortPtr sortFound = this->myArea->getPHPtr()->getSort(text.toStdString());
     // Hide the QGraphicsItem representing the sort
-    this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->hide();
+    this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->GSort::hide();
 
     // Hide all the actions related to the sort
     std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
@@ -337,12 +337,15 @@ void TreeArea::showSort(){
     // Find the sort with the same name
     SortPtr sortFound = this->myArea->getPHPtr()->getSort(text.toStdString());
     // Show the QGraphicsItem representing the sort
-    this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->show();
+    this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->GSort::show();
 
     std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
     for (GActionPtr &a: allActions){
         if (a->getAction()->getSource()->getSort()->getName() == text.toStdString() || a->getAction()->getTarget()->getSort()->getName() == text.toStdString() || a->getAction()->getResult()->getSort()->getName() == text.toStdString()){
-            if ((this->myPHPtr->getGraphicsScene()->getGSort(a->getAction()->getSource()->getSort()->getName())->isVisible()) && (this->myPHPtr->getGraphicsScene()->getGSort(a->getAction()->getTarget()->getSort()->getName())->isVisible()) && (this->myPHPtr->getGraphicsScene()->getGSort(a->getAction()->getResult()->getSort()->getName())->isVisible())){
+            if (       (myPHPtr->getGraphicsScene()->getGSort(a->getAction()->getSource()->getSort()->getName())->GSort::isVisible())
+                    && (myPHPtr->getGraphicsScene()->getGSort(a->getAction()->getTarget()->getSort()->getName())->GSort::isVisible())
+                    && (myPHPtr->getGraphicsScene()->getGSort(a->getAction()->getResult()->getSort()->getName())->GSort::isVisible()) )
+            {
                 a->getDisplayItem()->show();
             }
         }
@@ -426,13 +429,15 @@ void TreeArea::showGroup(){
         for (QTreeWidgetItem* &a: wholeTree){
             if (a->parent() == item){
                 // Show the GraphicsItem
-                this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->show();
+                this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->GSort::show();
 
                 // Hide all the actions related to the sort
                 std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
                 for (GActionPtr &b: allActions){
                     if (b->getAction()->getSource()->getSort()->getName() == a->text(0).toStdString() || b->getAction()->getTarget()->getSort()->getName() == a->text(0).toStdString() || b->getAction()->getResult()->getSort()->getName() == a->text(0).toStdString()){
-                        if ((this->myPHPtr->getGraphicsScene()->getGSort(b->getAction()->getSource()->getSort()->getName())->isVisible()) && (this->myPHPtr->getGraphicsScene()->getGSort(b->getAction()->getTarget()->getSort()->getName())->isVisible()) && (this->myPHPtr->getGraphicsScene()->getGSort(b->getAction()->getResult()->getSort()->getName())->isVisible())){
+                        if (       (myPHPtr->getGraphicsScene()->getGSort(b->getAction()->getSource()->getSort()->getName())->GSort::isVisible())
+                                && (myPHPtr->getGraphicsScene()->getGSort(b->getAction()->getTarget()->getSort()->getName())->GSort::isVisible())
+                                && (myPHPtr->getGraphicsScene()->getGSort(b->getAction()->getResult()->getSort()->getName())->GSort::isVisible())){
                             b->getDisplayItem()->show();
                         }
                     }
@@ -471,7 +476,7 @@ void TreeArea::hideGroup(){
         for (QTreeWidgetItem* &a: wholeTree){
                 if (a->parent() == item){
                     // Hide the GraphicsItem
-                    this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->hide();
+                    this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->GSort::hide();
 
                     // Hide all the actions related to the sort
                     std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
@@ -552,7 +557,7 @@ void TreeArea::hideSortFromGroup(){
     // Find the sort with the same name that the selected QTreeWidgetItem
     SortPtr sortFound = this->myArea->getPHPtr()->getSort(text.toStdString());
     // Hide the QGraphicsItem representing the sort
-    this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->hide();
+    this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->GSort::hide();
 
     // Hide all the actions related to the sort
     std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
@@ -587,13 +592,18 @@ void TreeArea::showSortFromGroup(){
     // Find the sort with the same name
     SortPtr sortFound = this->myArea->getPHPtr()->getSort(text.toStdString());
     // Show the QGraphicsItem representing the sort
-    this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->show();
+    this->myPHPtr->getGraphicsScene()->getGSort(text.toStdString())->GSort::show();
 
     // Show all the actions related to the sort
     std::vector<GActionPtr> allActions = this->myPHPtr->getGraphicsScene()->getActions();
     for (GActionPtr &a: allActions){
         if (a->getAction()->getSource()->getSort()->getName() == text.toStdString() || a->getAction()->getTarget()->getSort()->getName() == text.toStdString() || a->getAction()->getResult()->getSort()->getName() == text.toStdString()){
-            a->getDisplayItem()->show();
+            if (       (myPHPtr->getGraphicsScene()->getGSort(a->getAction()->getSource()->getSort()->getName())->GSort::isVisible())
+                    && (myPHPtr->getGraphicsScene()->getGSort(a->getAction()->getTarget()->getSort()->getName())->GSort::isVisible())
+                    && (myPHPtr->getGraphicsScene()->getGSort(a->getAction()->getResult()->getSort()->getName())->GSort::isVisible()) )
+            {
+                a->getDisplayItem()->show();
+            }
         }
     }
 

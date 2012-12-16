@@ -468,7 +468,7 @@ void MainWindow::exportXMLMetadata(){
             for (SortPtr &a: myarea->getPHPtr()->getSorts()){
                 stream.writeStartElement("sort");
                 stream.writeAttribute("name", QString::fromStdString(a->getName()));
-                stream.writeAttribute("visible", QString::number(myarea->getPHPtr()->getGraphicsScene()->getGSort(a->getName())->getRect()->isVisible()));
+                stream.writeAttribute("visible", QString::number(myarea->getPHPtr()->getGraphicsScene()->getGSort(a->getName())->GSort::isVisible()));
 
                 stream.writeStartElement("pos");
                 stream.writeAttribute("x", "");

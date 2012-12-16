@@ -6,20 +6,25 @@
 #include <QTextDocument>
 #include <Qt>
 #include "GProcess.h"
+//#include "GVSubGraph.h"
 #include <math.h>
 
 
-GProcess::GProcess(ProcessPtr p, GVNode n) : process(p), node(n) {
+const int GProcess::marginZone  = 10;
+const int GProcess::sortName    = 11;
+
+
+GProcess::GProcess(ProcessPtr p, GVNode n, qreal graphDPI) : process(p), node(n) {
 
     display = new QGraphicsItemGroup();
 
     // ellipse
-	ellipse = new QGraphicsEllipseItem (node.centerPos.x() - node.width/2, node.centerPos.y() - node.height/2, node.width, node.height, display);
+    ellipse = new QGraphicsEllipseItem (node.centerPos.x() - node.width/2, node.centerPos.y() - node.height/2,
+                                        node.width, node.height, display);
 	ellipse->setPen(QPen(QColor(238,232,213)));
 	ellipse->setBrush(QBrush(QColor(238,232,213)));
-	
-    // TODO refactor margin definition using values in GVSubGraph (dpi ratios, "sep" attribute's value)
-    int margin((int) ceil(12.0 * 96.0/72.0));
+
+    int margin( (int) ceil(GVSubGraph::sepValue * graphDPI / GVGraph::DotDefaultDPI) );
     marginRect = new QGraphicsRectItem(
                 node.centerPos.x() - node.width/2 - margin,
                 node.centerPos.y() - node.height/2 - margin,
@@ -30,7 +35,7 @@ GProcess::GProcess(ProcessPtr p, GVNode n) : process(p), node(n) {
     marginRect->setBrush(Qt::NoBrush);
     marginRect->setPen(Qt::NoPen);
     marginRect->setData(marginZone, true);
-    marginRect->setData(11, process->getSort()->getName().c_str());
+    marginRect->setData(sortName, process->getSort()->getName().c_str());
 
     // text
     text = new QGraphicsTextItem (QString("%1").arg(process->getNumber()), ellipse);
@@ -57,6 +62,8 @@ QGraphicsEllipseItem* GProcess::getEllipseItem(){ return ellipse; }
 
 GVNode* GProcess::getNode() { return &(this->node); }
 
+QGraphicsRectItem* GProcess::getMarginRect() { return this->marginRect; }
+
 
 void GProcess::setNodeCoords(int dx, int dy) {
     node.centerPos.setX(node.centerPos.x() + dx);
@@ -69,14 +76,13 @@ void GProcess::setNode(GVNode gvnode) {
 }
 
 
-#include <QDebug>
 bool GProcess::checkCollisions() {
 
     QList<QGraphicsItem*> collidItems = marginRect->collidingItems();
     foreach (QGraphicsItem *item, collidItems) {
+        // detect margins of GProcess items from other sorts
         if (item->data(marginZone).toBool()) {
-            if (item->data(11).toString() != process->getSort()->getName().c_str()) {
-                qDebug() << "---> collision with a process' margin of sort " << item->data(11).toString();
+            if (item->data(sortName).toString() != process->getSort()->getName().c_str()) {
                 return true;
             }
         }

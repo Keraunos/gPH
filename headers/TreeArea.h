@@ -154,21 +154,24 @@ public slots:
 
     /**
       * @brief hide a sort
+      * @param int i=1 if the item is clicked in the sortsTree, i=2 if the item is clicked in the groupsTree
       *
       */
-    void hideSort();
+    void hideSort(int i);
 
     /**
       * @brief show a sort
+      * @param int i=1 if the item is clicked in the sortsTree, i=2 if the item is clicked in the groupsTree
       *
       */
-    void showSort();
+    void showSort(int i);
 
     /**
       * @brief change sort color
+      * @param int i=1 if the item is clicked in the sortsTree, i=2 if the item is clicked in the groupsTree
       *
       */
-    void changeSortColor();
+    void changeSortColor(int i);
 
     /**
       * @brief change sort's rect color
@@ -201,22 +204,40 @@ public slots:
     void changeGroupColor();
 
     /**
-      * @brief hide a sort clicked from the groupsTree
+      * @brief slot signifying that the item is clicked from the sortsTree and calls hideSort(1)
       *
       */
-    void hideSortFromGroup();
+    void hideSortClickedFromSort();
 
     /**
-      * @brief show a sort clicked from the groupsTree
+      * @brief slot signifying that the item is clicked from the sortsTree and calls showSort(1)
       *
       */
-    void showSortFromGroup();
+    void showSortClickedFromSort();
 
     /**
-      * @brief change sort color clicked from the groupsTree
+      * @brief slot signifying that the item is clicked from the sortsTree and calls changeSortColor(1)
       *
       */
-    void changeSortColorFromGroup();
+    void changeSortColorClickedFromSort();
+
+    /**
+      * @brief slot signifying that the item is clicked from the groupsTree and calls hideSort(2)
+      *
+      */
+    void hideSortClickedFromGroup();
+
+    /**
+      * @brief slot signifying that the item is clicked from the groupsTree and calls showSort(2)
+      *
+      */
+    void showSortClickedFromGroup();
+
+    /**
+      * @brief slot signifying that the item is clicked from the groupsTree and calls changeSortColor(2)
+      *
+      */
+    void changeSortColorClickedFromGroup();
 
 
 

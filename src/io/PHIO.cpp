@@ -197,3 +197,4 @@ void PHIO::exportToPNG(PHPtr ph, QString name) {
     // save it
     image->save(name, "PNG");
 }
+

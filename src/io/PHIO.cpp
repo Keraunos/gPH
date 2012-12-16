@@ -18,6 +18,7 @@
 #include "PH.h"
 #include "PHIO.h"
 #include "Sort.h"
+#include "Area.h"
 
 using boost::make_shared;
 using std::string;
@@ -198,3 +199,124 @@ void PHIO::exportToPNG(PHPtr ph, QString name) {
     image->save(name, "PNG");
 }
 
+// export preferences to XML
+void PHIO::exportXmlMetadata(MainWindow *window, QXmlStreamWriter stream){
+
+    Area* area = (Area*)window->getCentraleArea()->currentSubWindow()->widget();
+    MyArea* myarea = ((Area*)window->getCentraleArea()->currentSubWindow()->widget())->myArea;
+    QList<QTreeWidgetItem*> sortsFound = area->treeArea->groupsTree->findItems("", Qt::MatchContains, 0);
+    stream.setAutoFormatting(true);
+    stream.writeStartDocument();
+
+    stream.writeStartElement("graph_metadata");
+    stream.writeStartElement("global");
+
+    stream.writeStartElement("ph_file");
+    stream.writeTextElement("name", window->getCentraleArea()->currentSubWindow()->windowTitle());
+    stream.writeTextElement("path", area->path);
+    stream.writeEndElement(); // ph_file
+
+    stream.writeStartElement("styles");
+    stream.writeTextElement("bg_color", myarea->getPHPtr()->getGraphicsScene()->backgroundBrush().color().name());
+    stream.writeTextElement("sort_color", "#073642");
+    stream.writeTextElement("process_color", "#EEE8D5");
+    stream.writeTextElement("text_bg_color", "#0A0A0A");
+    stream.writeTextElement("sort_font", "");
+    stream.writeTextElement("process_font", "");
+    stream.writeTextElement("text_font", "TypeWriter");
+    stream.writeEndElement(); // styles
+
+    stream.writeStartElement("scene");
+    stream.writeTextElement("height", QString::number(window->height()));
+    stream.writeTextElement("width", QString::number(window->width()));
+    stream.writeEndElement(); //scene
+
+    stream.writeEndElement(); // global
+
+    stream.writeStartElement("sorts");
+    for (SortPtr &a: myarea->getPHPtr()->getSorts()){
+        stream.writeStartElement("sort");
+        stream.writeAttribute("name", QString::fromStdString(a->getName()));
+        stream.writeAttribute("visible", QString::number(myarea->getPHPtr()->getGraphicsScene()->getGSort(a->getName())->GSort::isVisible()));
+
+        stream.writeStartElement("pos");
+        stream.writeAttribute("x", "");
+        stream.writeAttribute("y", "");
+        stream.writeEndElement(); // pos
+
+        stream.writeStartElement("size");
+        stream.writeAttribute("w", "");
+        stream.writeAttribute("h", "");
+        stream.writeEndElement(); // size
+
+        stream.writeTextElement("color", myarea->getPHPtr()->getGraphicsScene()->getGSort(a->getName())->getRect()->brush().color().name());
+
+        stream.writeStartElement("label");
+        stream.writeAttribute("text", myarea->getPHPtr()->getGraphicsScene()->getGSort(a->getName())->getText()->toPlainText());
+
+        stream.writeTextElement("font", myarea->getPHPtr()->getGraphicsScene()->getGSort(a->getName())->getText()->font().toString());
+
+        stream.writeStartElement("pos");
+        stream.writeAttribute("x", "");
+        stream.writeAttribute("y", "");
+        stream.writeEndElement(); //pos
+
+        stream.writeEndElement(); // label
+
+        stream.writeStartElement("processes");
+        stream.writeAttribute("nb", QString::number(a->getProcesses().size()));
+
+        for (ProcessPtr &b : a->getProcesses()){
+            stream.writeStartElement("process");
+            stream.writeAttribute("i", QString::number(b->getNumber()));
+
+            stream.writeStartElement("pos");
+            stream.writeAttribute("x", "");
+            stream.writeAttribute("y", "");
+            stream.writeEndElement(); // pos
+
+            stream.writeStartElement("size");
+            stream.writeAttribute("w", "");
+            stream.writeAttribute("h", "");
+            stream.writeEndElement(); // size
+
+            stream.writeEndElement(); // process
+        }
+
+        stream.writeEndElement(); // processes
+
+        stream.writeEndElement(); // sort
+    }
+
+    stream.writeEndElement(); // sorts
+
+    stream.writeStartElement("sort_groups");
+
+    for (QTreeWidgetItem* &a : sortsFound){
+            if (a->parent() == NULL){
+            stream.writeStartElement("group");
+            stream.writeAttribute("name", a->text(0));
+            stream.writeAttribute("visible", QString::number(!a->font(0).italic()));
+            stream.writeTextElement("color", a->foreground(0).color().name());
+            // sorts list
+            if (a->childCount()) {
+                stream.writeStartElement("sorts");
+                for (int i(0); i < a->childCount(); i++) {
+                    stream.writeStartElement("sort");
+                    stream.writeAttribute("name", a->child(i)->text(0));
+                    stream.writeEndElement(); // sorts
+                }
+                stream.writeEndElement();
+            }
+            stream.writeEndElement(); // group
+
+        }
+    }
+
+
+    stream.writeEndElement(); // sort_groups
+
+    stream.writeEndElement(); // graph_metadata
+
+    stream.writeEndDocument();
+}

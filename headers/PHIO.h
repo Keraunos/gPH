@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include "PH.h"
+#include "MainWindow.h"
+#include <QXmlStreamWriter>
 
 /**
   * @file PHIO.h
@@ -49,7 +51,15 @@ class PHIO {
           * @param QString the name of the file saved
           *
           */
-		static void exportToPNG (PHPtr ph, QString name);
+        static void exportToPNG (PHPtr ph, QString name);
+
+        /**
+          * @brief saves as a XML the representation displayed in the GUI
+          * @param MainWindow active MainWindow
+          *
+          */
+        static void exportXmlMetadata(MainWindow*, QXmlStreamWriter);
+
 	
 	private:
 		PHIO(){}

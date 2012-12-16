@@ -246,6 +246,7 @@ void TreeArea::addToGroup(){
                 // Create a new item named after those item, whose parent is the groupsTree
                 QTreeWidgetItem* b = new QTreeWidgetItem(this->groupsTree->currentItem());
                 b->setText(0, a->text(0));
+                b->setForeground(0, a->foreground(0));
                 //QColor* coul(this->groupsPalette->value(this->groupsTree->currentItem()));
                 QColor coul = this->groupsPalette->value(this->groupsTree->currentItem());
                 QPen* pen = new QPen();
@@ -447,7 +448,7 @@ void TreeArea::changeSortRectColor(QTreeWidgetItem * item, QColor * couleur){
 void TreeArea::groupsItemClicked(const QPoint& pos){
         // We assume that if the item clicked does not have any child, it is a group
         QTreeWidgetItem* item = this->groupsTree->currentItem();
-        if (item->childCount() != 0){
+        if (item->parent() == NULL){
             // Add a menu
             QMenu menu(this->groupsTree);
             // Add the actions to the menu

@@ -596,27 +596,27 @@ void TreeArea::changeGroupColor(){
 }
 
 void TreeArea::hideSortClickedFromSort(){
-    emit hideSort(1);
+    emit hideSort(TreeArea::clickInSortsTree);
 }
 
 void TreeArea::showSortClickedFromSort(){
-    emit showSort(1);
+    emit showSort(TreeArea::clickInSortsTree);
 }
 
 void TreeArea::changeSortColorClickedFromSort(){
-    emit changeSortColor(1);
+    emit changeSortColor(TreeArea::clickInSortsTree);
 }
 
 void TreeArea::hideSortClickedFromGroup(){
-    emit hideSort(2);
+    emit hideSort(TreeArea::clickInGroupsTree);
 }
 
 void TreeArea::showSortClickedFromGroup(){
-    emit showSort(2);
+    emit showSort(TreeArea::clickInGroupsTree);
 }
 
 void TreeArea::changeSortColorClickedFromGroup(){
-    emit changeSortColor(2);
+    emit changeSortColor(TreeArea::clickInGroupsTree);
 }
 
 

@@ -11,6 +11,7 @@
 #include <QImage>
 #include <QPainter>
 #include <Qt>
+#include <QXmlStreamWriter>
 #include "axe.h"
 #include "Exceptions.h"
 #include "Action.h"
@@ -20,9 +21,11 @@
 #include "Sort.h"
 #include "Area.h"
 
+
 using boost::make_shared;
 using std::string;
 using std::vector;
+
 
 // process actual parsing, finally
 typedef const char* CCHAR;
@@ -199,8 +202,11 @@ void PHIO::exportToPNG(PHPtr ph, QString name) {
     image->save(name, "PNG");
 }
 
+
 // export preferences to XML
-void PHIO::exportXmlMetadata(MainWindow *window, QXmlStreamWriter stream){
+void PHIO::exportXMLMetadata(MainWindow *window, QFile &output){
+
+    QXmlStreamWriter stream(&output);
 
     Area* area = (Area*)window->getCentraleArea()->currentSubWindow()->widget();
     MyArea* myarea = ((Area*)window->getCentraleArea()->currentSubWindow()->widget())->myArea;

@@ -107,7 +107,7 @@ GVGraphPtr PH::toGVGraph(void) {
         //_agset(res->getSubGraph(s)->graph(), "labelloc", "b"); // set label location in cluster: b(ottom), t(op)
 
 	}
-	
+
     // BUG FIXING ATTEMPT:
     // to force hits' heads and bounces' tails to coincide
 //    const int nbPorts(8);

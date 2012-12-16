@@ -54,11 +54,12 @@ class PHIO {
         static void exportToPNG (PHPtr ph, QString name);
 
         /**
-          * @brief saves as a XML the representation displayed in the GUI
-          * @param MainWindow active MainWindow
+          * @brief saves as an XML file the layout and style information of the graph displayed in GUI
           *
+          * @param MainWindow active MainWindow
+          * @param QFile the file to be written
           */
-        static void exportXmlMetadata(MainWindow*, QXmlStreamWriter);
+        static void exportXMLMetadata(MainWindow *window, QFile &output);
 
 	
 	private:

@@ -428,11 +428,9 @@ void MainWindow::exportXMLMetadata(){
             QMessageBox::critical(this, "Error", "Sorry, unable to open file.");
             output.errorString();
             return;
+        } else {
+            PHIO::exportXMLMetadata(this, output);
         }
-        else{
-            QXmlStreamWriter stream(&output);
-            PHIO::exportXmlMetadata(this, stream);
-            }
 
     } else QMessageBox::critical(this, "Error", "No file opened!");
 

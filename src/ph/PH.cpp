@@ -161,6 +161,7 @@ GVGraphPtr PH::updateGVGraph(PHScene *scene) {
         for (int i(0); i < e.second->getSort()->countProcesses(); i++) {
             processName = makeProcessName(e.second->getSort()->getProcess(i));
             res->addNode(processName);
+            // TODO use GProcess ellipse's absolute coordinates instead (maybe avoids progressive vertical shifting that occurs sometimes between processes and actions of a sort)
             nodeX =   (qreal) e.second->getSort()->getProcess(i)->getGProcess()->getNode()->centerPos.x() / res->getDPI();
             nodeY = - (qreal) e.second->getSort()->getProcess(i)->getGProcess()->getNode()->centerPos.y() / res->getDPI();
             posVal = QString::number(nodeX).append(",").append(QString::number(nodeY)).append("!");

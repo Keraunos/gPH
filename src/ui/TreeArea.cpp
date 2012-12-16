@@ -575,24 +575,20 @@ void TreeArea::changeGroupColor(){
     QTreeWidgetItem* item = this->groupsTree->currentItem();
     // Get all the items of the tree
     QList<QTreeWidgetItem*> wholeTree = this->groupsTree->findItems("", Qt::MatchContains | Qt::MatchRecursive, 0);
-    if (item->childCount() != 0){
-        if (!couleur.isValid()) {
-            return ;
-        } else {
-            for (QTreeWidgetItem* &a: wholeTree){
-                // If the sort is in the group, change rect color
-                if (a->parent() == item){
-                    GSortPtr sortFound = this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString());
-                    sortFound->getRect()->setPen(QPen(QColor(couleur), 4));
-                }
-                this->groupsPalette->insert(this->groupsTree->currentItem(), couleur);
+    if (!couleur.isValid()) {
+        return ;
+    } else {
+        for (QTreeWidgetItem* &a: wholeTree){
+            // If the sort is in the group, change rect color
+            if (a->parent() == item){
+                GSortPtr sortFound = this->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString());
+                sortFound->getRect()->setPen(QPen(QColor(couleur), 4));
             }
+        }
+        this->groupsPalette->insert(this->groupsTree->currentItem(), couleur);
         // Set the color of the item in the sortsTree to the same color
         item->setForeground(0, QBrush(QColor(couleur)));
-        }
     }
-
-
 }
 
 void TreeArea::hideSortClickedFromSort(){

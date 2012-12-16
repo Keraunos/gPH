@@ -104,6 +104,15 @@ public:
       */
     QList<QColor>* palette;
 
+    /**
+      * @brief flag that indicates that user clicked an item in sortsTree
+      */
+    static const int clickInSortsTree;
+    /**
+      * @brief flag that indicates that user clicked an item in groupsTree
+      */
+    static const int clickInGroupsTree;
+
 
 
 signals:
@@ -154,24 +163,24 @@ public slots:
 
     /**
       * @brief hide a sort
-      * @param int i=1 if the item is clicked in the sortsTree, i=2 if the item is clicked in the groupsTree
+      * @param int a flag that takes the value TreeArea::clickInSortsTree or TreeArea::clickInGroupsTree
       *
-      */
-    void hideSort(int i);
+      */    
+    void hideSort(int clickedTree);
 
     /**
       * @brief show a sort
-      * @param int i=1 if the item is clicked in the sortsTree, i=2 if the item is clicked in the groupsTree
+      * @param int a flag that takes the value TreeArea::clickInSortsTree or TreeArea::clickInGroupsTree
       *
       */
-    void showSort(int i);
+    void showSort(int clickedTree);
 
     /**
       * @brief change sort color
-      * @param int i=1 if the item is clicked in the sortsTree, i=2 if the item is clicked in the groupsTree
+      * @param int a flag that takes the value TreeArea::clickInSortsTree or TreeArea::clickInGroupsTree
       *
       */
-    void changeSortColor(int i);
+    void changeSortColor(int clickedTree);
 
     /**
       * @brief change sort's rect color

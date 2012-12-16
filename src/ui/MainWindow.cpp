@@ -5,8 +5,8 @@
 #include "PHIO.h"
 #include "Exceptions.h"
 #include "Area.h"
-#include <QXmlStreamWriter>
 #include <stdio.h>
+
 
 MainWindow::MainWindow() {
 

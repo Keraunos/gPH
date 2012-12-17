@@ -107,6 +107,10 @@ SortPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">builds name for DOT files  <a href="#af9a89e83db6a14451104b49eac7dd313"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_process.html#ad9c1f2be57856c4e62d00f8494d2281f">toDotString</a> (void)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gives a text representation of the process hitting (in .dot format, used in Graphviz)  <a href="#ad9c1f2be57856c4e62d00f8494d2281f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_process.html#a14e32beee307cf814fbc569a96951bba">setGProcess</a> (GProcessPtr gPPtr)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the related <a class="el" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a>  <a href="#a14e32beee307cf814fbc569a96951bba"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">GProcessPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_process.html#af7c8dfd3af2a014c0371840ce82ed608">getGProcess</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the related <a class="el" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a>  <a href="#af7c8dfd3af2a014c0371840ce82ed608"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>represents a <a class="el" href="class_process.html" title="represents a Process of the process hitting">Process</a> of the process hitting </p>
@@ -168,6 +172,50 @@ SortPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
+<a class="anchor" id="af7c8dfd3af2a014c0371840ce82ed608"></a><!-- doxytag: member="Process::getGProcess" ref="af7c8dfd3af2a014c0371840ce82ed608" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GProcessPtr <a class="el" href="class_process.html#af7c8dfd3af2a014c0371840ce82ed608">Process::getGProcess</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>gets the related <a class="el" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a> </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>GProcessPtr a pointer to the related <a class="el" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a> object </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a14e32beee307cf814fbc569a96951bba"></a><!-- doxytag: member="Process::setGProcess" ref="a14e32beee307cf814fbc569a96951bba" args="(GProcessPtr gPPtr)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_process.html#a14e32beee307cf814fbc569a96951bba">Process::setGProcess</a> </td>
+          <td>(</td>
+          <td class="paramtype">GProcessPtr&#160;</td>
+          <td class="paramname"><em>gPPtr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>sets the related <a class="el" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a> </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>pointer to the related <a class="el" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a> object </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ad9c1f2be57856c4e62d00f8494d2281f"></a><!-- doxytag: member="Process::toDotString" ref="ad9c1f2be57856c4e62d00f8494d2281f" args="(void)" -->
 <div class="memitem">
 <div class="memproto">
@@ -209,7 +257,7 @@ SortPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 8 2012 10:07:54 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 17 2012 16:25:53 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

@@ -101,12 +101,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#a423709cc4cc15bc05219b08e1276f455">GSort</a> (SortPtr p, <a class="el" href="struct_g_v_cluster.html">GVCluster</a> c)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor  <a href="#a423709cc4cc15bc05219b08e1276f455"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_g_sort_item.html">GSortItem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#a1b930cc66df1898109e8ca82788b93c0">getDisplayItem</a> (void)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the display  <a href="#a1b930cc66df1898109e8ca82788b93c0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62b1a8ada691f61cb100568bf25f78d6"></a><!-- doxytag: member="GSort::getRect" ref="a62b1a8ada691f61cb100568bf25f78d6" args="()" -->
-QGraphicsRectItem *&#160;</td><td class="memItemRight" valign="bottom"><b>getRect</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad843ded0ec50cef488015b82661991ed"></a><!-- doxytag: member="GSort::getCluster" ref="ad843ded0ec50cef488015b82661991ed" args="()" -->
-<a class="el" href="struct_g_v_cluster.html">GVCluster</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getCluster</b> ()</td></tr>
+QGraphicsRectItem *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#a62b1a8ada691f61cb100568bf25f78d6">getRect</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">get the rect item <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#ac3cbef2a811660668cff937f56ca37fe">mousePressEvent</a> (QGraphicsSceneMouseEvent *event)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles mouse press event (handles drag start)  <a href="#ac3cbef2a811660668cff937f56ca37fe"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#aad29bd2ba170cd9b89ca80edf3439367">mouseMoveEvent</a> (QGraphicsSceneMouseEvent *event)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles mouse move event (handles drag)  <a href="#aad29bd2ba170cd9b89ca80edf3439367"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#a340c92716c90ad010232fdd972902ff0">mouseReleaseEvent</a> (QGraphicsSceneMouseEvent *event)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles mouse release event (handles drop)  <a href="#a340c92716c90ad010232fdd972902ff0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#ae7183314fea0d5a3d9a302004d0614a7">contextMenuEvent</a> (QGraphicsSceneContextMenuEvent *event)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles context menu event (typically on right click)  <a href="#ae7183314fea0d5a3d9a302004d0614a7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">SortPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#a69520d78ab078c083b8090f9190424b0">getSort</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the related <a class="el" href="class_sort.html" title="represents a sort of the process hitting">Sort</a> object  <a href="#a69520d78ab078c083b8090f9190424b0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_g_v_cluster.html">GVCluster</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#ad843ded0ec50cef488015b82661991ed">getCluster</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the related <a class="el" href="struct_g_v_cluster.html" title="struct containing the information for a GVGraph&#39;s node">GVCluster</a> which stores <a class="el" href="class_g_sort.html" title="contains style and layout info to draw a Sort">GSort</a> absolute coordinates  <a href="#ad843ded0ec50cef488015b82661991ed"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ea434778eaf6e7a6dc3603dc1076bb1"></a><!-- doxytag: member="GSort::getText" ref="a4ea434778eaf6e7a6dc3603dc1076bb1" args="()" -->
+QGraphicsTextItem *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#a4ea434778eaf6e7a6dc3603dc1076bb1">getText</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the text of the sort <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a75e1763370c73d2afbe3727f2742bfa4"></a><!-- doxytag: member="GSort::updatePosition" ref="a75e1763370c73d2afbe3727f2742bfa4" args="()" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#a75e1763370c73d2afbe3727f2742bfa4">updatePosition</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">updates the position of this <a class="el" href="class_g_sort.html" title="contains style and layout info to draw a Sort">GSort</a> after drag&amp;drop <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acafeaec8637b62aea47c2ecb4c36e0be"></a><!-- doxytag: member="GSort::hide" ref="acafeaec8637b62aea47c2ecb4c36e0be" args="()" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#acafeaec8637b62aea47c2ecb4c36e0be">hide</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">hides this <a class="el" href="class_g_sort.html" title="contains style and layout info to draw a Sort">GSort</a> setting opacity to 0 <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6cb13a9b6ef35dc7698b165ff0d34b88"></a><!-- doxytag: member="GSort::show" ref="a6cb13a9b6ef35dc7698b165ff0d34b88" args="()" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#a6cb13a9b6ef35dc7698b165ff0d34b88">show</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">show the <a class="el" href="class_g_sort.html" title="contains style and layout info to draw a Sort">GSort</a> setting full opacity <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a58e2a6099a59b26ffe7dafd90590bd3d"></a><!-- doxytag: member="GSort::isVisible" ref="a58e2a6099a59b26ffe7dafd90590bd3d" args="()" -->
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#a58e2a6099a59b26ffe7dafd90590bd3d">isVisible</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">indicates whether or not this <a class="el" href="class_g_sort.html" title="contains style and layout info to draw a Sort">GSort</a> is made visible (test based on opacity, cf. <a class="el" href="class_g_sort.html#acafeaec8637b62aea47c2ecb4c36e0be" title="hides this GSort setting opacity to 0">hide()</a> and <a class="el" href="class_g_sort.html#a6cb13a9b6ef35dc7698b165ff0d34b88" title="show the GSort setting full opacity">show()</a>) <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afdedfe6a6028c586a755315351eee309"></a><!-- doxytag: member="GSort::color" ref="afdedfe6a6028c586a755315351eee309" args="" -->
@@ -118,11 +142,8 @@ Static Protected Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gets a new color in the palette  <a href="#a03da0205abd58bad6c4a58419cb40568"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3dd9dc7aefa88ffa6a94fa0412434ec5"></a><!-- doxytag: member="GSort::display" ref="a3dd9dc7aefa88ffa6a94fa0412434ec5" args="" -->
-<a class="el" href="class_g_sort_item.html">GSortItem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#a3dd9dc7aefa88ffa6a94fa0412434ec5">display</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">the graphical item representing the <a class="el" href="class_sort.html" title="represents a sort of the process hitting">Sort</a> <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9555111be5199a489eda07da4f9963f"></a><!-- doxytag: member="GSort::rect" ref="ae9555111be5199a489eda07da4f9963f" args="" -->
-QGraphicsRectItem *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#ae9555111be5199a489eda07da4f9963f">rect</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa5979b4b0c0e9efbccce0de13ded38d8"></a><!-- doxytag: member="GSort::_rect" ref="aa5979b4b0c0e9efbccce0de13ded38d8" args="" -->
+QGraphicsRectItem *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#aa5979b4b0c0e9efbccce0de13ded38d8">_rect</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">the graphical item representing the rectangle of the <a class="el" href="class_sort.html" title="represents a sort of the process hitting">Sort</a> <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a17c4f8eafc9402f5393e69e614f5429a"></a><!-- doxytag: member="GSort::text" ref="a17c4f8eafc9402f5393e69e614f5429a" args="" -->
 QGraphicsTextItem *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#a17c4f8eafc9402f5393e69e614f5429a">text</a></td></tr>
@@ -133,6 +154,15 @@ SortPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed2a99e461d0af9b2b323e1a9fda92fa"></a><!-- doxytag: member="GSort::cluster" ref="aed2a99e461d0af9b2b323e1a9fda92fa" args="" -->
 <a class="el" href="struct_g_v_cluster.html">GVCluster</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#aed2a99e461d0af9b2b323e1a9fda92fa">cluster</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">the related cluster <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0985310dc8c415f5ac015cde3a28d6a3"></a><!-- doxytag: member="GSort::initPosPoint" ref="a0985310dc8c415f5ac015cde3a28d6a3" args="" -->
+QPoint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#a0985310dc8c415f5ac015cde3a28d6a3">initPosPoint</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">the point used to record this <a class="el" href="class_g_sort.html" title="contains style and layout info to draw a Sort">GSort</a>'s coordinates when user clicks it (ie. starts drag&amp;drop) <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad33260958b9f1fdea916b737dedc5ba7"></a><!-- doxytag: member="GSort::eventPressPoint" ref="ad33260958b9f1fdea916b737dedc5ba7" args="" -->
+QPoint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#ad33260958b9f1fdea916b737dedc5ba7">eventPressPoint</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">the point used to record mouse press event position <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92702d91a49f5a4aadf387e6b10c664a"></a><!-- doxytag: member="GSort::paddingTop" ref="a92702d91a49f5a4aadf387e6b10c664a" args="" -->
+qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_sort.html#a92702d91a49f5a4aadf387e6b10c664a">paddingTop</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">the space between this <a class="el" href="class_g_sort.html" title="contains style and layout info to draw a Sort">GSort</a>'s top side and the top <a class="el" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a> <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a575406f7f0f4ce8da65e3456b7fff818"></a><!-- doxytag: member="GSort::palette" ref="a575406f7f0f4ce8da65e3456b7fff818" args="" -->
@@ -182,14 +212,38 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a1b930cc66df1898109e8ca82788b93c0"></a><!-- doxytag: member="GSort::getDisplayItem" ref="a1b930cc66df1898109e8ca82788b93c0" args="(void)" -->
+<a class="anchor" id="ae7183314fea0d5a3d9a302004d0614a7"></a><!-- doxytag: member="GSort::contextMenuEvent" ref="ae7183314fea0d5a3d9a302004d0614a7" args="(QGraphicsSceneContextMenuEvent *event)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_g_sort_item.html">GSortItem</a>* <a class="el" href="class_g_sort.html#a1b930cc66df1898109e8ca82788b93c0">GSort::getDisplayItem</a> </td>
+          <td class="memname">void <a class="el" href="class_g_sort.html#ae7183314fea0d5a3d9a302004d0614a7">GSort::contextMenuEvent</a> </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
+          <td class="paramtype">QGraphicsSceneContextMenuEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Handles context menu event (typically on right click) </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">QGraphicsSceneContextMenuEvent</td><td>the event to be handled </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad843ded0ec50cef488015b82661991ed"></a><!-- doxytag: member="GSort::getCluster" ref="ad843ded0ec50cef488015b82661991ed" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_g_v_cluster.html">GVCluster</a> <a class="el" href="class_g_sort.html#ad843ded0ec50cef488015b82661991ed">GSort::getCluster</a> </td>
+          <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -197,8 +251,27 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </div>
 <div class="memdoc">
 
-<p>gets the display </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>QGraphicsItem the graphical item representing the <a class="el" href="class_sort.html" title="represents a sort of the process hitting">Sort</a> </dd></dl>
+<p>gets the related <a class="el" href="struct_g_v_cluster.html" title="struct containing the information for a GVGraph&#39;s node">GVCluster</a> which stores <a class="el" href="class_g_sort.html" title="contains style and layout info to draw a Sort">GSort</a> absolute coordinates </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="struct_g_v_cluster.html" title="struct containing the information for a GVGraph&#39;s node">GVCluster</a> the related <a class="el" href="struct_g_v_cluster.html" title="struct containing the information for a GVGraph&#39;s node">GVCluster</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a69520d78ab078c083b8090f9190424b0"></a><!-- doxytag: member="GSort::getSort" ref="a69520d78ab078c083b8090f9190424b0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SortPtr <a class="el" href="class_g_sort.html#a69520d78ab078c083b8090f9190424b0">GSort::getSort</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>gets the related <a class="el" href="class_sort.html" title="represents a sort of the process hitting">Sort</a> object </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>SortPtr a pointer to the related <a class="el" href="class_sort.html" title="represents a sort of the process hitting">Sort</a> object </dd></dl>
 
 </div>
 </div>
@@ -219,6 +292,81 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 <p>gets a new color in the palette </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>QColor* the color retrieved in the palette </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aad29bd2ba170cd9b89ca80edf3439367"></a><!-- doxytag: member="GSort::mouseMoveEvent" ref="aad29bd2ba170cd9b89ca80edf3439367" args="(QGraphicsSceneMouseEvent *event)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_g_sort.html#aad29bd2ba170cd9b89ca80edf3439367">GSort::mouseMoveEvent</a> </td>
+          <td>(</td>
+          <td class="paramtype">QGraphicsSceneMouseEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Handles mouse move event (handles drag) </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">QGraphicsSceneMouseEvent</td><td>the event to be handled </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac3cbef2a811660668cff937f56ca37fe"></a><!-- doxytag: member="GSort::mousePressEvent" ref="ac3cbef2a811660668cff937f56ca37fe" args="(QGraphicsSceneMouseEvent *event)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_g_sort.html#ac3cbef2a811660668cff937f56ca37fe">GSort::mousePressEvent</a> </td>
+          <td>(</td>
+          <td class="paramtype">QGraphicsSceneMouseEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Handles mouse press event (handles drag start) </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">QGraphicsSceneMouseEvent</td><td>the event to be handled </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a340c92716c90ad010232fdd972902ff0"></a><!-- doxytag: member="GSort::mouseReleaseEvent" ref="a340c92716c90ad010232fdd972902ff0" args="(QGraphicsSceneMouseEvent *event)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_g_sort.html#a340c92716c90ad010232fdd972902ff0">GSort::mouseReleaseEvent</a> </td>
+          <td>(</td>
+          <td class="paramtype">QGraphicsSceneMouseEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Handles mouse release event (handles drop) </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">QGraphicsSceneMouseEvent</td><td>the event to be handled </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -243,7 +391,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 8 2012 10:07:51 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 17 2012 16:25:49 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

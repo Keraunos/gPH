@@ -83,26 +83,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="_p_h_i_o_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#pragma once</span>
 <a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#include &lt;string&gt;</span>
 <a name="l00003"></a>00003 <span class="preprocessor">#include &quot;<a class="code" href="_p_h_8h.html" title="header for the PH class">PH.h</a>&quot;</span>
-<a name="l00004"></a>00004 
-<a name="l00012"></a>00012 <span class="keyword">using</span> std::string;
-<a name="l00013"></a>00013 
-<a name="l00019"></a><a class="code" href="class_p_h_i_o.html">00019</a> <span class="keyword">class </span><a class="code" href="class_p_h_i_o.html" title="manages the inputs and outputs of the PH files">PHIO</a> {
-<a name="l00020"></a>00020 
-<a name="l00021"></a>00021         <span class="keyword">public</span>:
-<a name="l00028"></a>00028                 <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_p_h_i_o.html#a264cd5b35169906843e829a13cbcc09d" title="checks if the file exists and is recognized by the parser">canParseFile</a>(<span class="keywordtype">string</span> <span class="keyword">const</span>&amp; path);
-<a name="l00029"></a>00029 
-<a name="l00036"></a>00036                 <span class="keyword">static</span> PHPtr <a class="code" href="class_p_h_i_o.html#afeb84bb5b7960b8a4733b7345d2db025" title="parses the file if it is possible">parseFile</a>  (<span class="keywordtype">string</span> <span class="keyword">const</span>&amp; path);
-<a name="l00037"></a>00037 
-<a name="l00044"></a>00044         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_p_h_i_o.html#a8a33a5a439f19caf0619ab7132642846" title="saves the PH object as a PH file">writeToFile</a> (<span class="keywordtype">string</span> <span class="keyword">const</span>&amp; path, PHPtr ph);
-<a name="l00045"></a>00045 
-<a name="l00052"></a>00052                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_p_h_i_o.html#a612f877c6332f9d20d6ef8992c1681f3" title="saves as a PNG the representation of the PH file as it is displayed in the GUI">exportToPNG</a> (PHPtr ph, QString name);
-<a name="l00053"></a>00053         
-<a name="l00054"></a>00054         <span class="keyword">private</span>:
-<a name="l00055"></a>00055                 <a class="code" href="class_p_h_i_o.html" title="manages the inputs and outputs of the PH files">PHIO</a>(){}
-<a name="l00056"></a>00056 
-<a name="l00063"></a>00063         <span class="keyword">static</span> PHPtr parse (<span class="keywordtype">string</span> <span class="keyword">const</span>&amp; input);
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065 };
+<a name="l00004"></a>00004 <span class="preprocessor">#include &quot;<a class="code" href="_main_window_8h.html" title="header for the MainWindow class">MainWindow.h</a>&quot;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;QXmlStreamWriter&gt;</span>
+<a name="l00006"></a>00006 
+<a name="l00014"></a>00014 <span class="keyword">using</span> std::string;
+<a name="l00015"></a>00015 
+<a name="l00021"></a><a class="code" href="class_p_h_i_o.html">00021</a> <span class="keyword">class </span><a class="code" href="class_p_h_i_o.html" title="manages the inputs and outputs of the PH files">PHIO</a> {
+<a name="l00022"></a>00022 
+<a name="l00023"></a>00023         <span class="keyword">public</span>:
+<a name="l00030"></a>00030                 <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_p_h_i_o.html#a264cd5b35169906843e829a13cbcc09d" title="checks if the file exists and is recognized by the parser">canParseFile</a>(<span class="keywordtype">string</span> <span class="keyword">const</span>&amp; path);
+<a name="l00031"></a>00031 
+<a name="l00038"></a>00038                 <span class="keyword">static</span> PHPtr <a class="code" href="class_p_h_i_o.html#afeb84bb5b7960b8a4733b7345d2db025" title="parses the file if it is possible">parseFile</a>  (<span class="keywordtype">string</span> <span class="keyword">const</span>&amp; path);
+<a name="l00039"></a>00039 
+<a name="l00046"></a>00046         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_p_h_i_o.html#a8a33a5a439f19caf0619ab7132642846" title="saves the PH object as a PH file">writeToFile</a> (<span class="keywordtype">string</span> <span class="keyword">const</span>&amp; path, PHPtr ph);
+<a name="l00047"></a>00047 
+<a name="l00054"></a>00054         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_p_h_i_o.html#a612f877c6332f9d20d6ef8992c1681f3" title="saves as a PNG the representation of the PH file as it is displayed in the GUI">exportToPNG</a> (PHPtr ph, QString name);
+<a name="l00055"></a>00055 
+<a name="l00062"></a>00062         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_p_h_i_o.html#acfdd11c04c1a729812857ea563803938" title="saves as an XML file the layout and style information of the graph displayed in GUI">exportXMLMetadata</a>(<a class="code" href="class_main_window.html" title="Builds the main window of the program extends QMainWindow.">MainWindow</a> *window, QFile &amp;output);
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064         
+<a name="l00065"></a>00065         <span class="keyword">private</span>:
+<a name="l00066"></a>00066                 <a class="code" href="class_p_h_i_o.html" title="manages the inputs and outputs of the PH files">PHIO</a>(){}
+<a name="l00067"></a>00067 
+<a name="l00074"></a>00074         <span class="keyword">static</span> PHPtr parse (<span class="keywordtype">string</span> <span class="keyword">const</span>&amp; input);
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076 };
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -121,7 +126,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 8 2012 10:07:49 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 17 2012 16:25:48 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

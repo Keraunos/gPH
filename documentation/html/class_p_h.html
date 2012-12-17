@@ -98,7 +98,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3ab2dd87b4bfadf04c1a14c6091aebc"></a><!-- doxytag: member="PH::PH" ref="ae3ab2dd87b4bfadf04c1a14c6091aebc" args="()" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_h.html#ae3ab2dd87b4bfadf04c1a14c6091aebc">PH</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">builder for <a class="el" href="class_p_h.html" title="represents an entire process hitting as defined in a PH file">PH</a> <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_h.html#ad4335e01899c57e6802021f1afb83e7f">addSort</a> (SortPtr s)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">adds a sort to the <a class="el" href="class_p_h.html" title="represents an entire process hitting as defined in a PH file">PH</a>  <a href="#ad4335e01899c57e6802021f1afb83e7f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_h.html#ae9bed9356d272f3c43f2147d6d8e5906">addAction</a> (ActionPtr a)</td></tr>
@@ -123,6 +123,8 @@ list&lt; ProcessPtr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a c
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">calls for the process hitting in its scene  <a href="#af1f67304076aded44a15a30aed6dc652"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">GVGraphPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_h.html#a220fd9fdc673988edb461b02a90edb1b">toGVGraph</a> (void)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">makes a representation of the process hitting as a graph  <a href="#a220fd9fdc673988edb461b02a90edb1b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">GVGraphPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_h.html#afbd5cbabc39a0502a95e5c6609a52d58">updateGVGraph</a> (<a class="el" href="class_p_h_scene.html">PHScene</a> *<a class="el" href="class_p_h.html#ac8fbe29746ee4097c879be0cf75f3ad7">scene</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">updates the representation of the process hitting as a graph after user's customizations  <a href="#afbd5cbabc39a0502a95e5c6609a52d58"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">PHScenePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_h.html#aaf75a785bb9bd06cec611f0fb69d05f6">getGraphicsScene</a> (void)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">outputs for display  <a href="#aaf75a785bb9bd06cec611f0fb69d05f6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0494ca8a53e983230a9df06fa71043e1"></a><!-- doxytag: member="PH::getStochasticityAbsorption" ref="a0494ca8a53e983230a9df06fa71043e1" args="()" -->
@@ -317,6 +319,27 @@ PHScenePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 </div>
 </div>
+<a class="anchor" id="afbd5cbabc39a0502a95e5c6609a52d58"></a><!-- doxytag: member="PH::updateGVGraph" ref="afbd5cbabc39a0502a95e5c6609a52d58" args="(PHScene *scene)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GVGraphPtr <a class="el" href="class_p_h.html#afbd5cbabc39a0502a95e5c6609a52d58">PH::updateGVGraph</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_p_h_scene.html">PHScene</a> *&#160;</td>
+          <td class="paramname"><em>scene</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>updates the representation of the process hitting as a graph after user's customizations </p>
+<p>calls graphviz to calculate the graph </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd></dd></dl>
+
+</div>
+</div>
 <hr/><h2>Member Data Documentation</h2>
 <a class="anchor" id="aa66efaf095a379c3b108a023d7c98afa"></a><!-- doxytag: member="PH::infinite_default_rate" ref="aa66efaf095a379c3b108a023d7c98afa" args="" -->
 <div class="memitem">
@@ -355,7 +378,7 @@ PHScenePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 8 2012 10:07:53 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 17 2012 16:25:51 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

@@ -8,6 +8,12 @@
 #include "PH.h"
 #include "MyArea.h"
 
+
+/**
+  * @class TreeArea
+  * @brief Tree Wigets extends QWidget
+  *
+  */
 class TreeArea : public QWidget
 {
     Q_OBJECT

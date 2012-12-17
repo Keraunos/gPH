@@ -15,7 +15,7 @@ represents an entire process hitting as defined in a \hyperlink{class_p_h}{\-P\-
 \item 
 \hypertarget{class_p_h_ae3ab2dd87b4bfadf04c1a14c6091aebc}{\hyperlink{class_p_h_ae3ab2dd87b4bfadf04c1a14c6091aebc}{\-P\-H} ()}\label{class_p_h_ae3ab2dd87b4bfadf04c1a14c6091aebc}
 
-\begin{DoxyCompactList}\small\item\em builder for \hyperlink{class_p_h}{\-P\-H} \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
 void \hyperlink{class_p_h_ad4335e01899c57e6802021f1afb83e7f}{add\-Sort} (\-Sort\-Ptr s)
 \begin{DoxyCompactList}\small\item\em adds a sort to the \hyperlink{class_p_h}{\-P\-H} \end{DoxyCompactList}\item 
 void \hyperlink{class_p_h_ae9bed9356d272f3c43f2147d6d8e5906}{add\-Action} (\-Action\-Ptr a)
@@ -40,6 +40,8 @@ void \hyperlink{class_p_h_af1f67304076aded44a15a30aed6dc652}{render} (void)
 \begin{DoxyCompactList}\small\item\em calls for the process hitting in its scene \end{DoxyCompactList}\item 
 \-G\-V\-Graph\-Ptr \hyperlink{class_p_h_a220fd9fdc673988edb461b02a90edb1b}{to\-G\-V\-Graph} (void)
 \begin{DoxyCompactList}\small\item\em makes a representation of the process hitting as a graph \end{DoxyCompactList}\item 
+\-G\-V\-Graph\-Ptr \hyperlink{class_p_h_afbd5cbabc39a0502a95e5c6609a52d58}{update\-G\-V\-Graph} (\hyperlink{class_p_h_scene}{\-P\-H\-Scene} $\ast$\hyperlink{class_p_h_ac8fbe29746ee4097c879be0cf75f3ad7}{scene})
+\begin{DoxyCompactList}\small\item\em updates the representation of the process hitting as a graph after user's customizations \end{DoxyCompactList}\item 
 \-P\-H\-Scene\-Ptr \hyperlink{class_p_h_aaf75a785bb9bd06cec611f0fb69d05f6}{get\-Graphics\-Scene} (void)
 \begin{DoxyCompactList}\small\item\em outputs for display \end{DoxyCompactList}\item 
 \hypertarget{class_p_h_a0494ca8a53e983230a9df06fa71043e1}{int \hyperlink{class_p_h_a0494ca8a53e983230a9df06fa71043e1}{get\-Stochasticity\-Absorption} ()}\label{class_p_h_a0494ca8a53e983230a9df06fa71043e1}
@@ -184,6 +186,20 @@ gives a text representation of the process hitting (as it would be in a .ph file
 
 \begin{DoxyReturn}{\-Returns}
 string the text representation of the process hitting in \hyperlink{class_p_h}{\-P\-H} format 
+\end{DoxyReturn}
+\hypertarget{class_p_h_afbd5cbabc39a0502a95e5c6609a52d58}{\index{\-P\-H@{\-P\-H}!update\-G\-V\-Graph@{update\-G\-V\-Graph}}
+\index{update\-G\-V\-Graph@{update\-G\-V\-Graph}!PH@{\-P\-H}}
+\subsubsection[{update\-G\-V\-Graph}]{\setlength{\rightskip}{0pt plus 5cm}\-G\-V\-Graph\-Ptr {\bf \-P\-H\-::update\-G\-V\-Graph} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-P\-H\-Scene} $\ast$}]{scene}
+\end{DoxyParamCaption}
+)}}\label{class_p_h_afbd5cbabc39a0502a95e5c6609a52d58}
+
+
+updates the representation of the process hitting as a graph after user's customizations 
+
+calls graphviz to calculate the graph \begin{DoxyReturn}{\-Returns}
+
 \end{DoxyReturn}
 
 

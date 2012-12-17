@@ -99,25 +99,44 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00029"></a>00029 
 <a name="l00030"></a>00030         <span class="keyword">public</span>:
 <a name="l00031"></a>00031 
-<a name="l00038"></a>00038                 <a class="code" href="class_g_process.html#a16ff7286ec7b0081a6d2a25f9784460f" title="constructor">GProcess</a>(ProcessPtr p, <a class="code" href="struct_g_v_node.html" title="struct containing the information for a GVGraph&#39;s node">GVNode</a> n);
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040                 ~<a class="code" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a>();
-<a name="l00041"></a>00041 
-<a name="l00047"></a>00047                 QGraphicsItem* <a class="code" href="class_g_process.html#abc8cdf8bb0a8402a1b507005be3a97f9" title="gets the display">getDisplayItem</a> (<span class="keywordtype">void</span>);
-<a name="l00048"></a>00048         
-<a name="l00049"></a>00049         <span class="keyword">protected</span>:
-<a name="l00050"></a>00050 
-<a name="l00055"></a><a class="code" href="class_g_process.html#afcb6a6765219d5ca69f23b89a147a7db">00055</a>                 QGraphicsItem* <a class="code" href="class_g_process.html#afcb6a6765219d5ca69f23b89a147a7db" title="the graphical item representing the Process">display</a>;
-<a name="l00056"></a>00056 
-<a name="l00061"></a><a class="code" href="class_g_process.html#ac0770d84d26f835cd409cb1bbd5a2408">00061</a>                 QGraphicsEllipseItem* <a class="code" href="class_g_process.html#ac0770d84d26f835cd409cb1bbd5a2408" title="the graphical item representing the ellipse of the Process">ellipse</a>;
+<a name="l00039"></a>00039         <a class="code" href="class_g_process.html#a4547d1c5884879d599de7b5de2cf7fcb" title="constructor">GProcess</a>(ProcessPtr p, <a class="code" href="struct_g_v_node.html" title="struct containing the information for a GVGraph&#39;s node">GVNode</a> n, qreal graphDPI);
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041                 ~<a class="code" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a>();
+<a name="l00042"></a>00042 
+<a name="l00048"></a>00048                 QGraphicsItem* <a class="code" href="class_g_process.html#abc8cdf8bb0a8402a1b507005be3a97f9" title="gets the display">getDisplayItem</a> (<span class="keywordtype">void</span>);
+<a name="l00049"></a>00049 
+<a name="l00054"></a>00054         QGraphicsEllipseItem* <a class="code" href="class_g_process.html#a3b19ac4a7cd4558a7e5d78b83f2e1bd8" title="gets the ellipse">getEllipseItem</a>();
+<a name="l00055"></a>00055 
+<a name="l00061"></a>00061         <a class="code" href="struct_g_v_node.html" title="struct containing the information for a GVGraph&#39;s node">GVNode</a>* <a class="code" href="class_g_process.html#a9d26b9dad04fd1cb89851d9ae0a3be0f" title="gets the related GVNode">getNode</a>();
 <a name="l00062"></a>00062 
-<a name="l00067"></a><a class="code" href="class_g_process.html#a4ff36f4f6daae75d094c53d837ad4ecc">00067</a>         QGraphicsTextItem* <a class="code" href="class_g_process.html#a4ff36f4f6daae75d094c53d837ad4ecc" title="the graphical item representing the text of the Process">text</a>;
+<a name="l00067"></a>00067         QGraphicsRectItem* <a class="code" href="class_g_process.html#ad369ac5613ff46bcabf93eafd37f006e" title="gets the rect item that represents the margin of this GProcess">getMarginRect</a>();
 <a name="l00068"></a>00068 
-<a name="l00073"></a><a class="code" href="class_g_process.html#adb2d4b43a105c00b5be1f5bc405a3f43">00073</a>                 ProcessPtr <a class="code" href="class_g_process.html#adb2d4b43a105c00b5be1f5bc405a3f43" title="the related Process">process</a>;
-<a name="l00074"></a>00074 
-<a name="l00079"></a><a class="code" href="class_g_process.html#a83a9972757f06e9eff7fe120ac9f2b5b">00079</a>                 <a class="code" href="struct_g_v_node.html" title="struct containing the information for a GVGraph&#39;s node">GVNode</a> <a class="code" href="class_g_process.html#a83a9972757f06e9eff7fe120ac9f2b5b" title="the related node">node</a>;
-<a name="l00080"></a>00080         
-<a name="l00081"></a>00081 };
+<a name="l00076"></a>00076         <span class="keywordtype">void</span> <a class="code" href="class_g_process.html#a617697e8c6615615c988dd5b24a3679d" title="updates the related GVNode&#39;s coordinates with a vector">setNodeCoords</a>(<span class="keywordtype">int</span> dx, <span class="keywordtype">int</span> dy);
+<a name="l00077"></a>00077 
+<a name="l00084"></a>00084         <span class="keywordtype">void</span> <a class="code" href="class_g_process.html#a7cea82b28af35301adb9b57eabdcd655" title="sets the related GVNode structure">setNode</a>(<a class="code" href="struct_g_v_node.html" title="struct containing the information for a GVGraph&#39;s node">GVNode</a> gvnode);
+<a name="l00085"></a>00085 
+<a name="l00091"></a>00091         <span class="keywordtype">bool</span> <a class="code" href="class_g_process.html#a5d4e69825de4164b800ff832d9279715" title="checks collisions with margins of other GProcess items (see graph attribute &quot;sep&quot; in GVSubGraph)...">checkCollisions</a>();
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093         
+<a name="l00094"></a>00094         <span class="keyword">protected</span>:
+<a name="l00095"></a>00095 
+<a name="l00100"></a><a class="code" href="class_g_process.html#afcb6a6765219d5ca69f23b89a147a7db">00100</a>                 QGraphicsItem* <a class="code" href="class_g_process.html#afcb6a6765219d5ca69f23b89a147a7db" title="the graphical item representing the Process">display</a>;
+<a name="l00101"></a>00101 
+<a name="l00106"></a><a class="code" href="class_g_process.html#ac0770d84d26f835cd409cb1bbd5a2408">00106</a>                 QGraphicsEllipseItem* <a class="code" href="class_g_process.html#ac0770d84d26f835cd409cb1bbd5a2408" title="the graphical item representing the ellipse of the Process">ellipse</a>;
+<a name="l00107"></a>00107 
+<a name="l00112"></a><a class="code" href="class_g_process.html#a4ff36f4f6daae75d094c53d837ad4ecc">00112</a>         QGraphicsTextItem* <a class="code" href="class_g_process.html#a4ff36f4f6daae75d094c53d837ad4ecc" title="the graphical item representing the text of the Process">text</a>;
+<a name="l00113"></a>00113 
+<a name="l00118"></a><a class="code" href="class_g_process.html#adb2d4b43a105c00b5be1f5bc405a3f43">00118</a>                 ProcessPtr <a class="code" href="class_g_process.html#adb2d4b43a105c00b5be1f5bc405a3f43" title="the related Process">process</a>;
+<a name="l00119"></a>00119 
+<a name="l00124"></a><a class="code" href="class_g_process.html#a83a9972757f06e9eff7fe120ac9f2b5b">00124</a>                 <a class="code" href="struct_g_v_node.html" title="struct containing the information for a GVGraph&#39;s node">GVNode</a> <a class="code" href="class_g_process.html#a83a9972757f06e9eff7fe120ac9f2b5b" title="the related node">node</a>;
+<a name="l00125"></a>00125 
+<a name="l00130"></a><a class="code" href="class_g_process.html#a9488cf1e4bf4351233aaaa1c1bc67370">00130</a>         QGraphicsRectItem* <a class="code" href="class_g_process.html#a9488cf1e4bf4351233aaaa1c1bc67370" title="the margin around this process, must exclude any other process&#39; margin (cf. graphviz attribute &quot;pos&quot; ...">marginRect</a>;
+<a name="l00131"></a>00131 
+<a name="l00136"></a><a class="code" href="class_g_process.html#a94d91ce9eef85fe8d4f97f7c3ab8ee98">00136</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_g_process.html#a94d91ce9eef85fe8d4f97f7c3ab8ee98" title="arbitrarily-chosen key for &quot;margin item&quot; data">marginZone</a>;
+<a name="l00137"></a>00137 
+<a name="l00142"></a><a class="code" href="class_g_process.html#a8dd5428c10ff4d7317b244630aa13012">00142</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_g_process.html#a8dd5428c10ff4d7317b244630aa13012" title="arbitrarily-chosen key for sort name data">sortName</a>;
+<a name="l00143"></a>00143 
+<a name="l00144"></a>00144 };
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -136,7 +155,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 8 2012 10:07:49 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 17 2012 16:25:48 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

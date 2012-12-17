@@ -87,35 +87,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00005"></a>00005 <span class="preprocessor">#include &lt;QtGui&gt;</span>
 <a name="l00006"></a>00006 <span class="preprocessor">#include &quot;<a class="code" href="_p_h_8h.html" title="header for the PH class">PH.h</a>&quot;</span>
 <a name="l00007"></a>00007 
-<a name="l00022"></a><a class="code" href="class_my_area.html">00022</a> <span class="keyword">class </span><a class="code" href="class_my_area.html" title="new tab extends QGraphicsView">MyArea</a> : <span class="keyword">public</span> QGraphicsView {
+<a name="l00022"></a><a class="code" href="class_my_area.html">00022</a> <span class="keyword">class </span><a class="code" href="class_my_area.html" title="Graph Widget extends QGraphicsView.">MyArea</a> : <span class="keyword">public</span> QGraphicsView {
 <a name="l00023"></a>00023     Q_OBJECT
 <a name="l00024"></a>00024 
 <a name="l00025"></a>00025     <span class="keyword">public</span>:
-<a name="l00026"></a>00026         <span class="comment">//builder</span>
-<a name="l00027"></a>00027 
-<a name="l00033"></a>00033         <a class="code" href="class_my_area.html#a31f13e95c83414c538b6c46e55e19c79" title="constructor">MyArea</a>(QString <a class="code" href="class_my_area.html#a70561a408470de740f580da6717871bf" title="the path to the file">path</a>);
-<a name="l00034"></a>00034 
-<a name="l00035"></a>00035         <span class="comment">// getter + setter for myPHPtr</span>
-<a name="l00040"></a>00040 <span class="comment"></span>        PHPtr <a class="code" href="class_my_area.html#a7b94b516e730ddcee16d946c76bbc2b3" title="gets myPHPtr">getPHPtr</a>();
+<a name="l00026"></a>00026 
+<a name="l00032"></a>00032         <a class="code" href="class_my_area.html#a31f13e95c83414c538b6c46e55e19c79" title="constructor">MyArea</a>(QString <a class="code" href="class_my_area.html#a70561a408470de740f580da6717871bf" title="the path to the file">path</a>);
+<a name="l00033"></a>00033 
+<a name="l00040"></a>00040         <a class="code" href="class_my_area.html#a31f13e95c83414c538b6c46e55e19c79" title="constructor">MyArea</a>(QWidget *parent, QString path);
 <a name="l00041"></a>00041 
-<a name="l00046"></a>00046         <span class="keywordtype">void</span> <a class="code" href="class_my_area.html#a087c389370070a348af025aaee620fc8" title="sets myPHPtr">setPHPtr</a>(PHPtr);
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048         <span class="comment">// getter + setter for path</span>
-<a name="l00049"></a>00049 
-<a name="l00054"></a>00054         QString <a class="code" href="class_my_area.html#a84edb9791a8c988cb9f13ac1ef2025d5" title="gets path">getPath</a>();
-<a name="l00055"></a>00055 
-<a name="l00060"></a>00060         <span class="keywordtype">void</span> <a class="code" href="class_my_area.html#ab1f574dcb5318131128deb076743f01a" title="sets path">setPath</a>(QString);
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062     <span class="keyword">protected</span>:
-<a name="l00067"></a><a class="code" href="class_my_area.html#a59beb02fefc60d81c287cbc43e6de640">00067</a>         PHPtr <a class="code" href="class_my_area.html#a59beb02fefc60d81c287cbc43e6de640" title="pointer to a PH object">myPHPtr</a>;
+<a name="l00042"></a>00042         <span class="comment">// getter + setter for myPHPtr</span>
+<a name="l00047"></a>00047 <span class="comment"></span>        PHPtr <a class="code" href="class_my_area.html#a7b94b516e730ddcee16d946c76bbc2b3" title="gets myPHPtr">getPHPtr</a>();
+<a name="l00048"></a>00048 
+<a name="l00053"></a>00053         <span class="keywordtype">void</span> <a class="code" href="class_my_area.html#a087c389370070a348af025aaee620fc8" title="sets myPHPtr">setPHPtr</a>(PHPtr);
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055         <span class="comment">// getter + setter for path</span>
+<a name="l00056"></a>00056 
+<a name="l00061"></a>00061         QString <a class="code" href="class_my_area.html#a84edb9791a8c988cb9f13ac1ef2025d5" title="gets path">getPath</a>();
+<a name="l00062"></a>00062 
+<a name="l00067"></a>00067         <span class="keywordtype">void</span> <a class="code" href="class_my_area.html#ab1f574dcb5318131128deb076743f01a" title="sets path">setPath</a>(QString);
 <a name="l00068"></a>00068 
-<a name="l00073"></a><a class="code" href="class_my_area.html#a70561a408470de740f580da6717871bf">00073</a>         QString <a class="code" href="class_my_area.html#a70561a408470de740f580da6717871bf" title="the path to the file">path</a>;
+<a name="l00073"></a>00073         <span class="keywordtype">void</span> <a class="code" href="class_my_area.html#ae9e0f83ea174d928e90149e510a1ba6a" title="zooms the view in">zoomIn</a>();
 <a name="l00074"></a>00074 
-<a name="l00075"></a>00075     signals:
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077     <span class="keyword">public</span> slots:
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079 };
+<a name="l00079"></a>00079         <span class="keywordtype">void</span> <a class="code" href="class_my_area.html#af3c32c10d3db89a2efba9c23ec029fe0" title="zooms the view out">zoomOut</a>();
+<a name="l00080"></a>00080 
+<a name="l00085"></a>00085         <span class="keywordtype">void</span> <a class="code" href="class_my_area.html#ae3d11ed25247a029074808e88bae22f0" title="zooms the view in and out while scrolling">wheelEvent</a>(QWheelEvent *event);
+<a name="l00086"></a>00086 
+<a name="l00091"></a>00091         <span class="keywordtype">float</span> <a class="code" href="class_my_area.html#a7ad7ab4856b78cc6d8f18f1a7e6dd784" title="gets the scaling factor">getScalingFactor</a>();
+<a name="l00092"></a>00092 
+<a name="l00097"></a>00097         <span class="keywordtype">void</span> <a class="code" href="class_my_area.html#ac80eebebdb761f1189b4d7c020316596" title="sets the scaling factor">setScalingFactor</a>(<span class="keywordtype">float</span>);
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101     <span class="keyword">protected</span>:
+<a name="l00106"></a><a class="code" href="class_my_area.html#a59beb02fefc60d81c287cbc43e6de640">00106</a>         PHPtr <a class="code" href="class_my_area.html#a59beb02fefc60d81c287cbc43e6de640" title="pointer to a PH object">myPHPtr</a>;
+<a name="l00107"></a>00107 
+<a name="l00112"></a><a class="code" href="class_my_area.html#a70561a408470de740f580da6717871bf">00112</a>         QString <a class="code" href="class_my_area.html#a70561a408470de740f580da6717871bf" title="the path to the file">path</a>;        
+<a name="l00113"></a>00113 
+<a name="l00118"></a><a class="code" href="class_my_area.html#ac72eacc7e4d8404a6b97cf6235a283e3">00118</a>         <span class="keywordtype">float</span> <a class="code" href="class_my_area.html#ac72eacc7e4d8404a6b97cf6235a283e3" title="the scaling factor">scalingFactor</a>;
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120     signals:
+<a name="l00121"></a>00121 
+<a name="l00122"></a>00122     <span class="keyword">public</span> slots:
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124 };
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -134,7 +149,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 8 2012 10:07:49 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 17 2012 16:25:48 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

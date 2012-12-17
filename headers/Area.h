@@ -8,6 +8,12 @@
 #include "MyArea.h"
 #include "MainWindow.h"
 
+
+/**
+  * @class Area
+  * @brief New Tab extends QWidget
+  *
+  */
 class Area : public QWidget
 {
     Q_OBJECT

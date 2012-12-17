@@ -3,7 +3,6 @@ var searchData=
   ['gaction',['GAction',['../class_g_action.html',1,'']]],
   ['gprocess',['GProcess',['../class_g_process.html',1,'']]],
   ['gsort',['GSort',['../class_g_sort.html',1,'']]],
-  ['gsortitem',['GSortItem',['../class_g_sort_item.html',1,'']]],
   ['gv_5ferror',['gv_error',['../structgv__error.html',1,'']]],
   ['gvcluster',['GVCluster',['../struct_g_v_cluster.html',1,'']]],
   ['gvedge',['GVEdge',['../struct_g_v_edge.html',1,'']]],

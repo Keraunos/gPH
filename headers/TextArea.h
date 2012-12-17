@@ -4,6 +4,11 @@
 #include <QTextEdit>
 #include <QColor>
 
+/**
+  * @class TextArea
+  * @brief Text Widget extends QTextEdit
+  *
+  */
 class TextArea : public QTextEdit
 {
     Q_OBJECT

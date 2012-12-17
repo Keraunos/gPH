@@ -101,6 +101,15 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor  <a href="#a697f4b533d191139a1eb401c486afff9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QGraphicsItem *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_action.html#ad3086cca158b494f7c2fd31783fb9f77">getDisplayItem</a> (void)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the display  <a href="#ad3086cca158b494f7c2fd31783fb9f77"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9005fd701c1362eea9d7299b95672cb"></a><!-- doxytag: member="GAction::getAction" ref="ac9005fd701c1362eea9d7299b95672cb" args="()" -->
+ActionPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_action.html#ac9005fd701c1362eea9d7299b95672cb">getAction</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the action <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">GSortPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_action.html#a1a76d059cb3b169b5e9dfeed00b41da3">getSourceSort</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the source <a class="el" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a> item  <a href="#a1a76d059cb3b169b5e9dfeed00b41da3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">GSortPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_action.html#a77a2ac1b8a697c066dcf9d6624bb4fa0">getTargetSort</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the target <a class="el" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a> item  <a href="#a77a2ac1b8a697c066dcf9d6624bb4fa0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">GSortPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_action.html#addc1ebc84b2c739d4fa78d8938f9c6c3">getResultSort</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the result <a class="el" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a> item  <a href="#addc1ebc84b2c739d4fa78d8938f9c6c3"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QGraphicsPolygonItem *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_action.html#afeb408bf85d902191cef8a3cf613c7eb">makeArrowHead</a> (const <a class="el" href="struct_g_v_edge.html">GVEdge</a> &amp;e, const QColor &amp;color)</td></tr>
@@ -113,6 +122,9 @@ Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80fd22faf283374dd9861bf4900eafa4"></a><!-- doxytag: member="GAction::display" ref="a80fd22faf283374dd9861bf4900eafa4" args="" -->
 QGraphicsItem *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_action.html#a80fd22faf283374dd9861bf4900eafa4">display</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">the graphical item representing the <a class="el" href="class_action.html" title="Represents an Action of the process hitting.">Action</a> <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a22f734f6fb2fade298681819341b4f75"></a><!-- doxytag: member="GAction::action" ref="a22f734f6fb2fade298681819341b4f75" args="" -->
+ActionPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_action.html#a22f734f6fb2fade298681819341b4f75">action</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">the related <a class="el" href="class_action.html" title="Represents an Action of the process hitting.">Action</a> <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc626fc7dc52a5f02960706c02a52db9"></a><!-- doxytag: member="GAction::arrowTails" ref="abc626fc7dc52a5f02960706c02a52db9" args="" -->
 pair&lt; QGraphicsPathItem <br class="typebreak"/>
 *, QGraphicsPathItem * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_action.html#abc626fc7dc52a5f02960706c02a52db9">arrowTails</a></td></tr>
@@ -121,9 +133,6 @@ pair&lt; QGraphicsPathItem <br class="typebreak"/>
 pair&lt; QGraphicsPolygonItem <br class="typebreak"/>
 *, QGraphicsPolygonItem * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_action.html#aab9cc72a8692e0b15f19e192ab21d609">arrowHeads</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">the pair of graphical items representing the heads of the arrows of the <a class="el" href="class_action.html" title="Represents an Action of the process hitting.">Action</a> <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a22f734f6fb2fade298681819341b4f75"></a><!-- doxytag: member="GAction::action" ref="a22f734f6fb2fade298681819341b4f75" args="" -->
-ActionPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_action.html#a22f734f6fb2fade298681819341b4f75">action</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">the related <a class="el" href="class_action.html" title="Represents an Action of the process hitting.">Action</a> <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65f9f4938e024adc07cea387079549f8"></a><!-- doxytag: member="GAction::edges" ref="a65f9f4938e024adc07cea387079549f8" args="" -->
 pair&lt; <a class="el" href="struct_g_v_edge.html">GVEdge</a>, <a class="el" href="struct_g_v_edge.html">GVEdge</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_action.html#a65f9f4938e024adc07cea387079549f8">edges</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">the edges related to the arrows <br/></td></tr>
@@ -202,6 +211,78 @@ pair&lt; <a class="el" href="struct_g_v_edge.html">GVEdge</a>, <a class="el" hre
 
 </div>
 </div>
+<a class="anchor" id="addc1ebc84b2c739d4fa78d8938f9c6c3"></a><!-- doxytag: member="GAction::getResultSort" ref="addc1ebc84b2c739d4fa78d8938f9c6c3" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GSortPtr <a class="el" href="class_g_action.html#addc1ebc84b2c739d4fa78d8938f9c6c3">GAction::getResultSort</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>gets the result <a class="el" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a> item </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">GProcessPtr</td><td>a pointer to the result <a class="el" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a> item </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a1a76d059cb3b169b5e9dfeed00b41da3"></a><!-- doxytag: member="GAction::getSourceSort" ref="a1a76d059cb3b169b5e9dfeed00b41da3" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GSortPtr <a class="el" href="class_g_action.html#a1a76d059cb3b169b5e9dfeed00b41da3">GAction::getSourceSort</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>gets the source <a class="el" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a> item </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">GProcessPtr</td><td>a pointer to the source <a class="el" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a> item </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a77a2ac1b8a697c066dcf9d6624bb4fa0"></a><!-- doxytag: member="GAction::getTargetSort" ref="a77a2ac1b8a697c066dcf9d6624bb4fa0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GSortPtr <a class="el" href="class_g_action.html#a77a2ac1b8a697c066dcf9d6624bb4fa0">GAction::getTargetSort</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>gets the target <a class="el" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a> item </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">GProcessPtr</td><td>a pointer to the target <a class="el" href="class_g_process.html" title="contains style and layout info to draw a process">GProcess</a> item </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="afeb408bf85d902191cef8a3cf613c7eb"></a><!-- doxytag: member="GAction::makeArrowHead" ref="afeb408bf85d902191cef8a3cf613c7eb" args="(const GVEdge &amp;e, const QColor &amp;color)" -->
 <div class="memitem">
 <div class="memproto">
@@ -260,7 +341,7 @@ pair&lt; <a class="el" href="struct_g_v_edge.html">GVEdge</a>, <a class="el" hre
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 8 2012 10:07:51 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 17 2012 16:25:49 for Documentation of gPH by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

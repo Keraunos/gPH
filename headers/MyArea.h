@@ -15,7 +15,7 @@
 
 /**
   * @class MyArea
-  * @brief new tab
+  * @brief Graph Widget
     extends QGraphicsView
   *
   */
